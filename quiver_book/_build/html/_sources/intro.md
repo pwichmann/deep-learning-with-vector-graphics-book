@@ -21,6 +21,12 @@ Representing a raster image as such a tensor is easy: In a simple black-and-whit
 
 Vector graphics are different. One standard format for vector graphics is the Scalable Vector Graphics format - or short: SVG. This format is XML-based and, thus, a text-based description of the image using tags and attributes. So how do we deal with vector graphics?
 
+  * *We could just render the SVG to a raster image file, such as a PNG file.* But then our deep neural network will never learn anything about vector graphics and their specific definition. Unless trained otherwise, it will never be able to output a vector grapic.
+  * *We could just treat the SVG as text.* If we do this, we can apply Recurrent Neural Networks, a class of neural networks that is able to learn sequences of inputs. Given a beginning of an SVG, we could be able to predict the next missing part. And then given that, we could again (auto-regressively) predict the next missing part -- and so on. Such a model would surely learn something about the syntax of SVGs. But will it develop an understanding of the resulting visuals?
+  * *We could design an encoding logic for the SVG definition.* This means, the composition of the SVG and the parameters of all SVG elements get encoded in such a way that they can be represented as a tensor. This requires a complex logic. And are we sure that a model trained on this data will learn something about the resulting visuals?
+  * *We could feed in both the SVG and the PNG.* Then we could make sure that the model has all the information. But how does the model know how to adjust the SVG to better match the desired visual?
+  * *We could include a differentiable rasterizer.* If there was such a thing (there is), then there may be a way to determine how an SVG needs to be adjusted to better match the desired visual.
+
 
 :::{note}
 
