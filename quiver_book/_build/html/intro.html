@@ -196,6 +196,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-is-deep-learning-with-vector-graphics-special">
+   Why is Deep Learning with Vector Graphics special?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#changelog">
    ChangeLog
   </a>
@@ -218,6 +223,14 @@
 <h2>About<a class="headerlink" href="#about" title="Permalink to this headline">¶</a></h2>
 <p>This book aims to introduce the domain of applying Deep Learning to <a class="reference external" href="https://en.wikipedia.org/wiki/Vector_graphics">vector graphics</a>, such as <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG">SVG</a>, and to identify and summarise relevant prior work.</p>
 <p>In this sense, this book also serves as an hommage to those amazing scientists and/or artists who paved the way, such as David Ha (<a class="reference external" href="https://twitter.com/hardmaru">Twitter</a>, <a class="reference external" href="https://otoro.net/ml/">Website</a>).</p>
+</div>
+<div class="section" id="why-is-deep-learning-with-vector-graphics-special">
+<h2>Why is Deep Learning with Vector Graphics special?<a class="headerlink" href="#why-is-deep-learning-with-vector-graphics-special" title="Permalink to this headline">¶</a></h2>
+<p>Raster images consist of a grid of pixels. The application of Deep Learning to raster images has been well-researched and is relatively straightforward.</p>
+<p>Vector graphics, on the other hand, are not based on a grid of pixels but based on mathematical descriptions of points, lines etc. in an x,y (Cartesian) coordinate system. One major advantage of vector graphics is that they are infinitely scalable. Another advantage is that their filesize is small and independent of the image’s size and resolution. This is why, for instance, logos and icons are often designed as vector graphics.</p>
+<p>Deep Learning requires the input data to be represented as a collection of numeric values (also called a <strong>tensor</strong>).</p>
+<p>Representing a raster image as such a tensor is easy: In a simple black-and-white image, a single pixel already holds a single numeric value, e.g. from 0 (black) to 255 (white), with all the shades of grey in between. So, the units of an artificial neural network can (more or less) directly be fed with these values.</p>
+<p>Vector graphics are different. One standard format for vector graphics is the Scalable Vector Graphics format - or short: SVG. This format is XML-based and, thus, a text-based description of the image using tags and attributes. So how do we deal with vector graphics?</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Please note that this book is a living document. It serves as a knowledge repository but also aims to document the author’s own questions and embarrassing knowledge gaps.</p>
