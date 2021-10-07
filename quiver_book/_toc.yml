@@ -2,7 +2,34 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: intro
-chapters:
-- file: markdown
-- file: notebooks
+root: 00_intro/intro
+parts:
+
+- caption: About
+  chapters:
+  - file: 01_about/this_book
+  - file: 01_about/the_author
+
+- caption: Background knowledge
+  chapters:
+  - file: 02_background/challenges_of_vector_graphics.md
+
+# Relevant work
+- caption: Relevant work
+
+  chapters:
+  - file: 03_related_work/academic_papers.md
+    sections:
+    - file: 03_related_work/papers/Ha_Eck_2017.md
+    - file: 03_related_work/papers/Lopes_et_al_2019.md
+    - file: 03_related_work/papers/Carlier_et_al_2020.md
+    - file: 03_related_work/papers/Li_et_al_2020.md
+    - file: 03_related_work/papers/Reddy_et_al_2021.md
+  - file: 03_related_work/other_relevant_work.md
+    sections:
+    - file: 03_related_work/other_relevant_work/vectoglyph_2019.md
+
+# Acknowledgements
+- caption: Acknowledgements
+  chapters:
+    - file: 99_acknowledgements/acknowledgements
