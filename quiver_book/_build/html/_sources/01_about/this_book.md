@@ -16,7 +16,35 @@ Deep Learning requires the input data to be represented as a collection of numer
 
 Representing a raster image as such a tensor is easy: In a simple black-and-white image, a single pixel already holds a single numeric value, e.g. from 0 (black) to 255 (white), with all the shades of grey in between. So, the units of an artificial neural network can (more or less) directly be fed with these values.
 
-Vector graphics are different. One standard format for vector graphics is the Scalable Vector Graphics format - or short: SVG. This format is XML-based and, thus, a text-based description of the image using a hierarchical structure of tags and associated attributes. So how do we deal with vector graphics for problems like classification or for creating new vector graphics using generative models?
+Vector graphics are different. One standard format for vector graphics is the Scalable Vector Graphics format - or short: SVG. This format is XML-based and, thus, a text-based description of the image using a hierarchical structure of nested tags and their associated attributes. 
+
+Below is an example of simple SVG:
+
+```XML
+<svg version="1.1"
+     width="200" height="200"
+     xmlns="http://www.w3.org/2000/svg">
+
+  <rect width="100%" height="100%" fill="blue" />
+
+  <circle cx="100" cy="100" r="80" fill="yellow" />
+
+  <text x="100" y="125" font-size="60" text-anchor="middle" fill="black">SVG</text>
+
+</svg>
+
+```
+
+Once rendered by the browser, this looks like this:
+
+:::{figure-md} about_example_svg
+<img src="example.svg" alt="Example SVG paper" width="200px">
+
+Example SVG as rendered by the browser
+:::
+
+
+So how do we deal with vector graphics for problems like classification or for creating new vector graphics using generative models?
 
   * *We could just render the SVG to a raster image file, such as a PNG file.* But then our deep neural network will never learn anything about vector graphics and their specific definition. Unless trained otherwise, it will never be able to output a vector graphic.
 
