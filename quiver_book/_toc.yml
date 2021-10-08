@@ -31,6 +31,7 @@ parts:
     - file: 03_related_work/other_relevant_work/google_quickdraw_2017.md
     - file: 03_related_work/other_relevant_work/vectoglyph_2019.md
     - file: 03_related_work/other_relevant_work/gan_xml_fixer_2019.md
+  - file: 03_related_work/datasets.md
 
 # Acknowledgements
 - caption: Acknowledgements
