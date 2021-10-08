@@ -1,5 +1,9 @@
 # Nicolas Boillot's Vectoglyph (2019)
 
+```{admonition} Available resources at a glance
+* [Website](https://www.fluate.net/en/travaux/vectoglyph)
+```
+
 [Vectoglpyh](https://www.fluate.net/en/travaux/vectoglyph) is a project of the Franco-Swiss artist and researcher in digital art Nicolas Boillot.
 
 Boillot treated SVGs as simple ASCII text sequences and trained OpenAI's GPT-2 algorithm on them.

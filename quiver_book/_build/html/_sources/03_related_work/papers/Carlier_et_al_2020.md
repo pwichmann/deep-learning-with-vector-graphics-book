@@ -1,9 +1,12 @@
 # Carlier et al. (2020) | DeepSVG: A Hierarchical Generative Network for Vector Graphics Animation
 
+
+```{admonition} Available resources at a glance
 * [arXiv URL to the paper](https://arxiv.org/abs/2007.11301)
 * [Github repository with code](https://github.com/alexandre01/deepsvg)
 * [Project page](https://alexandre01.github.io/deepsvg)
 * [Video](https://youtu.be/w9Bu4u-SsKQ)
+```
 
 This paper was accepted to the 34th Conference on Neural Information Processing Systems (NeurIPS 2020), Vancouver, Canada.
 

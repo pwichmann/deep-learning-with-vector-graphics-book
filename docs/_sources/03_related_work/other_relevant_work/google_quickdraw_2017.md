@@ -1,5 +1,12 @@
 # Google's "Quick, Draw!" (2017)
 
+```{admonition} Available resources at a glance
+* ["Quick, Draw!" website](https://quickdraw.withgoogle.com/)
+* [Dataset viewer](https://quickdraw.withgoogle.com/data/)
+* [Dataset viewer - category cats](https://quickdraw.withgoogle.com/data/cat)
+* [Dataset Github repo](https://github.com/googlecreativelab/quickdraw-dataset)
+```
+
 :::{figure-md} quickdraw-home-fig
 <img src="google_quickdraw_home.png" alt="Homepage of Google Quickdraw" width="500px">
 

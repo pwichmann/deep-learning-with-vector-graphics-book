@@ -117,6 +117,11 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
+  <a class="reference internal" href="../../02_background/svg.html">
+   Scalable Vector Graphics (SVG) format
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../../02_background/challenges_of_vector_graphics.html">
    Challenges of Vector Graphics
   </a>
@@ -155,7 +160,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="Li_et_al_2020.html">
-     Li et al. (2020) | Differentiable Vector Graphics Rasterization for Editing and Learning (DiffVG)
+     Li et al. (2020) | Differentiable Vector Graphics Rasterization for Editing and Learning (diffvg)
     </a>
    </li>
    <li class="toctree-l2">
@@ -176,8 +181,18 @@
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../other_relevant_work/google_quickdraw_2017.html">
+     Google’s “Quick, Draw!” (2017)
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../other_relevant_work/vectoglyph_2019.html">
-     Nicolas Boillot (2019): Vectoglyph
+     Nicolas Boillot’s Vectoglyph (2019)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../other_relevant_work/gan_xml_fixer_2019.html">
+     GAN XML Fixer (2019)
     </a>
    </li>
   </ul>
@@ -276,6 +291,44 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-architecture">
+   Model architecture
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#latent-space-interpolation">
+   Latent space interpolation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#semantically-meaningful-directions-in-latent-space">
+   Semantically meaningful directions in latent space
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-results">
+   Example results
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#remarkable-aspects-of-this-work">
+   Remarkable aspects of this work
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#discussion-and-limitations">
+   Discussion and limitations
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -286,7 +339,73 @@
                 
   <div class="section" id="lopes-et-al-2019-a-learned-representation-for-scalable-vector-graphics-svg-vae">
 <h1>Lopes et al. (2019) | A Learned Representation for Scalable Vector Graphics (svg-vae)<a class="headerlink" href="#lopes-et-al-2019-a-learned-representation-for-scalable-vector-graphics-svg-vae" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://arxiv.org/abs/1904.02632">arXiv URL to the paper</a></p>
+<div class="admonition-available-resources-at-a-glance admonition">
+<p class="admonition-title">Available resources at a glance</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://arxiv.org/abs/1904.02632">arXiv URL to the paper</a></p></li>
+<li><p><a class="reference external" href="https://github.com/tensorflow/magenta/tree/master/magenta/models/svg_vae">Implementation as part of Google’s Magenta, Github repo</a></p></li>
+<li><p><a class="reference external" href="https://github.com/iRapha/magenta-demos/blob/master/colab-notebooks/vae_svg_decoding.ipynb">Jupyter Notebook provided by Lopes</a></p></li>
+<li><p><a class="reference external" href="https://storage.googleapis.com/magentadata/models/svg_vae/svg_vae.tar.gz">Model checkpoints as tar.gz</a></p></li>
+</ul>
+</div>
+<div class="figure align-default" id="svg-vae-home-fig">
+<a class="reference internal image-reference" href="../../_images/svg_vae_cover.png"><img alt="SVG-VAE paper by Lopes" src="../../_images/svg_vae_cover.png" style="width: 900px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Screenshot of the SVG-VAE <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-home-fig" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="model-architecture">
+<h2>Model architecture<a class="headerlink" href="#model-architecture" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default" id="svg-vae-model-fig">
+<a class="reference internal image-reference" href="../../_images/svg_vae_model_architecture.png"><img alt="SVG-VAE model architecture" src="../../_images/svg_vae_model_architecture.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Screenshot of the SVG-VAE model architecture; taken from <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-model-fig" title="Permalink to this image">¶</a></p>
+</div>
+<p>“Visual similarity between SVGs is learned by a class-conditioned, convolutional variational autoencoder (VAE) on a rendered representation (blue). The class label and learned representation z are provided as input to a model that decodes SVG commands (purple). The SVG decoder consists of stacked LSTMs followed by a Mixture Density Network (MDN).”</p>
+</div>
+<div class="section" id="latent-space-interpolation">
+<h2>Latent space interpolation<a class="headerlink" href="#latent-space-interpolation" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default" id="svg-vae-interpolations-fig">
+<a class="reference internal image-reference" href="../../_images/svg_vae_linear_interpolations.png"><img alt="SVG-VAE linear interpolations" src="../../_images/svg_vae_linear_interpolations.png" style="width: 700px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Screenshot of linear interpolations; taken from <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-interpolations-fig" title="Permalink to this image">¶</a></p>
+</div>
+<p>The trained model allows for the generation of new characters and fonts by leveraging linear interpolations between two characters or two positions in the latent space.</p>
+</div>
+<div class="section" id="semantically-meaningful-directions-in-latent-space">
+<h2>Semantically meaningful directions in latent space<a class="headerlink" href="#semantically-meaningful-directions-in-latent-space" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default" id="svg-vae-directions-fig">
+<a class="reference internal image-reference" href="../../_images/svg_vae_meaningful_directions.png"><img alt="SVG-VAE meaningful directions" src="../../_images/svg_vae_meaningful_directions.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Screenshot of meaningful directions in latent space; taken from <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-directions-fig" title="Permalink to this image">¶</a></p>
+</div>
+<p>Interestingly, semantically meaningful directions could be identified. Examples, as shown above, are:</p>
+<ul class="simple">
+<li><p>Font weight: from light to bold</p></li>
+<li><p>Oblique or italic type</p></li>
+<li><p>Condensed</p></li>
+</ul>
+</div>
+<div class="section" id="example-results">
+<h2>Example results<a class="headerlink" href="#example-results" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default" id="svg-vae-results-fig">
+<a class="reference internal image-reference" href="../../_images/svg_vae_sample_randomly_generated_fonts.png"><img alt="SVG-VAE sample of randomly generated fonts" src="../../_images/svg_vae_sample_randomly_generated_fonts.png" style="width: 700px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">Screenshot of a sample of randomly generated fonts; taken from <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-results-fig" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="remarkable-aspects-of-this-work">
+<h2>Remarkable aspects of this work<a class="headerlink" href="#remarkable-aspects-of-this-work" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>One of the first papers to develop an encoding scheme for SVG fonts that allows fonts to be fed into a Deep Learning model</p></li>
+<li><p>The paper demonstrates that different styles of fonts can be learned by the model</p></li>
+</ul>
+</div>
+<div class="section" id="discussion-and-limitations">
+<h2>Discussion and limitations<a class="headerlink" href="#discussion-and-limitations" title="Permalink to this headline">¶</a></h2>
+<p>The paper is not easy to replicate with a relatively complicated pipeline including:</p>
+<ul class="simple">
+<li><p>Apache Parquet database</p></li>
+<li><p>FontForge’s SFD format</p></li>
+<li><p>Tensorflow 1.0</p></li>
+<li><p>Tensor2Tensor library</p></li>
+</ul>
+<p>The quality of the resulting SVG images is fairly limited.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
