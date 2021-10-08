@@ -22,6 +22,7 @@ parts:
   - file: 03_related_work/academic_papers.md
     sections:
     - file: 03_related_work/papers/Ha_Eck_2017.md
+    - file: 03_related_work/papers/Zhong_2018.md
     - file: 03_related_work/papers/Lopes_et_al_2019.md
     - file: 03_related_work/papers/Carlier_et_al_2020.md
     - file: 03_related_work/papers/Li_et_al_2020.md

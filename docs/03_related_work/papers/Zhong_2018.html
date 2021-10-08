@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lopes et al. (2019) | A Learned Representation for Scalable Vector Graphics (svg-vae) &#8212; Deep Learning with Vector Graphics</title>
+    <title>Kimberli Zhong (2018) | Learning to Draw Vector Graphics: Applying Generative Modeling to Font Glyphs (Master thesis @ MIT) &#8212; Deep Learning with Vector Graphics</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -51,8 +51,8 @@
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Carlier et al. (2020) | DeepSVG: A Hierarchical Generative Network for Vector Graphics Animation" href="Carlier_et_al_2020.html" />
-    <link rel="prev" title="Kimberli Zhong (2018) | Learning to Draw Vector Graphics: Applying Generative Modeling to Font Glyphs (Master thesis @ MIT)" href="Zhong_2018.html" />
+    <link rel="next" title="Lopes et al. (2019) | A Learned Representation for Scalable Vector Graphics (svg-vae)" href="Lopes_et_al_2019.html" />
+    <link rel="prev" title="Ha &amp; Eck (2017) | A Neural Representation of Sketch Drawings (sketch-rnn)" href="Ha_Eck_2017.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -148,13 +148,13 @@
      Ha &amp; Eck (2017) | A Neural Representation of Sketch Drawings (sketch-rnn)
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Zhong_2018.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Kimberli Zhong (2018) | Learning to Draw Vector Graphics: Applying Generative Modeling to Font Glyphs (Master thesis @ MIT)
     </a>
    </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
+   <li class="toctree-l2">
+    <a class="reference internal" href="Lopes_et_al_2019.html">
      Lopes et al. (2019) | A Learned Representation for Scalable Vector Graphics (svg-vae)
     </a>
    </li>
@@ -260,7 +260,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/03_related_work/papers/Lopes_et_al_2019.md"><button type="button"
+        <a class="dropdown-buttons" href="../../_sources/03_related_work/papers/Zhong_2018.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -280,7 +280,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F03_related_work/papers/Lopes_et_al_2019.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F03_related_work/papers/Zhong_2018.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -307,33 +307,8 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#model-architecture">
-   Model architecture
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#latent-space-interpolation">
-   Latent space interpolation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#semantically-meaningful-directions-in-latent-space">
-   Semantically meaningful directions in latent space
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-results">
-   Example results
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#remarkable-aspects-of-this-work">
-   Remarkable aspects of this work
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#discussion-and-limitations">
-   Discussion and limitations
+  <a class="reference internal nav-link" href="#results">
+   Results
   </a>
  </li>
 </ul>
@@ -347,74 +322,24 @@
         
               <div>
                 
-  <div class="section" id="lopes-et-al-2019-a-learned-representation-for-scalable-vector-graphics-svg-vae">
-<h1>Lopes et al. (2019) | A Learned Representation for Scalable Vector Graphics (svg-vae)<a class="headerlink" href="#lopes-et-al-2019-a-learned-representation-for-scalable-vector-graphics-svg-vae" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="kimberli-zhong-2018-learning-to-draw-vector-graphics-applying-generative-modeling-to-font-glyphs-master-thesis-mit">
+<h1>Kimberli Zhong (2018) | Learning to Draw Vector Graphics: Applying Generative Modeling to Font Glyphs (Master thesis &#64; MIT)<a class="headerlink" href="#kimberli-zhong-2018-learning-to-draw-vector-graphics-applying-generative-modeling-to-font-glyphs-master-thesis-mit" title="Permalink to this headline">¶</a></h1>
 <div class="admonition-available-resources-at-a-glance admonition">
 <p class="admonition-title">Available resources at a glance</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://arxiv.org/abs/1904.02632">arXiv URL to the paper</a></p></li>
-<li><p><a class="reference external" href="https://github.com/tensorflow/magenta/tree/master/magenta/models/svg_vae">Implementation as part of Google’s Magenta, Github repo</a></p></li>
-<li><p><a class="reference external" href="https://github.com/iRapha/magenta-demos/blob/master/colab-notebooks/vae_svg_decoding.ipynb">Jupyter Notebook provided by Lopes</a></p></li>
-<li><p><a class="reference external" href="https://storage.googleapis.com/magentadata/models/svg_vae/svg_vae.tar.gz">Model checkpoints as tar.gz</a></p></li>
+<li><p><a class="reference external" href="https://dspace.mit.edu/bitstream/handle/1721.1/119692/1078149677-MIT.pdf?sequence=1">URL to the thesis</a></p></li>
 </ul>
 </div>
-<div class="figure align-default" id="svg-vae-home-fig">
-<a class="reference internal image-reference" href="../../_images/svg_vae_cover.png"><img alt="SVG-VAE paper by Lopes" src="../../_images/svg_vae_cover.png" style="width: 900px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Screenshot of the SVG-VAE <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-home-fig" title="Permalink to this image">¶</a></p>
+<div class="figure align-default" id="zhong-2018-cover">
+<a class="reference internal image-reference" href="../../_images/zhong_2018_cover.png"><img alt="zhong_2018_cover" src="../../_images/zhong_2018_cover.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Screenshot from the <a class="reference external" href="https://dspace.mit.edu/bitstream/handle/1721.1/119692/1078149677-MIT.pdf?sequence=1">thesis</a></span><a class="headerlink" href="#zhong-2018-cover" title="Permalink to this image">¶</a></p>
 </div>
-<div class="section" id="model-architecture">
-<h2>Model architecture<a class="headerlink" href="#model-architecture" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-default" id="svg-vae-model-fig">
-<a class="reference internal image-reference" href="../../_images/svg_vae_model_architecture.png"><img alt="SVG-VAE model architecture" src="../../_images/svg_vae_model_architecture.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text">Screenshot of the SVG-VAE model architecture; taken from <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-model-fig" title="Permalink to this image">¶</a></p>
+<div class="section" id="results">
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default" id="zhong-2018-results">
+<a class="reference internal image-reference" href="../../_images/zhong_2018_results.png"><img alt="zhong_2018_results" src="../../_images/zhong_2018_results.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">Screenshot from the <a class="reference external" href="https://dspace.mit.edu/bitstream/handle/1721.1/119692/1078149677-MIT.pdf?sequence=1">thesis</a></span><a class="headerlink" href="#zhong-2018-results" title="Permalink to this image">¶</a></p>
 </div>
-<p>“Visual similarity between SVGs is learned by a class-conditioned, convolutional variational autoencoder (VAE) on a rendered representation (blue). The class label and learned representation z are provided as input to a model that decodes SVG commands (purple). The SVG decoder consists of stacked LSTMs followed by a Mixture Density Network (MDN).”</p>
-</div>
-<div class="section" id="latent-space-interpolation">
-<h2>Latent space interpolation<a class="headerlink" href="#latent-space-interpolation" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-default" id="svg-vae-interpolations-fig">
-<a class="reference internal image-reference" href="../../_images/svg_vae_linear_interpolations.png"><img alt="SVG-VAE linear interpolations" src="../../_images/svg_vae_linear_interpolations.png" style="width: 700px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">Screenshot of linear interpolations; taken from <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-interpolations-fig" title="Permalink to this image">¶</a></p>
-</div>
-<p>The trained model allows for the generation of new characters and fonts by leveraging linear interpolations between two characters or two positions in the latent space.</p>
-</div>
-<div class="section" id="semantically-meaningful-directions-in-latent-space">
-<h2>Semantically meaningful directions in latent space<a class="headerlink" href="#semantically-meaningful-directions-in-latent-space" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-default" id="svg-vae-directions-fig">
-<a class="reference internal image-reference" href="../../_images/svg_vae_meaningful_directions.png"><img alt="SVG-VAE meaningful directions" src="../../_images/svg_vae_meaningful_directions.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">Screenshot of meaningful directions in latent space; taken from <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-directions-fig" title="Permalink to this image">¶</a></p>
-</div>
-<p>Interestingly, semantically meaningful directions could be identified. Examples, as shown above, are:</p>
-<ul class="simple">
-<li><p>Font weight: from light to bold</p></li>
-<li><p>Oblique or italic type</p></li>
-<li><p>Condensed</p></li>
-</ul>
-</div>
-<div class="section" id="example-results">
-<h2>Example results<a class="headerlink" href="#example-results" title="Permalink to this headline">¶</a></h2>
-<div class="figure align-default" id="svg-vae-results-fig">
-<a class="reference internal image-reference" href="../../_images/svg_vae_sample_randomly_generated_fonts.png"><img alt="SVG-VAE sample of randomly generated fonts" src="../../_images/svg_vae_sample_randomly_generated_fonts.png" style="width: 700px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">Screenshot of a sample of randomly generated fonts; taken from <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-results-fig" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="remarkable-aspects-of-this-work">
-<h2>Remarkable aspects of this work<a class="headerlink" href="#remarkable-aspects-of-this-work" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>One of the first papers to develop an encoding scheme for SVG fonts that allows fonts to be fed into a Deep Learning model</p></li>
-<li><p>The paper demonstrates that different styles of fonts can be learned by the model</p></li>
-</ul>
-</div>
-<div class="section" id="discussion-and-limitations">
-<h2>Discussion and limitations<a class="headerlink" href="#discussion-and-limitations" title="Permalink to this headline">¶</a></h2>
-<p>The paper is not easy to replicate with a relatively complicated pipeline including:</p>
-<ul class="simple">
-<li><p>Apache Parquet database</p></li>
-<li><p>FontForge’s SFD format</p></li>
-<li><p>Tensorflow 1.0</p></li>
-<li><p>Tensor2Tensor library</p></li>
-</ul>
-<p>The quality of the resulting SVG images is fairly limited.</p>
 </div>
 </div>
 
@@ -448,19 +373,19 @@
 <div class='prev-next-bottom'>
     
     <div id="prev">
-        <a class="left-prev" href="Zhong_2018.html" title="previous page">
+        <a class="left-prev" href="Ha_Eck_2017.html" title="previous page">
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Kimberli Zhong (2018) | Learning to Draw Vector Graphics: Applying Generative Modeling to Font Glyphs (Master thesis &#64; MIT)</p>
+                <p class="prevnext-title">Ha &amp; Eck (2017) | A Neural Representation of Sketch Drawings (sketch-rnn)</p>
             </div>
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="Carlier_et_al_2020.html" title="next page">
+        <a class="right-next" href="Lopes_et_al_2019.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Carlier et al. (2020) | DeepSVG: A Hierarchical Generative Network for Vector Graphics Animation</p>
+                <p class="prevnext-title">Lopes et al. (2019) | A Learned Representation for Scalable Vector Graphics (svg-vae)</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>
