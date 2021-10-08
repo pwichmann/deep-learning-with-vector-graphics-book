@@ -1,0 +1,1 @@
+# Scalable Vector Graphics (SVG) format

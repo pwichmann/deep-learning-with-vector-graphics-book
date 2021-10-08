@@ -1,4 +1,4 @@
-# Li et al. (2020) | Differentiable Vector Graphics Rasterization for Editing and Learning (DiffVG)
+# Li et al. (2020) | Differentiable Vector Graphics Rasterization for Editing and Learning (diffvg)
 
 * [Paper PDF via MIT](https://people.csail.mit.edu/tzumao/diffvg/diffvg.pdf)
 * [Project website](https://people.csail.mit.edu/tzumao/diffvg/)
@@ -8,7 +8,7 @@
 
 
 :::{figure-md} diffvg_cover
-<img src="diffvg_cover.png" alt="DiffVG paper" width="700px">
+<img src="diffvg_cover.png" alt="diffvg paper" width="700px">
 
-Screenshot of the [DiffVG paper](https://people.csail.mit.edu/tzumao/diffvg/diffvg.pdf)
+Screenshot of the [diffvg paper](https://people.csail.mit.edu/tzumao/diffvg/diffvg.pdf)
 :::

@@ -3,7 +3,7 @@
 **By Pascal Wichmann**
 
 
-Please use the menu on the right to navigate this book.
+Please use the menu on the left to navigate this book.
 
 
 :::{note}
@@ -13,7 +13,7 @@ Please note that this book is a living document. It serves as a knowledge reposi
 The author can be contacted via the [issues function of Github for this project](https://github.com/pwichmann/deep-learning-with-vector-graphics-book/issues). Please make yourself heard via the issues function:
 
   * if relevant prior work or newly published work has been overlooked
-  * if you spot any errors in content
+  * if you spot any errors in the content
   * if you spot any typos or grammatical errors
   * if you know the answer to posed questions
   * if have suggestions for solving problems stated as being open

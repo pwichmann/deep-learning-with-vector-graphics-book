@@ -12,6 +12,7 @@ parts:
 
 - caption: Background knowledge
   chapters:
+  - file: 02_background/svg.md
   - file: 02_background/challenges_of_vector_graphics.md
 
 # Relevant work
@@ -27,6 +28,7 @@ parts:
     - file: 03_related_work/papers/Reddy_et_al_2021.md
   - file: 03_related_work/other_relevant_work.md
     sections:
+    - file: 03_related_work/other_relevant_work/google_quickdraw_2017.md
     - file: 03_related_work/other_relevant_work/vectoglyph_2019.md
 
 # Acknowledgements
