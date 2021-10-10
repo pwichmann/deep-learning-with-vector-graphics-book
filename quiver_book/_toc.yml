@@ -21,6 +21,8 @@ parts:
   chapters:
   - file: 03_related_work/academic_papers.md
     sections:
+    - file: 03_related_work/papers/Ha_2015_handwriting.md
+    - file: 03_related_work/papers/Ha_2015_kanji.md
     - file: 03_related_work/papers/Carter_et_al_2016.md
     - file: 03_related_work/papers/Ha_Eck_2017.md
     - file: 03_related_work/papers/Zhong_2018.md

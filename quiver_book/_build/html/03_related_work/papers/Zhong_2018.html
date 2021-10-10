@@ -42,6 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -135,7 +137,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../academic_papers.html">
-   Academic papers
+   Key academic publications
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -143,6 +145,16 @@
    </i>
   </label>
   <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="Ha_2015_handwriting.html">
+     David Ha (Dec 2015) | Handwriting Generation Demo in TensorFlow (blog post)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Ha_2015_kanji.html">
+     David Ha (Dec 2015) | Recurrent Net Dreams Up Fake Chinese Characters in Vector Format with TensorFlow (blog post)
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="Carter_et_al_2016.html">
      Carter et al. (2016) | Four Experiments in Handwriting with a Neural Network (Distill publication)
@@ -316,6 +328,48 @@
    Results
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dataset">
+   Dataset
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-representation">
+   Data representation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preprocessing">
+     Preprocessing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simplifying-path-commands">
+     Simplifying path commands
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pen-state-vector">
+     Pen state vector
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#new-paths">
+     New paths
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#feature-vector">
+     Feature vector
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-architecture">
+   Model architecture
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -329,6 +383,8 @@
                 
   <div class="section" id="kimberli-zhong-2018-learning-to-draw-vector-graphics-applying-generative-modeling-to-font-glyphs-master-thesis-mit">
 <h1>Kimberli Zhong (2018) | Learning to Draw Vector Graphics: Applying Generative Modeling to Font Glyphs (Master thesis &#64; MIT)<a class="headerlink" href="#kimberli-zhong-2018-learning-to-draw-vector-graphics-applying-generative-modeling-to-font-glyphs-master-thesis-mit" title="Permalink to this headline">¶</a></h1>
+<p>This thesis uses SVGs as inputs and appears to be the first or one of the first publications using SVGs in an end-to-end pipeline. Part of the contribution of this publication is a first suggestion for a data representation of the SVG input data that is suitable for being fed into a neural network.</p>
+<p>The thesis heavily borrows from and references the paper “A neural representation of sketch drawings” by Ha and Eck.</p>
 <div class="admonition-available-resources-at-a-glance admonition">
 <p class="admonition-title">Available resources at a glance</p>
 <ul class="simple">
@@ -337,14 +393,82 @@
 </div>
 <div class="figure align-default" id="zhong-2018-cover">
 <a class="reference internal image-reference" href="../../_images/zhong_2018_cover.png"><img alt="zhong_2018_cover" src="../../_images/zhong_2018_cover.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">Screenshot from the <a class="reference external" href="https://dspace.mit.edu/bitstream/handle/1721.1/119692/1078149677-MIT.pdf?sequence=1">thesis</a></span><a class="headerlink" href="#zhong-2018-cover" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">Screenshot from the <a class="reference external" href="https://dspace.mit.edu/bitstream/handle/1721.1/119692/1078149677-MIT.pdf?sequence=1">thesis</a></span><a class="headerlink" href="#zhong-2018-cover" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="results">
 <h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-default" id="zhong-2018-results">
 <a class="reference internal image-reference" href="../../_images/zhong_2018_results.png"><img alt="zhong_2018_results" src="../../_images/zhong_2018_results.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">Screenshot from the <a class="reference external" href="https://dspace.mit.edu/bitstream/handle/1721.1/119692/1078149677-MIT.pdf?sequence=1">thesis</a></span><a class="headerlink" href="#zhong-2018-results" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">Screenshot from the <a class="reference external" href="https://dspace.mit.edu/bitstream/handle/1721.1/119692/1078149677-MIT.pdf?sequence=1">thesis</a></span><a class="headerlink" href="#zhong-2018-results" title="Permalink to this image">¶</a></p>
 </div>
+</div>
+<div class="section" id="dataset">
+<h2>Dataset<a class="headerlink" href="#dataset" title="Permalink to this headline">¶</a></h2>
+<p>The dataset used are SVGs of characters obtained from Google Fonts.
+The font standard TTF (TrueType fonts) is not as expressive as SVG. Thus, the SVG obtained from the TTFs will be simpler than SVGs randomly scraped off the Web. According to Zhong, only line and quandratic Bézier curves are supported by TTFs.</p>
+</div>
+<div class="section" id="data-representation">
+<h2>Data representation<a class="headerlink" href="#data-representation" title="Permalink to this headline">¶</a></h2>
+<p>The input SVGs are preprocessed and simplified. The focus is on path generation exclusively.</p>
+<div class="section" id="preprocessing">
+<h3>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Stroke and fill information is stripped.</p></li>
+<li><p>The dataset is homogenized:</p>
+<ul>
+<li><p>Rescaling to same overall canvas size (256 x 256 pixels)</p></li>
+<li><p>Reordering paths in the drawing sequence so that paths with larger bounding boxes are drawn first</p></li>
+</ul>
+</li>
+<li><p>SVG primitives, such as rectangles, circles, etc. were not included in the SVG inputs since the SVGs were obtained from TTF fonts.</p></li>
+<li><p>Overly complex glyphs (resulting in more than 250 feature vectors) were ignored and removed from the training dataset</p></li>
+</ul>
+</div>
+<div class="section" id="simplifying-path-commands">
+<h3>Simplifying path commands<a class="headerlink" href="#simplifying-path-commands" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Lines, quadratic Bézier curves and cubic Bézier curves are modelled using the high degree cubic-order equation</p></li>
+<li><p>Elliptical arc segments cannot be perfectly transformed into a cubic Bézier. They are approximated as cubic Béziers.</p></li>
+</ul>
+</div>
+<div class="section" id="pen-state-vector">
+<h3>Pen state vector<a class="headerlink" href="#pen-state-vector" title="Permalink to this headline">¶</a></h3>
+<p>Similar to the paper by Ha and Eck, a three-dimensional one-hot pen state vector is used.</p>
+</div>
+<div class="section" id="new-paths">
+<h3>New paths<a class="headerlink" href="#new-paths" title="Permalink to this headline">¶</a></h3>
+<p>For each move command and each disjoint path, we insert a feature vector that encodes the new end point and sets the pen state to note that the pen is up.</p>
+</div>
+<div class="section" id="feature-vector">
+<h3>Feature vector<a class="headerlink" href="#feature-vector" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Each SVG is transformed into a sequence of commands.</p></li>
+<li><p>Permitted commands are:</p>
+<ul>
+<li><p>Move</p></li>
+<li><p>Line</p></li>
+<li><p>Quadratic Bézier</p></li>
+<li><p>Cubic Bézier</p></li>
+<li><p>Arc</p></li>
+</ul>
+</li>
+<li><p>Each drawing command is encoded as a <em>9-dimensional feature vector</em> (as opposed to the 5-dimensional feature vector used for the polylines in the Ha &amp; Eck paper).</p>
+<ul>
+<li><p>6 dimensions are used to model the 3 (x,y) coordinates required for cubic Bézier curves</p></li>
+<li><p>3 further dimensions are a one-hot vector used to model the pen state (pen down, pen up, end drawing)</p></li>
+</ul>
+</li>
+<li><p>“Shorter” SVGs are padded using “end drawing” vectors to ensure that all SVGs results in feature vectors of identical length.</p></li>
+</ul>
+<p>Question: Why is pen up and pen down two variables? Is that not a binary state? Or is that poorly phrased and identical to Ha &amp; Eck?</p>
+</div>
+</div>
+<div class="section" id="model-architecture">
+<h2>Model architecture<a class="headerlink" href="#model-architecture" title="Permalink to this headline">¶</a></h2>
+<p>The <em>overall model</em> is a bidirectional sequence-to-sequence variational autoencoder (VAE), similar to Ha &amp; Eck.</p>
+<p>The <em>encoder</em> consists of two RNNs, one accepting the sequence of feature vectors in one order and the other accepting the sequence in the reverse order. The final hidden states of both RNNs are concatenated to form a combined output.</p>
+<p>The combined hidden state vector is then transformed into a <span class="math notranslate nohighlight">\(\mu\)</span> vector and a <span class="math notranslate nohighlight">\(\sigma\)</span> vector of the same length <span class="math notranslate nohighlight">\(n_2\)</span> as the hidden state vector. This is done using using a fully connected layer (and an exponentiation operation to produce a non-negative <span class="math notranslate nohighlight">\(\sigma\)</span>).
+The resulting <span class="math notranslate nohighlight">\(\mu\)</span> vector and <span class="math notranslate nohighlight">\(\sigma\)</span> vectors are combined with a vector <span class="math notranslate nohighlight">\(\mathcal{N}\)</span> consisting of <span class="math notranslate nohighlight">\(n_2\)</span> normally distributed Gaussian samples from <span class="math notranslate nohighlight">\(\mathcal{N}(0,1)\)</span>. This then creates a random latent vector <span class="math notranslate nohighlight">\(z\)</span> with <span class="math notranslate nohighlight">\(z=\mu + \sigma * \mathcal{N}\)</span>.</p>
 </div>
 </div>
 

@@ -1,4 +1,4 @@
-# Academic papers
+# Key academic publications
 
 This section aims to:
   1. provide a collection of relevant academic papers

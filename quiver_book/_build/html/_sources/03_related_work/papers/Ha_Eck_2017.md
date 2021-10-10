@@ -1,6 +1,6 @@
 # Ha & Eck (2017) | A Neural Representation of Sketch Drawings (sketch-rnn)
 
-Ha and Eck used the drawings collected from users of Google's "Quick, Draw!" game to train a Sequence-to-Sequence Variational Autoencoder (VAE) on the sketches. The sketches are represented as simple sequence of strokes and do not use the SVG format. The VAE consists of encoder and decoder. The encoder is a bidirectional RNN. The decoder is an autoregressive RNN that samples output sketches conditional on a given latent vector.
+Ha and Eck used the drawings collected from users of Google's "Quick, Draw!" game to train a Sequence-to-Sequence Variational Autoencoder (VAE) on the sketches. The sketches are represented as simple sequence of straight-line strokes (polylines) and do not use the SVG format. The VAE consists of encoder and decoder. The encoder is a bidirectional RNN. The decoder is an autoregressive RNN that samples output sketches conditional on a given latent vector.
 
 
 ```{admonition} Available resources at a glance
@@ -76,7 +76,7 @@ Similar to the famous NLP example of king/queen and male/female vectors, it was 
 
 ## Data representation
 
-Sketches are represented as a sequence of pen stroke actions. Each sketch consists of a list of "points". Each point is then represented by a vector of 5 elements: $(\Delta x, \Delta y, p_1, p_2, p_3)$. The parameters $p_1$ to $p_3$ are a binary one-hot encoding of three possible states of the "pen".
+Sketches are represented as a sequence of pen stroke actions. Each sketch consists of a list of "points". Each point is then represented by a 5-dimensional feature vector: $(\Delta x, \Delta y, p_1, p_2, p_3)$. The parameters $p_1$ to $p_3$ are a binary one-hot encoding of three possible states of the "pen".
 
 1. $\Delta$ x -- the offset distance in the x direction
 2. $\Delta$ y -- the offset distance in the y direction
