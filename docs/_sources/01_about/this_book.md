@@ -31,8 +31,9 @@ Below is an example of simple SVG:
 
   <text x="100" y="125" font-size="60" text-anchor="middle" fill="black">SVG</text>
 
-</svg>
+  <path d="M 30 160 q 50 -50 140 0" stroke="red" stroke-width="8" fill="none" />
 
+</svg>
 ```
 
 Once rendered by the browser, this looks like this:

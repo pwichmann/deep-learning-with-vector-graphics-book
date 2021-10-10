@@ -42,6 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -51,8 +53,8 @@
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Lopes et al. (2019) | A Learned Representation for Scalable Vector Graphics (svg-vae)" href="Lopes_et_al_2019.html" />
-    <link rel="prev" title="Academic papers" href="../academic_papers.html" />
+    <link rel="next" title="Kimberli Zhong (2018) | Learning to Draw Vector Graphics: Applying Generative Modeling to Font Glyphs (Master thesis @ MIT)" href="Zhong_2018.html" />
+    <link rel="prev" title="Carter et al. (2016) | Four Experiments in Handwriting with a Neural Network (Distill publication)" href="Carter_et_al_2016.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -143,9 +145,19 @@
    </i>
   </label>
   <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="Carter_et_al_2016.html">
+     Carter et al. (2016) | Four Experiments in Handwriting with a Neural Network (Distill publication)
+    </a>
+   </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Ha &amp; Eck (2017) | A Neural Representation of Sketch Drawings (sketch-rnn)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Zhong_2018.html">
+     Kimberli Zhong (2018) | Learning to Draw Vector Graphics: Applying Generative Modeling to Font Glyphs (Master thesis @ MIT)
     </a>
    </li>
    <li class="toctree-l2">
@@ -302,9 +314,50 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#latent-space-interpolation">
-   Latent Space Interpolation
+  <a class="reference internal nav-link" href="#use-cases">
+   Use cases
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#latent-space-interpolation">
+     Latent Space Interpolation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#latent-vector-arithmetics-analogies">
+     Latent vector arithmetics (analogies)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-representation">
+   Data representation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#limitations-of-the-data-representation">
+     Limitations of the data representation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-architecture-of-sketch-rnn">
+   Model architecture of “sketch-rnn”
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#encoder-from-input-to-latent-vector">
+     Encoder (from input to latent vector)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#decoder-from-latent-vector-to-output">
+     Decoder (from latent vector to output)
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -319,29 +372,97 @@
                 
   <div class="section" id="ha-eck-2017-a-neural-representation-of-sketch-drawings-sketch-rnn">
 <h1>Ha &amp; Eck (2017) | A Neural Representation of Sketch Drawings (sketch-rnn)<a class="headerlink" href="#ha-eck-2017-a-neural-representation-of-sketch-drawings-sketch-rnn" title="Permalink to this headline">¶</a></h1>
+<p>Ha and Eck used the drawings collected from users of Google’s “Quick, Draw!” game to train a Sequence-to-Sequence Variational Autoencoder (VAE) on the sketches. The sketches are represented as simple sequence of strokes and do not use the SVG format. The VAE consists of encoder and decoder. The encoder is a bidirectional RNN. The decoder is an autoregressive RNN that samples output sketches conditional on a given latent vector.</p>
 <div class="admonition-available-resources-at-a-glance admonition">
 <p class="admonition-title">Available resources at a glance</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://arxiv.org/abs/1704.03477">arXiv URL to the paper</a></p></li>
+<li><p><a class="reference external" href="https://ai.googleblog.com/2017/04/teaching-machines-to-draw.html">Google blog post summarising the paper: “Teaching Machines to Draw” (April 2017)</a></p></li>
+<li><p><a class="reference external" href="https://github.com/hardmaru/sketch-rnn">Official sketch-rnn implementation by David Ha (2016-2017); Github repo</a></p></li>
+<li><p><a class="reference external" href="https://github.com/magenta/magenta/blob/main/magenta/models/sketch_rnn">Official Github repo of sketch-rnn as part of Google’s Magenta</a></p></li>
+<li><p>Further <em>unofficial</em> implementations of sketch-rnn</p>
+<ul>
+<li><p><a class="reference external" href="https://github.com/stwind/SketchRNN_tf2">Sketch-rnn in Tensorflow 2 by &#64;stwind (unchecked!)</a></p></li>
+<li><p><a class="reference external" href="https://github.com/rfeinman/Sketch-RNN">Sketch-rnn in PyTorch by &#64;rfeinman (unchecked!)</a></p></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="figure align-default" id="sketchrnn-cover">
 <a class="reference internal image-reference" href="../../_images/sketchrnn_cover.png"><img alt="sketchrnn paper" src="../../_images/sketchrnn_cover.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Screenshot of the <a class="reference external" href="https://arxiv.org/abs/1704.03477">sketchrnn paper</a></span><a class="headerlink" href="#sketchrnn-cover" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Screenshot of the <a class="reference external" href="https://arxiv.org/abs/1704.03477">sketchrnn paper</a></span><a class="headerlink" href="#sketchrnn-cover" title="Permalink to this image">¶</a></p>
 </div>
-<p>Ha and Eck used the drawings collected from users of Google’s “Quick, Draw!” game to train a Recurrent Neural Network.</p>
+<div class="section" id="use-cases">
+<h2>Use cases<a class="headerlink" href="#use-cases" title="Permalink to this headline">¶</a></h2>
+<p>The trained model allows for a range of simple use cases:</p>
+<ul class="simple">
+<li><p>Conditional reconstruction</p></li>
+<li><p>Latent Space Interpolation, i.e. generate drawings between two encoded latent vectors</p></li>
+<li><p>Sketch drawing analogies, i.e. latent vector arithmetic, e.g. <span class="math notranslate nohighlight">\(\text{cat head} + (\text{complete pig} - \text{pig head}) = \text{complete cat}\)</span></p></li>
+<li><p>Predicting different endings of incomplete sketchs / sketch auto-complete</p></li>
+</ul>
 <div class="section" id="latent-space-interpolation">
-<h2>Latent Space Interpolation<a class="headerlink" href="#latent-space-interpolation" title="Permalink to this headline">¶</a></h2>
+<h3>Latent Space Interpolation<a class="headerlink" href="#latent-space-interpolation" title="Permalink to this headline">¶</a></h3>
 <div class="figure align-default" id="sketchrnn-latent-space-interpolation-1">
 <a class="reference internal image-reference" href="../../_images/sketchrnn_latent_space_interpolation_1.png"><img alt="sketchrnn Latent Space Interpolation" src="../../_images/sketchrnn_latent_space_interpolation_1.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Screenshot of Latent Space Interpolation from the <a class="reference external" href="https://arxiv.org/abs/1704.03477">sketchrnn paper</a></span><a class="headerlink" href="#sketchrnn-latent-space-interpolation-1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Screenshot of Latent Space Interpolation from the <a class="reference external" href="https://arxiv.org/abs/1704.03477">sketchrnn paper</a></span><a class="headerlink" href="#sketchrnn-latent-space-interpolation-1" title="Permalink to this image">¶</a></p>
 </div>
-<p>The trained model allows for a latent space interpolation, as shown in the figure above. However, the interpolation may not result in a visua that is semantically meaningful.</p>
+<p>The trained model allows for a latent space interpolation, as shown in the figure above. However, the interpolation may not result in a visual that is semantically meaningful if the latent space positions correspond to different concepts.</p>
+<p>However, if the latent space positions correspond to the same concept, the linear interpolation allows for the generation of interesting and useful results, as shown below in case of the interpolation between four reproduced sketches of a human head / face.</p>
+<p>The bottom row shows the four (reproduced) sketches that were used as starting points for the linear interpolation.</p>
+<div class="figure align-default" id="ha-and-eck-interpolation-starting-points">
+<a class="reference internal image-reference" href="../../_images/ha_and_eck_interpolation_starting_points.png"><img alt="sketchrnn Latent Space Interpolation - starting points- Heads" src="../../_images/ha_and_eck_interpolation_starting_points.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">Screenshot of Latent Space Interpolation from the <a class="reference external" href="https://arxiv.org/abs/1704.03477">sketchrnn paper</a>;</span><a class="headerlink" href="#ha-and-eck-interpolation-starting-points" title="Permalink to this image">¶</a></p>
+</div>
+<p>You can find them again in the four corners of the image below.</p>
+<div class="figure align-default" id="ha-and-eck-interpolation-heads">
+<a class="reference internal image-reference" href="../../_images/ha_and_eck_interpolation_heads.png"><img alt="sketchrnn Latent Space Interpolation - Heads" src="../../_images/ha_and_eck_interpolation_heads.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Screenshot of Latent Space Interpolation from the <a class="reference external" href="https://arxiv.org/abs/1704.03477">sketchrnn paper</a>;</span><a class="headerlink" href="#ha-and-eck-interpolation-heads" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="latent-vector-arithmetics-analogies">
+<h3>Latent vector arithmetics (analogies)<a class="headerlink" href="#latent-vector-arithmetics-analogies" title="Permalink to this headline">¶</a></h3>
 <div class="figure align-default" id="sketchrrn-latent-space-interpolation-2-png">
 <a class="reference internal image-reference" href="../../_images/sketchrrn_latent_space_interpolation_2.png"><img alt="sketchrnn Latent Space Interpolation" src="../../_images/sketchrrn_latent_space_interpolation_2.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Screenshot of Latent Space Interpolation from the <a class="reference external" href="https://arxiv.org/abs/1704.03477">sketchrnn paper</a></span><a class="headerlink" href="#sketchrrn-latent-space-interpolation-2-png" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text">Screenshot of Latent Space Interpolation from the <a class="reference external" href="https://arxiv.org/abs/1704.03477">sketchrnn paper</a></span><a class="headerlink" href="#sketchrrn-latent-space-interpolation-2-png" title="Permalink to this image">¶</a></p>
 </div>
 <p>Similar to the famous NLP example of king/queen and male/female vectors, it was possible to perform basic arithmetics in embedding space, as shown in the figure above.</p>
+</div>
+</div>
+<div class="section" id="data-representation">
+<h2>Data representation<a class="headerlink" href="#data-representation" title="Permalink to this headline">¶</a></h2>
+<p>Sketches are represented as a sequence of pen stroke actions. Each sketch consists of a list of “points”. Each point is then represented by a vector of 5 elements: <span class="math notranslate nohighlight">\((\Delta x, \Delta y, p_1, p_2, p_3)\)</span>. The parameters <span class="math notranslate nohighlight">\(p_1\)</span> to <span class="math notranslate nohighlight">\(p_3\)</span> are a binary one-hot encoding of three possible states of the “pen”.</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(\Delta\)</span> x – the offset distance in the x direction</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Delta\)</span> y – the offset distance in the y direction</p></li>
+<li><p><span class="math notranslate nohighlight">\(p_1\)</span> – pen is currently touching the paper and line will be drawn connecting the next point with the current point (1) or not (0)</p></li>
+<li><p><span class="math notranslate nohighlight">\(p_2\)</span> – pen will be lifted from the paper after the current point and no line will be drawn next (1) or not (0)</p></li>
+<li><p><span class="math notranslate nohighlight">\(p_3\)</span> – drawing has ended and subsequent points (incl. the current one) will not be rendered (1) or not(0)</p></li>
+</ol>
+<p>The initial absolute coordinate of the drawing is assumed to be located at the origin (0, 0).</p>
+<div class="section" id="limitations-of-the-data-representation">
+<h3>Limitations of the data representation<a class="headerlink" href="#limitations-of-the-data-representation" title="Permalink to this headline">¶</a></h3>
+<p>Using this data representation, a sketch can only consist of a sequence of straight lines. However, the sample rate at which the mouse cursor position is obtained allows for curves and circles.</p>
+<p>Overall limitations:</p>
+<ul class="simple">
+<li><p>Each drawing consists of a sequence of straight lines.</p></li>
+<li><p>No abstract shapes, like circles, rectangles</p></li>
+<li><p>No curves (like Bézier curves) or circle segments</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="model-architecture-of-sketch-rnn">
+<h2>Model architecture of “sketch-rnn”<a class="headerlink" href="#model-architecture-of-sketch-rnn" title="Permalink to this headline">¶</a></h2>
+<p>The overall model is a Sequence-to-Sequence Variational Autoencoder (VAE).</p>
+<div class="section" id="encoder-from-input-to-latent-vector">
+<h3>Encoder (from input to latent vector)<a class="headerlink" href="#encoder-from-input-to-latent-vector" title="Permalink to this headline">¶</a></h3>
+<p>The encoder is a bidirectional RNN that takes a sketch as an input, and outputs a latent vector. Since the RNN is bidirectional it if fed the sketch sequence in normal as well as in reversed order. Two encoding RNNs make up the bidirectional RNN and two final hidden states are obtained. Both concatenated form the overall hidden state.</p>
+</div>
+<div class="section" id="decoder-from-latent-vector-to-output">
+<h3>Decoder (from latent vector to output)<a class="headerlink" href="#decoder-from-latent-vector-to-output" title="Permalink to this headline">¶</a></h3>
+<p>Our decoder is an autoregressive RNN that samples output sketches conditional on a given latent
+vector.</p>
+</div>
 </div>
 </div>
 
@@ -375,19 +496,19 @@
 <div class='prev-next-bottom'>
     
     <div id="prev">
-        <a class="left-prev" href="../academic_papers.html" title="previous page">
+        <a class="left-prev" href="Carter_et_al_2016.html" title="previous page">
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Academic papers</p>
+                <p class="prevnext-title">Carter et al. (2016) | Four Experiments in Handwriting with a Neural Network (Distill publication)</p>
             </div>
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="Lopes_et_al_2019.html" title="next page">
+        <a class="right-next" href="Zhong_2018.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Lopes et al. (2019) | A Learned Representation for Scalable Vector Graphics (svg-vae)</p>
+                <p class="prevnext-title">Kimberli Zhong (2018) | Learning to Draw Vector Graphics: Applying Generative Modeling to Font Glyphs (Master thesis &#64; MIT)</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>
