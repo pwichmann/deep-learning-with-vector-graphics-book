@@ -146,6 +146,11 @@
   </label>
   <ul class="current">
    <li class="toctree-l2">
+    <a class="reference internal" href="Graves_2014.html">
+     Alex Graves (2014) | Generating Sequences With Recurrent Neural Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="Ha_2015_handwriting.html">
      David Ha (Dec 2015) | Handwriting Generation Demo in TensorFlow (blog post)
     </a>
@@ -393,13 +398,13 @@
 </div>
 <div class="figure align-default" id="zhong-2018-cover">
 <a class="reference internal image-reference" href="../../_images/zhong_2018_cover.png"><img alt="zhong_2018_cover" src="../../_images/zhong_2018_cover.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">Screenshot from the <a class="reference external" href="https://dspace.mit.edu/bitstream/handle/1721.1/119692/1078149677-MIT.pdf?sequence=1">thesis</a></span><a class="headerlink" href="#zhong-2018-cover" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 13 </span><span class="caption-text">Screenshot from the <a class="reference external" href="https://dspace.mit.edu/bitstream/handle/1721.1/119692/1078149677-MIT.pdf?sequence=1">thesis</a></span><a class="headerlink" href="#zhong-2018-cover" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="results">
 <h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-default" id="zhong-2018-results">
 <a class="reference internal image-reference" href="../../_images/zhong_2018_results.png"><img alt="zhong_2018_results" src="../../_images/zhong_2018_results.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">Screenshot from the <a class="reference external" href="https://dspace.mit.edu/bitstream/handle/1721.1/119692/1078149677-MIT.pdf?sequence=1">thesis</a></span><a class="headerlink" href="#zhong-2018-results" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 14 </span><span class="caption-text">Screenshot from the <a class="reference external" href="https://dspace.mit.edu/bitstream/handle/1721.1/119692/1078149677-MIT.pdf?sequence=1">thesis</a></span><a class="headerlink" href="#zhong-2018-results" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="dataset">
@@ -466,7 +471,7 @@ The font standard TTF (TrueType fonts) is not as expressive as SVG. Thus, the SV
 <div class="section" id="model-architecture">
 <h2>Model architecture<a class="headerlink" href="#model-architecture" title="Permalink to this headline">¶</a></h2>
 <p>The <em>overall model</em> is a bidirectional sequence-to-sequence variational autoencoder (VAE), similar to Ha &amp; Eck.</p>
-<p>The <em>encoder</em> consists of two RNNs, one accepting the sequence of feature vectors in one order and the other accepting the sequence in the reverse order. The final hidden states of both RNNs are concatenated to form a combined output.</p>
+<p>The <em>encoder</em> consists of two RNNs, one accepting the sequence of feature vectors in one order and the other accepting the sequence in the reverse order. The final hidden states of both RNNs are concatenated to form a combined output. Both RNNs use LSTM cells with layer normalization.</p>
 <p>The combined hidden state vector is then transformed into a <span class="math notranslate nohighlight">\(\mu\)</span> vector and a <span class="math notranslate nohighlight">\(\sigma\)</span> vector of the same length <span class="math notranslate nohighlight">\(n_2\)</span> as the hidden state vector. This is done using using a fully connected layer (and an exponentiation operation to produce a non-negative <span class="math notranslate nohighlight">\(\sigma\)</span>).
 The resulting <span class="math notranslate nohighlight">\(\mu\)</span> vector and <span class="math notranslate nohighlight">\(\sigma\)</span> vectors are combined with a vector <span class="math notranslate nohighlight">\(\mathcal{N}\)</span> consisting of <span class="math notranslate nohighlight">\(n_2\)</span> normally distributed Gaussian samples from <span class="math notranslate nohighlight">\(\mathcal{N}(0,1)\)</span>. This then creates a random latent vector <span class="math notranslate nohighlight">\(z\)</span> with <span class="math notranslate nohighlight">\(z=\mu + \sigma * \mathcal{N}\)</span>.</p>
 </div>

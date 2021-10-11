@@ -78,7 +78,7 @@ Question: Why is pen up and pen down two variables? Is that not a binary state? 
 The *overall model* is a bidirectional sequence-to-sequence variational autoencoder (VAE), similar to Ha & Eck. 
 
 
-The *encoder* consists of two RNNs, one accepting the sequence of feature vectors in one order and the other accepting the sequence in the reverse order. The final hidden states of both RNNs are concatenated to form a combined output.
+The *encoder* consists of two RNNs, one accepting the sequence of feature vectors in one order and the other accepting the sequence in the reverse order. The final hidden states of both RNNs are concatenated to form a combined output. Both RNNs use LSTM cells with layer normalization.
 
 The combined hidden state vector is then transformed into a $\mu$ vector and a $\sigma$ vector of the same length $n_2$ as the hidden state vector. This is done using using a fully connected layer (and an exponentiation operation to produce a non-negative $\sigma$).
 The resulting $\mu$ vector and $\sigma$ vectors are combined with a vector $\mathcal{N}$ consisting of $n_2$ normally distributed Gaussian samples from $\mathcal{N}(0,1)$. This then creates a random latent vector $z$ with $z=\mu + \sigma * \mathcal{N}$.

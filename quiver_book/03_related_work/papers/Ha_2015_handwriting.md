@@ -5,6 +5,7 @@ In December 2015, David Ha wrote a couple of inspiring blog posts...
 
 ```{admonition} Available resources at a glance
 * [Website (post on otoro.net, David Ha's blog)](https://blog.otoro.net/2015/12/12/handwriting-generation-demo-in-tensorflow/)
+* [Github repo](https://github.com/hardmaru/write-rnn-tensorflow)
 ```
 
 
