@@ -2,7 +2,7 @@
 
 This book aims to introduce the domain of applying Deep Learning to [vector graphics](https://en.wikipedia.org/wiki/Vector_graphics), such as [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG), and to identify and summarise relevant prior work.
 
-In this sense, this book also serves as an hommage to those amazingly talented and kind scientists and/or artists who paved the way, such as David Ha ([Twitter](https://twitter.com/hardmaru), [Website](https://otoro.net/ml/)) or Raphael Gontijo Lopes ([Twitter](https://twitter.com/iraphas13), [Website](https://raphagl.com/)).
+In this sense, this book also serves as an hommage to those amazingly talented and kind scientists, engineers and/or artists who paved the way, such as David Ha ([Twitter](https://twitter.com/hardmaru), [Website](https://otoro.net/ml/)) or Raphael Gontijo Lopes ([Twitter](https://twitter.com/iraphas13), [Website](https://raphagl.com/)).
 
 ## Raster images vs. vector graphics
 

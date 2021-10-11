@@ -196,11 +196,33 @@
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../other_relevant_work.html">
-   Other relevant work
+  <a class="reference internal" href="../further_academic_papers.html">
+   Further academic publications
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../further_academic_papers/Das_2020.html">
+     Das et al. (2020) | BézierSketch: A generative model for scalable vector sketches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../further_academic_papers/Das_2021.html">
+     Das et al. (2021) | Cloud2Curve: Generation and Vectorization of Parametric Sketches
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../other_relevant_work.html">
+   Other relevant work
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -358,10 +380,21 @@
 <h1>Alex Graves (2014) | Generating Sequences With Recurrent Neural Networks<a class="headerlink" href="#alex-graves-2014-generating-sequences-with-recurrent-neural-networks" title="Permalink to this headline">¶</a></h1>
 <p>The paper shows how LSTM (Long Short-Term Memory) recurrent neural networks (RNNs) can be used to auto-regressively generate complex sequences. The approach is demonstrated for (a) discrete-valued text and (b) real-valued handwriting. The work is then extended to handwriting synthesis by allowing the network to condition its predictions on a text sequence. The generated handwriting is indistinguishable from real handwriting samples. The handwriting dataset consists of a sequence of (x, y) coordinates and a pen state variable. Thus, neither training data nor the generated output are based on raster images.</p>
 <p>The handwriting synthesis portion of this paper inspired David Ha’s blog posts in December 2015 and the subsequent sketch-rrn work.</p>
+<p>Graves’ 2014 paper appears to build upon an <a class="reference external" href="https://people.idsia.ch//~juergen/tpami_2008.pdf">earlier paper by Graves titled “A Novel Connectionist System for Unconstrained Handwriting Recognition”</a> with famous co-author Jürgen Schmidhuber among others.</p>
 <div class="admonition-available-resources-at-a-glance admonition">
 <p class="admonition-title">Available resources at a glance</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://arxiv.org/pdf/1308.0850.pdf">Paper PDF on ArXiv</a></p></li>
+<li><p><a class="reference external" href="https://www.cs.toronto.edu/~graves/">Graves’ personal academic website</a></p></li>
+<li><p><a class="reference external" href="https://www.cs.toronto.edu/~graves/gen_seq_rnn.pdf">Slides by Graves</a></p></li>
+<li><p><a class="reference external" href="http://www.cs.toronto.edu/~graves/handwriting.html">Demo by Graves</a></p></li>
+<li><p><a class="reference external" href="https://github.com/szcom/rnnlib">Code of the demo available as Github repo</a></p></li>
+<li><p>Dataset</p>
+<ul>
+<li><p><a class="reference external" href="https://fki.tic.heia-fr.ch/databases/iam-on-line-handwriting-database">IAM-OnDB handwriting dataset (download requires registration; non-commerical use only)</a></p></li>
+<li><p><a class="reference external" href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.329.9970&amp;rep=rep1&amp;type=pdf">IAM-OnDB paper</a></p></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="figure align-default" id="graves-2014-cover">

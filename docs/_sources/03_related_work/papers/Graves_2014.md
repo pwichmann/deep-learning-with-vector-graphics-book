@@ -6,9 +6,18 @@ The paper shows how LSTM (Long Short-Term Memory) recurrent neural networks (RNN
 
 The handwriting synthesis portion of this paper inspired David Ha's blog posts in December 2015 and the subsequent sketch-rrn work.
 
+Graves' 2014 paper appears to build upon an [earlier paper by Graves titled "A Novel Connectionist System for Unconstrained Handwriting Recognition"](https://people.idsia.ch//~juergen/tpami_2008.pdf) with famous co-author Jürgen Schmidhuber among others.
+
 
 ```{admonition} Available resources at a glance
 * [Paper PDF on ArXiv](https://arxiv.org/pdf/1308.0850.pdf)
+* [Graves' personal academic website](https://www.cs.toronto.edu/~graves/)
+* [Slides by Graves](https://www.cs.toronto.edu/~graves/gen_seq_rnn.pdf)
+* [Demo by Graves](http://www.cs.toronto.edu/~graves/handwriting.html)
+* [Code of the demo available as Github repo](https://github.com/szcom/rnnlib)
+* Dataset
+  * [IAM-OnDB handwriting dataset (download requires registration; non-commerical use only)](https://fki.tic.heia-fr.ch/databases/iam-on-line-handwriting-database)
+  * [IAM-OnDB paper](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.329.9970&rep=rep1&type=pdf)
 ```
 
 
