@@ -116,15 +116,66 @@
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../02_background/svg.html">
-   Scalable Vector Graphics (SVG) format
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../02_background/vector_graphics.html">
+   Vector Graphics
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/vector_graphics/svg.html">
+     Scalable Vector Graphics (SVG) format
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../02_background/challenges_of_vector_graphics.html">
-   Challenges of Vector Graphics
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../02_background/deep_learning.html">
+   Deep Learning
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/deep_learning/rnn.html">
+     RNN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/deep_learning/lstm.html">
+     LSTM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/deep_learning/mdn.html">
+     Mixture Density Networks (MDN)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../02_background/DL_with_vector_graphics.html">
+   Deep Learning with Vector Graphics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/DL_with_vector_graphics/challenges_of_vector_graphics.html">
+     Challenges of Vector Graphics
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p class="caption">
@@ -137,8 +188,8 @@
   <a class="reference internal" href="../academic_papers.html">
    Key academic publications
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -196,11 +247,38 @@
   </ul>
  </li>
  <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../further_academic_papers.html">
+   Further academic publications
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../further_academic_papers/Das_2020.html">
+     Das et al. (2020) | BézierSketch: A generative model for scalable vector sketches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../further_academic_papers/Das_2021.html">
+     Das et al. (2021) | Cloud2Curve: Generation and Vectorization of Parametric Sketches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../further_academic_papers/yang_2021_sketchaa.html">
+     Yang et al. (2021) | SketchAA: Abstract Representation for Abstract Sketches
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../other_relevant_work.html">
    Other relevant work
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -380,13 +458,13 @@
 </div>
 <div class="figure align-default" id="svg-vae-home-fig">
 <a class="reference internal image-reference" href="../../_images/svg_vae_cover.png"><img alt="SVG-VAE paper by Lopes" src="../../_images/svg_vae_cover.png" style="width: 900px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 15 </span><span class="caption-text">Screenshot of the SVG-VAE <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-home-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 19 </span><span class="caption-text">Screenshot of the SVG-VAE <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-home-fig" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="model-architecture">
 <h2>Model architecture<a class="headerlink" href="#model-architecture" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-default" id="svg-vae-model-fig">
 <a class="reference internal image-reference" href="../../_images/svg_vae_model_architecture.png"><img alt="SVG-VAE model architecture" src="../../_images/svg_vae_model_architecture.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 16 </span><span class="caption-text">Screenshot of the SVG-VAE model architecture; taken from <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-model-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 20 </span><span class="caption-text">Screenshot of the SVG-VAE model architecture; taken from <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-model-fig" title="Permalink to this image">¶</a></p>
 </div>
 <p>“Visual similarity between SVGs is learned by a class-conditioned, convolutional variational autoencoder (VAE) on a rendered representation (blue). The class label and learned representation z are provided as input to a model that decodes SVG commands (purple). The SVG decoder consists of stacked LSTMs followed by a Mixture Density Network (MDN).”</p>
 </div>
@@ -394,7 +472,7 @@
 <h2>Latent space interpolation<a class="headerlink" href="#latent-space-interpolation" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-default" id="svg-vae-interpolations-fig">
 <a class="reference internal image-reference" href="../../_images/svg_vae_linear_interpolations.png"><img alt="SVG-VAE linear interpolations" src="../../_images/svg_vae_linear_interpolations.png" style="width: 700px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 17 </span><span class="caption-text">Screenshot of linear interpolations; taken from <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-interpolations-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 21 </span><span class="caption-text">Screenshot of linear interpolations; taken from <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-interpolations-fig" title="Permalink to this image">¶</a></p>
 </div>
 <p>The trained model allows for the generation of new characters and fonts by leveraging linear interpolations between two characters or two positions in the latent space.</p>
 </div>
@@ -402,7 +480,7 @@
 <h2>Semantically meaningful directions in latent space<a class="headerlink" href="#semantically-meaningful-directions-in-latent-space" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-default" id="svg-vae-directions-fig">
 <a class="reference internal image-reference" href="../../_images/svg_vae_meaningful_directions.png"><img alt="SVG-VAE meaningful directions" src="../../_images/svg_vae_meaningful_directions.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 18 </span><span class="caption-text">Screenshot of meaningful directions in latent space; taken from <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-directions-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 22 </span><span class="caption-text">Screenshot of meaningful directions in latent space; taken from <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-directions-fig" title="Permalink to this image">¶</a></p>
 </div>
 <p>Interestingly, semantically meaningful directions could be identified. Examples, as shown above, are:</p>
 <ul class="simple">
@@ -415,7 +493,7 @@
 <h2>Example results<a class="headerlink" href="#example-results" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-default" id="svg-vae-results-fig">
 <a class="reference internal image-reference" href="../../_images/svg_vae_sample_randomly_generated_fonts.png"><img alt="SVG-VAE sample of randomly generated fonts" src="../../_images/svg_vae_sample_randomly_generated_fonts.png" style="width: 700px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 19 </span><span class="caption-text">Screenshot of a sample of randomly generated fonts; taken from <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-results-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 23 </span><span class="caption-text">Screenshot of a sample of randomly generated fonts; taken from <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-results-fig" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="remarkable-aspects-of-this-work">

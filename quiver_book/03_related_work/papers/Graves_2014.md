@@ -41,6 +41,8 @@ Screenshot of handwriting synthesis examples -- the first line is real, the othe
 
 The dataset used for the handwriting portion is obtained from the IAM Online Handwriting Database (IAM-OnDB). The IAM-OnDB consists of handwritten lines collected from 221 different writers using a "smart whiteboard". The writers were asked to write forms from the Lancaster-Oslo-Bergen text corpus, and the position of their pen was tracked using an infra-red device in the corner of the board.
 
+The database contains forms of unconstrained handwritten text, acquired with the E-Beam System. The collected data is stored in xml-format, including the writer-id, the transcription and the setting of the recording.
+
 The original input data consists of the x and y pen co-ordinates and the points in the sequence when the pen is lifted off the whiteboard.
 
 ### Preprocessing

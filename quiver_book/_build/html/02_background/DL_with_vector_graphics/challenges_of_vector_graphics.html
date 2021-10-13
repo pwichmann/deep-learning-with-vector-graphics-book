@@ -42,6 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -155,7 +157,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../deep_learning/mdn.html">
-     Mixture Density Networks
+     Mixture Density Networks (MDN)
     </a>
    </li>
   </ul>
@@ -408,6 +410,64 @@
   <a class="reference internal nav-link" href="#why-vector-graphics-e-g-svg-are-challenging">
    Why Vector Graphics (e.g. SVG) are challenging
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-turn-vector-graphics-into-numeric-tensors">
+     1. How to turn vector graphics into numeric tensors?
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#handwriting-recorded-via-a-smart-whiteboard">
+       Handwriting recorded via a smart whiteboard
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sketches-drawn-with-the-pc-mouse">
+       Sketches drawn with the PC mouse
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#raw-dataset">
+         Raw dataset
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#preprocessed-simplified-dataset">
+         Preprocessed simplified dataset
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#svg-images-as-input">
+       SVG images as input
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#a-first-stab-by-zhong-2018-a-numeric-tensor-for-svg-obtained-from-ttf-fonts">
+         A first stab by Zhong (2018): a numeric tensor for SVG obtained from TTF fonts
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hierarchy-graph">
+     2. Hierarchy / graph
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#many-ways-to-design-an-svg-resulting-in-an-identical-raster-image">
+     3. Many ways to design an SVG resulting in an identical raster image
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear-interpolation-in-latent-space-when-the-svg-composition-differs-but-images-look-similar">
+     6. Linear interpolation in latent space when the SVG composition differs but images look similar
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -425,19 +485,172 @@
 <p>This section aims to summarise why vector graphics, and SVG specifically, are challenging to work with in the context of Deep Learning.</p>
 <div class="section" id="why-vector-graphics-e-g-svg-are-challenging">
 <h2>Why Vector Graphics (e.g. SVG) are challenging<a class="headerlink" href="#why-vector-graphics-e-g-svg-are-challenging" title="Permalink to this headline">¶</a></h2>
-<p>Key challenges are the following:</p>
+<p>Deep Learning with Vector Graphis is challenging for a variety of reasons. The key challenges shall be briefly outlined below. A more detailed explanation as well as a summary of approaches addressing can be found thereafter.</p>
+<p><strong>Key challenges:</strong></p>
 <ol class="simple">
-<li><p>Deep Learning models expect a numeric tensor. SVG files, however, are XML text in the first instance.</p></li>
+<li><p>Deep Learning models expect a numeric tensor. However, the common vector graphics format SVG is XML-based and, thus, a text file in the first instance.</p></li>
 <li><p>SVG files are hierarchical / a graph of nodes and attributes.</p></li>
 <li><p>There are <em>many</em> ways to design an SVG that results in the same rastered PNG.</p></li>
 <li><p>SVG allows for simple paths, bézier curves as well as other pre-defined SVG primitives (such as rectangles, circles etc.).</p></li>
 <li><p>Translating an SVG to its visual representation is not trivial and not as straightforward as it is for a raster image with (R,G,B) pixel values.</p></li>
+<li><p>Linear interpolation when there are step changes, e.g. when the SVG composition is different</p></li>
 </ol>
-<p>Further challenges include:</p>
+<p><strong>Further challenges include:</strong></p>
 <ul class="simple">
 <li><p>SVGs have an x,y coordinate system of a certain size; in addition only a certain part of it may be defined to be shown to the user (viewport)</p></li>
 <li><p>SVGs can contain animations and all sorts of other Web technology (scripts, …) that need to be ignored.</p></li>
 </ul>
+<div class="section" id="how-to-turn-vector-graphics-into-numeric-tensors">
+<h3>1. How to turn vector graphics into numeric tensors?<a class="headerlink" href="#how-to-turn-vector-graphics-into-numeric-tensors" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="handwriting-recorded-via-a-smart-whiteboard">
+<h4>Handwriting recorded via a smart whiteboard<a class="headerlink" href="#handwriting-recorded-via-a-smart-whiteboard" title="Permalink to this headline">¶</a></h4>
+<p>In Graves (2014) and David Ha’s subsequent experiments, handwriting data was used not in a raster image format but in an XML format. The data consisted of a sequence (x, y) pen co-ordinates with an additional flag if pen is lifted off the whiteboard or not. (Note to self: Check data once obtained if this is correct.)
+This data format is certainly not as expressive as SVG but it is already a simplified vector graphics format available as numeric tensors. Each handwriting is a sequence of points (a polyline) and each point consists of an x-coordinate, a y-coordinate, and a binary (0 or 1) flag for the pen state.
+The data format does not allow for curves; these could only be approximated by multiple straight lines of different slope. The sampling rate determined how close can can approximate a curve.</p>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;.../&gt;</span>
+To be added once we obtained data sample
+</pre></div>
+</div>
+</div>
+<div class="section" id="sketches-drawn-with-the-pc-mouse">
+<h4>Sketches drawn with the PC mouse<a class="headerlink" href="#sketches-drawn-with-the-pc-mouse" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="raw-dataset">
+<h5>Raw dataset<a class="headerlink" href="#raw-dataset" title="Permalink to this headline">¶</a></h5>
+<p>Google’s “Quick, Draw!” used a similar approach. Each sketch in the <a class="reference external" href="https://github.com/googlecreativelab/quickdraw-dataset">raw dataset</a> is provided as a Newline-delimited JSON (<a class="reference external" href="http://ndjson.org/">ndjson</a>) file containing metadata (e.g. the word the user was supposed to draw) as well as the drawing itself.</p>
+<p>A raw format example is shown in the json below:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>{
+	&quot;word&quot;:&quot;airplane&quot;,
+	&quot;countrycode&quot;:&quot;CZ&quot;,
+	&quot;timestamp&quot;:&quot;2017-03-25 09:39:37.15337 UTC&quot;,
+	&quot;recognized&quot;:true,
+	&quot;key_id&quot;:&quot;5302633118040064&quot;,
+	&quot;drawing&quot;:[
+				[
+					[157,151.9720001220703,147.02999877929688,141.1699981689453,135.77699279785156,130.7969970703125,126.39700317382812,120.4990005493164,115.2979965209961,109.875,105.95800018310547,103.5,102.5,105.36299896240234,110.13400268554688,116.0739974975586,121,126,131.66900634765625,137.85000610351562,141.98500061035156,147,154.4530029296875,159.16900634765625,164,170.58799743652344,176.84500122070312,183.82200622558594,188.10699462890625,195.0449981689453,202.04800415039062,208.9219970703125,212.947998046875,219.98899841308594,226.83399963378906,233.5030059814453,238.17799377441406,242.9080047607422,250.26300048828125,257.16900634765625,262.0249938964844,267.40899658203125,267.5],
+					[153,152.4969940185547,154.9849853515625,157.9429931640625,160.40798950195312,162.85101318359375,164.802001953125,168.25100708007812,171.70199584960938,176.625,182.08401489257812,186.47500610351562,191.25,195.86300659179688,198.13400268554688,199.5,200,200,199.5,198.21701049804688,197.5,196,194.3489990234375,192.94400024414062,192,190.47100830078125,188.10299682617188,185.55899047851562,184.15701293945312,181.114013671875,178.302001953125,175.6929931640625,173.92098999023438,171.00601196289062,167.7919921875,164.66400146484375,162.59298706054688,160.83700561523438,156.82501220703125,152.38800048828125,149.47500610351562,146.54600524902344,146.5],
+					[0,134,179,212,246,279,312,362,413,478,548,612,695,812,894,976,1044,1092,1158,1202,1238,1261,1313,1345,1376,1412,1447,1476,1492,1544,1567,1591,1608,1642,1675,1708,1725,1745,1774,1809,1841,1895,1930]
+				],
+				[
+					[125,131,136.5240020751953,143.0469970703125,148.9499969482422,155.2830047607422,161.6929931640625,168.5540008544922,175.27099609375,181.83999633789062,188.72500610351562,195.0850067138672,202.9770050048828,209.35499572753906,216.31300354003906,222.1269989013672,227.01400756835938,231.4199981689453,237.302001953125,243.19000244140625,249,254.9530029296875,260,265,270,274.9670104980469,279,284.3840026855469,288.63299560546875,294.1499938964844,299,304,309.38299560546875,314,314.5,307.8349914550781,303.2919921875,297.6679992675781,292.843994140625,287.2950134277344,279.6839904785156,274.5199890136719,270.50799560546875,264.62298583984375,260.5,260.5],
+					[163,160,158.49200439453125,156.48800659179688,154.52499389648438,152.07200622558594,149.6020050048828,146.6490020751953,143.36399841308594,140.44000244140625,137.01699829101562,134.30499267578125,130.6820068359375,127.26300048828125,124.4219970703125,121.43600463867188,118.99099731445312,117.53999328613281,115.0989990234375,113.15499877929688,111,108.77400207519531,107,105,103,101.03300476074219,100,98.5,97.36700439453125,96.42500305175781,96,96,96.5,99,103.50100708007812,111.97000122070312,116.88499450683594,121.16499328613281,126.156005859375,130.47000122070312,137.23699951171875,141.97999572753906,145.99200439453125,150.93800354003906,154.5,154.5],
+					[2289,2428,2457,2489,2527,2558,2587,2621,2654,2688,2721,2756,2790,2822,2853,2887,2923,2952,3003,3053,3102,3152,3202,3253,3301,3380,3493,3610,3650,3702,3753,3800,3849,3916,3966,4017,4033,4049,4066,4082,4116,4148,4182,4246,4303,4328]
+				],
+				
+				// ... omitted ...
+
+			]
+}
+</pre></div>
+</div>
+<p>The drawing is represented as an array of arrays:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> 
+  <span class="p">[</span>  <span class="o">//</span> <span class="n">First</span> <span class="n">stroke</span> 
+    <span class="p">[</span><span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">y0</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">y3</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">,</span> <span class="n">t3</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+  <span class="p">],</span>
+  <span class="p">[</span>  <span class="o">//</span> <span class="n">Second</span> <span class="n">stroke</span>
+    <span class="p">[</span><span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">y0</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">y3</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">,</span> <span class="n">t3</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+  <span class="p">],</span>
+  <span class="o">...</span> <span class="o">//</span> <span class="n">Additional</span> <span class="n">strokes</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Despite this data representation above, a drawing can also be understood as a sequence of triples, where each triple consists of the x-coordinate, the y-coordinate and the time in milliseconds <span class="math notranslate nohighlight">\(t\)</span> that passed since drawing the first point (the time information allows for an animation of the drawing). You can see that the first time element of the first stroke indeed has the value 0, as we would expect.</p>
+<p>For a generative model or classifier, the timing information is probably less useful. And the x- and y-coordinates, sometimes using 14 decimal places, are unnecessarily precise.</p>
+</div>
+<div class="section" id="preprocessed-simplified-dataset">
+<h5>Preprocessed simplified dataset<a class="headerlink" href="#preprocessed-simplified-dataset" title="Permalink to this headline">¶</a></h5>
+<p>A simplified version of the drawing data discards the timing information and performs a series of preprocessing steps:</p>
+<ol class="simple">
+<li><p>The drawing is <strong>aligned to the top-left corner</strong>, to have a minimum values of 0.</p></li>
+<li><p>The drawing is <strong>uniformly scaled to have a maximum value of 255</strong>.</p></li>
+<li><p>All strokes are <strong>resampled</strong> with a 1 pixel spacing. (This gets rid of the 14 decimal places…)</p></li>
+<li><p>All strokes are simplified using the <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm">Ramer–Douglas–Peucker algorithm</a></strong> with an epsilon value of 2.0. (This reduces the number of points while trying to maintain the overall shape of the polyline.)</p></li>
+</ol>
+<p>The simplification also reduces the file size to about 1/10th.</p>
+<p>A simplied example is shown in the json below:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+	<span class="nt">&quot;word&quot;</span><span class="p">:</span><span class="s2">&quot;airplane&quot;</span><span class="p">,</span>
+	<span class="nt">&quot;countrycode&quot;</span><span class="p">:</span><span class="s2">&quot;CZ&quot;</span><span class="p">,</span>
+	<span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="s2">&quot;2017-03-25 09:39:37.15337 UTC&quot;</span><span class="p">,</span>
+	<span class="nt">&quot;recognized&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
+	<span class="nt">&quot;key_id&quot;</span><span class="p">:</span><span class="s2">&quot;5302633118040064&quot;</span><span class="p">,</span>
+	<span class="nt">&quot;drawing&quot;</span><span class="p">:[</span>
+				<span class="p">[</span>
+					<span class="p">[</span><span class="mi">74</span><span class="p">,</span><span class="mi">68</span><span class="p">,</span><span class="mi">38</span><span class="p">,</span><span class="mi">26</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">39</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">110</span><span class="p">,</span><span class="mi">173</span><span class="p">,</span><span class="mi">201</span><span class="p">],</span>
+					<span class="p">[</span><span class="mi">104</span><span class="p">,</span><span class="mi">104</span><span class="p">,</span><span class="mi">118</span><span class="p">,</span><span class="mi">126</span><span class="p">,</span><span class="mi">137</span><span class="p">,</span><span class="mi">148</span><span class="p">,</span><span class="mi">153</span><span class="p">,</span><span class="mi">158</span><span class="p">,</span><span class="mi">147</span><span class="p">,</span><span class="mi">140</span><span class="p">,</span><span class="mi">113</span><span class="p">,</span><span class="mi">97</span><span class="p">]</span>
+				<span class="p">],</span>
+				<span class="p">[</span>
+					<span class="p">[</span><span class="mi">37</span><span class="p">,</span><span class="mi">87</span><span class="p">,</span><span class="mi">155</span><span class="p">,</span><span class="mi">210</span><span class="p">,</span><span class="mi">237</span><span class="p">,</span><span class="mi">249</span><span class="p">,</span><span class="mi">254</span><span class="p">,</span><span class="mi">254</span><span class="p">,</span><span class="mi">242</span><span class="p">,</span><span class="mi">193</span><span class="p">],</span>
+					<span class="p">[</span><span class="mi">116</span><span class="p">,</span><span class="mi">97</span><span class="p">,</span><span class="mi">65</span><span class="p">,</span><span class="mi">44</span><span class="p">,</span><span class="mi">39</span><span class="p">,</span><span class="mi">39</span><span class="p">,</span><span class="mi">42</span><span class="p">,</span><span class="mi">48</span><span class="p">,</span><span class="mi">62</span><span class="p">,</span><span class="mi">106</span><span class="p">]</span>
+				<span class="p">],</span>
+				<span class="p">[</span>
+					<span class="p">[</span><span class="mi">161</span><span class="p">,</span><span class="mi">155</span><span class="p">,</span><span class="mi">155</span><span class="p">,</span><span class="mi">166</span><span class="p">,</span><span class="mi">199</span><span class="p">],</span>
+					<span class="p">[</span><span class="mi">58</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">34</span><span class="p">]</span>
+				<span class="p">],</span>
+				<span class="p">[</span>
+					<span class="p">[</span><span class="mi">227</span><span class="p">,</span><span class="mi">246</span><span class="p">,</span><span class="mi">246</span><span class="p">,</span><span class="mi">239</span><span class="p">,</span><span class="mi">221</span><span class="p">,</span><span class="mi">203</span><span class="p">],</span>
+					<span class="p">[</span><span class="mi">82</span><span class="p">,</span><span class="mi">104</span><span class="p">,</span><span class="mi">117</span><span class="p">,</span><span class="mi">122</span><span class="p">,</span><span class="mi">123</span><span class="p">,</span><span class="mi">113</span><span class="p">]</span>
+				<span class="p">],</span>	
+				<span class="p">[</span>
+					<span class="p">[</span><span class="mi">67</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">71</span><span class="p">,</span><span class="mi">94</span><span class="p">,</span><span class="mi">125</span><span class="p">],</span>
+					<span class="p">[</span><span class="mi">95</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">29</span><span class="p">,</span><span class="mi">46</span><span class="p">,</span><span class="mi">78</span><span class="p">]</span>
+				<span class="p">],</span>
+				<span class="p">[</span>
+					<span class="p">[</span><span class="mi">95</span><span class="p">,</span><span class="mi">103</span><span class="p">,</span><span class="mi">122</span><span class="p">,</span><span class="mi">147</span><span class="p">,</span><span class="mi">169</span><span class="p">,</span><span class="mi">173</span><span class="p">,</span><span class="mi">169</span><span class="p">,</span><span class="mi">126</span><span class="p">],</span>
+					<span class="p">[</span><span class="mi">135</span><span class="p">,</span><span class="mi">165</span><span class="p">,</span><span class="mi">199</span><span class="p">,</span><span class="mi">229</span><span class="p">,</span><span class="mi">244</span><span class="p">,</span><span class="mi">237</span><span class="p">,</span><span class="mi">221</span><span class="p">,</span><span class="mi">136</span><span class="p">]</span>
+				<span class="p">],</span>
+				<span class="p">[</span>
+					<span class="p">[</span><span class="mi">33</span><span class="p">,</span><span class="mi">39</span><span class="p">],</span>
+					<span class="p">[</span><span class="mi">114</span><span class="p">,</span><span class="mi">120</span><span class="p">]</span>
+				<span class="p">]</span>
+			<span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The first key-value pairs represent metadata, such as the word prompt. The drawing is now represented by an array of strokes. Each stroke is represented by an array of x-coordinates and an array of y-coordinates of the same length.</p>
+<p>The resulting image is shown below:</p>
+<div class="figure align-default" id="airplane-drawing">
+<a class="reference internal image-reference" href="../../_images/airplane_drawing.png"><img alt="Airplane drawing" src="../../_images/airplane_drawing.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Resulting airplane drawing; from <a class="reference external" href="https://quickdraw.withgoogle.com/data/airplane">Google’s Quickdraw Viewer</a></span><a class="headerlink" href="#airplane-drawing" title="Permalink to this image">¶</a></p>
+</div>
+<p>In this case, the artist used 7 strokes which is hard to derive from the image alone. 3 strokes were used for the aircraft body, one for each wing and one for each tail fin. These 7 strokes can be found again in the json representation of the strokes. It’s the number of elements in the top-level array.</p>
+</div>
+</div>
+<div class="section" id="svg-images-as-input">
+<h4>SVG images as input<a class="headerlink" href="#svg-images-as-input" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="a-first-stab-by-zhong-2018-a-numeric-tensor-for-svg-obtained-from-ttf-fonts">
+<h5>A first stab by Zhong (2018): a numeric tensor for SVG obtained from TTF fonts<a class="headerlink" href="#a-first-stab-by-zhong-2018-a-numeric-tensor-for-svg-obtained-from-ttf-fonts" title="Permalink to this headline">¶</a></h5>
+<p>In her Master’s thesis, Zhong (2018) builds upon the work by David Ha but extends the data representation. She allows simplified SVG images to be the input to her model. The SVG images are obtained from TTF fonts which only allow for a restricted range of SVG commands.</p>
+<p>Nevertheless, the obtained SVGs have to be further preprocessed and simplified.</p>
+</div>
+</div>
+</div>
+<div class="section" id="hierarchy-graph">
+<h3>2. Hierarchy / graph<a class="headerlink" href="#hierarchy-graph" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="many-ways-to-design-an-svg-resulting-in-an-identical-raster-image">
+<h3>3. Many ways to design an SVG resulting in an identical raster image<a class="headerlink" href="#many-ways-to-design-an-svg-resulting-in-an-identical-raster-image" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="linear-interpolation-in-latent-space-when-the-svg-composition-differs-but-images-look-similar">
+<h3>6. Linear interpolation in latent space when the SVG composition differs but images look similar<a class="headerlink" href="#linear-interpolation-in-latent-space-when-the-svg-composition-differs-but-images-look-similar" title="Permalink to this headline">¶</a></h3>
+<p>By design, a raster image allows for linear interpolation between images. One can always find a way to gradually alter pixel values to gradually morph one image into another.</p>
+<p>This may or may not be different for vector graphics. Let’s take two visual representations of the same concept, an eye. Both images below look similar. In raster space, one could easily imagine how to morph one eye into the other.</p>
+<p>But in the vector image space, one image consists of <em>two separate paths</em>, and the other consists of <em>just one</em>.</p>
+<div class="figure align-default" id="eye-1">
+<a class="reference internal image-reference" href="../../_images/eye_1.png"><img alt="eye" src="../../_images/eye_1.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Icon of an eye opened in Inkscape; the eye consists of two separate paths</span><a class="headerlink" href="#eye-1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="eye-2">
+<a class="reference internal image-reference" href="../../_images/eye_2.png"><img alt="eye" src="../../_images/eye_2.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Icon of an eye opened in Inkscape; the eye consists of just one path</span><a class="headerlink" href="#eye-2" title="Permalink to this image">¶</a></p>
+</div>
+<p>Now, how would linear interpolations between these SVG representations work?
+How would a linear interpolation look if one the icons even had the white part of the eye explicity modelled as a shape?</p>
+</div>
 </div>
 </div>
 

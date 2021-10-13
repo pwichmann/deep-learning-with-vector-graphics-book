@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mixture Density Networks &#8212; Deep Learning with Vector Graphics</title>
+    <title>Mixture Density Networks (MDN) &#8212; Deep Learning with Vector Graphics</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -155,7 +155,7 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Mixture Density Networks
+     Mixture Density Networks (MDN)
     </a>
    </li>
   </ul>
@@ -405,6 +405,16 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mdn-concept">
+   MDN concept
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mdn-in-pytorch">
+   MDN in PyTorch
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#combining-mdns-with-lstms">
    Combining MDNs with LSTMs
   </a>
@@ -420,10 +430,34 @@
         
               <div>
                 
-  <div class="section" id="mixture-density-networks">
-<h1>Mixture Density Networks<a class="headerlink" href="#mixture-density-networks" title="Permalink to this headline">¶</a></h1>
-<p>Key idea:
-Instead of letting the network predict a single output value, the network is to predict an entire probability distribution for the output.</p>
+  <div class="section" id="mixture-density-networks-mdn">
+<h1>Mixture Density Networks (MDN)<a class="headerlink" href="#mixture-density-networks-mdn" title="Permalink to this headline">¶</a></h1>
+<p>In the <a class="reference external" href="https://publications.aston.ac.uk/id/eprint/373/1/NCRG_94_004.pdf">original paper</a> by Christopher M. Bishop from 1994, Bishop defines Mixture Density Networks as a
+“class of network models obtained by combining a conventional neural network with a mixture density model. The complete system is called a Mixture Density Network, and can in principle represent arbitrary conditional probability distributions in the same way that a conventional neural network can represent arbitrary functions”.</p>
+<div class="tip admonition">
+<p class="admonition-title">Key idea</p>
+<p>Instead of letting the network predict a <em>single output value</em>, the network is to predict an <em>entire probability distribution over a range of outputs</em> given the input.</p>
+<p>Why is that useful?
+When auto-regressively generating handwriting, for example, we predict the next stroke based on the existing ones. Now, with MDNs, instead of sticking to one most likely prediction, the next stroke is drawn from a probability distribution of multiple possibilities.</p>
+</div>
+<div class="admonition-available-resources-at-a-glance admonition">
+<p class="admonition-title">Available resources at a glance</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://publications.aston.ac.uk/id/eprint/373/1/NCRG_94_004.pdf">Original paper by Christopher M. Bishop introducing Mixture Density Networks(1994)</a></p></li>
+<li><p><a class="reference external" href="https://github.com/hardmaru/pytorch_notebooks/blob/master/mixture_density_networks.ipynb">Jupyter Notebook by David Ha (hardmaru) with PyTorch MDN implementation</a></p></li>
+</ul>
+</div>
+<div class="section" id="mdn-concept">
+<h2>MDN concept<a class="headerlink" href="#mdn-concept" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default" id="mdn-bishop">
+<a class="reference internal image-reference" href="../../_images/mdn_bishop.png"><img alt="MDN from Bishop paper" src="../../_images/mdn_bishop.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">“The Mixture Density Network consists of a feed-forward neural network whose outputs determine the parameters in a mixture density model. The mixture model then represents the conditional probability density function of the target variables, conditioned on the input vector to the neural network.”
+<a class="reference external" href="https://publications.aston.ac.uk/id/eprint/373/1/NCRG_94_004.pdf">MDN figure and description taken from Bishop (1994)</a>.</span><a class="headerlink" href="#mdn-bishop" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="mdn-in-pytorch">
+<h2>MDN in PyTorch<a class="headerlink" href="#mdn-in-pytorch" title="Permalink to this headline">¶</a></h2>
+</div>
 <div class="section" id="combining-mdns-with-lstms">
 <h2>Combining MDNs with LSTMs<a class="headerlink" href="#combining-mdns-with-lstms" title="Permalink to this headline">¶</a></h2>
 </div>
