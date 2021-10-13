@@ -417,7 +417,7 @@
 <p>A book about Deep Learning with Vector Graphics also needs to make the point why an end-to-end approach appears to be a desirable objective. End-to-end in this context shall refer to a generative Deep Learning model that is fed vector graphics and directly outputs vector graphics.</p>
 <p>Here are a few bold claims (that still require evidence):</p>
 <ol class="simple">
-<li><p>Training on SVG could be much faster since vector graphics store information much more efficiently than raster images.</p></li>
+<li><p>Training on SVG could be much faster since vector graphics can store information much more efficiently than raster images. This is obviously the case if an image has been designed as a vector graphic from the start. The rastered image file will be much larger and even “empty” pixels need to be described using their RGB(A) values.</p></li>
 <li><p>If obtaining SVG is our goal, then the approach of using generative models for raster images and to then convert their output to vector graphics is futile. Current generative models are not conditioned to produce output that is easily converted to vector graphics. And such a conditioning would not be trivial.</p></li>
 <li><p>Learning about the composition of an SVG is only possible if this information is fed into the model. A rasterised image has lost that information.</p></li>
 <li><p>Many logos and icons make use of perfect symmetries and perfect 90° angles. This information could be maintained if both input and output are vector graphics.</p></li>
