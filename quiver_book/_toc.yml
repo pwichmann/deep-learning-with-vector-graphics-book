@@ -22,6 +22,7 @@ parts:
     - file: 02_background/deep_learning/mdn.md
   - file: 02_background/DL_with_vector_graphics.md
     sections:
+    - file: 02_background/DL_with_vector_graphics/arguing_for_e2e_approach.md
     - file: 02_background/DL_with_vector_graphics/challenges_of_vector_graphics.md
 
 

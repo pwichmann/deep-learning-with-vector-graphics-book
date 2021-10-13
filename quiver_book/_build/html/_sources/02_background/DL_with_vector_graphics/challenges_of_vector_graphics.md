@@ -145,7 +145,7 @@ A simplied example is shown in the json below:
 
 The first key-value pairs represent metadata, such as the word prompt. The drawing is now represented by an array of strokes. Each stroke is represented by an array of x-coordinates and an array of y-coordinates of the same length.
 
-The resulting image is shown below:
+The exact image resulting from json description above is shown below:
 
 
 :::{figure-md} airplane_drawing
