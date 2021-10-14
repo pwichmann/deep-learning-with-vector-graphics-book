@@ -42,6 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -51,7 +53,7 @@
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Other relevant work" href="../other_relevant_work.html" />
+    <link rel="next" title="Further academic publications" href="../further_academic_papers.html" />
     <link rel="prev" title="Li et al. (2020) | Differentiable Vector Graphics Rasterization for Editing and Learning (diffvg)" href="Li_et_al_2020.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -116,15 +118,71 @@
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../02_background/svg.html">
-   Scalable Vector Graphics (SVG) format
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../02_background/vector_graphics.html">
+   Vector Graphics
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/vector_graphics/svg.html">
+     Scalable Vector Graphics (SVG) format
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../02_background/challenges_of_vector_graphics.html">
-   Challenges of Vector Graphics
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../02_background/deep_learning.html">
+   Deep Learning
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/deep_learning/rnn.html">
+     RNN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/deep_learning/lstm.html">
+     LSTM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/deep_learning/mdn.html">
+     Mixture Density Networks (MDN)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../02_background/DL_with_vector_graphics.html">
+   Deep Learning with Vector Graphics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/DL_with_vector_graphics/arguing_for_e2e_approach.html">
+     Arguing for E-2-E approach
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/DL_with_vector_graphics/challenges_of_vector_graphics.html">
+     Challenges of Vector Graphics
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p class="caption">
@@ -135,17 +193,42 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../academic_papers.html">
-   Academic papers
+   Key academic publications
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul class="current">
    <li class="toctree-l2">
+    <a class="reference internal" href="Graves_2014.html">
+     Alex Graves (2014) | Generating Sequences With Recurrent Neural Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Ha_2015_handwriting.html">
+     David Ha (Dec 2015) | Handwriting Generation Demo in TensorFlow (blog post)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Ha_2015_kanji.html">
+     David Ha (Dec 2015) | Recurrent Net Dreams Up Fake Chinese Characters in Vector Format with TensorFlow (blog post)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Carter_et_al_2016.html">
+     Carter et al. (2016) | Four Experiments in Handwriting with a Neural Network (Distill publication)
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="Ha_Eck_2017.html">
      Ha &amp; Eck (2017) | A Neural Representation of Sketch Drawings (sketch-rnn)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Zhong_2018.html">
+     Kimberli Zhong (2018) | Learning to Draw Vector Graphics: Applying Generative Modeling to Font Glyphs (Master thesis @ MIT)
     </a>
    </li>
    <li class="toctree-l2">
@@ -171,11 +254,38 @@
   </ul>
  </li>
  <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../further_academic_papers.html">
+   Further academic publications
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../further_academic_papers/Das_2020.html">
+     Das et al. (2020) | BézierSketch: A generative model for scalable vector sketches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../further_academic_papers/Das_2021.html">
+     Das et al. (2021) | Cloud2Curve: Generation and Vectorization of Parametric Sketches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../further_academic_papers/yang_2021_sketchaa.html">
+     Yang et al. (2021) | SketchAA: Abstract Representation for Abstract Sketches
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../other_relevant_work.html">
    Other relevant work
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -190,7 +300,29 @@
      Nicolas Boillot’s Vectoglyph (2019)
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../other_relevant_work/gan_xml_fixer_2019.html">
+     GAN XML Fixer (2019)
+    </a>
+   </li>
   </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../datasets.html">
+   Datasets
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Data representation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../04_data_representation/from_strokes_to_svg.html">
+   From strokes to SVG
+  </a>
  </li>
 </ul>
 <p class="caption">
@@ -286,6 +418,19 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#architecture">
+   Architecture
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -296,11 +441,31 @@
                 
   <div class="section" id="reddy-et-al-2021-im2vec-synthesizing-vector-graphics-without-vector-supervision">
 <h1>Reddy et al. (2021) | Im2Vec: Synthesizing Vector Graphics without Vector Supervision<a class="headerlink" href="#reddy-et-al-2021-im2vec-synthesizing-vector-graphics-without-vector-supervision" title="Permalink to this headline">¶</a></h1>
+<p>Reddy et al. propose a new neural network architecture, called Im2Vec, that can generate complex vector graphics with varying topologies, and only requires indirect supervision from readily-available raster training images (and no vector graphics). They use a differentiable rasterization pipeline that renders the generated vector shapes and composites them together onto a raster canvas. The differentiable rasterization is based on the work by Li et al. (2020) and their differentiable renderer “diffvg” which forms a building block of Im2Vec.</p>
 <div class="admonition-available-resources-at-a-glance admonition">
 <p class="admonition-title">Available resources at a glance</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://arxiv.org/abs/2102.02798">arXiv URL to the paper</a></p></li>
 </ul>
+</div>
+<div class="figure align-default" id="reddy-2021-cover">
+<a class="reference internal image-reference" href="../../_images/reddy_2021_cover.png"><img alt="Reddy 2021 paper" src="../../_images/reddy_2021_cover.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 26 </span><span class="caption-text">Screenshot of the Im2Vec <a class="reference external" href="https://arxiv.org/abs/2102.02798">paper</a> by Reddy et al. (2021)</span><a class="headerlink" href="#reddy-2021-cover" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="architecture">
+<h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default" id="reddy-2021-architecture">
+<a class="reference internal image-reference" href="../../_images/reddy_2021_architecture.png"><img alt="Reddy 2021 architecture" src="../../_images/reddy_2021_architecture.png" style="width: 700px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 27 </span><span class="caption-text">Screenshot of the Im2Vec architecture; taken from the <a class="reference external" href="https://arxiv.org/abs/2102.02798">paper</a> by Reddy et al. (2021)</span><a class="headerlink" href="#reddy-2021-architecture" title="Permalink to this image">¶</a></p>
+</div>
+<p>Im2Vec overall architecture is an end-to-end variational autoencoder (VAE). The architecture does not rely on vector graphics as inputs. Instead, a raster image is encoded to a latent code <span class="math notranslate nohighlight">\(z\)</span> (left part of the figure above).
+This latent code <span class="math notranslate nohighlight">\(z\)</span> is then decoded to a set of ordered closed vector paths using a Path Decoder. The vector paths are then rasterized using DiffVG and composited together using DiffComp to obtain a rasterized overall output. This rasterized overall output can then be compared to the ground truth raster target for supervision at training time.
+The model can handle graphics with multiple component paths. It uses an RNN to produce a latent code <span class="math notranslate nohighlight">\(z_t\)</span> for each path, from the global latent code <span class="math notranslate nohighlight">\(z\)</span> representing the graphic as a whole.</p>
+<div class="figure align-default" id="reddy-2021-architecture-decoder">
+<a class="reference internal image-reference" href="../../_images/reddy_2021_architecture_decoder.png"><img alt="Reddy 2021 architecture - the path decoder" src="../../_images/reddy_2021_architecture_decoder.png" style="width: 700px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 28 </span><span class="caption-text">Screenshot of the Im2Vec path decoder; taken from the <a class="reference external" href="https://arxiv.org/abs/2102.02798">paper</a> by Reddy et al. (2021)</span><a class="headerlink" href="#reddy-2021-architecture-decoder" title="Permalink to this image">¶</a></p>
+</div>
+<p>The figure above shows the architecture of the path decoder which takes the latent codes for each path and outputs the corresponding vector graphic. The vector graphic output is limited to closed Bézier paths.</p>
 </div>
 </div>
 
@@ -343,10 +508,10 @@
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="../other_relevant_work.html" title="next page">
+        <a class="right-next" href="../further_academic_papers.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Other relevant work</p>
+                <p class="prevnext-title">Further academic publications</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>
