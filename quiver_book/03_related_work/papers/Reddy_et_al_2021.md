@@ -5,6 +5,7 @@ Reddy et al. propose a new neural network architecture, called Im2Vec, that can 
 
 ```{admonition} Available resources at a glance
 * [arXiv URL to the paper](https://arxiv.org/abs/2102.02798)
+* [Project website of UCL](http://geometry.cs.ucl.ac.uk/projects/2021/im2vec/)
 ```
 
 
