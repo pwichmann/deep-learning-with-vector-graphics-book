@@ -54,6 +54,11 @@ parts:
     - file: 03_related_work/other_relevant_work/gan_xml_fixer_2019.md
   - file: 03_related_work/datasets.md
 
+# Relevant work
+- caption: Data representation
+  chapters:
+  - file: 04_data_representation/from_strokes_to_svg.md
+
 # Acknowledgements
 - caption: Acknowledgements
   chapters:

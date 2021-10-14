@@ -1,0 +1,686 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>From strokes to SVG &#8212; Deep Learning with Vector Graphics</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Acknowledgements" href="../99_acknowledgements/acknowledgements.html" />
+    <link rel="prev" title="Datasets" href="../03_related_work/datasets.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Deep Learning with Vector Graphics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   Deep Learning with Vector Graphics
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  About
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01_about/this_book.html">
+   This book
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01_about/the_author.html">
+   The author
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Background knowledge
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02_background/vector_graphics.html">
+   Vector Graphics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_background/vector_graphics/svg.html">
+     Scalable Vector Graphics (SVG) format
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02_background/deep_learning.html">
+   Deep Learning
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_background/deep_learning/rnn.html">
+     RNN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_background/deep_learning/lstm.html">
+     LSTM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_background/deep_learning/mdn.html">
+     Mixture Density Networks (MDN)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../02_background/DL_with_vector_graphics.html">
+   Deep Learning with Vector Graphics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_background/DL_with_vector_graphics/arguing_for_e2e_approach.html">
+     Arguing for E-2-E approach
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../02_background/DL_with_vector_graphics/challenges_of_vector_graphics.html">
+     Challenges of Vector Graphics
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Relevant work
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03_related_work/academic_papers.html">
+   Key academic publications
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_related_work/papers/Graves_2014.html">
+     Alex Graves (2014) | Generating Sequences With Recurrent Neural Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_related_work/papers/Ha_2015_handwriting.html">
+     David Ha (Dec 2015) | Handwriting Generation Demo in TensorFlow (blog post)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_related_work/papers/Ha_2015_kanji.html">
+     David Ha (Dec 2015) | Recurrent Net Dreams Up Fake Chinese Characters in Vector Format with TensorFlow (blog post)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_related_work/papers/Carter_et_al_2016.html">
+     Carter et al. (2016) | Four Experiments in Handwriting with a Neural Network (Distill publication)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_related_work/papers/Ha_Eck_2017.html">
+     Ha &amp; Eck (2017) | A Neural Representation of Sketch Drawings (sketch-rnn)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_related_work/papers/Zhong_2018.html">
+     Kimberli Zhong (2018) | Learning to Draw Vector Graphics: Applying Generative Modeling to Font Glyphs (Master thesis @ MIT)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_related_work/papers/Lopes_et_al_2019.html">
+     Lopes et al. (2019) | A Learned Representation for Scalable Vector Graphics (svg-vae)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_related_work/papers/Carlier_et_al_2020.html">
+     Carlier et al. (2020) | DeepSVG: A Hierarchical Generative Network for Vector Graphics Animation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_related_work/papers/Li_et_al_2020.html">
+     Li et al. (2020) | Differentiable Vector Graphics Rasterization for Editing and Learning (diffvg)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_related_work/papers/Reddy_et_al_2021.html">
+     Reddy et al. (2021) | Im2Vec: Synthesizing Vector Graphics without Vector Supervision
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03_related_work/further_academic_papers.html">
+   Further academic publications
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_related_work/further_academic_papers/Das_2020.html">
+     Das et al. (2020) | BézierSketch: A generative model for scalable vector sketches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_related_work/further_academic_papers/Das_2021.html">
+     Das et al. (2021) | Cloud2Curve: Generation and Vectorization of Parametric Sketches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_related_work/further_academic_papers/yang_2021_sketchaa.html">
+     Yang et al. (2021) | SketchAA: Abstract Representation for Abstract Sketches
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03_related_work/other_relevant_work.html">
+   Other relevant work
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_related_work/other_relevant_work/google_quickdraw_2017.html">
+     Google’s “Quick, Draw!” (2017)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_related_work/other_relevant_work/vectoglyph_2019.html">
+     Nicolas Boillot’s Vectoglyph (2019)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_related_work/other_relevant_work/gan_xml_fixer_2019.html">
+     GAN XML Fixer (2019)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03_related_work/datasets.html">
+   Datasets
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Data representation
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   From strokes to SVG
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Acknowledgements
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../99_acknowledgements/acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/04_data_representation/from_strokes_to_svg.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F04_data_representation/from_strokes_to_svg.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sequences-of-strokes-polylines-as-input">
+   Sequences of strokes (polylines) as input
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#handwriting-recorded-via-a-smart-whiteboard-2014">
+     Handwriting recorded via a smart whiteboard (2014)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sketches-drawn-with-the-pc-mouse-2017">
+     Sketches drawn with the PC mouse (2017)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#raw-dataset">
+       Raw dataset
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#preprocessed-simplified-dataset">
+       Preprocessed simplified dataset
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#svg-images-as-input">
+   SVG images as input
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simple-svgs-obtained-from-ttf-fonts-2018">
+     Simple SVGs obtained from TTF fonts (2018)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="from-strokes-to-svg">
+<h1>From strokes to SVG<a class="headerlink" href="#from-strokes-to-svg" title="Permalink to this headline">¶</a></h1>
+<p>This chapter deals with the question how vector graphics can be represented as the numeric tensors required by deep neural networks. It aims to answer this question by telling the story of how the problem was addressed in various academic papers. From the initial representation of just strokes to data representations able to deal with basic SVG images.</p>
+<div class="section" id="sequences-of-strokes-polylines-as-input">
+<h2>Sequences of strokes (polylines) as input<a class="headerlink" href="#sequences-of-strokes-polylines-as-input" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="handwriting-recorded-via-a-smart-whiteboard-2014">
+<h3>Handwriting recorded via a smart whiteboard (2014)<a class="headerlink" href="#handwriting-recorded-via-a-smart-whiteboard-2014" title="Permalink to this headline">¶</a></h3>
+<p>In Graves (2014), handwriting data was used not in a raster image format but in an XML format. The data consisted of a sequence (x, y) pen co-ordinates with an additional flag if pen is lifted off the whiteboard or not. (Note to self: Check data once obtained if this is correct.)
+This data format is certainly not as expressive as SVG but it is already a simplified vector graphics format available as numeric tensors. Each handwriting is a sequence of points (a polyline) and each point consists of an x-coordinate, a y-coordinate, and a binary (0 or 1) flag for the pen state.
+The data format does not allow for curves; these could only be approximated by multiple straight lines of different slope. The sampling rate determined how close can can approximate a curve.</p>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;.../&gt;</span>
+To be added once we obtained data sample
+</pre></div>
+</div>
+</div>
+<div class="section" id="sketches-drawn-with-the-pc-mouse-2017">
+<h3>Sketches drawn with the PC mouse (2017)<a class="headerlink" href="#sketches-drawn-with-the-pc-mouse-2017" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="raw-dataset">
+<h4>Raw dataset<a class="headerlink" href="#raw-dataset" title="Permalink to this headline">¶</a></h4>
+<p>Google’s “Quick, Draw!” used a similar approach. The drawing is represented as an array of strokes. Each stroke is a polyline, i.e. a sequence of straight lines, and represented by an array of arrays:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> 
+  <span class="p">[</span>  <span class="o">//</span> <span class="n">First</span> <span class="n">stroke</span> 
+    <span class="p">[</span><span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">y0</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">y3</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">,</span> <span class="n">t3</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+  <span class="p">],</span>
+  <span class="p">[</span>  <span class="o">//</span> <span class="n">Second</span> <span class="n">stroke</span>
+    <span class="p">[</span><span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">y0</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">y3</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">,</span> <span class="n">t3</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+  <span class="p">],</span>
+  <span class="o">...</span> <span class="o">//</span> <span class="n">Additional</span> <span class="n">strokes</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Each sketch in the <a class="reference external" href="https://github.com/googlecreativelab/quickdraw-dataset">raw dataset</a> is provided as a Newline-delimited JSON (<a class="reference external" href="http://ndjson.org/">ndjson</a>) file containing the drawing itself as well as some metadata, such as the word the user was supposed to draw. A complete raw format example including the metadata is shown in the json below:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>{
+  &quot;word&quot;:&quot;airplane&quot;,
+  &quot;countrycode&quot;:&quot;CZ&quot;,
+  &quot;timestamp&quot;:&quot;2017-03-25 09:39:37.15337 UTC&quot;,
+  &quot;recognized&quot;:true,
+  &quot;key_id&quot;:&quot;5302633118040064&quot;,
+  &quot;drawing&quot;:
+  [
+    [
+      [157,151.9720001220703,147.02999877929688,141.1699981689453,135.77699279785156,130.7969970703125,126.39700317382812,120.4990005493164,115.2979965209961,109.875,105.95800018310547,103.5,102.5,105.36299896240234,110.13400268554688,116.0739974975586,121,126,131.66900634765625,137.85000610351562,141.98500061035156,147,154.4530029296875,159.16900634765625,164,170.58799743652344,176.84500122070312,183.82200622558594,188.10699462890625,195.0449981689453,202.04800415039062,208.9219970703125,212.947998046875,219.98899841308594,226.83399963378906,233.5030059814453,238.17799377441406,242.9080047607422,250.26300048828125,257.16900634765625,262.0249938964844,267.40899658203125,267.5],
+      [153,152.4969940185547,154.9849853515625,157.9429931640625,160.40798950195312,162.85101318359375,164.802001953125,168.25100708007812,171.70199584960938,176.625,182.08401489257812,186.47500610351562,191.25,195.86300659179688,198.13400268554688,199.5,200,200,199.5,198.21701049804688,197.5,196,194.3489990234375,192.94400024414062,192,190.47100830078125,188.10299682617188,185.55899047851562,184.15701293945312,181.114013671875,178.302001953125,175.6929931640625,173.92098999023438,171.00601196289062,167.7919921875,164.66400146484375,162.59298706054688,160.83700561523438,156.82501220703125,152.38800048828125,149.47500610351562,146.54600524902344,146.5],
+      [0,134,179,212,246,279,312,362,413,478,548,612,695,812,894,976,1044,1092,1158,1202,1238,1261,1313,1345,1376,1412,1447,1476,1492,1544,1567,1591,1608,1642,1675,1708,1725,1745,1774,1809,1841,1895,1930]
+    ],
+    [
+      [125,131,136.5240020751953,143.0469970703125,148.9499969482422,155.2830047607422,161.6929931640625,168.5540008544922,175.27099609375,181.83999633789062,188.72500610351562,195.0850067138672,202.9770050048828,209.35499572753906,216.31300354003906,222.1269989013672,227.01400756835938,231.4199981689453,237.302001953125,243.19000244140625,249,254.9530029296875,260,265,270,274.9670104980469,279,284.3840026855469,288.63299560546875,294.1499938964844,299,304,309.38299560546875,314,314.5,307.8349914550781,303.2919921875,297.6679992675781,292.843994140625,287.2950134277344,279.6839904785156,274.5199890136719,270.50799560546875,264.62298583984375,260.5,260.5],
+      [163,160,158.49200439453125,156.48800659179688,154.52499389648438,152.07200622558594,149.6020050048828,146.6490020751953,143.36399841308594,140.44000244140625,137.01699829101562,134.30499267578125,130.6820068359375,127.26300048828125,124.4219970703125,121.43600463867188,118.99099731445312,117.53999328613281,115.0989990234375,113.15499877929688,111,108.77400207519531,107,105,103,101.03300476074219,100,98.5,97.36700439453125,96.42500305175781,96,96,96.5,99,103.50100708007812,111.97000122070312,116.88499450683594,121.16499328613281,126.156005859375,130.47000122070312,137.23699951171875,141.97999572753906,145.99200439453125,150.93800354003906,154.5,154.5],
+      [2289,2428,2457,2489,2527,2558,2587,2621,2654,2688,2721,2756,2790,2822,2853,2887,2923,2952,3003,3053,3102,3152,3202,3253,3301,3380,3493,3610,3650,3702,3753,3800,3849,3916,3966,4017,4033,4049,4066,4082,4116,4148,4182,4246,4303,4328]
+    ],
+				
+      // ... omitted ...
+
+    ]
+}
+</pre></div>
+</div>
+<p>In the json, it may appear that arrays  for the same stroke have a different number of elements but this is just due to values with a different number of decimal places.</p>
+<p>The information “pen up” or “pen down” (here: left mouse button pressed or not) must have already been used to distinguish the strokes.</p>
+<p>The data representation above can also be mentally reshaped, such that a drawing can also be understood as a sequence of triples. Each triple then consists of the x-coordinate, the y-coordinate and the time in milliseconds <span class="math notranslate nohighlight">\(t\)</span> that passed since drawing the first point (the time information allows for an animation of the drawing). You can see that the first time element of the first stroke indeed has the value 0, as we would expect.</p>
+<p>For a generative model or classifier, the timing information in the raw data is probably less useful. And the x- and y-coordinates, sometimes using 14 decimal places, are unnecessarily precise.</p>
+</div>
+<div class="section" id="preprocessed-simplified-dataset">
+<h4>Preprocessed simplified dataset<a class="headerlink" href="#preprocessed-simplified-dataset" title="Permalink to this headline">¶</a></h4>
+<p>A simplified version of the drawing data discards the timing information and performs a series of preprocessing steps:</p>
+<ol class="simple">
+<li><p>The drawing is <strong>aligned to the top-left corner</strong>, to have a minimum values of 0.</p></li>
+<li><p>The drawing is <strong>uniformly scaled to have a maximum value of 255</strong>.</p></li>
+<li><p>All strokes are <strong>resampled</strong> with a 1 pixel spacing. (This gets rid of the 14 decimal places…)</p></li>
+<li><p>All strokes are simplified using the <strong><a class="reference external" href="https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm">Ramer–Douglas–Peucker algorithm</a></strong> with an epsilon value of 2.0. (This reduces the number of points while trying to maintain the overall shape of the polyline.)</p></li>
+</ol>
+<p>The simplification also reduces the file size to about 1/10th.</p>
+<p>A simplied example is shown in the json below:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;word&quot;</span><span class="p">:</span><span class="s2">&quot;airplane&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;countrycode&quot;</span><span class="p">:</span><span class="s2">&quot;CZ&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="s2">&quot;2017-03-25 09:39:37.15337 UTC&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;recognized&quot;</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;key_id&quot;</span><span class="p">:</span><span class="s2">&quot;5302633118040064&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;drawing&quot;</span><span class="p">:[</span>
+    <span class="p">[</span>
+      <span class="p">[</span><span class="mi">74</span><span class="p">,</span><span class="mi">68</span><span class="p">,</span><span class="mi">38</span><span class="p">,</span><span class="mi">26</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">39</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">110</span><span class="p">,</span><span class="mi">173</span><span class="p">,</span><span class="mi">201</span><span class="p">],</span>
+      <span class="p">[</span><span class="mi">104</span><span class="p">,</span><span class="mi">104</span><span class="p">,</span><span class="mi">118</span><span class="p">,</span><span class="mi">126</span><span class="p">,</span><span class="mi">137</span><span class="p">,</span><span class="mi">148</span><span class="p">,</span><span class="mi">153</span><span class="p">,</span><span class="mi">158</span><span class="p">,</span><span class="mi">147</span><span class="p">,</span><span class="mi">140</span><span class="p">,</span><span class="mi">113</span><span class="p">,</span><span class="mi">97</span><span class="p">]</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="p">[</span><span class="mi">37</span><span class="p">,</span><span class="mi">87</span><span class="p">,</span><span class="mi">155</span><span class="p">,</span><span class="mi">210</span><span class="p">,</span><span class="mi">237</span><span class="p">,</span><span class="mi">249</span><span class="p">,</span><span class="mi">254</span><span class="p">,</span><span class="mi">254</span><span class="p">,</span><span class="mi">242</span><span class="p">,</span><span class="mi">193</span><span class="p">],</span>
+      <span class="p">[</span><span class="mi">116</span><span class="p">,</span><span class="mi">97</span><span class="p">,</span><span class="mi">65</span><span class="p">,</span><span class="mi">44</span><span class="p">,</span><span class="mi">39</span><span class="p">,</span><span class="mi">39</span><span class="p">,</span><span class="mi">42</span><span class="p">,</span><span class="mi">48</span><span class="p">,</span><span class="mi">62</span><span class="p">,</span><span class="mi">106</span><span class="p">]</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="p">[</span><span class="mi">161</span><span class="p">,</span><span class="mi">155</span><span class="p">,</span><span class="mi">155</span><span class="p">,</span><span class="mi">166</span><span class="p">,</span><span class="mi">199</span><span class="p">],</span>
+      <span class="p">[</span><span class="mi">58</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">34</span><span class="p">]</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="p">[</span><span class="mi">227</span><span class="p">,</span><span class="mi">246</span><span class="p">,</span><span class="mi">246</span><span class="p">,</span><span class="mi">239</span><span class="p">,</span><span class="mi">221</span><span class="p">,</span><span class="mi">203</span><span class="p">],</span>
+      <span class="p">[</span><span class="mi">82</span><span class="p">,</span><span class="mi">104</span><span class="p">,</span><span class="mi">117</span><span class="p">,</span><span class="mi">122</span><span class="p">,</span><span class="mi">123</span><span class="p">,</span><span class="mi">113</span><span class="p">]</span>
+    <span class="p">],</span>	
+    <span class="p">[</span>
+      <span class="p">[</span><span class="mi">67</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">71</span><span class="p">,</span><span class="mi">94</span><span class="p">,</span><span class="mi">125</span><span class="p">],</span>
+      <span class="p">[</span><span class="mi">95</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">29</span><span class="p">,</span><span class="mi">46</span><span class="p">,</span><span class="mi">78</span><span class="p">]</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="p">[</span><span class="mi">95</span><span class="p">,</span><span class="mi">103</span><span class="p">,</span><span class="mi">122</span><span class="p">,</span><span class="mi">147</span><span class="p">,</span><span class="mi">169</span><span class="p">,</span><span class="mi">173</span><span class="p">,</span><span class="mi">169</span><span class="p">,</span><span class="mi">126</span><span class="p">],</span>
+      <span class="p">[</span><span class="mi">135</span><span class="p">,</span><span class="mi">165</span><span class="p">,</span><span class="mi">199</span><span class="p">,</span><span class="mi">229</span><span class="p">,</span><span class="mi">244</span><span class="p">,</span><span class="mi">237</span><span class="p">,</span><span class="mi">221</span><span class="p">,</span><span class="mi">136</span><span class="p">]</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="p">[</span><span class="mi">33</span><span class="p">,</span><span class="mi">39</span><span class="p">],</span>
+      <span class="p">[</span><span class="mi">114</span><span class="p">,</span><span class="mi">120</span><span class="p">]</span>
+    <span class="p">]</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The first key-value pairs represent metadata, such as the word prompt. The drawing is now represented by an array of strokes. Each stroke is represented by an array of x-coordinates and an array of y-coordinates of the same length.</p>
+<p>The exact image resulting from json description above is shown below:</p>
+<div class="figure align-default" id="airplane-drawing">
+<a class="reference internal image-reference" href="../_images/airplane_drawing.png"><img alt="Airplane drawing" src="../_images/airplane_drawing.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 34 </span><span class="caption-text">Resulting airplane drawing; from <a class="reference external" href="https://quickdraw.withgoogle.com/data/airplane">Google’s Quickdraw Viewer</a></span><a class="headerlink" href="#airplane-drawing" title="Permalink to this image">¶</a></p>
+</div>
+<p>In this case, the artist used 7 strokes which is hard to derive from the image alone. 3 strokes were used for the aircraft body, one for each wing and one for each tail fin. These 7 strokes can be found again in the json representation of the strokes. It’s the number of elements in the top-level array.</p>
+</div>
+</div>
+</div>
+<div class="section" id="svg-images-as-input">
+<h2>SVG images as input<a class="headerlink" href="#svg-images-as-input" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="simple-svgs-obtained-from-ttf-fonts-2018">
+<h3>Simple SVGs obtained from TTF fonts (2018)<a class="headerlink" href="#simple-svgs-obtained-from-ttf-fonts-2018" title="Permalink to this headline">¶</a></h3>
+<p>In her Master’s thesis, Kimberli Zhong (2018) builds upon the work by David Ha but extends the data representation. She allows simplified SVG images to be the input to her model. The SVG images are obtained from TTF fonts which only allow for a restricted range of SVG commands.</p>
+<p>Nevertheless, the obtained SVGs have to be further preprocessed and simplified.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./04_data_representation"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../03_related_work/datasets.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Datasets</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../99_acknowledgements/acknowledgements.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Acknowledgements</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Pascal Wichmann<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
