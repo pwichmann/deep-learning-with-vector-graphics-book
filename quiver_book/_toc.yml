@@ -42,6 +42,7 @@ parts:
     - file: 03_related_work/papers/Carlier_et_al_2020.md
     - file: 03_related_work/papers/Li_et_al_2020.md
     - file: 03_related_work/papers/Reddy_et_al_2021.md
+    - file: 03_related_work/papers/wang_and_lian_2021.md
   - file: 03_related_work/further_academic_papers.md
     sections:
     - file: 03_related_work/further_academic_papers/Das_2020.md
