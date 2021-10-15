@@ -8,7 +8,7 @@ In this sense, this book also serves as an hommage to those amazingly talented a
 
 Raster images consist of a grid of pixels. The application of Deep Learning to raster images has been well-researched and is relatively straightforward.
 
-Vector graphics, on the other hand, are not based on a grid of pixels but based on mathematical descriptions of points, lines etc. in an x,y (Cartesian) coordinate system. One major advantage of vector graphics is that they are infinitely scalable. Another advantage is that their filesize is small and independent of the image's size and resolution. This is why, for instance, logos and icons are often designed as vector graphics.
+Vector graphics, on the other hand, are not based on a grid of pixels but based on mathematical descriptions of points, lines etc. in an x,y (Cartesian) coordinate system. One major advantage of vector graphics is that they are infinitely scalable. Another advantage is that their filesize is small and independent of the image's size and resolution. This is why, for instance, fonts, icons and logos are often designed as vector graphics.
 
 ## Why is Deep Learning with Vector Graphics special?
 
