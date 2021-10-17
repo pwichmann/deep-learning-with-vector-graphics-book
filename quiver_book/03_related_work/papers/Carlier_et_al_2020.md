@@ -50,6 +50,10 @@ Each of these paths get encoded separately. The path encoding consists of a sequ
 ### Data preprocessing
 
 
+#### Minified SVGs need special treatment
+
+Please note that a treatment of SVGs using a tool, such as SVGO, may be required. DeepSVG cannot handle minified SVGs where commands and parameters are not clearly separated by commas or whitespace.
+
 
 
 ## Model architecture
@@ -66,6 +70,8 @@ DeepSVG model architecture; figure taken from the [DeepSVG paper](https://arxiv.
 
 
 The DeepSVG paper is incredibly inspiring and the work that was done by Alexandre within the scope of just his Master's thesis is truly amazing. Alexandre was kind enough to have a long video call with the author and then also helped with various follow-up questions.
+
+Caveat: It is possible that the results shown below are result of a misunderstanding of how to correctly apply DeepSVG and not necessarily a weakness inherent to DeepSVG.
 
 ### Squiggly, sketchy outputs for unknown reason
 
@@ -98,15 +104,13 @@ The results, shown in the figure below for two and three classes, appear to indi
 Screenshot of the author's attempts to apply DeepSVG to a training dataset of 1,000 identical icons in two (later: three) classes: circle, square, star
 :::
 
-The square gets reproduced most accurately -- but never with 90° angles. Generated circles and the stars are of surprisingly poor quality.
+The square gets reproduced most accurately -- but never with 90° angles. Generated circles and the stars are of surprisingly poor quality. The DeepSVG-internal simplification step may be a potential reason for some of these issues.
 
-This is unexpected. The author of this book was unable to identify the specific reason for this issue. However, if solved, maybe the same DeepSVG could produce significantly better results.
 
 ```{admonition} Open question
 :class: important
-What exactly causes DeepSVG to produce squiggly output even if all the input examples of a class are simple shapes and completely identical? How could this be resolved?
+What exactly causes DeepSVG to produce squiggly output even if all the input examples of a class are simple shapes and completely identical? How could this be resolved? If solved, maybe the same DeepSVG could produce significantly better results.
 ```
-
 
 ### Code for fill property was lost
 

@@ -334,6 +334,11 @@
    From strokes to SVG
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../04_data_representation/common_preprocessing.html">
+   Common preprocessing
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -452,6 +457,13 @@
     <a class="reference internal nav-link" href="#data-preprocessing">
      Data preprocessing
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#minified-svgs-need-special-treatment">
+       Minified SVGs need special treatment
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -502,7 +514,7 @@
 <p>This paper was accepted to the 34th Conference on Neural Information Processing Systems (NeurIPS 2020), Vancouver, Canada.</p>
 <div class="figure align-default" id="deepsvg-cover">
 <a class="reference internal image-reference" href="../../_images/deepsvg_cover.png"><img alt="DeepSVG paper" src="../../_images/deepsvg_cover.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 30 </span><span class="caption-text">Screenshot of the <a class="reference external" href="https://arxiv.org/abs/2007.11301">DeepSVG paper</a></span><a class="headerlink" href="#deepsvg-cover" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 31 </span><span class="caption-text">Screenshot of the <a class="reference external" href="https://arxiv.org/abs/2007.11301">DeepSVG paper</a></span><a class="headerlink" href="#deepsvg-cover" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="data-representation">
 <h2>Data representation<a class="headerlink" href="#data-representation" title="Permalink to this headline">¶</a></h2>
@@ -511,14 +523,14 @@
 <p>The figure below attempts to illustrate the DeepSVG mental model and nomenclature.</p>
 <div class="figure align-default" id="deepsvg-nomenclature">
 <a class="reference internal image-reference" href="../../_images/deepsvg_nomenclature.png"><img alt="DeepSVG mental model and nomenclature" src="../../_images/deepsvg_nomenclature.png" style="width: 800px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 31 </span><span class="caption-text">Own illustration using the definitions and formulae from the <a class="reference external" href="https://arxiv.org/abs/2007.11301">DeepSVG paper</a></span><a class="headerlink" href="#deepsvg-nomenclature" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 32 </span><span class="caption-text">Own illustration using the definitions and formulae from the <a class="reference external" href="https://arxiv.org/abs/2007.11301">DeepSVG paper</a></span><a class="headerlink" href="#deepsvg-nomenclature" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="path-encoding-example">
 <h3>Path encoding example<a class="headerlink" href="#path-encoding-example" title="Permalink to this headline">¶</a></h3>
 <div class="figure align-default" id="deepsvg-encoding">
 <a class="reference internal image-reference" href="../../_images/deepsvg_encoding.png"><img alt="DeepSVG encoding" src="../../_images/deepsvg_encoding.png" style="width: 900px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 32 </span><span class="caption-text">Visualisation of how SVG paths are encoded to a tensor in DeepSVG; visualisation by the author re-using figures from the <a class="reference external" href="https://arxiv.org/abs/2007.11301">DeepSVG paper</a></span><a class="headerlink" href="#deepsvg-encoding" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 33 </span><span class="caption-text">Visualisation of how SVG paths are encoded to a tensor in DeepSVG; visualisation by the author re-using figures from the <a class="reference external" href="https://arxiv.org/abs/2007.11301">DeepSVG paper</a></span><a class="headerlink" href="#deepsvg-encoding" title="Permalink to this image">¶</a></p>
 </div>
 <p>The figure above shows two separate paths:</p>
 <ol class="simple">
@@ -529,24 +541,29 @@
 </div>
 <div class="section" id="data-preprocessing">
 <h3>Data preprocessing<a class="headerlink" href="#data-preprocessing" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="minified-svgs-need-special-treatment">
+<h4>Minified SVGs need special treatment<a class="headerlink" href="#minified-svgs-need-special-treatment" title="Permalink to this headline">¶</a></h4>
+<p>Please note that a treatment of SVGs using a tool, such as SVGO, may be required. DeepSVG cannot handle minified SVGs where commands and parameters are not clearly separated by commas or whitespace.</p>
+</div>
 </div>
 </div>
 <div class="section" id="model-architecture">
 <h2>Model architecture<a class="headerlink" href="#model-architecture" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-default" id="deepsvg-architecture">
 <a class="reference internal image-reference" href="../../_images/deepsvg_architecture.png"><img alt="DeepSVG model architecture" src="../../_images/deepsvg_architecture.png" style="width: 900px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 33 </span><span class="caption-text">DeepSVG model architecture; figure taken from the <a class="reference external" href="https://arxiv.org/abs/2007.11301">DeepSVG paper</a></span><a class="headerlink" href="#deepsvg-architecture" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 34 </span><span class="caption-text">DeepSVG model architecture; figure taken from the <a class="reference external" href="https://arxiv.org/abs/2007.11301">DeepSVG paper</a></span><a class="headerlink" href="#deepsvg-architecture" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="reproducing-results-critical-discussion">
 <h2>Reproducing results &amp; critical discussion<a class="headerlink" href="#reproducing-results-critical-discussion" title="Permalink to this headline">¶</a></h2>
 <p>The DeepSVG paper is incredibly inspiring and the work that was done by Alexandre within the scope of just his Master’s thesis is truly amazing. Alexandre was kind enough to have a long video call with the author and then also helped with various follow-up questions.</p>
+<p>Caveat: It is possible that the results shown below are result of a misunderstanding of how to correctly apply DeepSVG and not necessarily a weakness inherent to DeepSVG.</p>
 <div class="section" id="squiggly-sketchy-outputs-for-unknown-reason">
 <h3>Squiggly, sketchy outputs for unknown reason<a class="headerlink" href="#squiggly-sketchy-outputs-for-unknown-reason" title="Permalink to this headline">¶</a></h3>
 <p>It was possible to train a DeepSVG model and use it to generate SVG output. However, it was not possible to reproduce high-quality SVGs: When applied to a training dataset of SVG icons, the results generated by DeepSVG were often somewhat squiggly and looked more like sketches than an accurate icon. The figure below shows a selection of some of the better results.</p>
 <div class="figure align-default" id="deepsvg-results">
 <a class="reference internal image-reference" href="../../_images/deepsvg_results.png"><img alt="DeepSVG results" src="../../_images/deepsvg_results.png" style="width: 900px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 34 </span><span class="caption-text">Screenshot of the author’s attempts to apply DeepSVG to a training dataset of icons</span><a class="headerlink" href="#deepsvg-results" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 35 </span><span class="caption-text">Screenshot of the author’s attempts to apply DeepSVG to a training dataset of icons</span><a class="headerlink" href="#deepsvg-results" title="Permalink to this image">¶</a></p>
 </div>
 <p>To better understand the source of the problem, the author applied DeepSVG to a specially designed training dataset. The author chose two (later: three) classes:</p>
 <ol class="simple">
@@ -560,13 +577,12 @@ The pre-processed SVGs looked indistinguishable from the original SVG files.</p>
 <p>The results, shown in the figure below for two and three classes, appear to indicate a general problem with DeepSVG.</p>
 <div class="figure align-default" id="deepsvg-results-with-identical-examples">
 <a class="reference internal image-reference" href="../../_images/deepsvg_results_with_identical_examples.png"><img alt="DeepSVG results after training with identical examples" src="../../_images/deepsvg_results_with_identical_examples.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 35 </span><span class="caption-text">Screenshot of the author’s attempts to apply DeepSVG to a training dataset of 1,000 identical icons in two (later: three) classes: circle, square, star</span><a class="headerlink" href="#deepsvg-results-with-identical-examples" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 36 </span><span class="caption-text">Screenshot of the author’s attempts to apply DeepSVG to a training dataset of 1,000 identical icons in two (later: three) classes: circle, square, star</span><a class="headerlink" href="#deepsvg-results-with-identical-examples" title="Permalink to this image">¶</a></p>
 </div>
-<p>The square gets reproduced most accurately – but never with 90° angles. Generated circles and the stars are of surprisingly poor quality.</p>
-<p>This is unexpected. The author of this book was unable to identify the specific reason for this issue. However, if solved, maybe the same DeepSVG could produce significantly better results.</p>
+<p>The square gets reproduced most accurately – but never with 90° angles. Generated circles and the stars are of surprisingly poor quality. The DeepSVG-internal simplification step may be a potential reason for some of these issues.</p>
 <div class="important admonition">
 <p class="admonition-title">Open question</p>
-<p>What exactly causes DeepSVG to produce squiggly output even if all the input examples of a class are simple shapes and completely identical? How could this be resolved?</p>
+<p>What exactly causes DeepSVG to produce squiggly output even if all the input examples of a class are simple shapes and completely identical? How could this be resolved? If solved, maybe the same DeepSVG could produce significantly better results.</p>
 </div>
 </div>
 <div class="section" id="code-for-fill-property-was-lost">

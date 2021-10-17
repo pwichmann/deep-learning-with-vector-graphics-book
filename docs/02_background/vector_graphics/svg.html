@@ -42,6 +42,8 @@
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -294,6 +296,11 @@
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/other_relevant_work/greydanus_2016.html">
+     Sam Greydanus (2016) | Scribe: Generating Realistic Handwriting with TensorFlow
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../03_related_work/other_relevant_work/google_quickdraw_2017.html">
      Google’s “Quick, Draw!” (2017)
     </a>
@@ -325,6 +332,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../../04_data_representation/from_strokes_to_svg.html">
    From strokes to SVG
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../04_data_representation/common_preprocessing.html">
+   Common preprocessing
   </a>
  </li>
 </ul>
@@ -421,6 +433,39 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#path-data-path-d-path">
+   Path data
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     &lt;path
+    </span>
+    <span class="pre">
+     d="..."&gt;&lt;/path&gt;
+    </span>
+   </code>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analysing-an-example-svg">
+     Analysing an example SVG
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#intuitive-understanding-of-svg-path-data">
+     Intuitive understanding of SVG path data
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -431,6 +476,84 @@
                 
   <div class="section" id="scalable-vector-graphics-svg-format">
 <h1>Scalable Vector Graphics (SVG) format<a class="headerlink" href="#scalable-vector-graphics-svg-format" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="path-data-path-d-path">
+<h2>Path data <code class="docutils literal notranslate"><span class="pre">&lt;path</span> <span class="pre">d=&quot;...&quot;&gt;&lt;/path&gt;</span></code><a class="headerlink" href="#path-data-path-d-path" title="Permalink to this headline">¶</a></h2>
+<p>The data attribute of a path is a string composed of commands and their parameters.</p>
+<p>The SVG format defines <strong>6 types of path commands</strong> and a total of <strong>20 commands</strong> (i.e. 20 different letters).</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>#</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Meaning</p></th>
+<th class="head"><p>Relative to current position (lower case)</p></th>
+<th class="head"><p>Absolute position (upper case)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p><strong>MoveTo</strong></p></td>
+<td><p>This just moves what is considered the current point. No line will be drawn. This can be thought of as picking up the pen, and setting it down somewhere else. If absolute, this moves the pen the absolute coordinates (x, y). If relative, this moves the pen from its current position <span class="math notranslate nohighlight">\((\Delta x, \Delta y)\)</span> pixels where <span class="math notranslate nohighlight">\(\Delta x\)</span> and <span class="math notranslate nohighlight">\(\Delta y\)</span> can be positive or negative values.</p></td>
+<td><p>m</p></td>
+<td><p>M</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p><strong>LineTo</strong></p></td>
+<td><p>This draws a line from the current point to the end point; the latter is specified by the provided parameters. The end point then becomes the new current point. h/H and v/V draw horizontal (h/H) or vertical (v/V) lines.</p></td>
+<td><p>l, h, v</p></td>
+<td><p>L, H, V</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p><strong>Cubic Bézier Curve</strong></p></td>
+<td><p>This draws a Cubic Bézier Curve from the current point to the end point. End point as well as control points for start and end point are provided by the parameters.</p></td>
+<td><p>c, s</p></td>
+<td><p>C, S</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p><strong>Quadratic Bézier Curve</strong></p></td>
+<td><p>This draws a Quadratic Bézier Curve from the current point to the end point. End point as well as a control point controlling the curvature are provided by the 4 parameters (= 2 points; the current point is known). t/T defines a smooth quadratic bézier curve where the control point is not provided by the 2 parameters (1 point) but derived from the control point of the previous curve command..</p></td>
+<td><p>q, t</p></td>
+<td><p>Q, T</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p><strong>Elliptical Arc Curve</strong></p></td>
+<td><p>This draws an elliptical arc curve and requires 7 parameters.</p></td>
+<td><p>a</p></td>
+<td><p>A</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p><strong>ClosePath</strong></p></td>
+<td><p>The command draws a straight line back to the start of the path. Both uppercase or lowercase z here have identical outcomes.</p></td>
+<td><p>z</p></td>
+<td><p>Z</p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="analysing-an-example-svg">
+<h3>Analysing an example SVG<a class="headerlink" href="#analysing-an-example-svg" title="Permalink to this headline">¶</a></h3>
+<p>Let us have a closer look at an example SVG (taken from the excellent <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#path_commands">Mozilla SVG reference</a>):</p>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;svg</span> <span class="na">viewBox=</span><span class="s">&quot;0 0 100 100&quot;</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2000/svg&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;path</span> <span class="na">fill=</span><span class="s">&quot;none&quot;</span> <span class="na">stroke=</span><span class="s">&quot;red&quot;</span>
+    <span class="na">d=</span><span class="s">&quot;M 10,30</span>
+<span class="s">       A 20,20 0,0,1 50,30</span>
+<span class="s">       A 20,20 0,0,1 90,30</span>
+<span class="s">       Q 90,60 50,90</span>
+<span class="s">       Q 10,60 10,30 z&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/svg&gt;</span>
+</pre></div>
+</div>
+<p>We can see the command sequence <code class="docutils literal notranslate"><span class="pre">M,</span> <span class="pre">A,</span> <span class="pre">A,</span> <span class="pre">Q,</span> <span class="pre">Q,</span> <span class="pre">z</span></code>. The first 5 commands are upper case and, thus, use absolute positioning. The last command, to close the path, is lower case and uses relative positioning. (Both uppercase or lowercase z here have identical outcomes.)</p>
+<p>The first command <code class="docutils literal notranslate"><span class="pre">M</span></code> is a MoveTo command and we would expect two parameters. In this case, these parameters are <code class="docutils literal notranslate"><span class="pre">10,</span> <span class="pre">30</span></code> and, thus, the first action is to move the drawing instrument to the absolute position <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y)=(10,</span> <span class="pre">30)</span></code>. Note that this SVG has a quadratic size of <code class="docutils literal notranslate"><span class="pre">(100,</span> <span class="pre">100)</span></code>. The origin of any SVG, the <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code> point, is defined as the top-left corner with the positive x-axis pointing towards the right, the positive y-axis pointing down.</p>
+<p>The next command defines an elliptical arc curve starting at the current point <code class="docutils literal notranslate"><span class="pre">(10,</span> <span class="pre">30)</span></code>.</p>
+</div>
+<div class="section" id="intuitive-understanding-of-svg-path-data">
+<h3>Intuitive understanding of SVG path data<a class="headerlink" href="#intuitive-understanding-of-svg-path-data" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference external" href="https://svg-path-visualizer.netlify.app/">SVG path visualizer</a> (unaffiliated) is a great tool to develop an intuitive understanding of SVG path data. By hovering over a path segment the corresponding part of the code and its explanation is highlighted.</p>
+<div class="figure align-default" id="svg-path-visualizer">
+<a class="reference internal image-reference" href="../../_images/svg_path_visualizer.png"><img alt="svg_path_visualizer" src="../../_images/svg_path_visualizer.png" style="width: 900px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Screenshot of the <a class="reference external" href="https://svg-path-visualizer.netlify.app/">SVG path visualizer</a></span><a class="headerlink" href="#svg-path-visualizer" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">

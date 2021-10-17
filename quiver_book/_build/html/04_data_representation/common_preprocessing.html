@@ -42,6 +42,8 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -431,6 +433,26 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#de-minify-path-data">
+   “De-minify” path data
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#svgo-node-js">
+     SVGO (node.js)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -441,6 +463,59 @@
                 
   <div class="section" id="common-preprocessing">
 <h1>Common preprocessing<a class="headerlink" href="#common-preprocessing" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="de-minify-path-data">
+<h2>“De-minify” path data<a class="headerlink" href="#de-minify-path-data" title="Permalink to this headline">¶</a></h2>
+<p>Due to its use for Web pages where fast loading can be paramount, the SVG format is obsessed with minimizing file size. To save a few characters, SVG path data is often shortened which makes it hard to parse the path parameters. This is done using common SVG optimizing tools, such as <a class="reference external" href="https://github.com/svg/svgo">SVGO</a>.</p>
+<p>Unfortunately, this optimization makes it harder for a human to understand the already fairly abstract path data. And many Deep Learning projects aiming to ingest SVG files as training data are not sophisticated enough to deal with minified SVGs out of the box.</p>
+<p>Usually, SVG path data is comma- and whitespace-separated. See the SVG example below – only the value of the <code class="docutils literal notranslate"><span class="pre">d</span></code> attribute is relevant:</p>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;svg</span> <span class="na">viewBox=</span><span class="s">&quot;0 0 100 100&quot;</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2000/svg&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;path</span> <span class="na">fill=</span><span class="s">&quot;none&quot;</span> <span class="na">stroke=</span><span class="s">&quot;red&quot;</span>
+    <span class="na">d=</span><span class="s">&quot;M 10,30</span>
+<span class="s">       A 20,20 0,0,1 50,30</span>
+<span class="s">       A 20,20 0,0,1 90,30</span>
+<span class="s">       Q 90,60 50,90</span>
+<span class="s">       Q 10,60 10,30 z&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/svg&gt;</span>
+</pre></div>
+</div>
+<p>By optimizing above SVG code, one can reduce the size of this already small file from 266 bytes to 211 bytes and save about 21%. Larger SVGs can be reduced by 70% and more! The result of the optimization (done by <a class="reference external" href="https://www.svgminify.com/">svgminify.com</a>) is shown below:</p>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;svg</span> <span class="na">viewBox=</span><span class="s">&quot;0 0 100 100&quot;</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2000/svg&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;path</span> <span class="na">d=</span><span class="s">&quot;m10 30a20 20 0 0 1 40 0 20 20 0 0 1 40 0q0 30-40 60-40-30-40-60z&quot;</span> <span class="na">fill=</span><span class="s">&quot;none&quot;</span> <span class="na">stroke=</span><span class="s">&quot;red&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/svg&gt;</span>
+</pre></div>
+</div>
+<p>Now, if you look closely at the <code class="docutils literal notranslate"><span class="pre">d</span></code> attribute which defines the path data, you will notice some irritating changes, e.g.:</p>
+<ul class="simple">
+<li><p>Parameters are no longer clearly separated by commas and whitespace!</p></li>
+<li><p>Some command letters disappeared!</p></li>
+</ul>
+<p>What could be easily parsed before by splitting on commas and whitespaces is now no longer possible.</p>
+<p>Now, why does this not result in any errors?
+The reason is that omitting separating commas and whitespace is only permitted if the result remains unambiguous.</p>
+<p>Let’s analyze the path data from the start:</p>
+<ul class="simple">
+<li><p>Because a command letter <code class="docutils literal notranslate"><span class="pre">m</span></code> must be followed by its first parameter, the whitespace between <code class="docutils literal notranslate"><span class="pre">m</span></code> and <code class="docutils literal notranslate"><span class="pre">10</span></code> can be omitted.</p></li>
+<li><p>We cannot remove the whitespace between the two parameters <code class="docutils literal notranslate"><span class="pre">10</span></code> and <code class="docutils literal notranslate"><span class="pre">30</span></code>. This would create ambiguity. A browser would not be able to distinguish between the two equally valid solutions: <span class="math notranslate nohighlight">\(\Delta x = 10\)</span> and <span class="math notranslate nohighlight">\(\Delta y = 30\)</span> vs. <span class="math notranslate nohighlight">\(\Delta x = 103\)</span> and <span class="math notranslate nohighlight">\(\Delta y = 0\)</span>. Thus, we need to keep the separating whitespace.</p></li>
+<li><p>There is no whitespace required between <code class="docutils literal notranslate"><span class="pre">30</span></code> and the first arc command <code class="docutils literal notranslate"><span class="pre">a</span></code>. Any letter must be a new command and preceding numbers can only be parameters from a previous command.</p></li>
+<li><p>Analogously, there is no need to keep a whitespace between <code class="docutils literal notranslate"><span class="pre">a</span></code> and the first parameter <code class="docutils literal notranslate"><span class="pre">20</span></code>. It is unambiguous that <code class="docutils literal notranslate"><span class="pre">a20</span></code> needs to be parsed as <code class="docutils literal notranslate"><span class="pre">a</span></code> and the first parameter <code class="docutils literal notranslate"><span class="pre">20</span></code>.</p></li>
+<li><p>The absolute positioning was changed into a relative positioning. So the <code class="docutils literal notranslate"><span class="pre">a</span></code> command’s parameters got changed from <code class="docutils literal notranslate"><span class="pre">20,20</span> <span class="pre">0,0,1</span> <span class="pre">50,30</span></code> to <code class="docutils literal notranslate"><span class="pre">20</span> <span class="pre">20</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">1</span> <span class="pre">40</span> <span class="pre">0</span></code> because we have already moved to point <code class="docutils literal notranslate"><span class="pre">(10,</span> <span class="pre">30)</span></code>. Relative to that point, we only need to move the current point <code class="docutils literal notranslate"><span class="pre">(+40,</span> <span class="pre">+0)</span></code> to end up in <code class="docutils literal notranslate"><span class="pre">(50,</span> <span class="pre">30)</span></code>.</p></li>
+<li><p>Because <code class="docutils literal notranslate"><span class="pre">a</span></code> commands generally have exactly 7 commands, the subsequent <code class="docutils literal notranslate"><span class="pre">a</span></code> command letter can be omitted, too. It is unambigous that after <code class="docutils literal notranslate"><span class="pre">a20</span> <span class="pre">20</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">1</span> <span class="pre">40</span> <span class="pre">0</span></code> a new command must start.</p></li>
+</ul>
+<p>A further common minification step is to directly concatenate continuous parameters with the binary flags of the <code class="docutils literal notranslate"><span class="pre">a</span></code> command. Since binary flags always consist of only a single digit (0 or 1), it can be derived how many digits the concatenated continuous parameter must have.</p>
+<p>Many Deep Learning models (e.g. DeepSVG) are not able to deal with these minified SVGs out of the box and require some preprocessing before the SVG parameters can be correctly parsed. That may result in minified SVGs to be ignored in the training data. Luckily, there are sophisticated tools that can both minify and reverse the minification.</p>
+<div class="section" id="svgo-node-js">
+<h3>SVGO (node.js)<a class="headerlink" href="#svgo-node-js" title="Permalink to this headline">¶</a></h3>
+<p>The SVGO library for node.js is an excellent tool for preprocessing SVGs, such that they can be more easily parsed into numeric tensors.</p>
+<p>To “de-minify” SVGs, the following yml settings can be used in SVGO</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span> - convertPathData:
+      noSpaceAfterFlags: false  # this is crucial; otherwise flags can be merged with numbers and it gets hard to parse
+      collapseRepeated: false  # this is crucial; otherwise successive arcs (a / A commands) get merged into one long arc command
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
