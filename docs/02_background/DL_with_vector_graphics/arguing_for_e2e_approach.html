@@ -75,7 +75,7 @@
         
       
       
-      <img src="../../_static/logo.png" class="logo" alt="logo">
+      <img src="../../_static/q_logo.svg" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Deep Learning with Vector Graphics</h1>
@@ -276,6 +276,11 @@
      Yang et al. (2021) | SketchAA: Abstract Representation for Abstract Sketches
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/further_academic_papers/wang_and_lian_2021.html">
+     Wang and Lian (2021) | DeepVecFont: Synthesizing High-quality Vector Fonts via Dual-modality Learning
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -308,6 +313,18 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../../03_related_work/datasets.html">
    Datasets
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Data representation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../04_data_representation/from_strokes_to_svg.html">
+   From strokes to SVG
   </a>
  </li>
 </ul>
@@ -404,6 +421,39 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#more-efficient-and-faster">
+   1. More efficient and faster(?)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#more-effective">
+   2. More effective(?)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rasterising-a-vector-graphics-leads-to-information-loss">
+   3. Rasterising a vector graphics leads to information loss
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#maintaining-symmetries-perfect-angles-etc">
+   4. Maintaining symmetries, perfect angles etc.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#current-rasterisers-are-doing-a-poor-job">
+   5. Current rasterisers are doing a poor job
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -414,15 +464,29 @@
                 
   <div class="section" id="arguing-for-e-2-e-approach">
 <h1>Arguing for E-2-E approach<a class="headerlink" href="#arguing-for-e-2-e-approach" title="Permalink to this headline">¶</a></h1>
-<p>A book about Deep Learning with Vector Graphics also needs to make the point why an end-to-end approach appears to be a desirable objective. End-to-end in this context shall refer to a generative Deep Learning model that is fed vector graphics and directly outputs vector graphics.</p>
-<p>Here are a few bold claims (that still require evidence):</p>
-<ol class="simple">
-<li><p>Training on SVG could be much faster since vector graphics can store information much more efficiently than raster images. This is obviously the case if an image has been designed as a vector graphic from the start. The rastered image file will be much larger and even “empty” pixels need to be described using their RGB(A) values.</p></li>
-<li><p>If obtaining SVG is our goal, then the approach of using generative models for raster images and to then convert their output to vector graphics is futile. Current generative models are not conditioned to produce output that is easily converted to vector graphics. And such a conditioning would not be trivial.</p></li>
-<li><p>Learning about the composition of an SVG is only possible if this information is fed into the model. A rasterised image has lost that information.</p></li>
-<li><p>Many logos and icons make use of perfect symmetries and perfect 90° angles. This information could be maintained if both input and output are vector graphics.</p></li>
-<li><p>Current tools for converting a raster image to a vector graphic (“tracing” or “vectorization”) are still doing a poor job. Low resolution images can lead to curves and circles getting corners. Identical elements of different sizes may get traced differently.</p></li>
-</ol>
+<p>A book about Deep Learning with Vector Graphics also needs to make the point why an end-to-end (E-2-E) approach appears to be a desirable objective. End-to-end in this context shall refer to a generative Deep Learning model that is fed vector graphics and directly outputs vector graphics.</p>
+<p>End-to-end in this context shall not exclude multi-modal approaches where, <em>in addition</em> to the vector graphic, other types of inputs are used, such as text descriptions or the corresponding raster image. Multi-modal may even be a required setting for some problems.</p>
+<p>Here are a few bold claims (that may still require evidence):</p>
+<div class="section" id="more-efficient-and-faster">
+<h2>1. More efficient and faster(?)<a class="headerlink" href="#more-efficient-and-faster" title="Permalink to this headline">¶</a></h2>
+<p>Training on SVG could be much faster since vector graphics can store information much more efficiently than raster images. This is obviously the case if an image has been designed as a vector graphic from the start. The rastered image file will be much larger and even “empty” pixels need to be described using their RGB(A) values.</p>
+</div>
+<div class="section" id="more-effective">
+<h2>2. More effective(?)<a class="headerlink" href="#more-effective" title="Permalink to this headline">¶</a></h2>
+<p>If obtaining SVG is our goal, then the approach of using generative models for raster images and to then convert their output to vector graphics is futile. Current generative models are not conditioned to produce output that is easily converted to vector graphics, especially when it comes to colour images (as opposed to black and white images). And such a conditioning would not be trivial.</p>
+</div>
+<div class="section" id="rasterising-a-vector-graphics-leads-to-information-loss">
+<h2>3. Rasterising a vector graphics leads to information loss<a class="headerlink" href="#rasterising-a-vector-graphics-leads-to-information-loss" title="Permalink to this headline">¶</a></h2>
+<p>Learning about the composition of an SVG (e.g. how shapes are represented, the number of layers, …) is only possible if this information is fed into the model. A rasterised image has lost that information.</p>
+</div>
+<div class="section" id="maintaining-symmetries-perfect-angles-etc">
+<h2>4. Maintaining symmetries, perfect angles etc.<a class="headerlink" href="#maintaining-symmetries-perfect-angles-etc" title="Permalink to this headline">¶</a></h2>
+<p>Many logos and icons make use of perfect symmetries and perfect 90° angles. This information could be maintained if both input and output are vector graphics.</p>
+</div>
+<div class="section" id="current-rasterisers-are-doing-a-poor-job">
+<h2>5. Current rasterisers are doing a poor job<a class="headerlink" href="#current-rasterisers-are-doing-a-poor-job" title="Permalink to this headline">¶</a></h2>
+<p>Current tools for converting a raster image to a vector graphic (“tracing” or “vectorization”) are still doing a poor job. Low resolution images can lead to undesirable corners and edges in the vector graphic. E.g. circles may not get recognised as such and then represented by separate paths. Identical elements of different sizes may get traced differently.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">

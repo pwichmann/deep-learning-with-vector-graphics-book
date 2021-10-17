@@ -50,6 +50,7 @@ parts:
     - file: 03_related_work/further_academic_papers/wang_and_lian_2021.md
   - file: 03_related_work/other_relevant_work.md
     sections:
+    - file: 03_related_work/other_relevant_work/greydanus_2016.md
     - file: 03_related_work/other_relevant_work/google_quickdraw_2017.md
     - file: 03_related_work/other_relevant_work/vectoglyph_2019.md
     - file: 03_related_work/other_relevant_work/gan_xml_fixer_2019.md
@@ -59,6 +60,7 @@ parts:
 - caption: Data representation
   chapters:
   - file: 04_data_representation/from_strokes_to_svg.md
+  - file: 04_data_representation/common_preprocessing.md
 
 # Acknowledgements
 - caption: Acknowledgements

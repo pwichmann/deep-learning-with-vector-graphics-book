@@ -3,7 +3,7 @@
 
 title: Deep Learning with Vector Graphics
 author: Pascal Wichmann
-logo: logo.png
+logo: q_logo.svg
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html

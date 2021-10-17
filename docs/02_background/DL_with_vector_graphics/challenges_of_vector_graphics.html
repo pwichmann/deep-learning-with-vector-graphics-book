@@ -75,7 +75,7 @@
         
       
       
-      <img src="../../_static/logo.png" class="logo" alt="logo">
+      <img src="../../_static/q_logo.svg" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Deep Learning with Vector Graphics</h1>
@@ -276,6 +276,11 @@
      Yang et al. (2021) | SketchAA: Abstract Representation for Abstract Sketches
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/further_academic_papers/wang_and_lian_2021.html">
+     Wang and Lian (2021) | DeepVecFont: Synthesizing High-quality Vector Fonts via Dual-modality Learning
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -288,6 +293,11 @@
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/other_relevant_work/greydanus_2016.html">
+     Sam Greydanus (2016) | Scribe: Generating Realistic Handwriting with TensorFlow
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../03_related_work/other_relevant_work/google_quickdraw_2017.html">
      Google’s “Quick, Draw!” (2017)
@@ -469,9 +479,21 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#current-vectorizers-to-convert-png-to-svg-perform-extremely-poorly">
-     5. Current vectorizers (to convert PNG to SVG) perform extremely poorly
+    <a class="reference internal nav-link" href="#current-vectorizers-to-convert-png-to-svg-perform-poorly">
+     5. Current vectorizers (to convert PNG to SVG) perform poorly
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#examples">
+       Examples
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#summary-of-limitations-of-current-vectorizers">
+       Summary of limitations of current vectorizers
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -494,6 +516,15 @@
   <div class="section" id="challenges-of-vector-graphics">
 <h1>Challenges of Vector Graphics<a class="headerlink" href="#challenges-of-vector-graphics" title="Permalink to this headline">¶</a></h1>
 <p>This section aims to summarise why vector graphics are challenging to work with in the context of Deep Learning. The focus will be on generative models and SVG, as the common data format for vector graphics.</p>
+<p>To the author, the following aspects appear to be the key challenges:</p>
+<ol class="simple">
+<li><p>Data representation</p></li>
+<li><p>Rasterizing is not a trivial function</p></li>
+<li><p>Ambiguous SVG source of a PNG</p></li>
+<li><p>Linear interpolation in case of step changes</p></li>
+<li><p>Current vectorizers (to convert PNG to SVG) perform poorly</p></li>
+</ol>
+<p>Each key challenge shall be discussed below.</p>
 <div class="section" id="key-challenges">
 <h2>Key challenges<a class="headerlink" href="#key-challenges" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="data-representation">
@@ -513,7 +544,7 @@ Shapes can be filled or just an outline.</p>
 <div class="section" id="graph-structure-inherent-to-svgs">
 <h4>Graph structure inherent to SVGs<a class="headerlink" href="#graph-structure-inherent-to-svgs" title="Permalink to this headline">¶</a></h4>
 <p>Since SVG files are XML-based, they also allow for deeply nested tags. This forms a hierarchical structure, a graph of nodes and attributes. In raster images, there is no hierarchy of pixels.</p>
-<p>What does this graph structure mean for the data representation and the suitable of specific models?</p>
+<p>What does this graph structure mean for the data representation and the suitability of specific models?</p>
 </div>
 <div class="section" id="a-loss-function-makes-more-sense-in-raster-space-than-in-svg-space">
 <h4>A loss function makes more sense in raster space than in SVG space<a class="headerlink" href="#a-loss-function-makes-more-sense-in-raster-space-than-in-svg-space" title="Permalink to this headline">¶</a></h4>
@@ -548,10 +579,83 @@ It may be required to use both vector graphics and corresponding raster images a
 <p>Now, how would linear interpolations between these SVG representations work?
 How would a linear interpolation look if one the icons even had the white part of the eye explicity modelled as a shape?
 Is this still possible in an end-to-end model or is that the point where we need to design two parts: a generative model in raster space and one deep learning-based vectorizer?</p>
+<p>We know from the DeepSVG paper by Carlier (2020) that it is technically possible to generate linear interpolations between two vector graphics with a different number of shapes. But are these interpolations as useful as interpolations in raster space?</p>
+<div class="figure align-default" id="deepsvg-linear-interpolation">
+<a class="reference internal image-reference" href="../../_images/deepsvg_linear_interpolation.png"><img alt="DeepSVG linear interpolation" src="../../_images/deepsvg_linear_interpolation.png" style="width: 700px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Linear interpolation between two vector graphics as made possible by DeepSVG; image taken from the <a class="reference external" href="https://arxiv.org/abs/2007.11301">DeepSVG paper</a></span><a class="headerlink" href="#deepsvg-linear-interpolation" title="Permalink to this image">¶</a></p>
 </div>
-<div class="section" id="current-vectorizers-to-convert-png-to-svg-perform-extremely-poorly">
-<h3>5. Current vectorizers (to convert PNG to SVG) perform extremely poorly<a class="headerlink" href="#current-vectorizers-to-convert-png-to-svg-perform-extremely-poorly" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="current-vectorizers-to-convert-png-to-svg-perform-poorly">
+<h3>5. Current vectorizers (to convert PNG to SVG) perform poorly<a class="headerlink" href="#current-vectorizers-to-convert-png-to-svg-perform-poorly" title="Permalink to this headline">¶</a></h3>
 <p>Currently available vectorizing (“tracing”) tools perform extremely poorly. Purely the fact that an image has a low resolution can lead to situations where the pixels are traced like steps. Furthermore, there is no contextual awareness: identical objects of different sizes may get represented differently in the resulting SVG.</p>
+<div class="section" id="examples">
+<h4>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h4>
+<p><strong>Example 1:</strong></p>
+<p>The image below shows the “Octocat”, Github’s mascot.</p>
+<div class="figure align-default" id="github-mark">
+<a class="reference internal image-reference" href="../../_images/GitHub-Mark.png"><img alt="github" src="../../_images/GitHub-Mark.png" style="width: 300px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">Github’s mascot Octocat</span><a class="headerlink" href="#github-mark" title="Permalink to this image">¶</a></p>
+</div>
+<p>Note the ellipses on the octocat’s tentacle-tail in the figure above.
+Vectorizing a low resolution version of that section of the image leads to a poor result, see the figure below:</p>
+<div class="figure align-default" id="vectorizing-still-poor">
+<a class="reference internal image-reference" href="../../_images/vectorizing_still_poor.png"><img alt="vectorizing_still_poor" src="../../_images/vectorizing_still_poor.png" style="width: 900px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Current vectorizers are still performing poorly. In this case, the used tool was <a class="reference external" href="https://vectormagic.com/">vectormagic</a> – still one of the better tools out there and not free.</span><a class="headerlink" href="#vectorizing-still-poor" title="Permalink to this image">¶</a></p>
+</div>
+<p>The low resolution results in the smaller ellipses to have corners in the vector output. It appears that the vectorizer has no understanding that the resolution of the input is low and pixel edges and corners should not be traced too closely. The vectorizer also has no contextual understanding that there is a symmetry in these shapes: all of these are ellipses of different sizes.</p>
+<p><strong>Example 2:</strong></p>
+<p>In another example, see figure below, an image loses its perfect symmetry through vectorization.</p>
+<div class="figure align-default" id="vectorizing-destroy-symmetry">
+<a class="reference internal image-reference" href="../../_images/vectorizing_destroy_symmetry.png"><img alt="vectorizing_destroy_symmetry" src="../../_images/vectorizing_destroy_symmetry.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text">Example from <a class="reference external" href="https://github.com/jankovicsandras/imagetracerjs">imagetracerjs</a></span><a class="headerlink" href="#vectorizing-destroy-symmetry" title="Permalink to this image">¶</a></p>
+</div>
+<p><strong>Example 3:</strong></p>
+<p>Vector graphis, such as SVG, can make use of linear and radial gradients. This can produce visually pleasing results, such as this logo below:</p>
+<div class="figure align-default" id="edge">
+<a class="reference internal image-reference" href="../../_images/edge.svg"><img alt="edge" src="../../_images/edge.svg" width="300px" /></a>
+<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">Microsoft Edge logo designed as a vector graphic in SVG format; <a class="reference external" href="https://www.npmjs.com/package/&#64;browser-logos/edge">source</a></span><a class="headerlink" href="#edge" title="Permalink to this image">¶</a></p>
+</div>
+<p>Since this logo was designed as an SVG, we know it is possible to design such a logo as a vector graphic.
+Here is the SVG code for the logo above:</p>
+<div class="figure align-default" id="edge-logo-svg">
+<a class="reference internal image-reference" href="../../_images/edge_logo_svg.png"><img alt="edge_logo_svg" src="../../_images/edge_logo_svg.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">SVG code of the Microsoft Edge logo</span><a class="headerlink" href="#edge-logo-svg" title="Permalink to this image">¶</a></p>
+</div>
+<p>However, current vectorizers have a hard time converting a rasterized version of the logo back to a vector graphic.
+These algorithms have no understanding of what (potentially overlapping) shapes are required and what shapes need to have what type of linear or radial gradients. There are too many parameters at play for pre-Deep Learning algorithms to work well.</p>
+<div class="figure align-default" id="vectorized-edge-logo">
+<a class="reference internal image-reference" href="../../_images/vectorized_edge_logo.png"><img alt="vectorized_edge_logo" src="../../_images/vectorized_edge_logo.png" style="width: 300px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">Screenshot of the vectorized Microsoft Edge logo; vectorized using <a class="reference external" href="https://www.vectorizer.io">vectorizer.io</a>. The vector result is much more complicated than the original SVG and no where near the original in terms of quality.</span><a class="headerlink" href="#vectorized-edge-logo" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="summary-of-limitations-of-current-vectorizers">
+<h4>Summary of limitations of current vectorizers<a class="headerlink" href="#summary-of-limitations-of-current-vectorizers" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>No context-aware tracing</p>
+<ul>
+<li><p>E.g. not prior classification of objects and if they should be round or edgy</p></li>
+<li><p>E.g. the bottom of a heart shape becomes round (–&gt; incorrect points / edges)</p></li>
+</ul>
+</li>
+<li><p>No resolution-aware tracing</p>
+<ul>
+<li><p>At low input resolution, tracers start to follow pixel steps</p></li>
+<li><p>E.g. this shape was likely a circle even though it is now a 20x20 pixel blob</p></li>
+</ul>
+</li>
+<li><p>Potentially incorrect trade-off between accuracy and number of points</p>
+<ul>
+<li><p>Vectorizers rarely produce elegant results with minimal number of points</p></li>
+</ul>
+</li>
+<li><p>Over-use of points vs. a smart use of bezier curves and their handles</p></li>
+<li><p>No or poor detection of colour gradients</p></li>
+<li><p>No consideration of symmetry</p></li>
+<li><p>Tracers do not understand how humans compose images from multiple shapes (potentially overlapping, potentially half-transparent), e.g. shadows</p></li>
+<li><p>SVGs just have too many parameters and an intractable complexity for current vectorizers to correctly guess them all given a raster image</p></li>
+</ul>
+<p>Because current vectorizers are performing poorly (and will hopefully soon be replaced by smarter Deep Learning-based algorithms), there is a need to output vector graphics directly. Instead of attempting to output raster images and only then vectorize them.</p>
+</div>
 </div>
 </div>
 <div class="section" id="further-challenges">

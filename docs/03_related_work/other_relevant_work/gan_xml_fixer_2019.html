@@ -51,7 +51,7 @@
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Acknowledgements" href="../../99_acknowledgements/acknowledgements.html" />
+    <link rel="next" title="Datasets" href="../datasets.html" />
     <link rel="prev" title="Nicolas Boillot’s Vectoglyph (2019)" href="vectoglyph_2019.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -75,7 +75,7 @@
         
       
       
-      <img src="../../_static/logo.png" class="logo" alt="logo">
+      <img src="../../_static/q_logo.svg" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Deep Learning with Vector Graphics</h1>
@@ -116,15 +116,71 @@
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../02_background/svg.html">
-   Scalable Vector Graphics (SVG) format
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../02_background/vector_graphics.html">
+   Vector Graphics
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/vector_graphics/svg.html">
+     Scalable Vector Graphics (SVG) format
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../02_background/challenges_of_vector_graphics.html">
-   Challenges of Vector Graphics
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../02_background/deep_learning.html">
+   Deep Learning
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/deep_learning/rnn.html">
+     RNN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/deep_learning/lstm.html">
+     LSTM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/deep_learning/mdn.html">
+     Mixture Density Networks (MDN)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../02_background/DL_with_vector_graphics.html">
+   Deep Learning with Vector Graphics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/DL_with_vector_graphics/arguing_for_e2e_approach.html">
+     Arguing for E-2-E approach
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/DL_with_vector_graphics/challenges_of_vector_graphics.html">
+     Challenges of Vector Graphics
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p class="caption">
@@ -135,17 +191,42 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../academic_papers.html">
-   Academic papers
+   Key academic publications
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../papers/Graves_2014.html">
+     Alex Graves (2014) | Generating Sequences With Recurrent Neural Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../papers/Ha_2015_handwriting.html">
+     David Ha (Dec 2015) | Handwriting Generation Demo in TensorFlow (blog post)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../papers/Ha_2015_kanji.html">
+     David Ha (Dec 2015) | Recurrent Net Dreams Up Fake Chinese Characters in Vector Format with TensorFlow (blog post)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../papers/Carter_et_al_2016.html">
+     Carter et al. (2016) | Four Experiments in Handwriting with a Neural Network (Distill publication)
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../papers/Ha_Eck_2017.html">
      Ha &amp; Eck (2017) | A Neural Representation of Sketch Drawings (sketch-rnn)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../papers/Zhong_2018.html">
+     Kimberli Zhong (2018) | Learning to Draw Vector Graphics: Applying Generative Modeling to Font Glyphs (Master thesis @ MIT)
     </a>
    </li>
    <li class="toctree-l2">
@@ -170,12 +251,44 @@
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../further_academic_papers.html">
+   Further academic publications
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../further_academic_papers/Das_2020.html">
+     Das et al. (2020) | BézierSketch: A generative model for scalable vector sketches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../further_academic_papers/Das_2021.html">
+     Das et al. (2021) | Cloud2Curve: Generation and Vectorization of Parametric Sketches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../further_academic_papers/yang_2021_sketchaa.html">
+     Yang et al. (2021) | SketchAA: Abstract Representation for Abstract Sketches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../further_academic_papers/wang_and_lian_2021.html">
+     Wang and Lian (2021) | DeepVecFont: Synthesizing High-quality Vector Fonts via Dual-modality Learning
+    </a>
+   </li>
+  </ul>
+ </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../other_relevant_work.html">
    Other relevant work
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -196,6 +309,23 @@
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../datasets.html">
+   Datasets
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Data representation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../04_data_representation/from_strokes_to_svg.html">
+   From strokes to SVG
+  </a>
  </li>
 </ul>
 <p class="caption">
@@ -350,10 +480,10 @@
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="../../99_acknowledgements/acknowledgements.html" title="next page">
+        <a class="right-next" href="../datasets.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Acknowledgements</p>
+                <p class="prevnext-title">Datasets</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>

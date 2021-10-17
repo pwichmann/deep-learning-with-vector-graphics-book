@@ -20,7 +20,8 @@ To be added once we obtained data sample
 
 #### Raw dataset
 
-Google's "Quick, Draw!" used a similar approach. The drawing is represented as an array of strokes. Each stroke is a polyline, i.e. a sequence of straight lines, and represented by an array of arrays:
+Google's "Quick, Draw!" used a similar approach. The drawing is represented as an array of strokes. Each stroke is a polyline, i.e. a sequence of straight lines, and represented by an array of arrays, as shown below.
+
 
 ```
 [ 
@@ -38,7 +39,8 @@ Google's "Quick, Draw!" used a similar approach. The drawing is represented as a
 ]
 ```
 
-Each sketch in the [raw dataset](https://github.com/googlecreativelab/quickdraw-dataset) is provided as a Newline-delimited JSON ([ndjson](http://ndjson.org/)) file containing the drawing itself as well as some metadata, such as the word the user was supposed to draw. A complete raw format example including the metadata is shown in the json below:
+Each sketch in the [raw dataset](https://github.com/googlecreativelab/quickdraw-dataset) is provided as a Newline-delimited JSON ([ndjson](http://ndjson.org/)) file containing the drawing itself as well as some metadata, such as the word the user was supposed to draw. A complete raw format example including the metadata is shown in the json below.
+Note that syntax highlighting does not work due to the comment which is not supported by the json format.
 
 ```json
 {
@@ -142,7 +144,7 @@ The exact image resulting from json description above is shown below:
 Resulting airplane drawing; from [Google's Quickdraw Viewer](https://quickdraw.withgoogle.com/data/airplane)
 :::
 
-In this case, the artist used 7 strokes which is hard to derive from the image alone. 3 strokes were used for the aircraft body, one for each wing and one for each tail fin. These 7 strokes can be found again in the json representation of the strokes. It's the number of elements in the top-level array.
+In this case, the artist used 7 strokes which is hard to derive from looking at the finished sketch alone. 3 strokes were used for the aircraft's fuselage, one for each wing and one for each tail fin. These 7 strokes can be found again in the json representation of the strokes. It's the number of elements in the top-level array.
 
 
 ## SVG images as input

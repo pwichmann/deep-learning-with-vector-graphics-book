@@ -53,7 +53,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Acknowledgements" href="../99_acknowledgements/acknowledgements.html" />
+    <link rel="next" title="Common preprocessing" href="common_preprocessing.html" />
     <link rel="prev" title="Datasets" href="../03_related_work/datasets.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -77,7 +77,7 @@
         
       
       
-      <img src="../_static/logo.png" class="logo" alt="logo">
+      <img src="../_static/q_logo.svg" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Deep Learning with Vector Graphics</h1>
@@ -296,6 +296,11 @@
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../03_related_work/other_relevant_work/greydanus_2016.html">
+     Sam Greydanus (2016) | Scribe: Generating Realistic Handwriting with TensorFlow
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../03_related_work/other_relevant_work/google_quickdraw_2017.html">
      Google’s “Quick, Draw!” (2017)
     </a>
@@ -327,6 +332,11 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    From strokes to SVG
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="common_preprocessing.html">
+   Common preprocessing
   </a>
  </li>
 </ul>
@@ -499,7 +509,7 @@ To be added once we obtained data sample
 <h3>Sketches drawn with the PC mouse (2017)<a class="headerlink" href="#sketches-drawn-with-the-pc-mouse-2017" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="raw-dataset">
 <h4>Raw dataset<a class="headerlink" href="#raw-dataset" title="Permalink to this headline">¶</a></h4>
-<p>Google’s “Quick, Draw!” used a similar approach. The drawing is represented as an array of strokes. Each stroke is a polyline, i.e. a sequence of straight lines, and represented by an array of arrays:</p>
+<p>Google’s “Quick, Draw!” used a similar approach. The drawing is represented as an array of strokes. Each stroke is a polyline, i.e. a sequence of straight lines, and represented by an array of arrays, as shown below.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> 
   <span class="p">[</span>  <span class="o">//</span> <span class="n">First</span> <span class="n">stroke</span> 
     <span class="p">[</span><span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
@@ -515,7 +525,8 @@ To be added once we obtained data sample
 <span class="p">]</span>
 </pre></div>
 </div>
-<p>Each sketch in the <a class="reference external" href="https://github.com/googlecreativelab/quickdraw-dataset">raw dataset</a> is provided as a Newline-delimited JSON (<a class="reference external" href="http://ndjson.org/">ndjson</a>) file containing the drawing itself as well as some metadata, such as the word the user was supposed to draw. A complete raw format example including the metadata is shown in the json below:</p>
+<p>Each sketch in the <a class="reference external" href="https://github.com/googlecreativelab/quickdraw-dataset">raw dataset</a> is provided as a Newline-delimited JSON (<a class="reference external" href="http://ndjson.org/">ndjson</a>) file containing the drawing itself as well as some metadata, such as the word the user was supposed to draw. A complete raw format example including the metadata is shown in the json below.
+Note that syntax highlighting does not work due to the comment which is not supported by the json format.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span>{
   &quot;word&quot;:&quot;airplane&quot;,
   &quot;countrycode&quot;:&quot;CZ&quot;,
@@ -600,9 +611,9 @@ To be added once we obtained data sample
 <p>The exact image resulting from json description above is shown below:</p>
 <div class="figure align-default" id="airplane-drawing">
 <a class="reference internal image-reference" href="../_images/airplane_drawing.png"><img alt="Airplane drawing" src="../_images/airplane_drawing.png" style="width: 200px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 38 </span><span class="caption-text">Resulting airplane drawing; from <a class="reference external" href="https://quickdraw.withgoogle.com/data/airplane">Google’s Quickdraw Viewer</a></span><a class="headerlink" href="#airplane-drawing" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 51 </span><span class="caption-text">Resulting airplane drawing; from <a class="reference external" href="https://quickdraw.withgoogle.com/data/airplane">Google’s Quickdraw Viewer</a></span><a class="headerlink" href="#airplane-drawing" title="Permalink to this image">¶</a></p>
 </div>
-<p>In this case, the artist used 7 strokes which is hard to derive from the image alone. 3 strokes were used for the aircraft body, one for each wing and one for each tail fin. These 7 strokes can be found again in the json representation of the strokes. It’s the number of elements in the top-level array.</p>
+<p>In this case, the artist used 7 strokes which is hard to derive from looking at the finished sketch alone. 3 strokes were used for the aircraft’s fuselage, one for each wing and one for each tail fin. These 7 strokes can be found again in the json representation of the strokes. It’s the number of elements in the top-level array.</p>
 </div>
 </div>
 </div>
@@ -655,10 +666,10 @@ To be added once we obtained data sample
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="../99_acknowledgements/acknowledgements.html" title="next page">
+        <a class="right-next" href="common_preprocessing.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Acknowledgements</p>
+                <p class="prevnext-title">Common preprocessing</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>

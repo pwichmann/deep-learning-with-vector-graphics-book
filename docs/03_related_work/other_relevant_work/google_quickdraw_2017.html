@@ -52,7 +52,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Nicolas Boillot’s Vectoglyph (2019)" href="vectoglyph_2019.html" />
-    <link rel="prev" title="Other relevant work" href="../other_relevant_work.html" />
+    <link rel="prev" title="Sam Greydanus (2016) | Scribe: Generating Realistic Handwriting with TensorFlow" href="greydanus_2016.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -75,7 +75,7 @@
         
       
       
-      <img src="../../_static/logo.png" class="logo" alt="logo">
+      <img src="../../_static/q_logo.svg" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Deep Learning with Vector Graphics</h1>
@@ -293,6 +293,11 @@
    </i>
   </label>
   <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="greydanus_2016.html">
+     Sam Greydanus (2016) | Scribe: Generating Realistic Handwriting with TensorFlow
+    </a>
+   </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Google’s “Quick, Draw!” (2017)
@@ -479,13 +484,13 @@
 </div>
 <div class="figure align-default" id="quickdraw-home-fig">
 <a class="reference internal image-reference" href="../../_images/google_quickdraw_home.png"><img alt="Homepage of Google Quickdraw" src="../../_images/google_quickdraw_home.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 32 </span><span class="caption-text">Screenshot of the homepage of Google’s <a class="reference external" href="https://quickdraw.withgoogle.com/">“Quick, Draw!”</a></span><a class="headerlink" href="#quickdraw-home-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 45 </span><span class="caption-text">Screenshot of the homepage of Google’s <a class="reference external" href="https://quickdraw.withgoogle.com/">“Quick, Draw!”</a></span><a class="headerlink" href="#quickdraw-home-fig" title="Permalink to this image">¶</a></p>
 </div>
 <p><a class="reference external" href="https://quickdraw.withgoogle.com/">Google’s Quick, Draw!</a> (also written as ‘quickdraw’) is an AI experiment published by Google in early 2017.</p>
 <p>At the surface, “Quick, Draw!” can be considered a game where a participant has to quickly draw a concept in under 20 seconds. While the user is drawing, a machine learning model is attempting to guess which concept the user is attempting to draw. By adding drawings, participants help Google obtain a massive training dataset of sketches (features) and the target concept (label).</p>
 <div class="figure align-default" id="quickdraw-task-fig">
 <a class="reference internal image-reference" href="../../_images/google_quickdraw_task.png"><img alt="A task of Google Quickdraw" src="../../_images/google_quickdraw_task.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 33 </span><span class="caption-text">Screenshot of a typical drawing task from Google’s <a class="reference external" href="https://quickdraw.withgoogle.com/">“Quick, Draw!”</a></span><a class="headerlink" href="#quickdraw-task-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 46 </span><span class="caption-text">Screenshot of a typical drawing task from Google’s <a class="reference external" href="https://quickdraw.withgoogle.com/">“Quick, Draw!”</a></span><a class="headerlink" href="#quickdraw-task-fig" title="Permalink to this image">¶</a></p>
 </div>
 <p>The sketch data also contains the order in which the user created the individual strokes of a drawing. This allows Quick, Draw! to animate the collected sketches and visualise in which order sketches were created.</p>
 <p>Over 15 million players contributed around 50 million drawings across 345 categories.</p>
@@ -493,14 +498,14 @@
 <h2>Dataset<a class="headerlink" href="#dataset" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-default" id="quickdraw-dataset-fig">
 <a class="reference internal image-reference" href="../../_images/google_quickdraw_dataset.jpg"><img alt="Preview of the Google Quickdraw dataset" src="../../_images/google_quickdraw_dataset.jpg" style="width: 900px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 34 </span><span class="caption-text">Screenshot of a sample of Google’s <a class="reference external" href="https://quickdraw.withgoogle.com/">“Quick, Draw!”</a> drawings obtained from <a class="reference external" href="https://github.com/googlecreativelab/quickdraw-dataset/blob/master/preview.jpg">here</a>.</span><a class="headerlink" href="#quickdraw-dataset-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 47 </span><span class="caption-text">Screenshot of a sample of Google’s <a class="reference external" href="https://quickdraw.withgoogle.com/">“Quick, Draw!”</a> drawings obtained from <a class="reference external" href="https://github.com/googlecreativelab/quickdraw-dataset/blob/master/preview.jpg">here</a>.</span><a class="headerlink" href="#quickdraw-dataset-fig" title="Permalink to this image">¶</a></p>
 </div>
 <p>The Quick Draw Dataset is a collection of 50 million drawings across 345 categories, contributed by players of the game Quick, Draw!.
 The drawings were captured as timestamped vectors, tagged with metadata including what the player was asked to draw and in which country the player was located.</p>
 <p>The format is not SVG but a custom, simple to understand format.</p>
 <div class="figure align-default" id="quickdraw-cat-fig">
 <a class="reference internal image-reference" href="../../_images/google_quickdraw_cats.png"><img alt="Sample of cat drawings from the Google Quickdraw dataset" src="../../_images/google_quickdraw_cats.png" style="width: 900px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 35 </span><span class="caption-text">Screenshot of a sample of catdrawings from Google’s <a class="reference external" href="https://quickdraw.withgoogle.com/">“Quick, Draw!”</a> drawings obtained from <a class="reference external" href="https://quickdraw.withgoogle.com/data/cat">here</a>.</span><a class="headerlink" href="#quickdraw-cat-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 48 </span><span class="caption-text">Screenshot of a sample of catdrawings from Google’s <a class="reference external" href="https://quickdraw.withgoogle.com/">“Quick, Draw!”</a> drawings obtained from <a class="reference external" href="https://quickdraw.withgoogle.com/data/cat">here</a>.</span><a class="headerlink" href="#quickdraw-cat-fig" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="view-dataset">
 <h3>View dataset<a class="headerlink" href="#view-dataset" title="Permalink to this headline">¶</a></h3>
@@ -551,11 +556,11 @@ The drawings were captured as timestamped vectors, tagged with metadata includin
 <div class='prev-next-bottom'>
     
     <div id="prev">
-        <a class="left-prev" href="../other_relevant_work.html" title="previous page">
+        <a class="left-prev" href="greydanus_2016.html" title="previous page">
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Other relevant work</p>
+                <p class="prevnext-title">Sam Greydanus (2016) | Scribe: Generating Realistic Handwriting with TensorFlow</p>
             </div>
         </a>
     </div>
