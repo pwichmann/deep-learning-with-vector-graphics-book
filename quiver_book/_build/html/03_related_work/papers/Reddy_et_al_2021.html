@@ -466,20 +466,20 @@
 </div>
 <div class="figure align-default" id="reddy-2021-cover">
 <a class="reference internal image-reference" href="../../_images/reddy_2021_cover.png"><img alt="Reddy 2021 paper" src="../../_images/reddy_2021_cover.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 39 </span><span class="caption-text">Screenshot of the Im2Vec <a class="reference external" href="https://arxiv.org/abs/2102.02798">paper</a> by Reddy et al. (2021)</span><a class="headerlink" href="#reddy-2021-cover" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 43 </span><span class="caption-text">Screenshot of the Im2Vec <a class="reference external" href="https://arxiv.org/abs/2102.02798">paper</a> by Reddy et al. (2021)</span><a class="headerlink" href="#reddy-2021-cover" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="architecture">
 <h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-default" id="reddy-2021-architecture">
 <a class="reference internal image-reference" href="../../_images/reddy_2021_architecture.png"><img alt="Reddy 2021 architecture" src="../../_images/reddy_2021_architecture.png" style="width: 700px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 40 </span><span class="caption-text">Screenshot of the Im2Vec architecture; taken from the <a class="reference external" href="https://arxiv.org/abs/2102.02798">paper</a> by Reddy et al. (2021)</span><a class="headerlink" href="#reddy-2021-architecture" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 44 </span><span class="caption-text">Screenshot of the Im2Vec architecture; taken from the <a class="reference external" href="https://arxiv.org/abs/2102.02798">paper</a> by Reddy et al. (2021)</span><a class="headerlink" href="#reddy-2021-architecture" title="Permalink to this image">¶</a></p>
 </div>
 <p>Im2Vec overall architecture is an end-to-end variational autoencoder (VAE). The architecture does not rely on vector graphics as inputs. Instead, a raster image is encoded to a latent code <span class="math notranslate nohighlight">\(z\)</span> (left part of the figure above).
 This latent code <span class="math notranslate nohighlight">\(z\)</span> is then decoded to a set of ordered closed vector paths using a Path Decoder. The vector paths are then rasterized using DiffVG and composited together using DiffComp to obtain a rasterized overall output. This rasterized overall output can then be compared to the ground truth raster target for supervision at training time.
 The model can handle graphics with multiple component paths. It uses an RNN to produce a latent code <span class="math notranslate nohighlight">\(z_t\)</span> for each path, from the global latent code <span class="math notranslate nohighlight">\(z\)</span> representing the graphic as a whole.</p>
 <div class="figure align-default" id="reddy-2021-architecture-decoder">
 <a class="reference internal image-reference" href="../../_images/reddy_2021_architecture_decoder.png"><img alt="Reddy 2021 architecture - the path decoder" src="../../_images/reddy_2021_architecture_decoder.png" style="width: 700px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 41 </span><span class="caption-text">Screenshot of the Im2Vec path decoder; taken from the <a class="reference external" href="https://arxiv.org/abs/2102.02798">paper</a> by Reddy et al. (2021)</span><a class="headerlink" href="#reddy-2021-architecture-decoder" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 45 </span><span class="caption-text">Screenshot of the Im2Vec path decoder; taken from the <a class="reference external" href="https://arxiv.org/abs/2102.02798">paper</a> by Reddy et al. (2021)</span><a class="headerlink" href="#reddy-2021-architecture-decoder" title="Permalink to this image">¶</a></p>
 </div>
 <p>The figure above shows the architecture of the path decoder which takes the latent codes for each path and outputs the corresponding vector graphic. The vector graphic output is limited to closed Bézier paths.</p>
 </div>

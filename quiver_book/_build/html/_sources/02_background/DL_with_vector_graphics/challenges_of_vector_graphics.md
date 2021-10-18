@@ -152,7 +152,7 @@ Here is the SVG code for the logo above:
 
 
 :::{figure-md} edge_logo_svg
-<img src="edge_logo_svg.png" alt="edge_logo_svg" width="600px">
+<img src="edge_logo_svg.png" alt="edge_logo_svg" width="900px">
 
 SVG code of the Microsoft Edge logo
 :::

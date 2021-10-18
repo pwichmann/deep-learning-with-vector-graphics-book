@@ -22,7 +22,7 @@ Usually, SVG path data is comma- and whitespace-separated. See the SVG example b
 
 ```
 
-By optimizing above SVG code, one can reduce the size of this already small file from 266 bytes to 211 bytes and save about 21%. Larger SVGs can be reduced by 70% and more! The result of the optimization (done by [svgminify.com](https://www.svgminify.com/)) is shown below:
+By optimizing above SVG code, one can reduce the size of this already small file from 266 bytes to 211 bytes and save about 21%. Larger SVGs can be reduced by 70% and more! The result of the optimization (done by [svgminify.com](https://www.svgminify.com/); another tools is [SVGOMG](https://jakearchibald.github.io/svgomg/)) is shown below:
 
 ```XML
 <?xml version="1.0" encoding="UTF-8"?>
