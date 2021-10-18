@@ -162,14 +162,6 @@ Not directly supported commands are: `{ VerticalLineTo V; HorizontalLineTo H; Sm
 | **[Elliptical Arc Curve](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#elliptical_arc_curve) `A`** | Elliptical arc curves are curves defined as a portion of an ellipse. | Converted to Cubic Bézier curves which can approximate the elliptical arc. |
 
 
-The conversion of elliptical arc curves (a / A commands) can also be performed as part of the preprocessing with SVGO.
-The corresponding configuration in the `svgo_config.yml` is:
-
-```yml
-  - convertShapeToPath:
-      convertArcs: true
-```
-
 ##### 4. Path simplification
 
 To simplify the neural network's task of representation learning, paths are simplified. Generally, the aim is to reduce the number of points that form a shape. But, in some instances, the number of points can increase if the resolution of a curve would otherwise be too low.

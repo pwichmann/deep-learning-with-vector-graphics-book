@@ -18,6 +18,11 @@ The SVG format defines **6 types of path commands** and a total of **20 commands
 | 6 | **ClosePath** | The command draws a straight line back to the start of the path. Both uppercase or lowercase z here have identical outcomes. | z  | Z  |
 
 
+### Bézier curves
+
+An absolutely amazing interactive online book on Bézier curves is "A Primer on Bézier Curves" which is freely accessible [here](https://pomax.github.io/bezierinfo/#toc).
+
+
 ### Analysing an example SVG
 
 

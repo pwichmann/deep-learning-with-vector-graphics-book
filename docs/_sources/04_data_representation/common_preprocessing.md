@@ -377,22 +377,22 @@ In the following, we assume that we have harmonized all commands and only use th
 
 It appears that the minimal set of path data commands is the following subset:
 
-* [MoveTo](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#moveto_path_commands) `M`
-* [LineTo](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#lineto_path_commands) `L`
-* [Cubic Bézier Curve](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#cubic_b%C3%A9zier_curve) `C`
-* [ClosePath](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#closepath) `Z`
+* `M` [MoveTo](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#moveto_path_commands) 
+* `L` [LineTo](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#lineto_path_commands) 
+* `C` [Cubic Bézier Curve](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#cubic_b%C3%A9zier_curve) 
+* `Z` [ClosePath](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#closepath) 
 
 The following commands can be replaced or at least approximated by the four commands listed above:
 
 
-| Unsupported commands | Explanation | Replacement |
-|---|---|---|
-| **[VerticalLineTo](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#lineto_path_commands) `V`** | This is just a simple way of defining a vertical line. LineTo is the general commands for all types of straight lines and can also represent vertical lines. | LineTo L |
-| **[HorizontalLineTo](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#lineto_path_commands) `H`** | This is just a simple way of defining a horizontal line. LineTo is the general commands for all types of straight lines and can also represent horizontal lines. | LineTo L |
-| **[SmoothCubicBezier](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#cubic_b%C3%A9zier_curve) `S`** | This is just a simple way of defining a smooth cubic bézier curve. The cubic bézier C is the general commands for all types of cubic bézier curves and can also represent smooth cubic béziers. | Cubic Bézier Curve C |
-| **[Quadratic Bézier Curve](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#quadratic_b%C3%A9zier_curve) `Q`** | Higher-order cubic bézier curves can also represent quadratic bézier curves | Cubic Bézier Curve C |
-| **[Smooth Quadratic Bezier](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#quadratic_b%C3%A9zier_curve) `T`** | This is just a simple way of defining a smooth quadratic bézier curve. The cubic bézier C can also represent all quadratic, including smooth quadratic béziers. | Cubic  Bézier Curve C |
-| **[Elliptical Arc Curve](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#elliptical_arc_curve) `A`** | Elliptical arc curves are curves defined as a portion of an ellipse. | Converted to Cubic Bézier curves which can approximate the elliptical arc. |
+| Commands that can be replaced or approximated | Letter | Explanation | Replacement |
+|---|---|---|---|
+| **[VerticalLineTo](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#lineto_path_commands)** | `V` | This is just a simple way of defining a vertical line. LineTo is the general commands for all types of straight lines and can also represent vertical lines. | LineTo L |
+| **[HorizontalLineTo](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#lineto_path_commands)** | `H` | This is just a simple way of defining a horizontal line. LineTo is the general commands for all types of straight lines and can also represent horizontal lines. | LineTo L |
+| **[SmoothCubicBezier](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#cubic_b%C3%A9zier_curve)** | `S` | This is just a simple way of defining a smooth cubic bézier curve. The cubic bézier C is the general commands for all types of cubic bézier curves and can also represent smooth cubic béziers. | Cubic Bézier Curve C |
+| **[Quadratic Bézier Curve](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#quadratic_b%C3%A9zier_curve)** | `Q` | Higher-order cubic bézier curves can also represent quadratic bézier curves | Cubic Bézier Curve C |
+| **[Smooth Quadratic Bezier](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#quadratic_b%C3%A9zier_curve)** | `T` | This is just a simple way of defining a smooth quadratic bézier curve. The cubic bézier C can also represent all quadratic, including smooth quadratic béziers. | Cubic  Bézier Curve C |
+| **[Elliptical Arc Curve](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#elliptical_arc_curve)** | `A` | Elliptical arc curves are curves defined as a portion of an ellipse. | Converted to cubic Bézier curves which can (only) approximate the elliptical arc. |
 
 
 #### Replacement of VerticalLineTo V (perfect substitute)
@@ -407,12 +407,17 @@ The following commands can be replaced or at least approximated by the four comm
 
 #### Replacement of Elliptical Arc Curve A (approximation only!)
 
-Converting an elliptical arc curve (`A` / `a`) is non-trivial. Luckily, a smart person of the name Luc Maisonobe, who -- if correctly identified -- appears to be a flight dynamics expert at CS Group and a free software developer (The Apache Software Foundation), published a technical paper titled "Drawing an elliptical arc using polylines, quadratic or cubic Bézier curves" on spaceroots.org in 2003 (domain unfortunately no longer active). Copies of this paper can still be found on the Web.
+Converting an elliptical arc curve (`A` / `a`) into more basic commands is non-trivial. 
+
+Luckily, a smart person of the name Luc Maisonobe, who -- if correctly identified -- appears to be a flight dynamics expert at CS Group and a free software developer (The Apache Software Foundation), published a technical paper titled "Drawing an elliptical arc using polylines, quadratic or cubic Bézier curves" on spaceroots.org in 2003 (domain unfortunately no longer active). Copies of this paper can still be found on the Web.
 
 
 
 [Stackoverflow comment](https://stackoverflow.com/a/5589051): The error is most dependent on the difference of the start and end angles. I've had good success by limiting the angle difference to 60°. That is, I make a separate cubic segment for every 60° (or fraction thereof) and chain them together.
 
+Further material can be found here:
+* https://pomax.github.io/BezierInfo-2/#circles_cubic
+* https://mortoray.com/2017/02/16/rendering-an-svg-elliptical-arc-as-bezier-curves/
 
 
 The conversion of elliptical arc curves (a / A commands) can also be performed as part of the preprocessing with SVGO.

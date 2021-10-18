@@ -926,43 +926,50 @@ Thus, they can be replaced the same way as polygons – just without the closing
 <p>In the following, we assume that we have harmonized all commands and only use the absolute positioning.</p>
 <p>It appears that the minimal set of path data commands is the following subset:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#moveto_path_commands">MoveTo</a> <code class="docutils literal notranslate"><span class="pre">M</span></code></p></li>
-<li><p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#lineto_path_commands">LineTo</a> <code class="docutils literal notranslate"><span class="pre">L</span></code></p></li>
-<li><p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#cubic_b%C3%A9zier_curve">Cubic Bézier Curve</a> <code class="docutils literal notranslate"><span class="pre">C</span></code></p></li>
-<li><p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#closepath">ClosePath</a> <code class="docutils literal notranslate"><span class="pre">Z</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">M</span></code> <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#moveto_path_commands">MoveTo</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">L</span></code> <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#lineto_path_commands">LineTo</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C</span></code> <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#cubic_b%C3%A9zier_curve">Cubic Bézier Curve</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Z</span></code> <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#closepath">ClosePath</a></p></li>
 </ul>
 <p>The following commands can be replaced or at least approximated by the four commands listed above:</p>
 <table class="colwidths-auto table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Unsupported commands</p></th>
+<tr class="row-odd"><th class="head"><p>Commands that can be replaced or approximated</p></th>
+<th class="head"><p>Letter</p></th>
 <th class="head"><p>Explanation</p></th>
 <th class="head"><p>Replacement</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><strong><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#lineto_path_commands">VerticalLineTo</a> <code class="docutils literal notranslate"><span class="pre">V</span></code></strong></p></td>
+<tr class="row-even"><td><p><strong><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#lineto_path_commands">VerticalLineTo</a></strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">V</span></code></p></td>
 <td><p>This is just a simple way of defining a vertical line. LineTo is the general commands for all types of straight lines and can also represent vertical lines.</p></td>
 <td><p>LineTo L</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#lineto_path_commands">HorizontalLineTo</a> <code class="docutils literal notranslate"><span class="pre">H</span></code></strong></p></td>
+<tr class="row-odd"><td><p><strong><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#lineto_path_commands">HorizontalLineTo</a></strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">H</span></code></p></td>
 <td><p>This is just a simple way of defining a horizontal line. LineTo is the general commands for all types of straight lines and can also represent horizontal lines.</p></td>
 <td><p>LineTo L</p></td>
 </tr>
-<tr class="row-even"><td><p><strong><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#cubic_b%C3%A9zier_curve">SmoothCubicBezier</a> <code class="docutils literal notranslate"><span class="pre">S</span></code></strong></p></td>
+<tr class="row-even"><td><p><strong><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#cubic_b%C3%A9zier_curve">SmoothCubicBezier</a></strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">S</span></code></p></td>
 <td><p>This is just a simple way of defining a smooth cubic bézier curve. The cubic bézier C is the general commands for all types of cubic bézier curves and can also represent smooth cubic béziers.</p></td>
 <td><p>Cubic Bézier Curve C</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#quadratic_b%C3%A9zier_curve">Quadratic Bézier Curve</a> <code class="docutils literal notranslate"><span class="pre">Q</span></code></strong></p></td>
+<tr class="row-odd"><td><p><strong><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#quadratic_b%C3%A9zier_curve">Quadratic Bézier Curve</a></strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Q</span></code></p></td>
 <td><p>Higher-order cubic bézier curves can also represent quadratic bézier curves</p></td>
 <td><p>Cubic Bézier Curve C</p></td>
 </tr>
-<tr class="row-even"><td><p><strong><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#quadratic_b%C3%A9zier_curve">Smooth Quadratic Bezier</a> <code class="docutils literal notranslate"><span class="pre">T</span></code></strong></p></td>
+<tr class="row-even"><td><p><strong><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#quadratic_b%C3%A9zier_curve">Smooth Quadratic Bezier</a></strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">T</span></code></p></td>
 <td><p>This is just a simple way of defining a smooth quadratic bézier curve. The cubic bézier C can also represent all quadratic, including smooth quadratic béziers.</p></td>
 <td><p>Cubic  Bézier Curve C</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#elliptical_arc_curve">Elliptical Arc Curve</a> <code class="docutils literal notranslate"><span class="pre">A</span></code></strong></p></td>
+<tr class="row-odd"><td><p><strong><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#elliptical_arc_curve">Elliptical Arc Curve</a></strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">A</span></code></p></td>
 <td><p>Elliptical arc curves are curves defined as a portion of an ellipse.</p></td>
-<td><p>Converted to Cubic Bézier curves which can approximate the elliptical arc.</p></td>
+<td><p>Converted to cubic Bézier curves which can (only) approximate the elliptical arc.</p></td>
 </tr>
 </tbody>
 </table>
@@ -983,8 +990,14 @@ Thus, they can be replaced the same way as polygons – just without the closing
 </div>
 <div class="section" id="replacement-of-elliptical-arc-curve-a-approximation-only">
 <h4>Replacement of Elliptical Arc Curve A (approximation only!)<a class="headerlink" href="#replacement-of-elliptical-arc-curve-a-approximation-only" title="Permalink to this headline">¶</a></h4>
-<p>Converting an elliptical arc curve (<code class="docutils literal notranslate"><span class="pre">A</span></code> / <code class="docutils literal notranslate"><span class="pre">a</span></code>) is non-trivial. Luckily, a smart person of the name Luc Maisonobe, who – if correctly identified – appears to be a flight dynamics expert at CS Group and a free software developer (The Apache Software Foundation), published a technical paper titled “Drawing an elliptical arc using polylines, quadratic or cubic Bézier curves” on <a class="reference external" href="http://spaceroots.org">spaceroots.org</a> in 2003 (domain unfortunately no longer active). Copies of this paper can still be found on the Web.</p>
+<p>Converting an elliptical arc curve (<code class="docutils literal notranslate"><span class="pre">A</span></code> / <code class="docutils literal notranslate"><span class="pre">a</span></code>) into more basic commands is non-trivial.</p>
+<p>Luckily, a smart person of the name Luc Maisonobe, who – if correctly identified – appears to be a flight dynamics expert at CS Group and a free software developer (The Apache Software Foundation), published a technical paper titled “Drawing an elliptical arc using polylines, quadratic or cubic Bézier curves” on <a class="reference external" href="http://spaceroots.org">spaceroots.org</a> in 2003 (domain unfortunately no longer active). Copies of this paper can still be found on the Web.</p>
 <p><a class="reference external" href="https://stackoverflow.com/a/5589051">Stackoverflow comment</a>: The error is most dependent on the difference of the start and end angles. I’ve had good success by limiting the angle difference to 60°. That is, I make a separate cubic segment for every 60° (or fraction thereof) and chain them together.</p>
+<p>Further material can be found here:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pomax.github.io/BezierInfo-2/#circles_cubic">https://pomax.github.io/BezierInfo-2/#circles_cubic</a></p></li>
+<li><p><a class="reference external" href="https://mortoray.com/2017/02/16/rendering-an-svg-elliptical-arc-as-bezier-curves/">https://mortoray.com/2017/02/16/rendering-an-svg-elliptical-arc-as-bezier-curves/</a></p></li>
+</ul>
 <p>The conversion of elliptical arc curves (a / A commands) can also be performed as part of the preprocessing with SVGO.
 The corresponding configuration in the <code class="docutils literal notranslate"><span class="pre">svgo_config.yml</span></code> is:</p>
 <div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>  - convertShapeToPath:
