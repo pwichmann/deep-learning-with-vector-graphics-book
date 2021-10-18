@@ -294,6 +294,11 @@
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../03_related_work/other_relevant_work/greydanus_2016.html">
+     Sam Greydanus (2016) | Scribe: Generating Realistic Handwriting with TensorFlow
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../03_related_work/other_relevant_work/google_quickdraw_2017.html">
      Google’s “Quick, Draw!” (2017)
     </a>
@@ -325,6 +330,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../04_data_representation/from_strokes_to_svg.html">
    From strokes to SVG
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../04_data_representation/common_preprocessing.html">
+   Common SVG preprocessing
   </a>
  </li>
 </ul>
@@ -459,11 +469,11 @@
 <div class="section" id="raster-images-vs-vector-graphics">
 <h2>Raster images vs. vector graphics<a class="headerlink" href="#raster-images-vs-vector-graphics" title="Permalink to this headline">¶</a></h2>
 <p>Raster images consist of a grid of pixels. The application of Deep Learning to raster images has been well-researched and is relatively straightforward.</p>
-<p>Vector graphics, on the other hand, are not based on a grid of pixels but based on mathematical descriptions of points, lines etc. in an x,y (Cartesian) coordinate system. One major advantage of vector graphics is that they are infinitely scalable. Another advantage is that their filesize is small and independent of the image’s size and resolution. This is why, for instance, fonts, icons and logos are often designed as vector graphics.</p>
+<p>Vector graphics, on the other hand, are not based on a grid of pixels but based on mathematical descriptions of points, lines etc. in an x,y (Cartesian) coordinate system. A common vector graphics format is the Scalable Vector Graphics format (SVG). One major advantage of vector graphics is that they are infinitely scalable. Another advantage is that their filesize is small and independent of the image’s size and resolution. This is why, for instance, fonts, icons and logos are often designed as vector graphics.</p>
 </div>
 <div class="section" id="why-is-deep-learning-with-vector-graphics-special">
 <h2>Why is Deep Learning with Vector Graphics special?<a class="headerlink" href="#why-is-deep-learning-with-vector-graphics-special" title="Permalink to this headline">¶</a></h2>
-<p>Deep Learning requires the input data to be represented as a collection of numeric values (also called a <em>tensor</em>).</p>
+<p>Deep Learning requires the input data to be represented as a collection of numeric values (also called a <em>tensor</em>). This book was also dubbed “<em>Scalable Tensor Graphics</em>” at some point for that reason – which sounds like an extension from vectors to multidimensional tensors.</p>
 <p>Representing a raster image as such a tensor is easy: In a simple black-and-white image, a single pixel already holds a single numeric value, e.g. from 0 (black) to 255 (white), with all the shades of grey in between. So, the units of an artificial neural network can (more or less) directly be fed with these values.</p>
 <p>Vector graphics are different. One standard format for vector graphics is the Scalable Vector Graphics format - or short: SVG. This format is XML-based and, thus, a text-based description of the image using a hierarchical structure of nested tags and their associated attributes.</p>
 <p>Below is an example of simple SVG:</p>

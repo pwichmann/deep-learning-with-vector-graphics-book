@@ -24,7 +24,7 @@ Feel free to use excerpts from this book as long as you cite the source, e.g. as
 
 **Wichmann, Pascal. (2021). Deep Learning with Vector Graphics. https://pwichmann.github.io/deep-learning-with-vector-graphics-book**
 
-Please also cite the original authors where applicable, such as when you copy figures from academic papers.
+Please also do not forget to cite the original authors where applicable, such as when you copy figures from this book that were taken from academic papers.
 
 :::
 

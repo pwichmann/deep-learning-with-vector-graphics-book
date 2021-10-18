@@ -100,18 +100,6 @@ Is it possible to keep these basic SVG shapes as part of the feature vector? Wou
 
 ###### Decomposition of circles
 
-The decomposition of circles into four or just two elliptical arc curves is possible without any loss in visual quality.
-
-As stated in the [SVG standards for a circle](https://www.w3.org/TR/SVG/shapes.html#CircleElement), ...
-
-> mathematically, a ‘circle’ element is mapped to an equivalent ‘path’ element that consists of four elliptical arc segments, each covering a quarter of the circle. The path begins at the "3 o'clock" point on the radius and proceeds in a clock-wise direction (before any transformations). The rx and ry parameters to the arc commands are both equal to the used value of the r property, after conversion to local user units, while the x-axis-rotation, the large-arc-flag, and the sweep-flag are all set to zero. The coordinates are computed as follows, where cx, cy, and r are the used values of the equivalent properties, converted to user units:
-> 1. A move-to command to the point cx+r,cy;
-> 2. arc to cx,cy+r;
-> 3. arc to cx-r,cy;
-> 4. arc to cx,cy-r;
-> 5. arc with a [segment-completing close path operation](https://www.w3.org/TR/SVG/paths.html#TermSegment-CompletingClosePath) [not supported yet?].
-
-
 DeepSVG implements a decomposition using 4 elliptical arcs. The example from the paper is a circle defined as follows:
 
 ```SVG
@@ -142,84 +130,13 @@ The first arc starts at the top point of the circle (remember that $y=0$ is the 
 
 
 :::{figure-md} deepsvg_circle_decomposition_4_arcs
-<img src="deepsvg_circle_decomposition_4_arcs.png" alt="deepsvg_circle_decomposition_4_arcs" width="300px">
+<img src="deepsvg_circle_decomposition_4_arcs.png" alt="deepsvg_circle_decomposition_4_arcs" width="200px">
 
 Circle decomposition in DeepSVG using four elliptical arc curves; center figure from Appendix of the [DeepSVG paper](https://arxiv.org/abs/2007.11301)
 :::
 
 
-The SVG decomposition of circles to paths (and vice versa) has also been covered by this [article by the smashingmagazine.com](https://www.smashingmagazine.com/2019/03/svg-circle-decomposition-paths/).
-
-
-```SVG
-<svg
-   xmlns="http://www.w3.org/2000/svg" 
-   width="100"
-   height="100"
-   version="1.1">
-    
-    <circle cx="50" cy="50" r="25"/>
-    
-</svg>
-
-```
-
-The option for circle decomposition proposed in the article is to use a MoveTo command followed by two half-circle elliptical arc segments, each describing a half-circle. 
-
-```SVG
-<path
-  d="
-    M 25, 50
-    a 25,25 0 1,1 50,0
-    a 25,25 0 1,1 -50,0
-  "
-/>
-```
-
-Let's assume, we want to replace had a center point $C$ at (50, 50) and a radius $r$ of 25.
-Since we no longer define a circle but a a path, we need to define a new starting point for the overall shape on the circles outline. One possible way is to start at the leftmost point of the circle. To get there, we can use the same y-coordinate as the center point. The x-coordinate is the center point's x-coordinate minus the radius.
-
-So, as a first command, we move the pen to the absolute position $(x, y) = (C_x - r, C_y) = (50 - 25, 50) = (25, 50)$. So the command is: `M 25, 50`.
-
-Then we can start to draw the first elliptical arc curve using a relative positioning: 
-The parameters of the first arc `25,25 0 1,1 50,0` mean the following:
-
-* `25`: The relative X radius of the arc;
-* `25`: The relative Y radius of the arc;
-* `0`: angle in degrees (rotation of the ellipse relative to the x axis) 
-* `1`: large-arc-flag, a binary variable indicating which arc shall be drawn: the large (1) or the small one (0)
-* `1`: sweep-flag, a binary variable indicating which arc shall be drawn: a clockwise turning arc (1) or the counter-clockwise turning one (0)
-* `50`: The ending X coordinate (relative) of the arc
-* `0`: The ending Y coordinate (relative) of the arc
-
-The radius of the arc along either dimension needs to be the same as the radius of the circle we replace. These are the first two parameters.
-
-The last two parameters define the end point of our arc. Our current position (25, 50), the leftmost point of the circle. We want draw a half-circle, which means we want to end at the rightmost point on the other side of the cirle. That point is on the same vertical position but the circle's width (2 x the radius), i.e. 50, further to the right, i.e. $(25 + 50, 50 + 0) = (75, 50)$.
-
-The ellipse is not rotated relative to the x axis. So, the third parameter is set to 0 (degrees).
-
-The information so far is not enough to know which of the possible arcs need to be drawn. The two remaining binary flags provide that specification. The first flag has no practical effect. The second flag, however, defines that the arc shall be drawn in clockwise direction from our current point. Which means that the first arc describes the upper half-circle.
-
-A closing z command may also be required but was not used in the article -- likely since it does not impact the visual representation.
-
-
-:::{figure-md} deepsvg_circle_decomposition_upper_arc
-<img src="deepsvg_circle_decomposition_upper_arc.png" alt="deepsvg_circle_decomposition_upper_arc" width="400px">
-
-Only the upper half-circle defined in SVG using an elliptical arc command; code shown on top; resulting half-circle at the bottom; visualized using [codepen.io](https://codepen.io/)
-:::
-
-
-Adding a second elliptical arc to describe the lower half-circle completes the circle. Note that only the end point needs to be adjusted. We want to end up 50 pixels to the left again and at the same vertical position.
-
-:::{figure-md} deepsvg_circle_decomposition_full_circle
-<img src="deepsvg_circle_decomposition_full_circle.png" alt="deepsvg_circle_decomposition_full_circle" width="400px">
-
-Full circle described by two half-circles formed by elliptical arc curves; visualized using [codepen.io](https://codepen.io/)
-:::
-
-
-##### 3. Converting commands that are not M, C, L, Z
+##### 3. Converting commands that are not M, L, C, Z
 
 All [path commands](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#path_commands) that are not part of the subset supported by DeepSVG are converted and represented by commands from the supported subset.
 
@@ -274,6 +191,8 @@ Consequently, the simplification is done in two steps:
 ```{admonition} Open question
 :class: important
 Are these segments connected again later? Or do they remain split?
+
+This could be a stupid question. The paths get just divided in the path data. They likely remain connected.
 ```
 
 ###### Simplification examples & discussion

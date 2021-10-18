@@ -8,11 +8,11 @@ In this sense, this book also serves as an hommage to those amazingly talented a
 
 Raster images consist of a grid of pixels. The application of Deep Learning to raster images has been well-researched and is relatively straightforward.
 
-Vector graphics, on the other hand, are not based on a grid of pixels but based on mathematical descriptions of points, lines etc. in an x,y (Cartesian) coordinate system. One major advantage of vector graphics is that they are infinitely scalable. Another advantage is that their filesize is small and independent of the image's size and resolution. This is why, for instance, fonts, icons and logos are often designed as vector graphics.
+Vector graphics, on the other hand, are not based on a grid of pixels but based on mathematical descriptions of points, lines etc. in an x,y (Cartesian) coordinate system. A common vector graphics format is the Scalable Vector Graphics format (SVG). One major advantage of vector graphics is that they are infinitely scalable. Another advantage is that their filesize is small and independent of the image's size and resolution. This is why, for instance, fonts, icons and logos are often designed as vector graphics.
 
 ## Why is Deep Learning with Vector Graphics special?
 
-Deep Learning requires the input data to be represented as a collection of numeric values (also called a *tensor*). 
+Deep Learning requires the input data to be represented as a collection of numeric values (also called a *tensor*). This book was also dubbed "*Scalable Tensor Graphics*" at some point for that reason -- which sounds like an extension from vectors to multidimensional tensors.
 
 Representing a raster image as such a tensor is easy: In a simple black-and-white image, a single pixel already holds a single numeric value, e.g. from 0 (black) to 255 (white), with all the shades of grey in between. So, the units of an artificial neural network can (more or less) directly be fed with these values.
 
