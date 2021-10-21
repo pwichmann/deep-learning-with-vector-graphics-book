@@ -1,6 +1,6 @@
 # "De-minifying" path data
 
-Due to its use for Web pages where fast loading can be paramount, the SVG format is obsessed with minimizing file size. To save a few characters, SVG path data is often shortened which makes it hard to parse the path parameters. This is done using common SVG optimizing tools, such as [SVGO](https://github.com/svg/svgo). 
+Due to its use for Web pages where fast loading can be paramount, the SVG format is obsessed with minimizing file size. To save a few characters, SVG path data is often shortened which makes it hard to parse the path parameters. This is done using common SVG optimizing tools, such as [SVGO](https://github.com/svg/svgo). Especially SVGs obtained from the Web are likely to have been optimized.
 
 Unfortunately, this optimization makes it harder for a human to understand the already fairly abstract path data. And many Deep Learning projects aiming to ingest SVG files as training data are not sophisticated enough to deal with minified SVGs out of the box.
 

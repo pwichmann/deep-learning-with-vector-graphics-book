@@ -5,54 +5,54 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Common SVG preprocessing &#8212; Deep Learning with Vector Graphics</title>
+    <title>Campbell and Kautz (2014) | Learning a Manifold of Fonts &#8212; Deep Learning with Vector Graphics</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     
       
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="First steps" href="preprocessing/first_steps.html" />
-    <link rel="prev" title="From strokes to SVG" href="from_strokes_to_svg.html" />
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Das et al. (2020) | BézierSketch: A generative model for scalable vector sketches" href="Das_2020.html" />
+    <link rel="prev" title="Further academic publications" href="../further_academic_papers.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -69,26 +69,26 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+    <a class="navbar-brand text-wrap" href="../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
         
       
       
-      <img src="../_static/q_logo.svg" class="logo" alt="logo">
+      <img src="../../_static/q_logo.svg" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Deep Learning with Vector Graphics</h1>
       
     </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../index.html">
+  <a class="reference internal" href="../../index.html">
    Deep Learning with Vector Graphics
   </a>
  </li>
@@ -100,12 +100,12 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../01_about/this_book.html">
+  <a class="reference internal" href="../../01_about/this_book.html">
    This book
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../01_about/the_author.html">
+  <a class="reference internal" href="../../01_about/the_author.html">
    The author
   </a>
  </li>
@@ -117,7 +117,7 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../02_background/vector_graphics.html">
+  <a class="reference internal" href="../../02_background/vector_graphics.html">
    Vector Graphics
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -127,14 +127,14 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../02_background/vector_graphics/svg.html">
+    <a class="reference internal" href="../../02_background/vector_graphics/svg.html">
      Scalable Vector Graphics (SVG) format
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../02_background/deep_learning.html">
+  <a class="reference internal" href="../../02_background/deep_learning.html">
    Deep Learning
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
@@ -144,24 +144,24 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../02_background/deep_learning/rnn.html">
+    <a class="reference internal" href="../../02_background/deep_learning/rnn.html">
      RNN
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../02_background/deep_learning/lstm.html">
+    <a class="reference internal" href="../../02_background/deep_learning/lstm.html">
      LSTM
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../02_background/deep_learning/mdn.html">
+    <a class="reference internal" href="../../02_background/deep_learning/mdn.html">
      Mixture Density Networks (MDN)
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../02_background/DL_with_vector_graphics.html">
+  <a class="reference internal" href="../../02_background/DL_with_vector_graphics.html">
    Deep Learning with Vector Graphics
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
@@ -171,12 +171,12 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../02_background/DL_with_vector_graphics/arguing_for_e2e_approach.html">
+    <a class="reference internal" href="../../02_background/DL_with_vector_graphics/arguing_for_e2e_approach.html">
      Arguing for E-2-E approach
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../02_background/DL_with_vector_graphics/challenges_of_vector_graphics.html">
+    <a class="reference internal" href="../../02_background/DL_with_vector_graphics/challenges_of_vector_graphics.html">
      Challenges of Vector Graphics
     </a>
    </li>
@@ -188,9 +188,9 @@
   Relevant work
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../03_related_work/academic_papers.html">
+  <a class="reference internal" href="../academic_papers.html">
    Key academic publications
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
@@ -200,96 +200,96 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../03_related_work/papers/Graves_2014.html">
+    <a class="reference internal" href="../papers/Graves_2014.html">
      Alex Graves (2014) | Generating Sequences With Recurrent Neural Networks
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../03_related_work/papers/Ha_2015_handwriting.html">
+    <a class="reference internal" href="../papers/Ha_2015_handwriting.html">
      David Ha (Dec 2015) | Handwriting Generation Demo in TensorFlow (blog post)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../03_related_work/papers/Ha_2015_kanji.html">
+    <a class="reference internal" href="../papers/Ha_2015_kanji.html">
      David Ha (Dec 2015) | Recurrent Net Dreams Up Fake Chinese Characters in Vector Format with TensorFlow (blog post)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../03_related_work/papers/Carter_et_al_2016.html">
+    <a class="reference internal" href="../papers/Carter_et_al_2016.html">
      Carter et al. (2016) | Four Experiments in Handwriting with a Neural Network (Distill publication)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../03_related_work/papers/Ha_Eck_2017.html">
+    <a class="reference internal" href="../papers/Ha_Eck_2017.html">
      Ha &amp; Eck (2017) | A Neural Representation of Sketch Drawings (sketch-rnn)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../03_related_work/papers/Zhong_2018.html">
+    <a class="reference internal" href="../papers/Zhong_2018.html">
      Kimberli Zhong (2018) | Learning to Draw Vector Graphics: Applying Generative Modeling to Font Glyphs (Master thesis @ MIT)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../03_related_work/papers/Lopes_et_al_2019.html">
+    <a class="reference internal" href="../papers/Lopes_et_al_2019.html">
      Lopes et al. (2019) | A Learned Representation for Scalable Vector Graphics (svg-vae)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../03_related_work/papers/Carlier_et_al_2020.html">
+    <a class="reference internal" href="../papers/Carlier_et_al_2020.html">
      Carlier et al. (2020) | DeepSVG: A Hierarchical Generative Network for Vector Graphics Animation
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../03_related_work/papers/Li_et_al_2020.html">
+    <a class="reference internal" href="../papers/Li_et_al_2020.html">
      Li et al. (2020) | Differentiable Vector Graphics Rasterization for Editing and Learning (diffvg)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../03_related_work/papers/Reddy_et_al_2021.html">
+    <a class="reference internal" href="../papers/Reddy_et_al_2021.html">
      Reddy et al. (2021) | Im2Vec: Synthesizing Vector Graphics without Vector Supervision
     </a>
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../03_related_work/further_academic_papers.html">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../further_academic_papers.html">
    Further academic publications
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
   <label for="toctree-checkbox-5">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../03_related_work/further_academic_papers/campbell_and_kautz_2014.html">
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Campbell and Kautz (2014) | Learning a Manifold of Fonts
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../03_related_work/further_academic_papers/Das_2020.html">
+    <a class="reference internal" href="Das_2020.html">
      Das et al. (2020) | BézierSketch: A generative model for scalable vector sketches
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../03_related_work/further_academic_papers/Das_2021.html">
+    <a class="reference internal" href="Das_2021.html">
      Das et al. (2021) | Cloud2Curve: Generation and Vectorization of Parametric Sketches
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../03_related_work/further_academic_papers/yang_2021_sketchaa.html">
+    <a class="reference internal" href="yang_2021_sketchaa.html">
      Yang et al. (2021) | SketchAA: Abstract Representation for Abstract Sketches
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../03_related_work/further_academic_papers/wang_and_lian_2021.html">
+    <a class="reference internal" href="wang_and_lian_2021.html">
      Wang and Lian (2021) | DeepVecFont: Synthesizing High-quality Vector Fonts via Dual-modality Learning
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../03_related_work/other_relevant_work.html">
+  <a class="reference internal" href="../other_relevant_work.html">
    Other relevant work
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
@@ -299,29 +299,29 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../03_related_work/other_relevant_work/greydanus_2016.html">
+    <a class="reference internal" href="../other_relevant_work/greydanus_2016.html">
      Sam Greydanus (2016) | Scribe: Generating Realistic Handwriting with TensorFlow
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../03_related_work/other_relevant_work/google_quickdraw_2017.html">
+    <a class="reference internal" href="../other_relevant_work/google_quickdraw_2017.html">
      Google’s “Quick, Draw!” (2017)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../03_related_work/other_relevant_work/vectoglyph_2019.html">
+    <a class="reference internal" href="../other_relevant_work/vectoglyph_2019.html">
      Nicolas Boillot’s Vectoglyph (2019)
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../03_related_work/other_relevant_work/gan_xml_fixer_2019.html">
+    <a class="reference internal" href="../other_relevant_work/gan_xml_fixer_2019.html">
      GAN XML Fixer (2019)
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../03_related_work/datasets.html">
+  <a class="reference internal" href="../datasets.html">
    Datasets
   </a>
  </li>
@@ -331,64 +331,64 @@
   Data representation
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="from_strokes_to_svg.html">
+  <a class="reference internal" href="../../04_data_representation/from_strokes_to_svg.html">
    From strokes to SVG
   </a>
  </li>
- <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../04_data_representation/common_preprocessing.html">
    Common SVG preprocessing
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
   <label for="toctree-checkbox-7">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="preprocessing/first_steps.html">
+    <a class="reference internal" href="../../04_data_representation/preprocessing/first_steps.html">
      First steps
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="preprocessing/deminifying_path_data.html">
+    <a class="reference internal" href="../../04_data_representation/preprocessing/deminifying_path_data.html">
      “De-minifying” path data
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="preprocessing/harmonizing_positioning.html">
+    <a class="reference internal" href="../../04_data_representation/preprocessing/harmonizing_positioning.html">
      Harmonizing command positioning logic
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="preprocessing/decomposition_of_basic_shapes.html">
+    <a class="reference internal" href="../../04_data_representation/preprocessing/decomposition_of_basic_shapes.html">
      Decomposition of basic SVG shapes to paths
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="preprocessing/reducing_path_commands.html">
+    <a class="reference internal" href="../../04_data_representation/preprocessing/reducing_path_commands.html">
      Reducing the set of different path commands
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="preprocessing/normalization.html">
+    <a class="reference internal" href="../../04_data_representation/preprocessing/normalization.html">
      Normalization
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="preprocessing/path_simplification.html">
+    <a class="reference internal" href="../../04_data_representation/preprocessing/path_simplification.html">
      Path simplification
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="preprocessing/finishing_touches.html">
+    <a class="reference internal" href="../../04_data_representation/preprocessing/finishing_touches.html">
      Finishing touches
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="preprocessing/embedding.html">
+    <a class="reference internal" href="../../04_data_representation/preprocessing/embedding.html">
      Embedding
     </a>
    </li>
@@ -402,7 +402,7 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../99_acknowledgements/acknowledgements.html">
+  <a class="reference internal" href="../../99_acknowledgements/acknowledgements.html">
    Acknowledgements
   </a>
  </li>
@@ -447,7 +447,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/04_data_representation/common_preprocessing.md"><button type="button"
+        <a class="dropdown-buttons" href="../../_sources/03_related_work/further_academic_papers/campbell_and_kautz_2014.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -467,7 +467,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F04_data_representation/common_preprocessing.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F03_related_work/further_academic_papers/campbell_and_kautz_2014.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -496,12 +496,18 @@
         
               <div>
                 
-  <div class="section" id="common-svg-preprocessing">
-<h1>Common SVG preprocessing<a class="headerlink" href="#common-svg-preprocessing" title="Permalink to this headline">¶</a></h1>
-<p>Depending on the training dataset, it may be useful to preprocess all input SVGs to avoid unnecessary complexity. SVGs found in the wild may contain all kinds of oddities.</p>
-<p>Not all steps may have to be re-implemented. Tools like <a class="reference external" href="https://github.com/svg/svgo/">SVGO</a> can be configured to perform at least some of these steps.</p>
-<p>Ideally, the preprocessed SVGs are exported again so that results can be visually inspected and preprocessing errors can be spotted as early as possible and before a training is initiated.</p>
-<div class="toctree-wrapper compound">
+  <div class="section" id="campbell-and-kautz-2014-learning-a-manifold-of-fonts">
+<h1>Campbell and Kautz (2014) | Learning a Manifold of Fonts<a class="headerlink" href="#campbell-and-kautz-2014-learning-a-manifold-of-fonts" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-available-resources-at-a-glance admonition">
+<p class="admonition-title">Available resources at a glance</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://dl.acm.org/doi/pdf/10.1145/2601097.2601212">URL to the paper on acm.org</a></p></li>
+<li><p><a class="reference external" href="http://vecg.cs.ucl.ac.uk/Projects/projects_fonts/projects_fonts.html">Project website on UCL</a></p></li>
+</ul>
+</div>
+<div class="figure align-default" id="campbell-and-kautz-2014">
+<a class="reference internal image-reference" href="../../_images/campbell_and_kautz_2014.png"><img alt="campbell_and_kautz_2014" src="../../_images/campbell_and_kautz_2014.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 44 </span><span class="caption-text">Screenshot of the “Learning a Manifold of Fonts” <a class="reference external" href="https://dl.acm.org/doi/pdf/10.1145/2601097.2601212">paper</a></span><a class="headerlink" href="#campbell-and-kautz-2014" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 
@@ -518,7 +524,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./04_data_representation"
+            path: "./03_related_work/further_academic_papers"
         },
         predefinedOutput: true
     }
@@ -535,19 +541,19 @@
 <div class='prev-next-bottom'>
     
     <div id="prev">
-        <a class="left-prev" href="from_strokes_to_svg.html" title="previous page">
+        <a class="left-prev" href="../further_academic_papers.html" title="previous page">
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">From strokes to SVG</p>
+                <p class="prevnext-title">Further academic publications</p>
             </div>
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="preprocessing/first_steps.html" title="next page">
+        <a class="right-next" href="Das_2020.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">First steps</p>
+                <p class="prevnext-title">Das et al. (2020) | BézierSketch: A generative model for scalable vector sketches</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>
@@ -573,7 +579,7 @@
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
   
   </body>

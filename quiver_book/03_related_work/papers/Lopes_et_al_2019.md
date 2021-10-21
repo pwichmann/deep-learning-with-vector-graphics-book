@@ -7,6 +7,7 @@ Lopes et al. propose a generative model for vector graphics called svg-vae. The 
 * [Implementation as part of Google's Magenta, Github repo](https://github.com/tensorflow/magenta/tree/master/magenta/models/svg_vae)
 * [Jupyter Notebook provided by Lopes](https://github.com/iRapha/magenta-demos/blob/master/colab-notebooks/vae_svg_decoding.ipynb)
 * [Model checkpoints as tar.gz](https://storage.googleapis.com/magentadata/models/svg_vae/svg_vae.tar.gz)
+* An unofficial [PyTorch implementation of SVG-VAE](https://github.com/hologerry/svg_vae_pytorch) has also been developed
 ```
 
 :::{figure-md} svg-vae-home-fig

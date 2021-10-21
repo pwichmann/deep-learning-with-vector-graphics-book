@@ -262,6 +262,11 @@
   </label>
   <ul class="current">
    <li class="toctree-l2">
+    <a class="reference internal" href="campbell_and_kautz_2014.html">
+     Campbell and Kautz (2014) | Learning a Manifold of Fonts
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="Das_2020.html">
      Das et al. (2020) | BézierSketch: A generative model for scalable vector sketches
     </a>
@@ -332,10 +337,62 @@
    From strokes to SVG
   </a>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../04_data_representation/common_preprocessing.html">
    Common SVG preprocessing
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../04_data_representation/preprocessing/first_steps.html">
+     First steps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../04_data_representation/preprocessing/deminifying_path_data.html">
+     “De-minifying” path data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../04_data_representation/preprocessing/harmonizing_positioning.html">
+     Harmonizing command positioning logic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../04_data_representation/preprocessing/decomposition_of_basic_shapes.html">
+     Decomposition of basic SVG shapes to paths
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../04_data_representation/preprocessing/reducing_path_commands.html">
+     Reducing the set of different path commands
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../04_data_representation/preprocessing/normalization.html">
+     Normalization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../04_data_representation/preprocessing/path_simplification.html">
+     Path simplification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../04_data_representation/preprocessing/finishing_touches.html">
+     Finishing touches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../04_data_representation/preprocessing/embedding.html">
+     Embedding
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p class="caption">
@@ -441,9 +498,22 @@
                 
   <div class="section" id="wang-and-lian-2021-deepvecfont-synthesizing-high-quality-vector-fonts-via-dual-modality-learning">
 <h1>Wang and Lian (2021) | DeepVecFont: Synthesizing High-quality Vector Fonts via Dual-modality Learning<a class="headerlink" href="#wang-and-lian-2021-deepvecfont-synthesizing-high-quality-vector-fonts-via-dual-modality-learning" title="Permalink to this headline">¶</a></h1>
+<p>Wang and Lian specifically address the problem of generating vector glyphs obtained from fonts. The authors build upon the work from Carlier et al. (2020), Ha and Eck (2017), and Lopes et al. (2019). The authors aim to tackle the problem that previous works were not able to synthesize visually pleasing vector glyphs and name two reasons for this issue:</p>
+<ol class="simple">
+<li><p>Single modality – they propose to use a dual modality with vector data representation <strong>and</strong> raster image data representation</p></li>
+<li><p>Location shift issue brought by the Mixture Distribution Network – they propose to employ a differentiable rasterizer (developed in the meantime by Li et al. (2020)) for imposing an additional restriction on the drawing commands predicted by the MDN</p></li>
+</ol>
+<p>This paper was submitted to SIGGRAPH Asia 2021 and published in ACM Transactions on Graphics.</p>
+<div class="admonition-available-resources-at-a-glance admonition">
+<p class="admonition-title">Available resources at a glance</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://arxiv.org/pdf/2110.06688.pdf">arXiv URL to the paper</a></p></li>
+<li><p><a class="reference external" href="https://github.com/yizhiwang96/deepvecfont">Github repository with code</a></p></li>
+</ul>
+</div>
 <div class="figure align-default" id="wang-and-lian-2021-cover">
 <a class="reference internal image-reference" href="../../_images/wang_and_lian_2021_cover.png"><img alt="Wand and Lian 2021 paper" src="../../_images/wang_and_lian_2021_cover.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 46 </span><span class="caption-text">Screenshot of the DeepVecFont <a class="reference external" href="https://arxiv.org/pdf/2110.06688.pdf">paper</a> by Wang and Lian (2021)</span><a class="headerlink" href="#wang-and-lian-2021-cover" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 47 </span><span class="caption-text">Screenshot of the DeepVecFont <a class="reference external" href="https://arxiv.org/pdf/2110.06688.pdf">paper</a> by Wang and Lian (2021)</span><a class="headerlink" href="#wang-and-lian-2021-cover" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 

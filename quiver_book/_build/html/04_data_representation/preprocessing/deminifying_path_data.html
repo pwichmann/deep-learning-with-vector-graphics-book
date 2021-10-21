@@ -53,7 +53,7 @@
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Harmonizing positioning" href="harmonizing_positioning.html" />
+    <link rel="next" title="Harmonizing command positioning logic" href="harmonizing_positioning.html" />
     <link rel="prev" title="First steps" href="first_steps.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -356,7 +356,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="harmonizing_positioning.html">
-     Harmonizing positioning
+     Harmonizing command positioning logic
     </a>
    </li>
    <li class="toctree-l2">
@@ -370,13 +370,18 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="normalization.html">
+     Normalization
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="path_simplification.html">
      Path simplification
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="normalization.html">
-     Normalization
+    <a class="reference internal" href="finishing_touches.html">
+     Finishing touches
     </a>
    </li>
    <li class="toctree-l2">
@@ -508,7 +513,7 @@
                 
   <div class="section" id="de-minifying-path-data">
 <h1>“De-minifying” path data<a class="headerlink" href="#de-minifying-path-data" title="Permalink to this headline">¶</a></h1>
-<p>Due to its use for Web pages where fast loading can be paramount, the SVG format is obsessed with minimizing file size. To save a few characters, SVG path data is often shortened which makes it hard to parse the path parameters. This is done using common SVG optimizing tools, such as <a class="reference external" href="https://github.com/svg/svgo">SVGO</a>.</p>
+<p>Due to its use for Web pages where fast loading can be paramount, the SVG format is obsessed with minimizing file size. To save a few characters, SVG path data is often shortened which makes it hard to parse the path parameters. This is done using common SVG optimizing tools, such as <a class="reference external" href="https://github.com/svg/svgo">SVGO</a>. Especially SVGs obtained from the Web are likely to have been optimized.</p>
 <p>Unfortunately, this optimization makes it harder for a human to understand the already fairly abstract path data. And many Deep Learning projects aiming to ingest SVG files as training data are not sophisticated enough to deal with minified SVGs out of the box.</p>
 <div class="section" id="background-on-minified-svg-path-data">
 <h2>Background on minified SVG path data<a class="headerlink" href="#background-on-minified-svg-path-data" title="Permalink to this headline">¶</a></h2>
@@ -605,7 +610,7 @@ The reason is that omitting separating commas and whitespace is only permitted i
         <a class="right-next" href="harmonizing_positioning.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Harmonizing positioning</p>
+                <p class="prevnext-title">Harmonizing command positioning logic</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>

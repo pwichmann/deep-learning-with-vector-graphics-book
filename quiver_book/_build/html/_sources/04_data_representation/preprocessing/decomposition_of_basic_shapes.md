@@ -412,7 +412,9 @@ The SVG format allows for rectangles with rounded corners. Rounded corners can b
 
 Please note that the attribute `stroke-linejoin="round"` achieves a similar result of rounding corners but needs to be treated separately.
 
-Converting these types of rectangles is more complicated.
+Rectangles with rounded corners have not been considered by any of the published papers. Thus, these rectangles would have been represented with normal corners.
+
+Converting rectangles with rounded corners to paths is more complicated.
 
 
 * https://stackoverflow.com/questions/10177985/svg-rounded-corner

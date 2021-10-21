@@ -9,7 +9,7 @@ The first steps include:
 
 ## (1) Filtering out unsuitable SVGs
 
-We may want to filter out SVGs that appear unsuitable for training based on some pre-defined thresholds or heuristics.
+We may want to filter out SVGs that appear unsuitable for training based on some pre-defined thresholds or heuristics. This step may be necessary especially when SVGs have been obtained from the Web and a variation within the data will be high (as opposed to SVGs that have been obtained from fonts, for example).
 
 ### Examples of rules for filtering out unsuitable SVGs
 

@@ -54,7 +54,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Reducing the set of different path commands" href="reducing_path_commands.html" />
-    <link rel="prev" title="Harmonizing positioning" href="harmonizing_positioning.html" />
+    <link rel="prev" title="Harmonizing command positioning logic" href="harmonizing_positioning.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -264,6 +264,11 @@
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/further_academic_papers/campbell_and_kautz_2014.html">
+     Campbell and Kautz (2014) | Learning a Manifold of Fonts
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../03_related_work/further_academic_papers/Das_2020.html">
      Das et al. (2020) | BézierSketch: A generative model for scalable vector sketches
     </a>
@@ -356,7 +361,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="harmonizing_positioning.html">
-     Harmonizing positioning
+     Harmonizing command positioning logic
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -370,13 +375,18 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="normalization.html">
+     Normalization
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="path_simplification.html">
      Path simplification
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="normalization.html">
-     Normalization
+    <a class="reference internal" href="finishing_touches.html">
+     Finishing touches
     </a>
    </li>
    <li class="toctree-l2">
@@ -667,7 +677,7 @@ This circle gets translated a MoveTo command and four elliptical arc curves foll
 <p>The first arc starts at the top point of the circle (remember that <span class="math notranslate nohighlight">\(y=0\)</span> is the top in the SVG coordinate system) and draws a quarter circle in a clockwise direction to the absolute point <span class="math notranslate nohighlight">\((2, 1)\)</span>.</p>
 <div class="figure align-default" id="deepsvg-circle-decomposition-4-arcs">
 <a class="reference internal image-reference" href="../../_images/deepsvg_circle_decomposition_4_arcs1.png"><img alt="deepsvg_circle_decomposition_4_arcs" src="../../_images/deepsvg_circle_decomposition_4_arcs1.png" style="width: 200px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 55 </span><span class="caption-text">Circle decomposition in DeepSVG using four elliptical arc curves; center figure from Appendix of the <a class="reference external" href="https://arxiv.org/abs/2007.11301">DeepSVG paper</a></span><a class="headerlink" href="#deepsvg-circle-decomposition-4-arcs" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 56 </span><span class="caption-text">Circle decomposition in DeepSVG using four elliptical arc curves; center figure from Appendix of the <a class="reference external" href="https://arxiv.org/abs/2007.11301">DeepSVG paper</a></span><a class="headerlink" href="#deepsvg-circle-decomposition-4-arcs" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="half-circles-represented-by-elliptical-arcs">
@@ -716,12 +726,12 @@ The parameters of the first arc <code class="docutils literal notranslate"><span
 <p>A closing z command may also be required but was not used in the article – likely since it does not impact the visual representation.</p>
 <div class="figure align-default" id="deepsvg-circle-decomposition-upper-arc">
 <a class="reference internal image-reference" href="../../_images/deepsvg_circle_decomposition_upper_arc.png"><img alt="deepsvg_circle_decomposition_upper_arc" src="../../_images/deepsvg_circle_decomposition_upper_arc.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 56 </span><span class="caption-text">Only the upper half-circle defined in SVG using an elliptical arc command; code shown on top; resulting half-circle at the bottom; visualized using <a class="reference external" href="https://codepen.io/">codepen.io</a></span><a class="headerlink" href="#deepsvg-circle-decomposition-upper-arc" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 57 </span><span class="caption-text">Only the upper half-circle defined in SVG using an elliptical arc command; code shown on top; resulting half-circle at the bottom; visualized using <a class="reference external" href="https://codepen.io/">codepen.io</a></span><a class="headerlink" href="#deepsvg-circle-decomposition-upper-arc" title="Permalink to this image">¶</a></p>
 </div>
 <p>Adding a second elliptical arc to describe the lower half-circle completes the circle. Note that only the end point needs to be adjusted. We want to end up 50 pixels to the left again and at the same vertical position.</p>
 <div class="figure align-default" id="deepsvg-circle-decomposition-full-circle">
 <a class="reference internal image-reference" href="../../_images/deepsvg_circle_decomposition_full_circle.png"><img alt="deepsvg_circle_decomposition_full_circle" src="../../_images/deepsvg_circle_decomposition_full_circle.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 57 </span><span class="caption-text">Full circle described by two half-circles formed by elliptical arc curves; visualized using <a class="reference external" href="https://codepen.io/">codepen.io</a></span><a class="headerlink" href="#deepsvg-circle-decomposition-full-circle" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 58 </span><span class="caption-text">Full circle described by two half-circles formed by elliptical arc curves; visualized using <a class="reference external" href="https://codepen.io/">codepen.io</a></span><a class="headerlink" href="#deepsvg-circle-decomposition-full-circle" title="Permalink to this image">¶</a></p>
 </div>
 <p>SVGO uses the following (Javascript) logic for a circle with center point <span class="math notranslate nohighlight">\((cx, cy)\)</span> and radius <span class="math notranslate nohighlight">\(r\)</span>. SVGO first moves to top point of the circle.</p>
 <div class="highlight-Javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">pathData</span> <span class="o">=</span> 
@@ -915,7 +925,8 @@ Thus, this is the replacement path data:</p>
 <h3>Rectangles with rounded corners<a class="headerlink" href="#rectangles-with-rounded-corners" title="Permalink to this headline">¶</a></h3>
 <p>The SVG format allows for rectangles with rounded corners. Rounded corners can be defined by adding / altering the horizontal and/or the vertical corner radius parameters <span class="math notranslate nohighlight">\(rx\)</span> and <span class="math notranslate nohighlight">\(ry\)</span> of the <code class="docutils literal notranslate"><span class="pre">&lt;rect&gt;</span></code> element. If only one radius parameter is provided, the other is assumed to be equal. This results in a corner looking like a circle segment. If one radius is different than the other, this is not the case and one corner side is flatter than the other.</p>
 <p>Please note that the attribute <code class="docutils literal notranslate"><span class="pre">stroke-linejoin=&quot;round&quot;</span></code> achieves a similar result of rounding corners but needs to be treated separately.</p>
-<p>Converting these types of rectangles is more complicated.</p>
+<p>Rectangles with rounded corners have not been considered by any of the published papers. Thus, these rectangles would have been represented with normal corners.</p>
+<p>Converting rectangles with rounded corners to paths is more complicated.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://stackoverflow.com/questions/10177985/svg-rounded-corner">https://stackoverflow.com/questions/10177985/svg-rounded-corner</a></p></li>
 <li><p><a class="reference external" href="http://plnkr.co/edit/kGnGGyoOCKil02k04snu?preview">http://plnkr.co/edit/kGnGGyoOCKil02k04snu?preview</a></p></li>
@@ -959,7 +970,7 @@ Thus, this is the replacement path data:</p>
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Harmonizing positioning</p>
+                <p class="prevnext-title">Harmonizing command positioning logic</p>
             </div>
         </a>
     </div>
