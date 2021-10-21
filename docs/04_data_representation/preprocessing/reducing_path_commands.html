@@ -1,0 +1,895 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reducing the set of different path commands &#8212; Deep Learning with Vector Graphics</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Normalization" href="normalization.html" />
+    <link rel="prev" title="Decomposition of basic SVG shapes to paths" href="decomposition_of_basic_shapes.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/q_logo.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Deep Learning with Vector Graphics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../index.html">
+   Deep Learning with Vector Graphics
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  About
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../01_about/this_book.html">
+   This book
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../01_about/the_author.html">
+   The author
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Background knowledge
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../02_background/vector_graphics.html">
+   Vector Graphics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/vector_graphics/svg.html">
+     Scalable Vector Graphics (SVG) format
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../02_background/deep_learning.html">
+   Deep Learning
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/deep_learning/rnn.html">
+     RNN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/deep_learning/lstm.html">
+     LSTM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/deep_learning/mdn.html">
+     Mixture Density Networks (MDN)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../02_background/DL_with_vector_graphics.html">
+   Deep Learning with Vector Graphics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/DL_with_vector_graphics/arguing_for_e2e_approach.html">
+     Arguing for E-2-E approach
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/DL_with_vector_graphics/challenges_of_vector_graphics.html">
+     Challenges of Vector Graphics
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Relevant work
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../03_related_work/academic_papers.html">
+   Key academic publications
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/papers/Graves_2014.html">
+     Alex Graves (2014) | Generating Sequences With Recurrent Neural Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/papers/Ha_2015_handwriting.html">
+     David Ha (Dec 2015) | Handwriting Generation Demo in TensorFlow (blog post)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/papers/Ha_2015_kanji.html">
+     David Ha (Dec 2015) | Recurrent Net Dreams Up Fake Chinese Characters in Vector Format with TensorFlow (blog post)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/papers/Carter_et_al_2016.html">
+     Carter et al. (2016) | Four Experiments in Handwriting with a Neural Network (Distill publication)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/papers/Ha_Eck_2017.html">
+     Ha &amp; Eck (2017) | A Neural Representation of Sketch Drawings (sketch-rnn)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/papers/Zhong_2018.html">
+     Kimberli Zhong (2018) | Learning to Draw Vector Graphics: Applying Generative Modeling to Font Glyphs (Master thesis @ MIT)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/papers/Lopes_et_al_2019.html">
+     Lopes et al. (2019) | A Learned Representation for Scalable Vector Graphics (svg-vae)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/papers/Carlier_et_al_2020.html">
+     Carlier et al. (2020) | DeepSVG: A Hierarchical Generative Network for Vector Graphics Animation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/papers/Li_et_al_2020.html">
+     Li et al. (2020) | Differentiable Vector Graphics Rasterization for Editing and Learning (diffvg)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/papers/Reddy_et_al_2021.html">
+     Reddy et al. (2021) | Im2Vec: Synthesizing Vector Graphics without Vector Supervision
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../03_related_work/further_academic_papers.html">
+   Further academic publications
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/further_academic_papers/Das_2020.html">
+     Das et al. (2020) | BézierSketch: A generative model for scalable vector sketches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/further_academic_papers/Das_2021.html">
+     Das et al. (2021) | Cloud2Curve: Generation and Vectorization of Parametric Sketches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/further_academic_papers/yang_2021_sketchaa.html">
+     Yang et al. (2021) | SketchAA: Abstract Representation for Abstract Sketches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/further_academic_papers/wang_and_lian_2021.html">
+     Wang and Lian (2021) | DeepVecFont: Synthesizing High-quality Vector Fonts via Dual-modality Learning
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../03_related_work/other_relevant_work.html">
+   Other relevant work
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/other_relevant_work/greydanus_2016.html">
+     Sam Greydanus (2016) | Scribe: Generating Realistic Handwriting with TensorFlow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/other_relevant_work/google_quickdraw_2017.html">
+     Google’s “Quick, Draw!” (2017)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/other_relevant_work/vectoglyph_2019.html">
+     Nicolas Boillot’s Vectoglyph (2019)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/other_relevant_work/gan_xml_fixer_2019.html">
+     GAN XML Fixer (2019)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../03_related_work/datasets.html">
+   Datasets
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Data representation
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../from_strokes_to_svg.html">
+   From strokes to SVG
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../common_preprocessing.html">
+   Common SVG preprocessing
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="first_steps.html">
+     First steps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="deminifying_path_data.html">
+     “De-minifying” path data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="harmonizing_positioning.html">
+     Harmonizing positioning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="decomposition_of_basic_shapes.html">
+     Decomposition of basic SVG shapes to paths
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Reducing the set of different path commands
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="normalization.html">
+     Normalization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="path_simplification.html">
+     Path simplification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="finishing_touches.html">
+     Finishing touches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="embedding.html">
+     Embedding
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Acknowledgements
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../99_acknowledgements/acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/04_data_representation/preprocessing/reducing_path_commands.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F04_data_representation/preprocessing/reducing_path_commands.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-do-we-want-to-reduce-the-number-of-different-path-data-commands">
+   Why do we want to reduce the number of different path data commands?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#replacement-of-path-data-commands">
+   Replacement of path data commands
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#overview-of-used-commands-in-various-papers">
+     Overview of used commands in various papers
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#replacement-options-for-each-command">
+     Replacement options for each command
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#replacement-of-verticallineto-v-perfect-substitute-l">
+       Replacement of VerticalLineTo V (perfect substitute: L)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#replacement-of-horizontallineto-h-perfect-substitute-l">
+       Replacement of HorizontalLineTo H (perfect substitute: L)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#replacement-of-smooth-cubic-bezier-s-perfect-substitute-c">
+       Replacement of Smooth Cubic Bezier S (perfect substitute: C)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#replacement-of-quadratic-bezier-curve-q-perfect-substitute-c">
+       Replacement of Quadratic Bézier Curve Q (perfect substitute: C)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#replacement-of-smooth-quadratic-bezier-t-perfect-substitute-c">
+       Replacement of Smooth Quadratic Bezier T (perfect substitute: C)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#replacement-of-elliptical-arc-curve-a-approximation-only">
+       Replacement of Elliptical Arc Curve A (approximation only!)
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#parametrization">
+         Parametrization
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#description-of-the-conversion-by-zhong-2018">
+         Description of the conversion by Zhong (2018)
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#implementation-in-deepsvg">
+         Implementation in DeepSVG
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#additional-start-of-svg-and-end-of-svg-commands">
+   Additional “start of SVG” and “end of SVG commands”
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="reducing-the-set-of-different-path-commands">
+<h1>Reducing the set of different path commands<a class="headerlink" href="#reducing-the-set-of-different-path-commands" title="Permalink to this headline">¶</a></h1>
+<p>There are 10 different <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#path_commands">path data commands</a> for relative positioning and 10 for absolute positioning. Not all of these 10 different path data commands are actually required – some can be represented using the other more basic commands.</p>
+<div class="section" id="why-do-we-want-to-reduce-the-number-of-different-path-data-commands">
+<h2>Why do we want to reduce the number of different path data commands?<a class="headerlink" href="#why-do-we-want-to-reduce-the-number-of-different-path-data-commands" title="Permalink to this headline">¶</a></h2>
+<p>If commands can be replaced by others, then replacing them reduces the complexity and should help the neural network with learning.
+Some commands can indeed be replaced without any information loss (perfect substitutes). Another one, the elliptical arc curve, can be closely approximated by other commands (even though there is no perfect substitute).</p>
+</div>
+<div class="section" id="replacement-of-path-data-commands">
+<h2>Replacement of path data commands<a class="headerlink" href="#replacement-of-path-data-commands" title="Permalink to this headline">¶</a></h2>
+<p>In the following, we assume that we have harmonized all commands and only use the absolute positioning.</p>
+<p>It appears that the minimal set of path data commands is the following subset:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">M</span></code> <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#moveto_path_commands">MoveTo</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">L</span></code> <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#lineto_path_commands">LineTo</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">C</span></code> <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#cubic_b%C3%A9zier_curve">Cubic Bézier Curve</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Z</span></code> <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#closepath">ClosePath</a></p></li>
+</ul>
+<p>One could argue (and Zhong (2018) does), that all three commands lines, quadratic bézier curves, and cubic bézier curves could be represented by just cubic bézier curves. Zhong, thus, uses cubic Bézier curves exclusively.</p>
+<p>The following commands can be replaced or at least approximated by the four commands listed above:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Commands that can be replaced or approximated</p></th>
+<th class="head"><p>Letter</p></th>
+<th class="head"><p>Explanation</p></th>
+<th class="head"><p>Replacement</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#lineto_path_commands">VerticalLineTo</a></strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">V</span></code></p></td>
+<td><p>This is just a simple way of defining a vertical line. LineTo is the general commands for all types of straight lines and can also represent vertical lines. In case of absolute positioning, the parameter <span class="math notranslate nohighlight">\(y\)</span> does not specify the length of the line but the y position of the desired end point, whereas the x position is kept the same as the current point.</p></td>
+<td><p>LineTo L</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#lineto_path_commands">HorizontalLineTo</a></strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">H</span></code></p></td>
+<td><p>This is just a simple way of defining a horizontal line. LineTo is the general commands for all types of straight lines and can also represent horizontal lines. In case of absolute positioning, the parameter <span class="math notranslate nohighlight">\(x\)</span> does not specify the length of the line but the x position of the desired end point, whereas the y position is kept the same as the current point.</p></td>
+<td><p>LineTo L</p></td>
+</tr>
+<tr class="row-even"><td><p><strong><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#cubic_b%C3%A9zier_curve">SmoothCubicBezier</a></strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">S</span></code></p></td>
+<td><p>This is just a simple way of defining a smooth cubic bézier curve. The cubic bézier C is the general commands for all types of cubic bézier curves and can also represent smooth cubic béziers.</p></td>
+<td><p>Cubic Bézier Curve C</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#quadratic_b%C3%A9zier_curve">Quadratic Bézier Curve</a></strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Q</span></code></p></td>
+<td><p>Higher-order cubic bézier curves can also represent quadratic bézier curves</p></td>
+<td><p>Cubic Bézier Curve C</p></td>
+</tr>
+<tr class="row-even"><td><p><strong><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#quadratic_b%C3%A9zier_curve">Smooth Quadratic Bezier</a></strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">T</span></code></p></td>
+<td><p>This is just a simple way of defining a smooth quadratic bézier curve. The cubic bézier C can also represent all quadratic, including smooth quadratic béziers.</p></td>
+<td><p>Cubic  Bézier Curve C</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#elliptical_arc_curve">Elliptical Arc Curve</a></strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">A</span></code></p></td>
+<td><p>Elliptical arc curves are curves defined as a portion of an ellipse.</p></td>
+<td><p>Converted to cubic Bézier curves which can (only) approximate the elliptical arc.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="overview-of-used-commands-in-various-papers">
+<h3>Overview of used commands in various papers<a class="headerlink" href="#overview-of-used-commands-in-various-papers" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Zhong (2018) does not use the LineTo command but also represents this command using a cubic bézier curve.</p></li>
+<li><p>Lopes et al. (2019) use the same minimal set (<code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">'M',</span> <span class="pre">'L',</span> <span class="pre">'C'</span> <span class="pre">}</span></code>) but do not appear to use the <code class="docutils literal notranslate"><span class="pre">z</span></code> command.</p></li>
+<li><p>Carlier et al. (2020) use the above minimal set and include the <code class="docutils literal notranslate"><span class="pre">z</span></code> command.</p></li>
+</ul>
+</div>
+<div class="section" id="replacement-options-for-each-command">
+<h3>Replacement options for each command<a class="headerlink" href="#replacement-options-for-each-command" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="replacement-of-verticallineto-v-perfect-substitute-l">
+<h4>Replacement of VerticalLineTo V (perfect substitute: L)<a class="headerlink" href="#replacement-of-verticallineto-v-perfect-substitute-l" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="replacement-of-horizontallineto-h-perfect-substitute-l">
+<h4>Replacement of HorizontalLineTo H (perfect substitute: L)<a class="headerlink" href="#replacement-of-horizontallineto-h-perfect-substitute-l" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="replacement-of-smooth-cubic-bezier-s-perfect-substitute-c">
+<h4>Replacement of Smooth Cubic Bezier S (perfect substitute: C)<a class="headerlink" href="#replacement-of-smooth-cubic-bezier-s-perfect-substitute-c" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="replacement-of-quadratic-bezier-curve-q-perfect-substitute-c">
+<h4>Replacement of Quadratic Bézier Curve Q (perfect substitute: C)<a class="headerlink" href="#replacement-of-quadratic-bezier-curve-q-perfect-substitute-c" title="Permalink to this headline">¶</a></h4>
+<p>Any quadratic spline can be expressed as a cubic (where the cubic term is zero). The end points of the cubic will be the same as the quadratic’s. (<a class="reference external" href="https://stackoverflow.com/questions/3162645/convert-a-quadratic-bezier-to-a-cubic-one">https://stackoverflow.com/questions/3162645/convert-a-quadratic-bezier-to-a-cubic-one</a> / <a class="reference external" href="https://fontforge.org/docs/techref/bezier.html#converting-truetype-to-postscript">https://fontforge.org/docs/techref/bezier.html#converting-truetype-to-postscript</a>)</p>
+<p>Position for the control points of a cubic Bézier that behave exactly like a quadratic Bézier:</p>
+<p><span class="math notranslate nohighlight">\(C1 = 2/3*C + 1/3*P1\)</span></p>
+<p><span class="math notranslate nohighlight">\(C2 = 2/3*C + 1/3*P2\)</span></p>
+</div>
+<div class="section" id="replacement-of-smooth-quadratic-bezier-t-perfect-substitute-c">
+<h4>Replacement of Smooth Quadratic Bezier T (perfect substitute: C)<a class="headerlink" href="#replacement-of-smooth-quadratic-bezier-t-perfect-substitute-c" title="Permalink to this headline">¶</a></h4>
+<p>Any quadratic spline can be expressed as a cubic (where the cubic term is zero). The end points of the cubic will be the same as the quadratic’s. (<a class="reference external" href="https://stackoverflow.com/questions/3162645/convert-a-quadratic-bezier-to-a-cubic-one">https://stackoverflow.com/questions/3162645/convert-a-quadratic-bezier-to-a-cubic-one</a> / <a class="reference external" href="https://fontforge.org/docs/techref/bezier.html#converting-truetype-to-postscript">https://fontforge.org/docs/techref/bezier.html#converting-truetype-to-postscript</a>)</p>
+</div>
+<div class="section" id="replacement-of-elliptical-arc-curve-a-approximation-only">
+<h4>Replacement of Elliptical Arc Curve A (approximation only!)<a class="headerlink" href="#replacement-of-elliptical-arc-curve-a-approximation-only" title="Permalink to this headline">¶</a></h4>
+<p>An elliptical arc curve (<code class="docutils literal notranslate"><span class="pre">A</span></code> / <code class="docutils literal notranslate"><span class="pre">a</span></code>) cannot be perfectly transformed into a cubic Bézier. It can be approximated by cubic Bézier curves though – the required mathematics are not trivial.</p>
+<p>Luckily, a smart person of the name Luc Maisonobe, who – if correctly identified – appears to be a flight dynamics expert at CS Group and a free software developer (The Apache Software Foundation), published a technical paper titled “Drawing an elliptical arc using polylines, quadratic or cubic Bézier curves” on <a class="reference external" href="http://spaceroots.org">spaceroots.org</a> in 2003 (domain unfortunately no longer active). Copies of this paper can still be found on the Web.</p>
+<div class="section" id="parametrization">
+<h5>Parametrization<a class="headerlink" href="#parametrization" title="Permalink to this headline">¶</a></h5>
+<p>The parametrization of elliptical arc curves in the SVG standard is called “endpoint parametrization”. The <a class="reference external" href="https://www.w3.org/TR/2018/CR-SVG2-20180807/implnote.html#ArcSyntax">SVG standards describe one of the advantages</a> of this parametrization as follows: it permits a consistent path syntax in which all path commands end in the coordinates of the new “current point”.</p>
+<p>The parameters used for this “endpoint parametrization” are:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\((x_1, y_1)\)</span> – absolute coordinates of the <strong>current point</strong> on the path (obtained from the last two parameters of the previous path command)</p></li>
+<li><p><span class="math notranslate nohighlight">\(r_x\)</span> and <span class="math notranslate nohighlight">\(r_y\)</span> – radii of the ellipse (also known as its semi-major and semi-minor axes)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\phi\)</span> – angle from the x-axis of the current coordinate system to the x-axis of the ellipse</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_A\)</span> – large arc flag, and is 0 if an arc spanning less than or equal to 180 degrees is chosen, or 1 if an arc spanning greater than 180 degrees is chosen</p></li>
+<li><p><span class="math notranslate nohighlight">\(f_S\)</span> – sweep flag, and is 0 if the line joining center to arc sweeps through decreasing angles, or 1 if it sweeps through increasing angles</p></li>
+<li><p><span class="math notranslate nohighlight">\((x_2, y_2)\)</span> – absolute coordinates of the final point of the arc</p></li>
+</ul>
+<p>The parametrization can be converted from “endpoint parametrization” to “center parametrization” (and back). “Center” refers to the center of the ellipse and the mental model of this parametrization is one of a circle that has been stretched and rotated.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\((c_x, c_y)\)</span> – coordinates of the center of the ellipse</p></li>
+<li><p><span class="math notranslate nohighlight">\(r_x\)</span> and <span class="math notranslate nohighlight">\(r_y\)</span> – radii of the ellipse (also known as its semi-major and semi-minor axes) - these are identical in both parametrization options</p></li>
+<li><p><span class="math notranslate nohighlight">\(\phi\)</span> – angle from the x-axis of the current coordinate system to the x-axis of the ellipse - this is identical in both parametrization options</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta\)</span> – angle around the arc that the point on the ellipse <span class="math notranslate nohighlight">\((x, y)\)</span> lies at</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta_1\)</span> – start angle of the elliptical arc prior to the stretch and rotate operations</p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta_2\)</span> – end angle of the elliptical arc prior to the stretch and rotate operations</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Delta \theta\)</span> – difference between these two angles</p></li>
+</ul>
+<p>Given the following variables from the “endpoint parametrization”:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\((x_1, y_1)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(r_x\)</span> and <span class="math notranslate nohighlight">\(r_y\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\phi\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(f_A\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(f_S\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((x_2, y_2)\)</span></p></li>
+</ul>
+<p>the task is to find:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\((c_x, c_y)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\theta_1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\Delta \theta\)</span></p></li>
+</ul>
+<p>The <a class="reference external" href="https://www.w3.org/TR/2018/CR-SVG2-20180807/implnote.html#ArcConversionEndpointToCenter">formula for a conversion to center parametrization</a> can be found in the SVG Standard.</p>
+<p>Todo:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pomax.github.io/BezierInfo-2/#circles_cubic">https://pomax.github.io/BezierInfo-2/#circles_cubic</a></p></li>
+<li><p><a class="reference external" href="https://mortoray.com/2017/02/16/rendering-an-svg-elliptical-arc-as-bezier-curves/">https://mortoray.com/2017/02/16/rendering-an-svg-elliptical-arc-as-bezier-curves/</a></p></li>
+<li><p><a class="reference external" href="https://www.w3.org/TR/2018/CR-SVG2-20180807/implnote.html#ArcImplementationNotes">https://www.w3.org/TR/2018/CR-SVG2-20180807/implnote.html#ArcImplementationNotes</a></p></li>
+</ul>
+<p><a class="reference external" href="https://stackoverflow.com/a/5589051">Stackoverflow comment</a>: The error is most dependent on the difference of the start and end angles. I’ve had good success by limiting the angle difference to 60°. That is, I make a separate cubic segment for every 60° (or fraction thereof) and chain them together.</p>
+<p>Further material can be found here:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pomax.github.io/BezierInfo-2/#circles_cubic">https://pomax.github.io/BezierInfo-2/#circles_cubic</a></p></li>
+<li><p><a class="reference external" href="https://mortoray.com/2017/02/16/rendering-an-svg-elliptical-arc-as-bezier-curves/">https://mortoray.com/2017/02/16/rendering-an-svg-elliptical-arc-as-bezier-curves/</a></p></li>
+</ul>
+</div>
+<div class="section" id="description-of-the-conversion-by-zhong-2018">
+<h5>Description of the conversion by Zhong (2018)<a class="headerlink" href="#description-of-the-conversion-by-zhong-2018" title="Permalink to this headline">¶</a></h5>
+<ol class="simple">
+<li><p>Extract the arc parameters: start coordinates, end coordinates, ellipse major and minor radii, rotation angle from x and y axes, large arc flag, and sweep flag.</p></li>
+<li><p>Transform ellipse into unit circle by rotating, scaling, and translating, and save those transformation factors.</p></li>
+<li><p>Find the arc angle from the transformed start point to end point on the unit circle.</p></li>
+<li><p>If needed, split the arc into segments, each covering an angle less than 90°.</p></li>
+<li><p>Approximate each segment angle’s arc on a unit circle such that the distance from the circle center to the arc along the angle bisector of the arc is equal to the radius, defining cubic Bézier control points.</p></li>
+<li><p>Invert the transformation above to convert arcs along the unit circle back to the elliptical arc, transforming the generated control points accordingly.</p></li>
+<li><p>Use these transformed control points to parameterize the output cubic Bézier curve.</p></li>
+</ol>
+</div>
+<div class="section" id="implementation-in-deepsvg">
+<h5>Implementation in DeepSVG<a class="headerlink" href="#implementation-in-deepsvg" title="Permalink to this headline">¶</a></h5>
+<p>In DeepSVG, the implementation can be found in <code class="docutils literal notranslate"><span class="pre">deepsvg/svglib/svg_command.py</span></code>:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SVGCommandArc</span><span class="p">(</span><span class="n">SVGCommand</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_pos</span><span class="p">:</span> <span class="n">Point</span><span class="p">,</span> <span class="n">radius</span><span class="p">:</span> <span class="n">Radius</span><span class="p">,</span> <span class="n">x_axis_rotation</span><span class="p">:</span> <span class="n">Angle</span><span class="p">,</span> <span class="n">large_arc_flag</span><span class="p">:</span> <span class="n">Flag</span><span class="p">,</span> <span class="n">sweep_flag</span><span class="p">:</span> <span class="n">Flag</span><span class="p">,</span> <span class="n">end_pos</span><span class="p">:</span> <span class="n">Point</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">SVGCmdEnum</span><span class="o">.</span><span class="n">ELLIPTIC_ARC</span><span class="p">,</span> <span class="p">[</span><span class="n">radius</span><span class="p">,</span> <span class="n">x_axis_rotation</span><span class="p">,</span> <span class="n">large_arc_flag</span><span class="p">,</span> <span class="n">sweep_flag</span><span class="p">,</span> <span class="n">end_pos</span><span class="p">],</span> <span class="n">start_pos</span><span class="p">,</span> <span class="n">end_pos</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">=</span> <span class="n">radius</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x_axis_rotation</span> <span class="o">=</span> <span class="n">x_axis_rotation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">large_arc_flag</span> <span class="o">=</span> <span class="n">large_arc_flag</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sweep_flag</span> <span class="o">=</span> <span class="n">sweep_flag</span>
+
+    <span class="c1"># ... omitted</span>
+
+    <span class="k">def</span> <span class="nf">_get_center_parametrization</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span>
+        <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_pos</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_pos</span>
+
+        <span class="n">h</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">p1</span> <span class="o">-</span> <span class="n">p2</span><span class="p">),</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">p1</span> <span class="o">+</span> <span class="n">p2</span><span class="p">)</span>
+        <span class="n">p1_trans</span> <span class="o">=</span> <span class="n">h</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">x_axis_rotation</span><span class="p">)</span>
+
+        <span class="n">sign</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">large_arc_flag</span><span class="o">.</span><span class="n">flag</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">sweep_flag</span><span class="o">.</span><span class="n">flag</span> <span class="k">else</span> <span class="mi">1</span>
+        <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">rx2</span><span class="p">,</span> <span class="n">ry2</span> <span class="o">=</span> <span class="n">p1_trans</span><span class="o">.</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">p1_trans</span><span class="o">.</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span>
+        <span class="n">sqrt</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">max</span><span class="p">((</span><span class="n">rx2</span><span class="o">*</span><span class="n">ry2</span> <span class="o">-</span> <span class="n">rx2</span><span class="o">*</span><span class="n">y2</span> <span class="o">-</span> <span class="n">ry2</span><span class="o">*</span><span class="n">x2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">rx2</span><span class="o">*</span><span class="n">y2</span> <span class="o">+</span> <span class="n">ry2</span><span class="o">*</span><span class="n">x2</span><span class="p">),</span> <span class="mf">0.</span><span class="p">))</span>
+        <span class="n">c_trans</span> <span class="o">=</span> <span class="n">sign</span> <span class="o">*</span> <span class="n">sqrt</span> <span class="o">*</span> <span class="n">Point</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">p1_trans</span><span class="o">.</span><span class="n">y</span> <span class="o">/</span> <span class="n">r</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="o">-</span><span class="n">r</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">p1_trans</span><span class="o">.</span><span class="n">x</span> <span class="o">/</span> <span class="n">r</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="n">c</span> <span class="o">=</span> <span class="n">c_trans</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_axis_rotation</span><span class="p">)</span> <span class="o">+</span> <span class="n">m</span>
+
+        <span class="n">d</span><span class="p">,</span> <span class="n">ns</span> <span class="o">=</span> <span class="p">(</span><span class="n">p1_trans</span> <span class="o">-</span> <span class="n">c_trans</span><span class="p">)</span> <span class="o">/</span> <span class="n">r</span><span class="p">,</span> <span class="o">-</span><span class="p">(</span><span class="n">p1_trans</span> <span class="o">+</span> <span class="n">c_trans</span><span class="p">)</span> <span class="o">/</span> <span class="n">r</span>
+
+        <span class="n">theta_1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">delta_theta</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span><span class="n">ns</span><span class="p">,</span> <span class="n">signed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">delta_theta</span><span class="o">.</span><span class="n">deg</span> <span class="o">%=</span> <span class="mi">360</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sweep_flag</span><span class="o">.</span><span class="n">flag</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">delta_theta</span><span class="o">.</span><span class="n">deg</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">delta_theta</span> <span class="o">=</span> <span class="n">delta_theta</span> <span class="o">-</span> <span class="n">Angle</span><span class="p">(</span><span class="mi">360</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sweep_flag</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">delta_theta</span><span class="o">.</span><span class="n">deg</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">delta_theta</span> <span class="o">=</span> <span class="n">delta_theta</span> <span class="o">+</span> <span class="n">Angle</span><span class="p">(</span><span class="mi">360</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">c</span><span class="p">,</span> <span class="n">theta_1</span><span class="p">,</span> <span class="n">delta_theta</span>
+
+    <span class="c1"># ... omitted</span>
+
+    <span class="k">def</span> <span class="nf">_get_derivative</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">float_type</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span>
+        <span class="k">return</span> <span class="n">Point</span><span class="p">(</span><span class="o">-</span><span class="n">r</span><span class="o">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">r</span><span class="o">.</span><span class="n">y</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">))</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_axis_rotation</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">to_beziers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        
+        <span class="n">beziers</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">c</span><span class="p">,</span> <span class="n">theta_1</span><span class="p">,</span> <span class="n">delta_theta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_center_parametrization</span><span class="p">()</span>
+        <span class="n">nb_curves</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">delta_theta</span><span class="o">.</span><span class="n">deg</span><span class="p">)</span> <span class="o">//</span> <span class="mi">45</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">etas</span> <span class="o">=</span> <span class="p">[</span><span class="n">theta_1</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">delta_theta</span> <span class="o">/</span> <span class="n">nb_curves</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nb_curves</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+        <span class="k">for</span> <span class="n">eta_1</span><span class="p">,</span> <span class="n">eta_2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">etas</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">etas</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
+            <span class="n">e1</span><span class="p">,</span> <span class="n">e2</span> <span class="o">=</span> <span class="n">eta_1</span><span class="o">.</span><span class="n">rad</span><span class="p">,</span> <span class="n">eta_2</span><span class="o">.</span><span class="n">rad</span>
+            <span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">e2</span> <span class="o">-</span> <span class="n">e1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">e2</span> <span class="o">-</span> <span class="n">e1</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span>
+            <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_point</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">e1</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_point</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">e2</span><span class="p">)</span>
+            <span class="n">q1</span> <span class="o">=</span> <span class="n">p1</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_derivative</span><span class="p">(</span><span class="n">e1</span><span class="p">)</span>
+            <span class="n">q2</span> <span class="o">=</span> <span class="n">p2</span> <span class="o">-</span> <span class="n">alpha</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_derivative</span><span class="p">(</span><span class="n">e2</span><span class="p">)</span>
+            <span class="n">beziers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">SVGCommandBezier</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">,</span> <span class="n">p2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="additional-start-of-svg-and-end-of-svg-commands">
+<h2>Additional “start of SVG” and “end of SVG commands”<a class="headerlink" href="#additional-start-of-svg-and-end-of-svg-commands" title="Permalink to this headline">¶</a></h2>
+<p>Zhong (2018) uses three dimensions in each drawing command to denote the pen state:</p>
+<ul class="simple">
+<li><p>pen down (<span class="math notranslate nohighlight">\(p_d\)</span>)</p></li>
+<li><p>pen up (<span class="math notranslate nohighlight">\(p_u\)</span>) – why do we need this if <span class="math notranslate nohighlight">\(p_d\)</span> is binary(?)</p></li>
+<li><p>end drawing (<span class="math notranslate nohighlight">\(p_e\)</span>)</p></li>
+</ul>
+<p>Lopes et al. (2019) use an <code class="docutils literal notranslate"><span class="pre">&lt;EOS&gt;</span></code>  command to denote the end of an SVG.</p>
+<p>Carlier et al. (DeepSVG) also add two commands that denote the start and end of the SVG:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;SOS&gt;</span></code> – start of the SVG token</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;EOS&gt;</span></code> – end of the SVG token; this command is also used for padding to fill up the sequence of commands up to the permitted maximum number of commands.
+All arguments of these two additional commands are always equal to <code class="docutils literal notranslate"><span class="pre">-1</span></code>.</p></li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./04_data_representation/preprocessing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="decomposition_of_basic_shapes.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Decomposition of basic SVG shapes to paths</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="normalization.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Normalization</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Pascal Wichmann<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

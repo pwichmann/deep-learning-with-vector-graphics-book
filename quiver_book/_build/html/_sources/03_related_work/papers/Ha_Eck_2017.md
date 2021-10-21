@@ -8,6 +8,7 @@ Ha and Eck used the drawings collected from users of Google's "Quick, Draw!" gam
 * [Google blog post summarising the paper: "Teaching Machines to Draw" (April 2017)](https://ai.googleblog.com/2017/04/teaching-machines-to-draw.html)
 * [Official sketch-rnn implementation by David Ha (2016-2017); Github repo](https://github.com/hardmaru/sketch-rnn)
 * [Official Github repo of sketch-rnn as part of Google's Magenta](https://github.com/magenta/magenta/blob/main/magenta/models/sketch_rnn)
+* [Google's Sketch-RNN demo website](https://experiments.withgoogle.com/sketch-rnn-demo)
 * Further *unofficial* implementations of sketch-rnn
   * [Sketch-rnn in Tensorflow 2 by @stwind (unchecked!)](https://github.com/stwind/SketchRNN_tf2)
   * [Sketch-rnn in PyTorch by @rfeinman (unchecked!)](https://github.com/rfeinman/Sketch-RNN)

@@ -33,3 +33,14 @@ When auto-regressively generating handwriting, for example, we predict the next 
 
 
 ## Combining MDNs with LSTMs
+
+
+## TODO
+
+Read these:
+
+* https://towardsdatascience.com/a-hitchhikers-guide-to-mixture-density-networks-76b435826cca
+* https://deep-and-shallow.com/2021/03/20/mixture-density-networks-probabilistic-regression-for-uncertainty-estimation/
+* https://github.com/hardmaru/pytorch_notebooks/blob/master/mixture_density_networks.ipynb
+* https://blog.otoro.net/2015/11/24/mixture-density-networks-with-tensorflow/
+* https://blog.otoro.net/2015/12/12/handwriting-generation-demo-in-tensorflow/

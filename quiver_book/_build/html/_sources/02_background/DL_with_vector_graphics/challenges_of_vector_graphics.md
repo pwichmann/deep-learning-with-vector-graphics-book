@@ -26,11 +26,14 @@ So, how do we represent a vector graphic as a numeric tensor?
 #### SVG is a complex format
 
 SVGs can have groups of elements and multiple layers. The SVG format not only defines simple paths but also allows for quadratic and cubic bézier curves as well as other pre-defined SVG primitives (such as rectangles, circles etc.).
-Shapes can be filled or just an outline. 
+Shapes can be filled or just an outline. Relevant information can be in CSS files, style tages, attributes of groups etc.
 
 The list of [SVG elements (the tags)](https://developer.mozilla.org/en-US/docs/Web/SVG/Element) and the list of [SVG attributes](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute) that a browser needs to deal with is long.
 
 If we cannot represent all of these (likely!), then we need to simplify and focus on the most common ones. SVGs can contain animations and all sorts of other Web technology (scripts, ...) that need to be ignored.
+
+The complexity of the SVG format is a major reason why learning from rasterized images is preferred. Attempting to read all relevant information into a numerical feature vector may easily seem like reinventing the wheel -- since browsers have already implemented renderers that convert all the information into a raster image.
+
 
 #### Graph structure inherent to SVGs
 

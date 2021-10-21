@@ -42,8 +42,6 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -53,7 +51,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Acknowledgements" href="../99_acknowledgements/acknowledgements.html" />
+    <link rel="next" title="First steps" href="preprocessing/first_steps.html" />
     <link rel="prev" title="From strokes to SVG" href="from_strokes_to_svg.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -334,10 +332,62 @@
    From strokes to SVG
   </a>
  </li>
- <li class="toctree-l1 current active">
+ <li class="toctree-l1 current active has-children">
   <a class="current reference internal" href="#">
    Common SVG preprocessing
   </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="preprocessing/first_steps.html">
+     First steps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="preprocessing/deminifying_path_data.html">
+     “De-minifying” path data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="preprocessing/harmonizing_positioning.html">
+     Harmonizing command positioning logic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="preprocessing/decomposition_of_basic_shapes.html">
+     Decomposition of basic SVG shapes to paths
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="preprocessing/reducing_path_commands.html">
+     Reducing the set of different path commands
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="preprocessing/normalization.html">
+     Normalization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="preprocessing/path_simplification.html">
+     Path simplification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="preprocessing/finishing_touches.html">
+     Finishing touches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="preprocessing/embedding.html">
+     Embedding
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p class="caption">
@@ -433,151 +483,6 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#de-minifying-path-data">
-   (1) “De-minifying” path data
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#svgo-node-js">
-     SVGO (node.js)
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#harmonizing-positioning-e-g-all-absolute-or-all-relative">
-   (2) Harmonizing positioning (e.g. all absolute or all relative)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#decomposition-of-basic-svg-shapes-to-paths">
-   (3) Decomposition of basic SVG shapes to paths
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#decomposition-of-circles">
-     (3.1) Decomposition of circles
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#quarter-circles-represented-by-elliptical-arcs">
-       4 quarter-circles represented by elliptical arcs
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#half-circles-represented-by-elliptical-arcs">
-       2 half-circles represented by elliptical arcs
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#decomposition-of-ellipses">
-     (3.2) Decomposition of ellipses
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#decomposition-of-lines">
-     (3.3) Decomposition of lines
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#decomposition-of-polygons">
-     (3.4) Decomposition of polygons
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#decomposition-of-polyline">
-     (3.5) Decomposition of polyline
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#decomposition-of-rectangles">
-     (3.6) Decomposition of rectangles
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reducing-the-number-of-different-path-data-commands">
-   (4) Reducing the number of different path data commands
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#why-do-we-want-to-reduce-the-number-of-different-path-data-commands">
-     Why do we want to reduce the number of different path data commands?
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#replacement-of-path-data-commands">
-     Replacement of path data commands
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#replacement-of-verticallineto-v-perfect-substitute">
-       Replacement of VerticalLineTo V (perfect substitute)
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#replacement-of-horizontallineto-h-perfect-substitute">
-       Replacement of HorizontalLineTo H (perfect substitute)
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#replacement-of-smoothcubicbezier-s">
-       Replacement of SmoothCubicBezier S
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#replacement-of-quadratic-bezier-curve-q">
-       Replacement of Quadratic Bézier Curve Q
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#replacement-of-smooth-quadratic-bezier-t">
-       Replacement of Smooth Quadratic Bezier T
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#replacement-of-elliptical-arc-curve-a-approximation-only">
-       Replacement of Elliptical Arc Curve A (approximation only!)
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#path-simplification">
-   (5) Path simplification
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#simplification-approach">
-     Simplification approach
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#svg-normalization">
-   (6) SVG Normalization
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#embedding">
-   (7) Embedding
-  </a>
- </li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -588,455 +493,10 @@
                 
   <div class="section" id="common-svg-preprocessing">
 <h1>Common SVG preprocessing<a class="headerlink" href="#common-svg-preprocessing" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="de-minifying-path-data">
-<h2>(1) “De-minifying” path data<a class="headerlink" href="#de-minifying-path-data" title="Permalink to this headline">¶</a></h2>
-<p>Due to its use for Web pages where fast loading can be paramount, the SVG format is obsessed with minimizing file size. To save a few characters, SVG path data is often shortened which makes it hard to parse the path parameters. This is done using common SVG optimizing tools, such as <a class="reference external" href="https://github.com/svg/svgo">SVGO</a>.</p>
-<p>Unfortunately, this optimization makes it harder for a human to understand the already fairly abstract path data. And many Deep Learning projects aiming to ingest SVG files as training data are not sophisticated enough to deal with minified SVGs out of the box.</p>
-<p>Usually, SVG path data is comma- and whitespace-separated. See the SVG example below – only the value of the <code class="docutils literal notranslate"><span class="pre">d</span></code> attribute is relevant:</p>
-<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
-<span class="nt">&lt;svg</span> <span class="na">viewBox=</span><span class="s">&quot;0 0 100 100&quot;</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2000/svg&quot;</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;path</span> <span class="na">fill=</span><span class="s">&quot;none&quot;</span> <span class="na">stroke=</span><span class="s">&quot;red&quot;</span>
-    <span class="na">d=</span><span class="s">&quot;M 10,30</span>
-<span class="s">       A 20,20 0,0,1 50,30</span>
-<span class="s">       A 20,20 0,0,1 90,30</span>
-<span class="s">       Q 90,60 50,90</span>
-<span class="s">       Q 10,60 10,30 z&quot;</span> <span class="nt">/&gt;</span>
-<span class="nt">&lt;/svg&gt;</span>
-</pre></div>
-</div>
-<p>By optimizing above SVG code, one can reduce the size of this already small file from 266 bytes to 211 bytes and save about 21%. Larger SVGs can be reduced by 70% and more! The result of the optimization (done by <a class="reference external" href="https://www.svgminify.com/">svgminify.com</a>; another tools is <a class="reference external" href="https://jakearchibald.github.io/svgomg/">SVGOMG</a>) is shown below:</p>
-<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
-<span class="nt">&lt;svg</span> <span class="na">viewBox=</span><span class="s">&quot;0 0 100 100&quot;</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2000/svg&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;path</span> <span class="na">d=</span><span class="s">&quot;m10 30a20 20 0 0 1 40 0 20 20 0 0 1 40 0q0 30-40 60-40-30-40-60z&quot;</span> <span class="na">fill=</span><span class="s">&quot;none&quot;</span> <span class="na">stroke=</span><span class="s">&quot;red&quot;</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;/svg&gt;</span>
-</pre></div>
-</div>
-<p>Now, if you look closely at the <code class="docutils literal notranslate"><span class="pre">d</span></code> attribute which defines the path data, you will notice some irritating changes, e.g.:</p>
-<ul class="simple">
-<li><p>Parameters are no longer clearly separated by commas and whitespace!</p></li>
-<li><p>Some command letters disappeared!</p></li>
-</ul>
-<p>What could be easily parsed before by splitting on commas and whitespaces is now no longer possible.</p>
-<p>Now, why does this not result in any errors?
-The reason is that omitting separating commas and whitespace is only permitted if the result remains unambiguous.</p>
-<p>Let’s analyze the path data from the start:</p>
-<ul class="simple">
-<li><p>Because a command letter <code class="docutils literal notranslate"><span class="pre">m</span></code> must be followed by its first parameter, the whitespace between <code class="docutils literal notranslate"><span class="pre">m</span></code> and <code class="docutils literal notranslate"><span class="pre">10</span></code> can be omitted.</p></li>
-<li><p>We cannot remove the whitespace between the two parameters <code class="docutils literal notranslate"><span class="pre">10</span></code> and <code class="docutils literal notranslate"><span class="pre">30</span></code>. This would create ambiguity. A browser would not be able to distinguish between the two equally valid solutions: <span class="math notranslate nohighlight">\(\Delta x = 10\)</span> and <span class="math notranslate nohighlight">\(\Delta y = 30\)</span> vs. <span class="math notranslate nohighlight">\(\Delta x = 103\)</span> and <span class="math notranslate nohighlight">\(\Delta y = 0\)</span>. Thus, we need to keep the separating whitespace.</p></li>
-<li><p>There is no whitespace required between <code class="docutils literal notranslate"><span class="pre">30</span></code> and the first arc command <code class="docutils literal notranslate"><span class="pre">a</span></code>. Any letter must be a new command and preceding numbers can only be parameters from a previous command.</p></li>
-<li><p>Analogously, there is no need to keep a whitespace between <code class="docutils literal notranslate"><span class="pre">a</span></code> and the first parameter <code class="docutils literal notranslate"><span class="pre">20</span></code>. It is unambiguous that <code class="docutils literal notranslate"><span class="pre">a20</span></code> needs to be parsed as <code class="docutils literal notranslate"><span class="pre">a</span></code> and the first parameter <code class="docutils literal notranslate"><span class="pre">20</span></code>.</p></li>
-<li><p>The absolute positioning was changed into a relative positioning. So the <code class="docutils literal notranslate"><span class="pre">a</span></code> command’s parameters got changed from <code class="docutils literal notranslate"><span class="pre">20,20</span> <span class="pre">0,0,1</span> <span class="pre">50,30</span></code> to <code class="docutils literal notranslate"><span class="pre">20</span> <span class="pre">20</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">1</span> <span class="pre">40</span> <span class="pre">0</span></code> because we have already moved to point <code class="docutils literal notranslate"><span class="pre">(10,</span> <span class="pre">30)</span></code>. Relative to that point, we only need to move the current point <code class="docutils literal notranslate"><span class="pre">(+40,</span> <span class="pre">+0)</span></code> to end up in <code class="docutils literal notranslate"><span class="pre">(50,</span> <span class="pre">30)</span></code>.</p></li>
-<li><p>Because <code class="docutils literal notranslate"><span class="pre">a</span></code> commands generally have exactly 7 commands, the subsequent <code class="docutils literal notranslate"><span class="pre">a</span></code> command letter can be omitted, too. It is unambigous that after <code class="docutils literal notranslate"><span class="pre">a20</span> <span class="pre">20</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">1</span> <span class="pre">40</span> <span class="pre">0</span></code> a new command must start.</p></li>
-</ul>
-<p>A further common minification step is to directly concatenate continuous parameters with the binary flags of the <code class="docutils literal notranslate"><span class="pre">a</span></code> command. Since binary flags always consist of only a single digit (0 or 1), it can be derived how many digits the concatenated continuous parameter must have.</p>
-<p>Many Deep Learning models (e.g. DeepSVG) are not able to deal with these minified SVGs out of the box and require some preprocessing before the SVG parameters can be correctly parsed. That may result in minified SVGs to be ignored in the training data. Luckily, there are sophisticated tools that can both minify and reverse the minification.</p>
-<div class="section" id="svgo-node-js">
-<h3>SVGO (node.js)<a class="headerlink" href="#svgo-node-js" title="Permalink to this headline">¶</a></h3>
-<p>The SVGO library for node.js is an excellent tool for preprocessing SVGs, such that they can be more easily parsed into numeric tensors. This way, this functionality does not have to be reimplemented in Python or any of the other languages used for Deep Learning you may be using.</p>
-<p>To “de-minify” SVGs, the following yml settings can be used in SVGO</p>
-<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span> - convertPathData:
-      noSpaceAfterFlags: false  # this is crucial; otherwise flags can be merged with numbers and it gets hard to parse
-      collapseRepeated: false  # this is crucial; otherwise successive arcs (a / A commands) get merged into one long arc command
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="harmonizing-positioning-e-g-all-absolute-or-all-relative">
-<h2>(2) Harmonizing positioning (e.g. all absolute or all relative)<a class="headerlink" href="#harmonizing-positioning-e-g-all-absolute-or-all-relative" title="Permalink to this headline">¶</a></h2>
-<p>E.g. in DeepSVG all commands using relative positioning (indicated by lower case letter commands) are converted to absolute commands (indicated by upper case letter commands). Just switching the case of the command letter is not enough, the parameters also need to be changed from relative (e.g. <span class="math notranslate nohighlight">\(\Delta x\)</span> and <span class="math notranslate nohighlight">\(\Delta y\)</span>) to absolute values (e.g. <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>).</p>
-</div>
-<div class="section" id="decomposition-of-basic-svg-shapes-to-paths">
-<h2>(3) Decomposition of basic SVG shapes to paths<a class="headerlink" href="#decomposition-of-basic-svg-shapes-to-paths" title="Permalink to this headline">¶</a></h2>
-<p>There are 6 <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element#basic_shapes">basic SVG shapes</a>:</p>
-<ol class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">&lt;circle&gt;</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&lt;ellipse&gt;</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&lt;line&gt;</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&lt;polygon&gt;</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&lt;polyline&gt;</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&lt;rect&gt;</span></code></p></li>
-</ol>
-<p>These can be decomposed and converted into paths without any visually perceivable loss.</p>
-<div class="important admonition">
-<p class="admonition-title">Open question</p>
-<p>Is it possible to keep these basic SVG shapes as part of the feature vector? Would this help with ensuring that circles remain circles and are not just approximated by squiggly lines in the SVG output?</p>
-</div>
-<table class="colwidths-auto table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Unsupported basic SVG shape</p></th>
-<th class="head"><p>Explanation</p></th>
-<th class="head"><p>Replacement</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/circle"><code class="docutils literal notranslate"><span class="pre">&lt;circle&gt;</span></code></a></p></td>
-<td><p>A circle defined by the center point (x,y) and a radius.</p></td>
-<td><p>Can be transformed to a path using two or four Elliptical Arc commands, which themselves can be converted to Cubic Bézier curves.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/ellipse"><code class="docutils literal notranslate"><span class="pre">&lt;ellipse&gt;</span></code></a></p></td>
-<td><p>An ellipse defined by 4 parameters, the ellipses position (x,y) and the radius on the x axis and the radius on the y axis</p></td>
-<td><p>Can be transformed to a path using four Elliptical Arc commands, which themselves can be converted to Cubic Bézier curves.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/line"><code class="docutils literal notranslate"><span class="pre">&lt;line&gt;</span></code></a></p></td>
-<td><p>A straight line defined by the start point (x1, y1) and the end point (x2, y2)</p></td>
-<td><p>Can be converted into a path using the LineTo command</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/polygon"><code class="docutils literal notranslate"><span class="pre">&lt;polygon&gt;</span></code></a></p></td>
-<td><p>A <em>closed</em> shape consisting of a set of connected straight line segments. A polygon is defined by a sequence of points; the last point is connected to the first point.</p></td>
-<td><p>Can be converted into a path using the LineTo command.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/polyline"><code class="docutils literal notranslate"><span class="pre">&lt;polyline&gt;</span></code></a></p></td>
-<td><p>A shape consisting of a sequence of connected traight line segments. As opposed to the <code class="docutils literal notranslate"><span class="pre">&lt;polygon&gt;</span></code>, a <code class="docutils literal notranslate"><span class="pre">&lt;polyline&gt;</span></code> does not have to be closed and the last point is not automatically connected to the first one.</p></td>
-<td><p>Can be converted into a path using the LineTo command.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/rect"><code class="docutils literal notranslate"><span class="pre">&lt;rect&gt;</span></code></a></p></td>
-<td><p>A rectangle defined by position (x, y), their width and height (and optionally the radius for rounded corners)</p></td>
-<td><p>Can be converted into a path using the LineTo command. <strong>Please note that DeepSVG may overlook the option of rounded corners at this point.</strong></p></td>
-</tr>
-</tbody>
-</table>
-<div class="section" id="decomposition-of-circles">
-<h3>(3.1) Decomposition of circles<a class="headerlink" href="#decomposition-of-circles" title="Permalink to this headline">¶</a></h3>
-<p>The decomposition of circles into four or just two elliptical arc curves is possible without any loss in visual quality.</p>
-<div class="section" id="quarter-circles-represented-by-elliptical-arcs">
-<h4>4 quarter-circles represented by elliptical arcs<a class="headerlink" href="#quarter-circles-represented-by-elliptical-arcs" title="Permalink to this headline">¶</a></h4>
-<p>As stated in the <a class="reference external" href="https://www.w3.org/TR/SVG/shapes.html#CircleElement">SVG standards for a circle</a>, …</p>
-<blockquote>
-<div><p>mathematically, a ‘circle’ element is mapped to an equivalent ‘path’ element that consists of four elliptical arc segments, each covering a quarter of the circle. The path begins at the “3 o’clock” point on the radius and proceeds in a clock-wise direction (before any transformations). The rx and ry parameters to the arc commands are both equal to the used value of the r property, after conversion to local user units, while the x-axis-rotation, the large-arc-flag, and the sweep-flag are all set to zero. The coordinates are computed as follows, where cx, cy, and r are the used values of the equivalent properties, converted to user units:</p>
-<ol class="simple">
-<li><p>A move-to command to the point cx+r,cy;</p></li>
-<li><p>arc to cx,cy+r;</p></li>
-<li><p>arc to cx-r,cy;</p></li>
-<li><p>arc to cx,cy-r;</p></li>
-<li><p>arc with a <a class="reference external" href="https://www.w3.org/TR/SVG/paths.html#TermSegment-CompletingClosePath">segment-completing close path operation</a> [not supported yet?].</p></li>
-</ol>
-</div></blockquote>
-<p>DeepSVG implements a decomposition using 4 elliptical arcs. The example from the paper is a circle defined as follows:</p>
-<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;circle 
-  cx=&quot;1&quot; 
-  cy=&quot;1&quot;
-  r=&quot;1&quot; 
-/&gt;
-</pre></div>
-</div>
-<p>So, this is a circle around the center point <span class="math notranslate nohighlight">\((1, 1)\)</span> with a radius of 1 (and, thus, a width of 2).
-This circle gets translated a MoveTo command and four elliptical arc curves followed by a closing command.</p>
-<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;path 
-  d=&quot;
-    M1,0 
-    A1,1 0 0 1 2,1
-    A1,1 0 0 1 1,2
-    A1,1 0 0 1 0,1
-    A1,1 0 0 1 1,0 
-    z
-  &quot; 
-/&gt;
-</pre></div>
-</div>
-<p>The first arc starts at the top point of the circle (remember that <span class="math notranslate nohighlight">\(y=0\)</span> is the top in the SVG coordinate system) and draws a quarter circle in a clockwise direction to the absolute point <span class="math notranslate nohighlight">\((2, 1)\)</span>.</p>
-<div class="figure align-default" id="deepsvg-circle-decomposition-4-arcs">
-<a class="reference internal image-reference" href="../_images/deepsvg_circle_decomposition_4_arcs1.png"><img alt="deepsvg_circle_decomposition_4_arcs" src="../_images/deepsvg_circle_decomposition_4_arcs1.png" style="width: 200px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 55 </span><span class="caption-text">Circle decomposition in DeepSVG using four elliptical arc curves; center figure from Appendix of the <a class="reference external" href="https://arxiv.org/abs/2007.11301">DeepSVG paper</a></span><a class="headerlink" href="#deepsvg-circle-decomposition-4-arcs" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-<div class="section" id="half-circles-represented-by-elliptical-arcs">
-<h4>2 half-circles represented by elliptical arcs<a class="headerlink" href="#half-circles-represented-by-elliptical-arcs" title="Permalink to this headline">¶</a></h4>
-<p>The SVG decomposition of circles to paths (and vice versa) has also been covered by this <a class="reference external" href="https://www.smashingmagazine.com/2019/03/svg-circle-decomposition-paths/">article by the smashingmagazine.com</a>.</p>
-<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;svg
-   xmlns=&quot;http://www.w3.org/2000/svg&quot; 
-   width=&quot;100&quot;
-   height=&quot;100&quot;
-   version=&quot;1.1&quot;&gt;
-    
-    &lt;circle cx=&quot;50&quot; cy=&quot;50&quot; r=&quot;25&quot;/&gt;
-    
-&lt;/svg&gt;
-
-</pre></div>
-</div>
-<p>The option for circle decomposition proposed in the article is to use a MoveTo command followed by two half-circle elliptical arc segments, each describing a half-circle.</p>
-<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;path
-  d=&quot;
-    M 25, 50
-    a 25,25 0 1,1 50,0
-    a 25,25 0 1,1 -50,0
-  &quot;
-/&gt;
-</pre></div>
-</div>
-<p>Let’s assume, we want to replace had a center point <span class="math notranslate nohighlight">\(C\)</span> at (50, 50) and a radius <span class="math notranslate nohighlight">\(r\)</span> of 25.
-Since we no longer define a circle but a a path, we need to define a new starting point for the overall shape on the circles outline. One possible way is to start at the leftmost point of the circle. To get there, we can use the same y-coordinate as the center point. The x-coordinate is the center point’s x-coordinate minus the radius.</p>
-<p>So, as a first command, we move the pen to the absolute position <span class="math notranslate nohighlight">\((x, y) = (C_x - r, C_y) = (50 - 25, 50) = (25, 50)\)</span>. So the command is: <code class="docutils literal notranslate"><span class="pre">M</span> <span class="pre">25,</span> <span class="pre">50</span></code>.</p>
-<p>Then we can start to draw the first elliptical arc curve using a relative positioning:
-The parameters of the first arc <code class="docutils literal notranslate"><span class="pre">25,25</span> <span class="pre">0</span> <span class="pre">1,1</span> <span class="pre">50,0</span></code> mean the following:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">25</span></code>: The relative X radius of the arc;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">25</span></code>: The relative Y radius of the arc;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code>: angle in degrees (rotation of the ellipse relative to the x axis)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code>: large-arc-flag, a binary variable indicating which arc shall be drawn: the large (1) or the small one (0)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code>: sweep-flag, a binary variable indicating which arc shall be drawn: a clockwise turning arc (1) or the counter-clockwise turning one (0)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">50</span></code>: The ending X coordinate (relative) of the arc</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code>: The ending Y coordinate (relative) of the arc</p></li>
-</ul>
-<p>The radius of the arc along either dimension needs to be the same as the radius of the circle we replace. These are the first two parameters.</p>
-<p>The last two parameters define the end point of our arc. Our current position (25, 50), the leftmost point of the circle. We want draw a half-circle, which means we want to end at the rightmost point on the other side of the cirle. That point is on the same vertical position but the circle’s width (2 x the radius), i.e. 50, further to the right, i.e. <span class="math notranslate nohighlight">\((25 + 50, 50 + 0) = (75, 50)\)</span>.</p>
-<p>The ellipse is not rotated relative to the x axis. So, the third parameter is set to 0 (degrees).</p>
-<p>The information so far is not enough to know which of the possible arcs need to be drawn. The two remaining binary flags provide that specification. The first flag has no practical effect. The second flag, however, defines that the arc shall be drawn in clockwise direction from our current point. Which means that the first arc describes the upper half-circle.</p>
-<p>A closing z command may also be required but was not used in the article – likely since it does not impact the visual representation.</p>
-<div class="figure align-default" id="deepsvg-circle-decomposition-upper-arc">
-<a class="reference internal image-reference" href="../_images/deepsvg_circle_decomposition_upper_arc.png"><img alt="deepsvg_circle_decomposition_upper_arc" src="../_images/deepsvg_circle_decomposition_upper_arc.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 56 </span><span class="caption-text">Only the upper half-circle defined in SVG using an elliptical arc command; code shown on top; resulting half-circle at the bottom; visualized using <a class="reference external" href="https://codepen.io/">codepen.io</a></span><a class="headerlink" href="#deepsvg-circle-decomposition-upper-arc" title="Permalink to this image">¶</a></p>
-</div>
-<p>Adding a second elliptical arc to describe the lower half-circle completes the circle. Note that only the end point needs to be adjusted. We want to end up 50 pixels to the left again and at the same vertical position.</p>
-<div class="figure align-default" id="deepsvg-circle-decomposition-full-circle">
-<a class="reference internal image-reference" href="../_images/deepsvg_circle_decomposition_full_circle.png"><img alt="deepsvg_circle_decomposition_full_circle" src="../_images/deepsvg_circle_decomposition_full_circle.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 57 </span><span class="caption-text">Full circle described by two half-circles formed by elliptical arc curves; visualized using <a class="reference external" href="https://codepen.io/">codepen.io</a></span><a class="headerlink" href="#deepsvg-circle-decomposition-full-circle" title="Permalink to this image">¶</a></p>
-</div>
-</div>
-</div>
-<div class="section" id="decomposition-of-ellipses">
-<h3>(3.2) Decomposition of ellipses<a class="headerlink" href="#decomposition-of-ellipses" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="decomposition-of-lines">
-<h3>(3.3) Decomposition of lines<a class="headerlink" href="#decomposition-of-lines" title="Permalink to this headline">¶</a></h3>
-<p>Lines, defined by a start point and an end point, can be trivially decomposed to a MoveTo command followed by a single LineTo command.</p>
-<p>The following line defines a straight line from <span class="math notranslate nohighlight">\((x_1, y_1)=(0, 0)\)</span> to <span class="math notranslate nohighlight">\((x_2, y_2)=(1, 1)\)</span>.</p>
-<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;line 
-  x1=&quot;0&quot;
-  x2=&quot;1&quot;
-  y1=&quot;0&quot;
-  y2=&quot;1&quot;
-/&gt;
-</pre></div>
-</div>
-<p>To decompose the basic shape, we can move to the starting position and then use the end point as parameter for the LineTo command:</p>
-<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;path 
-  d=
-    &quot;
-      M 0,0 
-      L 1,1
-    &quot; 
-/&gt;
-</pre></div>
-</div>
-</div>
-<div class="section" id="decomposition-of-polygons">
-<h3>(3.4) Decomposition of polygons<a class="headerlink" href="#decomposition-of-polygons" title="Permalink to this headline">¶</a></h3>
-<p>Polygons are just closed polylines and can also trivially be decomposed using a MoveTo command followed by a sequence of LineTo commands.</p>
-<p>The following polygon is defined by three points <span class="math notranslate nohighlight">\((0, 0)\)</span> (top left), <span class="math notranslate nohighlight">\((1, 0)\)</span> (top right), and <span class="math notranslate nohighlight">\((1, 1)\)</span> (bottom right). The shape gets closed by definition.</p>
-<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;polygon 
-  points=
-    &quot;
-      0, 0 
-      1, 0 
-      1, 1
-    &quot;
-/&gt;
-</pre></div>
-</div>
-<p>The polygon can get replaced by the following path:</p>
-<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;path 
-  d=
-    &quot;
-      M 0,0 
-      L 1,0 
-      L 1,1 
-      z
-    &quot; 
-/&gt;
-</pre></div>
-</div>
-<p>We first move to the starting position <span class="math notranslate nohighlight">\((0, 0)\)</span>, then we create lines to the second point and the third point and close the path using the <code class="docutils literal notranslate"><span class="pre">z</span></code> command.</p>
-</div>
-<div class="section" id="decomposition-of-polyline">
-<h3>(3.5) Decomposition of polyline<a class="headerlink" href="#decomposition-of-polyline" title="Permalink to this headline">¶</a></h3>
-<p>Polylines are just sequences of straight lines and are not automatically closed.
-Thus, they can be replaced the same way as polygons – just without the closing command <code class="docutils literal notranslate"><span class="pre">z</span></code>.</p>
-<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;polyline 
-  points=
-    &quot;
-      0, 0 
-      1, 0 
-      1, 1
-    &quot;
-/&gt;
-</pre></div>
-</div>
-<p>This is the replacement path data:</p>
-<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;path 
-  d=
-    &quot;
-      M 0,0 
-      L 1,0 
-      L 1,1
-    &quot; 
-/&gt;
-</pre></div>
-</div>
-</div>
-<div class="section" id="decomposition-of-rectangles">
-<h3>(3.6) Decomposition of rectangles<a class="headerlink" href="#decomposition-of-rectangles" title="Permalink to this headline">¶</a></h3>
-<p>Rectangles can also trivially be converted into a sequence of straight lines by using a MoveTo command, three or four LineTo commands and a closing command <code class="docutils literal notranslate"><span class="pre">z</span></code>.</p>
-<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;rect 
-  x=&quot;0&quot;
-  y=&quot;0&quot;
-  width=&quot;1&quot;
-  height=&quot;1&quot;
-/&gt;
-</pre></div>
-</div>
-<p>This is the replacement path data:</p>
-<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;path 
-  d=
-    &quot;
-      M 0,0 
-      L 1,0
-      L 1,1
-      L 0,1
-      L 0,0
-      z
-    &quot;
-/&gt;
-</pre></div>
-</div>
-<p>Is is also possible to just use three LineTo commands since the closing command <code class="docutils literal notranslate"><span class="pre">z</span></code> would form a straight line anyways and needs to connect the last and the first point:</p>
-<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;path 
-  d=
-    &quot;
-      M 0,0 
-      L 1,0
-      L 1,1
-      L 0,1
-      z
-    &quot;
-/&gt;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="reducing-the-number-of-different-path-data-commands">
-<h2>(4) Reducing the number of different path data commands<a class="headerlink" href="#reducing-the-number-of-different-path-data-commands" title="Permalink to this headline">¶</a></h2>
-<p>There are 10 different <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#path_commands">path data commands</a> for relative positioning and 10 for absolute positioning. Not all of these 10 different path data commands are actually required – some can be represented using the other more basic commands.</p>
-<div class="section" id="why-do-we-want-to-reduce-the-number-of-different-path-data-commands">
-<h3>Why do we want to reduce the number of different path data commands?<a class="headerlink" href="#why-do-we-want-to-reduce-the-number-of-different-path-data-commands" title="Permalink to this headline">¶</a></h3>
-<p>If commands can be replaced by others, then replacing them reduces the complexity and should help the neural network with learning.</p>
-</div>
-<div class="section" id="replacement-of-path-data-commands">
-<h3>Replacement of path data commands<a class="headerlink" href="#replacement-of-path-data-commands" title="Permalink to this headline">¶</a></h3>
-<p>In the following, we assume that we have harmonized all commands and only use the absolute positioning.</p>
-<p>It appears that the minimal set of path data commands is the following subset:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">M</span></code> <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#moveto_path_commands">MoveTo</a></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">L</span></code> <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#lineto_path_commands">LineTo</a></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">C</span></code> <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#cubic_b%C3%A9zier_curve">Cubic Bézier Curve</a></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Z</span></code> <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#closepath">ClosePath</a></p></li>
-</ul>
-<p>The following commands can be replaced or at least approximated by the four commands listed above:</p>
-<table class="colwidths-auto table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Commands that can be replaced or approximated</p></th>
-<th class="head"><p>Letter</p></th>
-<th class="head"><p>Explanation</p></th>
-<th class="head"><p>Replacement</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><strong><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#lineto_path_commands">VerticalLineTo</a></strong></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">V</span></code></p></td>
-<td><p>This is just a simple way of defining a vertical line. LineTo is the general commands for all types of straight lines and can also represent vertical lines.</p></td>
-<td><p>LineTo L</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#lineto_path_commands">HorizontalLineTo</a></strong></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">H</span></code></p></td>
-<td><p>This is just a simple way of defining a horizontal line. LineTo is the general commands for all types of straight lines and can also represent horizontal lines.</p></td>
-<td><p>LineTo L</p></td>
-</tr>
-<tr class="row-even"><td><p><strong><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#cubic_b%C3%A9zier_curve">SmoothCubicBezier</a></strong></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">S</span></code></p></td>
-<td><p>This is just a simple way of defining a smooth cubic bézier curve. The cubic bézier C is the general commands for all types of cubic bézier curves and can also represent smooth cubic béziers.</p></td>
-<td><p>Cubic Bézier Curve C</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#quadratic_b%C3%A9zier_curve">Quadratic Bézier Curve</a></strong></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">Q</span></code></p></td>
-<td><p>Higher-order cubic bézier curves can also represent quadratic bézier curves</p></td>
-<td><p>Cubic Bézier Curve C</p></td>
-</tr>
-<tr class="row-even"><td><p><strong><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#quadratic_b%C3%A9zier_curve">Smooth Quadratic Bezier</a></strong></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">T</span></code></p></td>
-<td><p>This is just a simple way of defining a smooth quadratic bézier curve. The cubic bézier C can also represent all quadratic, including smooth quadratic béziers.</p></td>
-<td><p>Cubic  Bézier Curve C</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#elliptical_arc_curve">Elliptical Arc Curve</a></strong></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">A</span></code></p></td>
-<td><p>Elliptical arc curves are curves defined as a portion of an ellipse.</p></td>
-<td><p>Converted to cubic Bézier curves which can (only) approximate the elliptical arc.</p></td>
-</tr>
-</tbody>
-</table>
-<div class="section" id="replacement-of-verticallineto-v-perfect-substitute">
-<h4>Replacement of VerticalLineTo V (perfect substitute)<a class="headerlink" href="#replacement-of-verticallineto-v-perfect-substitute" title="Permalink to this headline">¶</a></h4>
-</div>
-<div class="section" id="replacement-of-horizontallineto-h-perfect-substitute">
-<h4>Replacement of HorizontalLineTo H (perfect substitute)<a class="headerlink" href="#replacement-of-horizontallineto-h-perfect-substitute" title="Permalink to this headline">¶</a></h4>
-</div>
-<div class="section" id="replacement-of-smoothcubicbezier-s">
-<h4>Replacement of SmoothCubicBezier S<a class="headerlink" href="#replacement-of-smoothcubicbezier-s" title="Permalink to this headline">¶</a></h4>
-</div>
-<div class="section" id="replacement-of-quadratic-bezier-curve-q">
-<h4>Replacement of Quadratic Bézier Curve Q<a class="headerlink" href="#replacement-of-quadratic-bezier-curve-q" title="Permalink to this headline">¶</a></h4>
-</div>
-<div class="section" id="replacement-of-smooth-quadratic-bezier-t">
-<h4>Replacement of Smooth Quadratic Bezier T<a class="headerlink" href="#replacement-of-smooth-quadratic-bezier-t" title="Permalink to this headline">¶</a></h4>
-</div>
-<div class="section" id="replacement-of-elliptical-arc-curve-a-approximation-only">
-<h4>Replacement of Elliptical Arc Curve A (approximation only!)<a class="headerlink" href="#replacement-of-elliptical-arc-curve-a-approximation-only" title="Permalink to this headline">¶</a></h4>
-<p>Converting an elliptical arc curve (<code class="docutils literal notranslate"><span class="pre">A</span></code> / <code class="docutils literal notranslate"><span class="pre">a</span></code>) into more basic commands is non-trivial.</p>
-<p>Luckily, a smart person of the name Luc Maisonobe, who – if correctly identified – appears to be a flight dynamics expert at CS Group and a free software developer (The Apache Software Foundation), published a technical paper titled “Drawing an elliptical arc using polylines, quadratic or cubic Bézier curves” on <a class="reference external" href="http://spaceroots.org">spaceroots.org</a> in 2003 (domain unfortunately no longer active). Copies of this paper can still be found on the Web.</p>
-<p><a class="reference external" href="https://stackoverflow.com/a/5589051">Stackoverflow comment</a>: The error is most dependent on the difference of the start and end angles. I’ve had good success by limiting the angle difference to 60°. That is, I make a separate cubic segment for every 60° (or fraction thereof) and chain them together.</p>
-<p>Further material can be found here:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://pomax.github.io/BezierInfo-2/#circles_cubic">https://pomax.github.io/BezierInfo-2/#circles_cubic</a></p></li>
-<li><p><a class="reference external" href="https://mortoray.com/2017/02/16/rendering-an-svg-elliptical-arc-as-bezier-curves/">https://mortoray.com/2017/02/16/rendering-an-svg-elliptical-arc-as-bezier-curves/</a></p></li>
-</ul>
-<p>The conversion of elliptical arc curves (a / A commands) can also be performed as part of the preprocessing with SVGO.
-The corresponding configuration in the <code class="docutils literal notranslate"><span class="pre">svgo_config.yml</span></code> is:</p>
-<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>  - convertShapeToPath:
-      convertArcs: true
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="path-simplification">
-<h2>(5) Path simplification<a class="headerlink" href="#path-simplification" title="Permalink to this headline">¶</a></h2>
-<p>To simplify the neural network’s task of representation learning, it can make sense to simplify paths.</p>
-<p>Generally, the aim is to reduce the number of points that form a shape. But, in some implementations and for some input examples, the number of points can increase if the resolution of a curve would otherwise be too low.</p>
-<div class="section" id="simplification-approach">
-<h3>Simplification approach<a class="headerlink" href="#simplification-approach" title="Permalink to this headline">¶</a></h3>
-<p>If the SVG input only consisted of smooth curves, the simplification step could simply be to reparametrize points on that curve so that they are placed equidistantly from one another. However, since SVG shapes contain sharp angles and, thus, corners, these points should not be changed.
-Consequently, the simplification is done in two steps:</p>
-<ol class="simple">
-<li><p>Split paths at points that form a sharp angle.</p>
-<ul class="simple">
-<li><p>This is measured by the angle between the incoming and the outcoming tangent</p></li>
-<li><p>If the angle is smaller than some threshold <span class="math notranslate nohighlight">\(\eta = 150°\)</span>, then the angle is considered sharp</p></li>
-</ul>
-</li>
-<li><p>Apply a simplification algorithm to the resulting shapes</p>
-<ul class="simple">
-<li><p>For line segments: Ramer-Douglas-Peucker algorithm (from “Algorithms for the Reduction of the Number of Points Required to Represent a Digitized Line or its Caricature” (1973))</p></li>
-<li><p>For segments of cubic Bézier curves: Philip J. Schneider algorithm (from “An Algorithm for Automatically Fitting Digitized Curves” (1990))</p></li>
-</ul>
-</li>
-<li><p>The resulting lines and Bézier curves are divided in multiple subsegments if their length is larger than some distance <span class="math notranslate nohighlight">\(\Delta = 5\)</span>.</p></li>
-</ol>
-</div>
-</div>
-<div class="section" id="svg-normalization">
-<h2>(6) SVG Normalization<a class="headerlink" href="#svg-normalization" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="embedding">
-<h2>(7) Embedding<a class="headerlink" href="#embedding" title="Permalink to this headline">¶</a></h2>
+<p>Depending on the training dataset, it may be useful to preprocess all input SVGs to avoid unnecessary complexity. SVGs found in the wild may contain all kinds of oddities.</p>
+<p>Not all steps may have to be re-implemented. Tools like <a class="reference external" href="https://github.com/svg/svgo/">SVGO</a> can be configured to perform at least some of these steps.</p>
+<p>Ideally, the preprocessed SVGs are exported again so that results can be visually inspected and preprocessing errors can be spotted as early as possible and before a training is initiated.</p>
+<div class="toctree-wrapper compound">
 </div>
 </div>
 
@@ -1079,10 +539,10 @@ Consequently, the simplification is done in two steps:</p>
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="../99_acknowledgements/acknowledgements.html" title="next page">
+        <a class="right-next" href="preprocessing/first_steps.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Acknowledgements</p>
+                <p class="prevnext-title">First steps</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>

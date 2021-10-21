@@ -1,5 +1,7 @@
 # Lopes et al. (2019) | A Learned Representation for Scalable Vector Graphics (svg-vae)
 
+Lopes et al. propose a generative model for vector graphics called svg-vae. The work focusses on SVGs obtained from fonts. This limits the complexity compared to SVGs found in the wild. Only 4 SVG commands are considered: moveTo, lineTo, cubicBezier and EOS.
+
 ```{admonition} Available resources at a glance
 * [arXiv URL to the paper](https://arxiv.org/abs/1904.02632)
 * [Implementation as part of Google's Magenta, Github repo](https://github.com/tensorflow/magenta/tree/master/magenta/models/svg_vae)
@@ -12,6 +14,60 @@
 
 Screenshot of the SVG-VAE [paper](https://arxiv.org/abs/1904.02632)
 :::
+
+## Dataset
+
+Lopes et al. collected a total of 14 million font characters in a common format (SFD). 
+
+### Filtering to 0-9, a-z, A-Z
+Only characters whose unicode id corresponded to the classes 0-9, a-z, A-Z were retained.
+
+Filtering by unicode id is imperfect because many icons intentionally declare an id such that equivalent characters can be rendered
+in that font style (e.g.: 七 sometimes declares the unicode id normally reserved for 7).
+
+## Data representation
+
+### Conversion to SVG
+
+We then convert the SFD characters into SVG. 
+
+The SVG format can be composed of many elements (square, circle, etc). The most expressive of these is the path element whose main attribute is a sequence of commands, each requiring a varying number of arguments (lineTo: 1 argument, cubicBezierCurve: 3 arguments, etc.). An SVG can contain multiple elements but we found that SFD fonts can be modelled with a single path and a subset of its commands (moveTo, lineTo, cubicBezierCurve, EOS). This motivates our method to model SVGs as a single sequence of commands.
+
+Only the subset of 4 SVG commands (moveTo, lineTo, cubicBezierCurve and EOS) was used
+
+### Filtering out characters with more than 50 commands
+
+In order to aid learning, we filter out characters with over 50 commands.
+
+### Relative positioning
+
+We also found it crucial to use relative positioning in the arguments of each command.
+
+```{admonition} Open question
+:class: important
+Note that Lopes et al. stress how important relative positioning was. Carlier et al. (DeepSVG), however, use absolute positioning. In what situations should one prefer which positioning logic?
+```
+
+### Rescaling
+
+Additionally, we re-scale the arguments of all icons to ensure that most real-values in the dataset will lie in similar ranges. This process preserves size differences between icons. 
+
+### Standardize start point and command ordering
+
+Finally, we standardize the command ordering within a path such that each shape **begins and ends at its top-most point**.
+
+**Curves always start by going clockwise**. We found that setting this prior was important to remove any ambiguity regarding where the SVG decoder should start drawing from and which direction (information which the image encoder would not be able to provide).
+
+### Converting SVG into a feature vector
+
+Lastly, we convert the SVG path into a vector format suitable for training a neural network model: each character is represented by a sequence of commands, each consisting of tuples with:
+* a one-hot encoding of command type (moveTo, lineTo, etc.)
+* a normalized representation of the command’s arguments (e.g.: x, y positions).
+
+### Final structure
+
+The final dataset consists of a sequence of commands specified in tuples. 
+Each item in the sequence consists of a discrete selection of an SVG command paired with a set of normalized, floating-point numbers specifying command arguments.
 
 
 ## Model architecture

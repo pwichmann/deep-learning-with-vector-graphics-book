@@ -334,7 +334,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../04_data_representation/common_preprocessing.html">
-   Common preprocessing
+   Common SVG preprocessing
   </a>
  </li>
 </ul>
@@ -542,9 +542,10 @@
 <div class="section" id="svg-is-a-complex-format">
 <h4>SVG is a complex format<a class="headerlink" href="#svg-is-a-complex-format" title="Permalink to this headline">¶</a></h4>
 <p>SVGs can have groups of elements and multiple layers. The SVG format not only defines simple paths but also allows for quadratic and cubic bézier curves as well as other pre-defined SVG primitives (such as rectangles, circles etc.).
-Shapes can be filled or just an outline.</p>
+Shapes can be filled or just an outline. Relevant information can be in CSS files, style tages, attributes of groups etc.</p>
 <p>The list of <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element">SVG elements (the tags)</a> and the list of <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute">SVG attributes</a> that a browser needs to deal with is long.</p>
 <p>If we cannot represent all of these (likely!), then we need to simplify and focus on the most common ones. SVGs can contain animations and all sorts of other Web technology (scripts, …) that need to be ignored.</p>
+<p>The complexity of the SVG format is a major reason why learning from rasterized images is preferred. Attempting to read all relevant information into a numerical feature vector may easily seem like reinventing the wheel – since browsers have already implemented renderers that convert all the information into a raster image.</p>
 </div>
 <div class="section" id="graph-structure-inherent-to-svgs">
 <h4>Graph structure inherent to SVGs<a class="headerlink" href="#graph-structure-inherent-to-svgs" title="Permalink to this headline">¶</a></h4>

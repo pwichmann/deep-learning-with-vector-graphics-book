@@ -45,8 +45,9 @@ The input SVGs are preprocessed and simplified. The focus is on path generation 
 
 ### Simplifying path commands
 
-* Lines, quadratic Bézier curves and cubic Bézier curves are modelled using the high degree cubic-order equation
-* Elliptical arc segments cannot be perfectly transformed into a cubic Bézier. They are approximated as cubic Béziers.
+* Zhong represents *all* path commands as cubic Bézier curves
+  * Lines, quadratic Bézier curves and cubic Bézier curves are modelled using cubic Bézier curves
+  * Elliptical arc segments cannot be perfectly transformed into a cubic Bézier. They are approximated as cubic Béziers.
 
 ### Pen state vector
 
@@ -70,7 +71,11 @@ For each move command and each disjoint path, we insert a feature vector that en
   * 3 further dimensions are a one-hot vector used to model the pen state (pen down, pen up, end drawing)
 * "Shorter" SVGs are padded using "end drawing" vectors to ensure that all SVGs results in feature vectors of identical length.
 
-Question: Why is pen up and pen down two variables? Is that not a binary state? Or is that poorly phrased and identical to Ha & Eck?
+
+```{admonition} Open question
+:class: important
+Why is pen up and pen down two variables? Is that not a binary state? Or is that poorly phrased and identical to Ha & Eck?
+```
 
 
 ## Model architecture

@@ -1,0 +1,1000 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Decomposition of basic SVG shapes to paths &#8212; Deep Learning with Vector Graphics</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Reducing the set of different path commands" href="reducing_path_commands.html" />
+    <link rel="prev" title="Harmonizing positioning" href="harmonizing_positioning.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/q_logo.svg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Deep Learning with Vector Graphics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../index.html">
+   Deep Learning with Vector Graphics
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  About
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../01_about/this_book.html">
+   This book
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../01_about/the_author.html">
+   The author
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Background knowledge
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../02_background/vector_graphics.html">
+   Vector Graphics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/vector_graphics/svg.html">
+     Scalable Vector Graphics (SVG) format
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../02_background/deep_learning.html">
+   Deep Learning
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/deep_learning/rnn.html">
+     RNN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/deep_learning/lstm.html">
+     LSTM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/deep_learning/mdn.html">
+     Mixture Density Networks (MDN)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../02_background/DL_with_vector_graphics.html">
+   Deep Learning with Vector Graphics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/DL_with_vector_graphics/arguing_for_e2e_approach.html">
+     Arguing for E-2-E approach
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/DL_with_vector_graphics/challenges_of_vector_graphics.html">
+     Challenges of Vector Graphics
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Relevant work
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../03_related_work/academic_papers.html">
+   Key academic publications
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/papers/Graves_2014.html">
+     Alex Graves (2014) | Generating Sequences With Recurrent Neural Networks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/papers/Ha_2015_handwriting.html">
+     David Ha (Dec 2015) | Handwriting Generation Demo in TensorFlow (blog post)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/papers/Ha_2015_kanji.html">
+     David Ha (Dec 2015) | Recurrent Net Dreams Up Fake Chinese Characters in Vector Format with TensorFlow (blog post)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/papers/Carter_et_al_2016.html">
+     Carter et al. (2016) | Four Experiments in Handwriting with a Neural Network (Distill publication)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/papers/Ha_Eck_2017.html">
+     Ha &amp; Eck (2017) | A Neural Representation of Sketch Drawings (sketch-rnn)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/papers/Zhong_2018.html">
+     Kimberli Zhong (2018) | Learning to Draw Vector Graphics: Applying Generative Modeling to Font Glyphs (Master thesis @ MIT)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/papers/Lopes_et_al_2019.html">
+     Lopes et al. (2019) | A Learned Representation for Scalable Vector Graphics (svg-vae)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/papers/Carlier_et_al_2020.html">
+     Carlier et al. (2020) | DeepSVG: A Hierarchical Generative Network for Vector Graphics Animation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/papers/Li_et_al_2020.html">
+     Li et al. (2020) | Differentiable Vector Graphics Rasterization for Editing and Learning (diffvg)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/papers/Reddy_et_al_2021.html">
+     Reddy et al. (2021) | Im2Vec: Synthesizing Vector Graphics without Vector Supervision
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../03_related_work/further_academic_papers.html">
+   Further academic publications
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/further_academic_papers/Das_2020.html">
+     Das et al. (2020) | BézierSketch: A generative model for scalable vector sketches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/further_academic_papers/Das_2021.html">
+     Das et al. (2021) | Cloud2Curve: Generation and Vectorization of Parametric Sketches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/further_academic_papers/yang_2021_sketchaa.html">
+     Yang et al. (2021) | SketchAA: Abstract Representation for Abstract Sketches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/further_academic_papers/wang_and_lian_2021.html">
+     Wang and Lian (2021) | DeepVecFont: Synthesizing High-quality Vector Fonts via Dual-modality Learning
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../03_related_work/other_relevant_work.html">
+   Other relevant work
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/other_relevant_work/greydanus_2016.html">
+     Sam Greydanus (2016) | Scribe: Generating Realistic Handwriting with TensorFlow
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/other_relevant_work/google_quickdraw_2017.html">
+     Google’s “Quick, Draw!” (2017)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/other_relevant_work/vectoglyph_2019.html">
+     Nicolas Boillot’s Vectoglyph (2019)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/other_relevant_work/gan_xml_fixer_2019.html">
+     GAN XML Fixer (2019)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../03_related_work/datasets.html">
+   Datasets
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Data representation
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../from_strokes_to_svg.html">
+   From strokes to SVG
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../common_preprocessing.html">
+   Common SVG preprocessing
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="first_steps.html">
+     First steps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="deminifying_path_data.html">
+     “De-minifying” path data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="harmonizing_positioning.html">
+     Harmonizing positioning
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Decomposition of basic SVG shapes to paths
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reducing_path_commands.html">
+     Reducing the set of different path commands
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="path_simplification.html">
+     Path simplification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="normalization.html">
+     Normalization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="embedding.html">
+     Embedding
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Acknowledgements
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../99_acknowledgements/acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/04_data_representation/preprocessing/decomposition_of_basic_shapes.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F04_data_representation/preprocessing/decomposition_of_basic_shapes.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preprocessing-using-svgo">
+   Preprocessing using SVGO
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decomposition-of-circles">
+   (3.1) Decomposition of circles
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#quarter-circles-represented-by-elliptical-arcs">
+     4 quarter-circles represented by elliptical arcs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#half-circles-represented-by-elliptical-arcs">
+     2 half-circles represented by elliptical arcs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decomposition-of-ellipses">
+   (3.2) Decomposition of ellipses
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decomposition-of-lines">
+   (3.3) Decomposition of lines
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decomposition-of-polygons">
+   (3.4) Decomposition of polygons
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decomposition-of-polyline">
+   (3.5) Decomposition of polyline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#decomposition-of-rectangles">
+   (3.6) Decomposition of rectangles
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rectangles-with-rounded-corners">
+     Rectangles with rounded corners
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="decomposition-of-basic-svg-shapes-to-paths">
+<h1>Decomposition of basic SVG shapes to paths<a class="headerlink" href="#decomposition-of-basic-svg-shapes-to-paths" title="Permalink to this headline">¶</a></h1>
+<p>There are 6 <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element#basic_shapes">basic SVG shapes</a>:</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;circle&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;ellipse&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;line&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;polygon&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;polyline&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;rect&gt;</span></code></p></li>
+</ol>
+<p>These can be decomposed and converted into paths without any visually perceivable loss.</p>
+<div class="important admonition">
+<p class="admonition-title">Open question</p>
+<p>Is it possible to keep these basic SVG shapes as part of the feature vector? Would this help with ensuring that circles remain circles and are not just approximated by squiggly lines in the SVG output?
+A circle will always be a circle – no matter how parameters are chosen. However, two elliptical arcs initially forming a circle can lose the circular shape depending on the chosen parameters.</p>
+</div>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Unsupported basic SVG shape</p></th>
+<th class="head"><p>Explanation</p></th>
+<th class="head"><p>Replacement</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/circle"><code class="docutils literal notranslate"><span class="pre">&lt;circle&gt;</span></code></a></p></td>
+<td><p>A circle defined by the center point (x,y) and a radius.</p></td>
+<td><p>Can be transformed to a path using two or four Elliptical Arc commands, which themselves can be converted to Cubic Bézier curves.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/ellipse"><code class="docutils literal notranslate"><span class="pre">&lt;ellipse&gt;</span></code></a></p></td>
+<td><p>An ellipse defined by 4 parameters, the ellipses position (x,y) and the radius on the x axis and the radius on the y axis</p></td>
+<td><p>Can be transformed to a path using four Elliptical Arc commands, which themselves can be converted to Cubic Bézier curves.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/line"><code class="docutils literal notranslate"><span class="pre">&lt;line&gt;</span></code></a></p></td>
+<td><p>A straight line defined by the start point (x1, y1) and the end point (x2, y2)</p></td>
+<td><p>Can be converted into a path using the LineTo command</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/polygon"><code class="docutils literal notranslate"><span class="pre">&lt;polygon&gt;</span></code></a></p></td>
+<td><p>A <em>closed</em> shape consisting of a set of connected straight line segments. A polygon is defined by a sequence of points; the last point is connected to the first point.</p></td>
+<td><p>Can be converted into a path using the LineTo command.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/polyline"><code class="docutils literal notranslate"><span class="pre">&lt;polyline&gt;</span></code></a></p></td>
+<td><p>A shape consisting of a sequence of connected traight line segments. As opposed to the <code class="docutils literal notranslate"><span class="pre">&lt;polygon&gt;</span></code>, a <code class="docutils literal notranslate"><span class="pre">&lt;polyline&gt;</span></code> does not have to be closed and the last point is not automatically connected to the first one.</p></td>
+<td><p>Can be converted into a path using the LineTo command.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/rect"><code class="docutils literal notranslate"><span class="pre">&lt;rect&gt;</span></code></a></p></td>
+<td><p>A rectangle defined by the position of the upper left corner (x, y), its width and height (and optionally the radius for rounded corners)</p></td>
+<td><p>Can be converted into a path using the LineTo command. <strong>Please note that DeepSVG may overlook the option of rounded corners at this point.</strong></p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="preprocessing-using-svgo">
+<h2>Preprocessing using SVGO<a class="headerlink" href="#preprocessing-using-svgo" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/svg/svgo">SVGO</a>’s <a class="reference external" href="https://github.com/svg/svgo/blob/master/plugins/convertShapeToPath.js">convertShapeToPath</a> can perform the following conversions out of the box:</p>
+<ul class="simple">
+<li><p>convert rect to path</p></li>
+<li><p>convert line to path</p></li>
+<li><p>convert polyline to path</p></li>
+<li><p>convert polygon to path</p></li>
+<li><p>optionally convert circle to MAAZ (two half-circles)</p></li>
+<li><p>optionally covert ellipse to MAAZ</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The optional boolean parameter <code class="docutils literal notranslate"><span class="pre">convertArcs</span></code> of <code class="docutils literal notranslate"><span class="pre">convertShapeToPath</span></code> appears to be a misnomer or at least misleading. This does not mean that <code class="docutils literal notranslate"><span class="pre">convertShapeToPath</span></code> converts arc commands (by approximating them using cubic Bézier curves) but the parameter merely defines if circles and ellipses shall be converted to <code class="docutils literal notranslate"><span class="pre">MAAZ</span></code> paths or not.</p>
+</div>
+<p>The corresponding configuration in a <code class="docutils literal notranslate"><span class="pre">svgo_config.yml</span></code> file is:</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>  - convertShapeToPath:
+      convertArcs: true
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code class="docutils literal notranslate"><span class="pre">convertShapeToPath</span></code> does not check if a rectangle has rounded corners. Rounded corners can be specified by the <code class="docutils literal notranslate"><span class="pre">rx</span></code> and/or <code class="docutils literal notranslate"><span class="pre">ry</span></code> attributes of the <code class="docutils literal notranslate"><span class="pre">&lt;rect&gt;</span></code> element. <code class="docutils literal notranslate"><span class="pre">convertShapeToPath</span></code> will just treat these as if they were normal rectangles with 90° angles.</p>
+</div>
+</div>
+<div class="section" id="decomposition-of-circles">
+<h2>(3.1) Decomposition of circles<a class="headerlink" href="#decomposition-of-circles" title="Permalink to this headline">¶</a></h2>
+<p>The decomposition of circles into four or just two elliptical arc curves is possible without any loss in visual quality.</p>
+<div class="section" id="quarter-circles-represented-by-elliptical-arcs">
+<h3>4 quarter-circles represented by elliptical arcs<a class="headerlink" href="#quarter-circles-represented-by-elliptical-arcs" title="Permalink to this headline">¶</a></h3>
+<p>As stated in the <a class="reference external" href="https://www.w3.org/TR/SVG/shapes.html#CircleElement">SVG standards for a circle</a>, …</p>
+<blockquote>
+<div><p>mathematically, a ‘circle’ element is mapped to an equivalent ‘path’ element that consists of four elliptical arc segments, each covering a quarter of the circle. The path begins at the “3 o’clock” point on the radius and proceeds in a clock-wise direction (before any transformations). The rx and ry parameters to the arc commands are both equal to the used value of the r property, after conversion to local user units, while the x-axis-rotation, the large-arc-flag, and the sweep-flag are all set to zero. The coordinates are computed as follows, where cx, cy, and r are the used values of the equivalent properties, converted to user units:</p>
+<ol class="simple">
+<li><p>A move-to command to the point cx+r,cy;</p></li>
+<li><p>arc to cx,cy+r;</p></li>
+<li><p>arc to cx-r,cy;</p></li>
+<li><p>arc to cx,cy-r;</p></li>
+<li><p>arc with a <a class="reference external" href="https://www.w3.org/TR/SVG/paths.html#TermSegment-CompletingClosePath">segment-completing close path operation</a> [not supported yet?].</p></li>
+</ol>
+</div></blockquote>
+<p>DeepSVG implements a decomposition using 4 elliptical arcs. The example from the paper is a circle defined as follows:</p>
+<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;circle 
+  cx=&quot;1&quot; 
+  cy=&quot;1&quot;
+  r=&quot;1&quot; 
+/&gt;
+</pre></div>
+</div>
+<p>So, this is a circle around the center point <span class="math notranslate nohighlight">\((1, 1)\)</span> with a radius of 1 (and, thus, a width of 2).
+This circle gets translated a MoveTo command and four elliptical arc curves followed by a closing command.</p>
+<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;path 
+  d=&quot;
+    M1,0 
+    A1,1 0 0 1 2,1
+    A1,1 0 0 1 1,2
+    A1,1 0 0 1 0,1
+    A1,1 0 0 1 1,0 
+    z
+  &quot; 
+/&gt;
+</pre></div>
+</div>
+<p>The first arc starts at the top point of the circle (remember that <span class="math notranslate nohighlight">\(y=0\)</span> is the top in the SVG coordinate system) and draws a quarter circle in a clockwise direction to the absolute point <span class="math notranslate nohighlight">\((2, 1)\)</span>.</p>
+<div class="figure align-default" id="deepsvg-circle-decomposition-4-arcs">
+<a class="reference internal image-reference" href="../../_images/deepsvg_circle_decomposition_4_arcs1.png"><img alt="deepsvg_circle_decomposition_4_arcs" src="../../_images/deepsvg_circle_decomposition_4_arcs1.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 55 </span><span class="caption-text">Circle decomposition in DeepSVG using four elliptical arc curves; center figure from Appendix of the <a class="reference external" href="https://arxiv.org/abs/2007.11301">DeepSVG paper</a></span><a class="headerlink" href="#deepsvg-circle-decomposition-4-arcs" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="half-circles-represented-by-elliptical-arcs">
+<h3>2 half-circles represented by elliptical arcs<a class="headerlink" href="#half-circles-represented-by-elliptical-arcs" title="Permalink to this headline">¶</a></h3>
+<p>The SVG decomposition of circles to paths (and vice versa) has also been covered by this <a class="reference external" href="https://www.smashingmagazine.com/2019/03/svg-circle-decomposition-paths/">article by the smashingmagazine.com</a>.</p>
+<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;svg
+   xmlns=&quot;http://www.w3.org/2000/svg&quot; 
+   width=&quot;100&quot;
+   height=&quot;100&quot;
+   version=&quot;1.1&quot;&gt;
+    
+    &lt;circle cx=&quot;50&quot; cy=&quot;50&quot; r=&quot;25&quot;/&gt;
+    
+&lt;/svg&gt;
+
+</pre></div>
+</div>
+<p>The option for circle decomposition proposed in the article is to use a MoveTo command followed by two half-circle elliptical arc segments, each describing a half-circle. <a class="reference external" href="https://github.com/svg/svgo/">SVGO</a> also <a class="reference external" href="https://github.com/svg/svgo/blob/master/plugins/convertShapeToPath.js">uses</a> two arcs describing half-circles.</p>
+<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;path
+  d=&quot;
+    M 25, 50
+    a 25,25 0 1,1 50,0
+    a 25,25 0 1,1 -50,0
+  &quot;
+/&gt;
+</pre></div>
+</div>
+<p>Let’s assume, we want to replace had a center point <span class="math notranslate nohighlight">\(C\)</span> at (50, 50) and a radius <span class="math notranslate nohighlight">\(r\)</span> of 25.
+Since we no longer define a circle but a a path, we need to define a new starting point for the overall shape on the circles outline. One possible way is to start at the leftmost point of the circle. To get there, we can use the same y-coordinate as the center point. The x-coordinate is the center point’s x-coordinate minus the radius.</p>
+<p>So, as a first command, we move the pen to the absolute position <span class="math notranslate nohighlight">\((x, y) = (C_x - r, C_y) = (50 - 25, 50) = (25, 50)\)</span>. So the command is: <code class="docutils literal notranslate"><span class="pre">M</span> <span class="pre">25,</span> <span class="pre">50</span></code>.</p>
+<p>Then we can start to draw the first elliptical arc curve using a relative positioning:
+The parameters of the first arc <code class="docutils literal notranslate"><span class="pre">25,25</span> <span class="pre">0</span> <span class="pre">1,1</span> <span class="pre">50,0</span></code> mean the following:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">25</span></code>: The relative X radius of the arc;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">25</span></code>: The relative Y radius of the arc;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code>: angle in degrees (rotation of the ellipse relative to the x axis)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code>: large-arc-flag, a binary variable indicating which arc shall be drawn: the large (1) or the small one (0)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code>: sweep-flag, a binary variable indicating which arc shall be drawn: a clockwise turning arc (1) or the counter-clockwise turning one (0)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">50</span></code>: The ending X coordinate (relative) of the arc</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code>: The ending Y coordinate (relative) of the arc</p></li>
+</ul>
+<p>The radius of the arc along either dimension needs to be the same as the radius of the circle we replace. These are the first two parameters.</p>
+<p>The last two parameters define the end point of our arc. Our current position (25, 50), the leftmost point of the circle. We want draw a half-circle, which means we want to end at the rightmost point on the other side of the cirle. That point is on the same vertical position but the circle’s width (2 x the radius), i.e. 50, further to the right, i.e. <span class="math notranslate nohighlight">\((25 + 50, 50 + 0) = (75, 50)\)</span>.</p>
+<p>The ellipse is not rotated relative to the x axis. So, the third parameter is set to 0 (degrees).</p>
+<p>The information so far is not enough to know which of the possible arcs need to be drawn. The two remaining binary flags provide that specification. The first flag has no practical effect. The second flag, however, defines that the arc shall be drawn in clockwise direction from our current point. Which means that the first arc describes the upper half-circle.</p>
+<p>A closing z command may also be required but was not used in the article – likely since it does not impact the visual representation.</p>
+<div class="figure align-default" id="deepsvg-circle-decomposition-upper-arc">
+<a class="reference internal image-reference" href="../../_images/deepsvg_circle_decomposition_upper_arc.png"><img alt="deepsvg_circle_decomposition_upper_arc" src="../../_images/deepsvg_circle_decomposition_upper_arc.png" style="width: 300px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 56 </span><span class="caption-text">Only the upper half-circle defined in SVG using an elliptical arc command; code shown on top; resulting half-circle at the bottom; visualized using <a class="reference external" href="https://codepen.io/">codepen.io</a></span><a class="headerlink" href="#deepsvg-circle-decomposition-upper-arc" title="Permalink to this image">¶</a></p>
+</div>
+<p>Adding a second elliptical arc to describe the lower half-circle completes the circle. Note that only the end point needs to be adjusted. We want to end up 50 pixels to the left again and at the same vertical position.</p>
+<div class="figure align-default" id="deepsvg-circle-decomposition-full-circle">
+<a class="reference internal image-reference" href="../../_images/deepsvg_circle_decomposition_full_circle.png"><img alt="deepsvg_circle_decomposition_full_circle" src="../../_images/deepsvg_circle_decomposition_full_circle.png" style="width: 300px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 57 </span><span class="caption-text">Full circle described by two half-circles formed by elliptical arc curves; visualized using <a class="reference external" href="https://codepen.io/">codepen.io</a></span><a class="headerlink" href="#deepsvg-circle-decomposition-full-circle" title="Permalink to this image">¶</a></p>
+</div>
+<p>SVGO uses the following (Javascript) logic for a circle with center point <span class="math notranslate nohighlight">\((cx, cy)\)</span> and radius <span class="math notranslate nohighlight">\(r\)</span>. SVGO first moves to top point of the circle.</p>
+<div class="highlight-Javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">pathData</span> <span class="o">=</span> 
+  <span class="p">[</span>
+    <span class="p">{</span> <span class="nx">command</span><span class="o">:</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="nx">args</span><span class="o">:</span> <span class="p">[</span><span class="nx">cx</span><span class="p">,</span> <span class="nx">cy</span> <span class="o">-</span> <span class="nx">r</span><span class="p">]</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nx">command</span><span class="o">:</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="nx">args</span><span class="o">:</span> <span class="p">[</span><span class="nx">r</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="mf">0</span><span class="p">,</span> <span class="mf">1</span><span class="p">,</span> <span class="mf">0</span><span class="p">,</span> <span class="nx">cx</span><span class="p">,</span> <span class="nx">cy</span> <span class="o">+</span> <span class="nx">r</span><span class="p">]</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nx">command</span><span class="o">:</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="nx">args</span><span class="o">:</span> <span class="p">[</span><span class="nx">r</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="mf">0</span><span class="p">,</span> <span class="mf">1</span><span class="p">,</span> <span class="mf">0</span><span class="p">,</span> <span class="nx">cx</span><span class="p">,</span> <span class="nx">cy</span> <span class="o">-</span> <span class="nx">r</span><span class="p">]</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nx">command</span><span class="o">:</span> <span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="nx">args</span><span class="o">:</span> <span class="p">[]</span> <span class="p">},</span>
+  <span class="p">];</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="decomposition-of-ellipses">
+<h2>(3.2) Decomposition of ellipses<a class="headerlink" href="#decomposition-of-ellipses" title="Permalink to this headline">¶</a></h2>
+<p>SVGO uses the following (Javascript) logic for an ellipse with the position <span class="math notranslate nohighlight">\((cx, cy)\)</span> and the radius of the ellipse on the x axis <span class="math notranslate nohighlight">\(rx\)</span> and on the y axis <span class="math notranslate nohighlight">\(ry\)</span>. Null values are replacec by a zero default value.</p>
+<div class="highlight-Javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">pathData</span> <span class="o">=</span> 
+  <span class="p">[</span>
+    <span class="p">{</span> <span class="nx">command</span><span class="o">:</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="nx">args</span><span class="o">:</span> <span class="p">[</span><span class="nx">cx</span><span class="p">,</span> <span class="nx">cy</span> <span class="o">-</span> <span class="nx">ry</span><span class="p">]</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nx">command</span><span class="o">:</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="nx">args</span><span class="o">:</span> <span class="p">[</span><span class="nx">rx</span><span class="p">,</span> <span class="nx">ry</span><span class="p">,</span> <span class="mf">0</span><span class="p">,</span> <span class="mf">1</span><span class="p">,</span> <span class="mf">0</span><span class="p">,</span> <span class="nx">cx</span><span class="p">,</span> <span class="nx">cy</span> <span class="o">+</span> <span class="nx">ry</span><span class="p">]</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nx">command</span><span class="o">:</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="nx">args</span><span class="o">:</span> <span class="p">[</span><span class="nx">rx</span><span class="p">,</span> <span class="nx">ry</span><span class="p">,</span> <span class="mf">0</span><span class="p">,</span> <span class="mf">1</span><span class="p">,</span> <span class="mf">0</span><span class="p">,</span> <span class="nx">cx</span><span class="p">,</span> <span class="nx">cy</span> <span class="o">-</span> <span class="nx">ry</span><span class="p">]</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nx">command</span><span class="o">:</span> <span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="nx">args</span><span class="o">:</span> <span class="p">[]</span> <span class="p">},</span>
+  <span class="p">];</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="decomposition-of-lines">
+<h2>(3.3) Decomposition of lines<a class="headerlink" href="#decomposition-of-lines" title="Permalink to this headline">¶</a></h2>
+<p>Lines, defined by a start point and an end point, can be trivially decomposed to a MoveTo command followed by a single LineTo command.</p>
+<p>The following line defines a straight line from <span class="math notranslate nohighlight">\((x_1, y_1)=(0, 0)\)</span> to <span class="math notranslate nohighlight">\((x_2, y_2)=(1, 1)\)</span>.</p>
+<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;line 
+  x1=&quot;0&quot;
+  x2=&quot;1&quot;
+  y1=&quot;0&quot;
+  y2=&quot;1&quot;
+/&gt;
+</pre></div>
+</div>
+<p>To decompose the basic shape, we can move to the starting position and then use the end point as parameter for the LineTo command:</p>
+<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;path 
+  d=
+    &quot;
+      M 0,0 
+      L 1,1
+    &quot; 
+/&gt;
+</pre></div>
+</div>
+<p>SVGO uses the following (Javascript) logic for a line with start point <span class="math notranslate nohighlight">\((x1, y1)\)</span> and end point <span class="math notranslate nohighlight">\((x2, y2)\)</span>:</p>
+<div class="highlight-Javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">pathData</span> <span class="o">=</span> 
+  <span class="p">[</span>
+    <span class="p">{</span> <span class="nx">command</span><span class="o">:</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="nx">args</span><span class="o">:</span> <span class="p">[</span><span class="nx">x1</span><span class="p">,</span> <span class="nx">y1</span><span class="p">]</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nx">command</span><span class="o">:</span> <span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="nx">args</span><span class="o">:</span> <span class="p">[</span><span class="nx">x2</span><span class="p">,</span> <span class="nx">y2</span><span class="p">]</span> <span class="p">},</span>
+  <span class="p">];</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="decomposition-of-polygons">
+<h2>(3.4) Decomposition of polygons<a class="headerlink" href="#decomposition-of-polygons" title="Permalink to this headline">¶</a></h2>
+<p>Polygons are just closed polylines and can also trivially be decomposed using a MoveTo command followed by a sequence of LineTo commands.</p>
+<p>The following polygon is defined by three points <span class="math notranslate nohighlight">\((0, 0)\)</span> (top left), <span class="math notranslate nohighlight">\((1, 0)\)</span> (top right), and <span class="math notranslate nohighlight">\((1, 1)\)</span> (bottom right). The shape gets closed by definition.</p>
+<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;polygon 
+  points=
+    &quot;
+      0, 0 
+      1, 0 
+      1, 1
+    &quot;
+/&gt;
+</pre></div>
+</div>
+<p>The polygon can get replaced by the following path:</p>
+<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;path 
+  d=
+    &quot;
+      M 0,0 
+      L 1,0 
+      L 1,1 
+      z
+    &quot; 
+/&gt;
+</pre></div>
+</div>
+<p>We first move to the starting position <span class="math notranslate nohighlight">\((0, 0)\)</span>, then we create lines to the second point and the third point and close the path using the <code class="docutils literal notranslate"><span class="pre">z</span></code> command.</p>
+<p>SVGO uses the following (Javascript) logic for a polygon:</p>
+<div class="highlight-Javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">coords</span> <span class="o">=</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">points</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">regNumber</span><span class="p">)</span> <span class="o">||</span> <span class="p">[]).</span><span class="nx">map</span><span class="p">(</span><span class="nb">Number</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">pathData</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">coords</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mf">2</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">pathData</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+    <span class="nx">command</span><span class="o">:</span> <span class="nx">i</span> <span class="o">===</span> <span class="mf">0</span> <span class="o">?</span> <span class="s1">&#39;M&#39;</span> <span class="o">:</span> <span class="s1">&#39;L&#39;</span><span class="p">,</span>
+    <span class="nx">args</span><span class="o">:</span> <span class="nx">coords</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">i</span> <span class="o">+</span> <span class="mf">2</span><span class="p">),</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+<span class="k">if</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">name</span> <span class="o">===</span> <span class="s1">&#39;polygon&#39;</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">pathData</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span> <span class="nx">command</span><span class="o">:</span> <span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="nx">args</span><span class="o">:</span> <span class="p">[]</span> <span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The first command is always <code class="docutils literal notranslate"><span class="pre">M</span></code>, followed by a sequence of <code class="docutils literal notranslate"><span class="pre">L</span></code> commands. If the shape is a Polygon, a <code class="docutils literal notranslate"><span class="pre">z</span></code> command is added in the last step to close the shape.</p>
+</div>
+<div class="section" id="decomposition-of-polyline">
+<h2>(3.5) Decomposition of polyline<a class="headerlink" href="#decomposition-of-polyline" title="Permalink to this headline">¶</a></h2>
+<p>Polylines are just sequences of straight lines and are not automatically closed.
+Thus, they can be replaced the same way as polygons – just without the closing command <code class="docutils literal notranslate"><span class="pre">z</span></code>.</p>
+<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;polyline 
+  points=
+    &quot;
+      0, 0 
+      1, 0 
+      1, 1
+    &quot;
+/&gt;
+</pre></div>
+</div>
+<p>This is the replacement path data:</p>
+<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;path 
+  d=
+    &quot;
+      M 0,0 
+      L 1,0 
+      L 1,1
+    &quot; 
+/&gt;
+</pre></div>
+</div>
+<p>SVGO uses the following (Javascript) logic for a polyline:</p>
+<div class="highlight-Javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">coords</span> <span class="o">=</span> <span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">points</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">regNumber</span><span class="p">)</span> <span class="o">||</span> <span class="p">[]).</span><span class="nx">map</span><span class="p">(</span><span class="nb">Number</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">pathData</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">coords</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mf">2</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">pathData</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+    <span class="nx">command</span><span class="o">:</span> <span class="nx">i</span> <span class="o">===</span> <span class="mf">0</span> <span class="o">?</span> <span class="s1">&#39;M&#39;</span> <span class="o">:</span> <span class="s1">&#39;L&#39;</span><span class="p">,</span>
+    <span class="nx">args</span><span class="o">:</span> <span class="nx">coords</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">i</span> <span class="o">+</span> <span class="mf">2</span><span class="p">),</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The first command is always <code class="docutils literal notranslate"><span class="pre">M</span></code>, followed by a sequence of <code class="docutils literal notranslate"><span class="pre">L</span></code> commands.</p>
+</div>
+<div class="section" id="decomposition-of-rectangles">
+<h2>(3.6) Decomposition of rectangles<a class="headerlink" href="#decomposition-of-rectangles" title="Permalink to this headline">¶</a></h2>
+<p>Rectangles can also trivially be converted into a sequence of straight lines by using a MoveTo command, three or four LineTo commands and a closing command <code class="docutils literal notranslate"><span class="pre">z</span></code>.</p>
+<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;rect 
+  x=&quot;0&quot;
+  y=&quot;0&quot;
+  width=&quot;1&quot;
+  height=&quot;1&quot;
+/&gt;
+</pre></div>
+</div>
+<p>The <span class="math notranslate nohighlight">\((x, y)\)</span> parameters of a rectangle defines the position of the upper left corner.
+Thus, this is the replacement path data:</p>
+<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;path 
+  d=
+    &quot;
+      M 0,0 
+      L 1,0
+      L 1,1
+      L 0,1
+      L 0,0
+      z
+    &quot;
+/&gt;
+</pre></div>
+</div>
+<p>Is is also possible to just use three LineTo commands since the closing command <code class="docutils literal notranslate"><span class="pre">z</span></code> would form a straight line anyways and needs to connect the last and the first point:</p>
+<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;path 
+  d=
+    &quot;
+      M 0,0 
+      L 1,0
+      L 1,1
+      L 0,1
+      z
+    &quot;
+/&gt;
+</pre></div>
+</div>
+<p>SVGO uses the following (Javascript) logic for a rectangle with position (of the upper left corner) <span class="math notranslate nohighlight">\((x, y)\)</span>, width and height:</p>
+<div class="highlight-Javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">pathData</span> <span class="o">=</span> 
+  <span class="p">[</span>
+    <span class="p">{</span> <span class="nx">command</span><span class="o">:</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="nx">args</span><span class="o">:</span> <span class="p">[</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">]</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nx">command</span><span class="o">:</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="nx">args</span><span class="o">:</span> <span class="p">[</span><span class="nx">x</span> <span class="o">+</span> <span class="nx">width</span><span class="p">]</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nx">command</span><span class="o">:</span> <span class="s1">&#39;V&#39;</span><span class="p">,</span> <span class="nx">args</span><span class="o">:</span> <span class="p">[</span><span class="nx">y</span> <span class="o">+</span> <span class="nx">height</span><span class="p">]</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nx">command</span><span class="o">:</span> <span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="nx">args</span><span class="o">:</span> <span class="p">[</span><span class="nx">x</span><span class="p">]</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="nx">command</span><span class="o">:</span> <span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="nx">args</span><span class="o">:</span> <span class="p">[]</span> <span class="p">},</span>
+  <span class="p">];</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">H</span></code> and <code class="docutils literal notranslate"><span class="pre">V</span></code> commands would then still need to be replaced by general <code class="docutils literal notranslate"><span class="pre">L</span></code> commands.</p>
+<div class="section" id="rectangles-with-rounded-corners">
+<h3>Rectangles with rounded corners<a class="headerlink" href="#rectangles-with-rounded-corners" title="Permalink to this headline">¶</a></h3>
+<p>The SVG format allows for rectangles with rounded corners. Rounded corners can be defined by adding / altering the horizontal and/or the vertical corner radius parameters <span class="math notranslate nohighlight">\(rx\)</span> and <span class="math notranslate nohighlight">\(ry\)</span> of the <code class="docutils literal notranslate"><span class="pre">&lt;rect&gt;</span></code> element. If only one radius parameter is provided, the other is assumed to be equal. This results in a corner looking like a circle segment. If one radius is different than the other, this is not the case and one corner side is flatter than the other.</p>
+<p>Please note that the attribute <code class="docutils literal notranslate"><span class="pre">stroke-linejoin=&quot;round&quot;</span></code> achieves a similar result of rounding corners but needs to be treated separately.</p>
+<p>Converting these types of rectangles is more complicated.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://stackoverflow.com/questions/10177985/svg-rounded-corner">https://stackoverflow.com/questions/10177985/svg-rounded-corner</a></p></li>
+<li><p><a class="reference external" href="http://plnkr.co/edit/kGnGGyoOCKil02k04snu?preview">http://plnkr.co/edit/kGnGGyoOCKil02k04snu?preview</a></p></li>
+<li><p><a class="reference external" href="https://stackoverflow.com/questions/45883840/svg-rect-with-left-rounded-corners">https://stackoverflow.com/questions/45883840/svg-rect-with-left-rounded-corners</a></p></li>
+</ul>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./04_data_representation/preprocessing"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="harmonizing_positioning.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Harmonizing positioning</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="reducing_path_commands.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Reducing the set of different path commands</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Pascal Wichmann<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

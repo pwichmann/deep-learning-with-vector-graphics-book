@@ -61,6 +61,16 @@ parts:
   chapters:
   - file: 04_data_representation/from_strokes_to_svg.md
   - file: 04_data_representation/common_preprocessing.md
+    sections:
+    - file: 04_data_representation/preprocessing/first_steps.md
+    - file: 04_data_representation/preprocessing/deminifying_path_data.md
+    - file: 04_data_representation/preprocessing/harmonizing_positioning.md
+    - file: 04_data_representation/preprocessing/decomposition_of_basic_shapes.md
+    - file: 04_data_representation/preprocessing/reducing_path_commands.md
+    - file: 04_data_representation/preprocessing/normalization.md
+    - file: 04_data_representation/preprocessing/path_simplification.md
+    - file: 04_data_representation/preprocessing/finishing_touches.md
+    - file: 04_data_representation/preprocessing/embedding.md
 
 # Acknowledgements
 - caption: Acknowledgements

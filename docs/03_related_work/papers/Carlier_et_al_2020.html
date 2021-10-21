@@ -334,10 +334,62 @@
    From strokes to SVG
   </a>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../04_data_representation/common_preprocessing.html">
    Common SVG preprocessing
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../04_data_representation/preprocessing/first_steps.html">
+     First steps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../04_data_representation/preprocessing/deminifying_path_data.html">
+     “De-minifying” path data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../04_data_representation/preprocessing/harmonizing_positioning.html">
+     Harmonizing positioning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../04_data_representation/preprocessing/decomposition_of_basic_shapes.html">
+     Decomposition of basic SVG shapes to paths
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../04_data_representation/preprocessing/reducing_path_commands.html">
+     Reducing the set of different path commands
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../04_data_representation/preprocessing/normalization.html">
+     Normalization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../04_data_representation/preprocessing/path_simplification.html">
+     Path simplification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../04_data_representation/preprocessing/finishing_touches.html">
+     Finishing touches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../04_data_representation/preprocessing/embedding.html">
+     Embedding
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p class="caption">
@@ -539,6 +591,11 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#preprocessing-hidden-too-integrated">
+     Preprocessing hidden / too integrated
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#code-for-fill-property-was-lost">
      Code for fill property was lost
     </a>
@@ -707,6 +764,12 @@ This circle gets translated a MoveTo command and four elliptical arc curves foll
 </ul>
 <p>These commands have been chosen deliberately as the other SVG commands can be represented or at least approximated using these basic commands.</p>
 <p>Not directly supported commands are: <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">VerticalLineTo</span> <span class="pre">V;</span> <span class="pre">HorizontalLineTo</span> <span class="pre">H;</span> <span class="pre">SmoothCubicBezier</span> <span class="pre">S;</span> <span class="pre">Quadratic</span> <span class="pre">Bézier</span> <span class="pre">Curve</span> <span class="pre">Q;</span> <span class="pre">Smooth</span> <span class="pre">Quadratic</span> <span class="pre">Bezier</span> <span class="pre">T;</span> <span class="pre">Elliptical</span> <span class="pre">Arc</span> <span class="pre">Curve</span> <span class="pre">A</span> <span class="pre">}</span></code>. These commands are replaced by others.</p>
+<p>Carlier et al. also add two commands that just denote the start and end of the SVG:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;SOS&gt;</span></code> – start of the SVG token</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;EOS&gt;</span></code> – end of the SVG token; this command is also used for padding to fill up the sequence of commands up to the permitted maximum number of commands.</p></li>
+</ul>
+<p>All arguments of these two additional commands are always equal to <code class="docutils literal notranslate"><span class="pre">-1</span></code>.</p>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Unsupported commands</p></th>
@@ -809,8 +872,17 @@ Consequently, the simplification is done in two steps:</p>
 <h5>5. SVG normalization<a class="headerlink" href="#svg-normalization" title="Permalink to this headline">¶</a></h5>
 <p>The following SVG normalization steps are carried out:</p>
 <ol class="simple">
-<li><p>All SVGs are scaled to a **normalized viewbox of size 256 x 256</p></li>
 <li><p>Paths are canonicalized, that is, any shapes starting position is chosen to be the topmost leftmost point and the commands are oriented clockwise</p></li>
+<li><p>All SVGs are scaled to a **normalized viewbox of size 256 x 256.</p></li>
+</ol>
+<ul class="simple">
+<li><p>This step is called “numericalize” within the DeepSVG code and can be found in <code class="docutils literal notranslate"><span class="pre">dataset.preprocess</span></code> where <code class="docutils literal notranslate"><span class="pre">svg.numericalize(256)</span></code> is</p></li>
+</ul>
+<p>If <code class="docutils literal notranslate"><span class="pre">dataset.simplify</span></code> is called, the following three steps are executed:</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">svg.canonicalize(normalize=normalize)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">svg.simplify_heuristic()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">svg.normalize()</span></code></p></li>
 </ol>
 </div>
 </div>
@@ -856,6 +928,13 @@ The pre-processed SVGs looked indistinguishable from the original SVG files.</p>
 <p class="admonition-title">Open question</p>
 <p>What exactly causes DeepSVG to produce squiggly output even if all the input examples of a class are simple shapes and completely identical? How could this be resolved? If solved, maybe the same DeepSVG could produce significantly better results.</p>
 </div>
+</div>
+<div class="section" id="preprocessing-hidden-too-integrated">
+<h3>Preprocessing hidden / too integrated<a class="headerlink" href="#preprocessing-hidden-too-integrated" title="Permalink to this headline">¶</a></h3>
+<p>It is relatively difficult to understand where exactly in the DeepSVG pipeline SVGs degrade. One reason for this is that the whole preprocessing (normalization, simplification, …) is an integral part of DeepSVG and the results are not exported for a visual inspection.</p>
+<p>Especially because the SVG format is highly complex, many SVGs found in the wild will feature oddities that DeepSVG is not prepared to handle.</p>
+<p>Potentially a better way to structure DeepSVG is to separate the preprocessing from the remainder of the project. This way one creates a folder for the raw input SVGs and one folder with the exported preprocessed SVGs and can visually inspect the samples. One could even render both raw and preprocessed SVGs and automatically compare these to find issues.</p>
+<p>Working hypothesis: Much of the code base in the <code class="docutils literal notranslate"><span class="pre">/svglib</span></code> folder is only required to preprocess the SVGs. The generated outputs do not get postprocessed to convert paths back to basic shapes. <code class="docutils literal notranslate"><span class="pre">svg.py</span></code> and <code class="docutils literal notranslate"><span class="pre">svg_path.py</span></code> are the modules that may be required even after the preprocessing.</p>
 </div>
 <div class="section" id="code-for-fill-property-was-lost">
 <h3>Code for fill property was lost<a class="headerlink" href="#code-for-fill-property-was-lost" title="Permalink to this headline">¶</a></h3>

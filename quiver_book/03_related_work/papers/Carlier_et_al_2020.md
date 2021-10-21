@@ -151,6 +151,13 @@ These commands have been chosen deliberately as the other SVG commands can be re
 
 Not directly supported commands are: `{ VerticalLineTo V; HorizontalLineTo H; SmoothCubicBezier S; Quadratic Bézier Curve Q; Smooth Quadratic Bezier T; Elliptical Arc Curve A }`. These commands are replaced by others.
 
+Carlier et al. also add two commands that just denote the start and end of the SVG:
+
+* `<SOS>` -- start of the SVG token
+* `<EOS>` -- end of the SVG token; this command is also used for padding to fill up the sequence of commands up to the permitted maximum number of commands.
+
+All arguments of these two additional commands are always equal to `-1`.
+
 
 | Unsupported commands | Explanation | Replacement |
 |---|---|---|
@@ -221,8 +228,16 @@ What parts of the simplification process cause which aspects of the observed sub
 
 The following SVG normalization steps are carried out:
 
-1. All SVGs are scaled to a **normalized viewbox of size 256 x 256
-2. Paths are canonicalized, that is, any shapes starting position is chosen to be the topmost leftmost point and the commands are oriented clockwise
+1. Paths are canonicalized, that is, any shapes starting position is chosen to be the topmost leftmost point and the commands are oriented clockwise 
+2. All SVGs are scaled to a **normalized viewbox of size 256 x 256.
+  * This step is called "numericalize" within the DeepSVG code and can be found in `dataset.preprocess` where `svg.numericalize(256)` is
+
+
+If `dataset.simplify` is called, the following three steps are executed:
+
+1. `svg.canonicalize(normalize=normalize)`
+2. `svg.simplify_heuristic()`
+3. `svg.normalize()`
 
 
 ### Embedding
@@ -245,6 +260,7 @@ DeepSVG model architecture; figure taken from the [DeepSVG paper](https://arxiv.
 The DeepSVG paper is incredibly inspiring and the work that was done by Alexandre within the scope of just his Master's thesis is truly amazing. Alexandre was kind enough to have a long video call with the author and then also helped with various follow-up questions.
 
 Caveat: It is possible that the results shown below are result of a misunderstanding of how to correctly apply DeepSVG and not necessarily a weakness inherent to DeepSVG.
+
 
 ### Squiggly, sketchy outputs for unknown reason
 
@@ -284,6 +300,17 @@ The square gets reproduced most accurately -- but never with 90° angles. Genera
 :class: important
 What exactly causes DeepSVG to produce squiggly output even if all the input examples of a class are simple shapes and completely identical? How could this be resolved? If solved, maybe the same DeepSVG could produce significantly better results.
 ```
+
+### Preprocessing hidden / too integrated
+
+It is relatively difficult to understand where exactly in the DeepSVG pipeline SVGs degrade. One reason for this is that the whole preprocessing (normalization, simplification, ...) is an integral part of DeepSVG and the results are not exported for a visual inspection.
+
+Especially because the SVG format is highly complex, many SVGs found in the wild will feature oddities that DeepSVG is not prepared to handle.
+
+Potentially a better way to structure DeepSVG is to separate the preprocessing from the remainder of the project. This way one creates a folder for the raw input SVGs and one folder with the exported preprocessed SVGs and can visually inspect the samples. One could even render both raw and preprocessed SVGs and automatically compare these to find issues.
+
+Working hypothesis: Much of the code base in the `/svglib` folder is only required to preprocess the SVGs. The generated outputs do not get postprocessed to convert paths back to basic shapes. `svg.py` and `svg_path.py` are the modules that may be required even after the preprocessing.
+
 
 ### Code for fill property was lost
 
