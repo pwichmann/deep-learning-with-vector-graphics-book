@@ -826,8 +826,8 @@ Consequently, the simplification is done in two steps:</p>
 </li>
 <li><p>Apply a simplification algorithm to the resulting shapes</p>
 <ul class="simple">
-<li><p>For line segments: Ramer-Douglas-Peucker algorithm (from “Algorithms for the Reduction of the Number of Points Required to Represent a Digitized Line or its Caricature” (1973))</p></li>
-<li><p>For segments of cubic Bézier curves: Philip J. Schneider algorithm (from “An Algorithm for Automatically Fitting Digitized Curves” (1990))</p></li>
+<li><p>For line segments: <strong>Ramer-Douglas-Peucker algorithm</strong> (from “Algorithms for the Reduction of the Number of Points Required to Represent a Digitized Line or its Caricature” (1973)); the same algorithm was also used by Ha and Eck (2017)</p></li>
+<li><p>For segments of cubic Bézier curves: <strong>Philip J. Schneider algorithm</strong> (from “An Algorithm for Automatically Fitting Digitized Curves” (1990))</p></li>
 </ul>
 </li>
 <li><p>The resulting lines and Bézier curves are divided in multiple subsegments if their length is larger than some distance <span class="math notranslate nohighlight">\(\Delta = 5\)</span>.</p></li>

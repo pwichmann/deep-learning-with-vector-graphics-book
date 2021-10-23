@@ -182,8 +182,8 @@ Consequently, the simplification is done in two steps:
     * This is measured by the angle between the incoming and the outcoming tangent
     * If the angle is smaller than some threshold $\eta = 150°$, then the angle is considered sharp
 2. Apply a simplification algorithm to the resulting shapes
-    * For line segments: Ramer-Douglas-Peucker algorithm (from "Algorithms for the Reduction of the Number of Points Required to Represent a Digitized Line or its Caricature" (1973))
-    * For segments of cubic Bézier curves: Philip J. Schneider algorithm (from "An Algorithm for Automatically Fitting Digitized Curves" (1990))
+    * For line segments: **Ramer-Douglas-Peucker algorithm** (from "Algorithms for the Reduction of the Number of Points Required to Represent a Digitized Line or its Caricature" (1973)); the same algorithm was also used by Ha and Eck (2017)
+    * For segments of cubic Bézier curves: **Philip J. Schneider algorithm** (from "An Algorithm for Automatically Fitting Digitized Curves" (1990))
 3. The resulting lines and Bézier curves are divided in multiple subsegments if their length is larger than some distance $\Delta = 5$. 
 
 

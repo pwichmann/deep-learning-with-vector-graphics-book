@@ -9,7 +9,7 @@ There are 6 [basic SVG shapes](https://developer.mozilla.org/en-US/docs/Web/SVG/
 1. `<polyline>`
 1. `<rect>`
 
-These can be decomposed and converted into paths without any visually perceivable loss.
+These can be decomposed and converted into path elements (`<path>`) without any visually perceivable loss. Since basic shapes can all be converted into paths, doing so reduces variability in the training dataset and should help the learning algorithm.
 
 
 ```{admonition} Open question

@@ -571,7 +571,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">&lt;polyline&gt;</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&lt;rect&gt;</span></code></p></li>
 </ol>
-<p>These can be decomposed and converted into paths without any visually perceivable loss.</p>
+<p>These can be decomposed and converted into path elements (<code class="docutils literal notranslate"><span class="pre">&lt;path&gt;</span></code>) without any visually perceivable loss. Since basic shapes can all be converted into paths, doing so reduces variability in the training dataset and should help the learning algorithm.</p>
 <div class="important admonition">
 <p class="admonition-title">Open question</p>
 <p>Is it possible to keep these basic SVG shapes as part of the feature vector? Would this help with ensuring that circles remain circles and are not just approximated by squiggly lines in the SVG output?
