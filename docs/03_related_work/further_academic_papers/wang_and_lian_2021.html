@@ -488,6 +488,19 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-representation">
+   Data representation
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -509,11 +522,22 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://arxiv.org/pdf/2110.06688.pdf">arXiv URL to the paper</a></p></li>
 <li><p><a class="reference external" href="https://github.com/yizhiwang96/deepvecfont">Github repository with code</a></p></li>
+<li><p><a class="reference external" href="https://yizhiwang96.github.io/deepvecfont_homepage/">Project website on github.io with a short video</a></p></li>
 </ul>
 </div>
 <div class="figure align-default" id="wang-and-lian-2021-cover">
 <a class="reference internal image-reference" href="../../_images/wang_and_lian_2021_cover.png"><img alt="Wand and Lian 2021 paper" src="../../_images/wang_and_lian_2021_cover.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 47 </span><span class="caption-text">Screenshot of the DeepVecFont <a class="reference external" href="https://arxiv.org/pdf/2110.06688.pdf">paper</a> by Wang and Lian (2021)</span><a class="headerlink" href="#wang-and-lian-2021-cover" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 49 </span><span class="caption-text">Screenshot of the DeepVecFont <a class="reference external" href="https://arxiv.org/pdf/2110.06688.pdf">paper</a> by Wang and Lian (2021)</span><a class="headerlink" href="#wang-and-lian-2021-cover" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="data-representation">
+<h2>Data representation<a class="headerlink" href="#data-representation" title="Permalink to this headline">¶</a></h2>
+<p>Like most other papers, Wand and Lian only consider 4 SVG commands.</p>
+<ol class="simple">
+<li><p>Move – moving the drawing location (for starting a new path)</p></li>
+<li><p>Line – drawing a line</p></li>
+<li><p>Curve – Cubic Bézier Curve</p></li>
+<li><p>End – ending the draw-command sequence</p></li>
+</ol>
 </div>
 </div>
 

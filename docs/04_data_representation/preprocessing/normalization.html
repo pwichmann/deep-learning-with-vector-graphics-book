@@ -264,6 +264,11 @@
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/further_academic_papers/campbell_and_kautz_2014.html">
+     Campbell and Kautz (2014) | Learning a Manifold of Fonts
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../03_related_work/further_academic_papers/Das_2020.html">
      Das et al. (2020) | BézierSketch: A generative model for scalable vector sketches
     </a>
@@ -356,7 +361,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="harmonizing_positioning.html">
-     Harmonizing positioning
+     Harmonizing command positioning logic
     </a>
    </li>
    <li class="toctree-l2">
@@ -526,7 +531,8 @@
 <p>These steps should be performed before any simplification steps. Simplification could be sensitive to the scale of the SVG input and the scale needs to be normalized first.</p>
 <div class="section" id="position-of-paths-within-the-viewbox">
 <h2>Position of paths within the viewbox<a class="headerlink" href="#position-of-paths-within-the-viewbox" title="Permalink to this headline">¶</a></h2>
-<p>The location of the paths can be harmonized, such that the paths are moved as closely towards the SVG origin of <span class="math notranslate nohighlight">\((0, 0)\)</span> as possible.
+<p>The location of the paths can be harmonized, such that the paths are moved as closely towards the SVG origin of <span class="math notranslate nohighlight">\((0, 0)\)</span> as possible.</p>
+<p><strong>TODO:</strong>
 (Check again: DeepSVG does not do this? I think Ha did this…)
 Or would it be better to center them?</p>
 </div>
@@ -543,7 +549,7 @@ To normalize the size across all input samples, a standard viewbox (e.g. 256 x 2
 <span class="nt">&lt;/svg&gt;</span>
 </pre></div>
 </div>
-<p>Maybe, this has to be done BEFORE the simplification. Otherwise, the simplification will be different since resolution of SVGs was different when simplification was applied.</p>
+<p>This normalization step in particular should be performed <strong>before the simplification step</strong>. Otherwise, the simplification will be different for SVGs of different original scale since resolution of SVGs was different when simplification was applied.</p>
 </div>
 <div class="section" id="harmonizing-starting-position-and-command-orientation">
 <h2>Harmonizing starting position and command orientation<a class="headerlink" href="#harmonizing-starting-position-and-command-orientation" title="Permalink to this headline">¶</a></h2>

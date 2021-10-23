@@ -11,6 +11,7 @@ This paper was submitted to SIGGRAPH Asia 2021 and published in ACM Transactions
 ```{admonition} Available resources at a glance
 * [arXiv URL to the paper](https://arxiv.org/pdf/2110.06688.pdf)
 * [Github repository with code](https://github.com/yizhiwang96/deepvecfont)
+* [Project website on github.io with a short video](https://yizhiwang96.github.io/deepvecfont_homepage/)
 ```
 
 
@@ -19,3 +20,13 @@ This paper was submitted to SIGGRAPH Asia 2021 and published in ACM Transactions
 
 Screenshot of the DeepVecFont [paper](https://arxiv.org/pdf/2110.06688.pdf) by Wang and Lian (2021)
 :::
+
+
+## Data representation
+
+Like most other papers, Wand and Lian only consider 4 SVG commands.
+
+1. Move -- moving the drawing location (for starting a new path)
+2. Line -- drawing a line
+3. Curve -- Cubic Bézier Curve
+4. End -- ending the draw-command sequence

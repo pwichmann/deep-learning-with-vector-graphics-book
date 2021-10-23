@@ -5,6 +5,8 @@ These steps should be performed before any simplification steps. Simplification 
 ## Position of paths within the viewbox
 
 The location of the paths can be harmonized, such that the paths are moved as closely towards the SVG origin of $(0, 0)$ as possible.
+
+**TODO:**
 (Check again: DeepSVG does not do this? I think Ha did this...)
 Or would it be better to center them?
 
@@ -24,7 +26,7 @@ For a size of $(256, 256)$, we want all SVGs to look as follows:
 </svg>
 ```
 
-Maybe, this has to be done BEFORE the simplification. Otherwise, the simplification will be different since resolution of SVGs was different when simplification was applied.
+This normalization step in particular should be performed **before the simplification step**. Otherwise, the simplification will be different for SVGs of different original scale since resolution of SVGs was different when simplification was applied.
 
 ## Harmonizing starting position and command orientation
 
