@@ -140,6 +140,20 @@ These algorithms have no understanding of what (potentially overlapping) shapes 
 Screenshot of the vectorized Microsoft Edge logo; vectorized using [vectorizer.io](https://www.vectorizer.io). The vector result is much more complicated than the original SVG and no where near the original in terms of quality.
 :::
 
+**Example 4:**
+
+Consider the reconstructed icon below:
+
+:::{figure-md} vectorizers_have_hard_time
+<img src="vectorizers_have_hard_time.png" alt="vectorizers_have_hard_time" width="300px">
+
+Lacking contextual awareness of current vectorizers
+:::
+
+
+Current vectorizers will not understand that the icon consists of two identical hearts. The black outline on top, and the orange heart underneath and slightly offset.
+
+
 
 ### Conclusion regarding poor vectorizers
 
