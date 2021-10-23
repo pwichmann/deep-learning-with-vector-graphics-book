@@ -66,6 +66,8 @@ Current tools for converting a raster image (e.g. a PNG) to a vector graphic ("t
 * Over-use of points vs. a smart use of bezier curves and their handles
 * No or poor detection of colour gradients
 * No consideration of symmetry
+  * Many glyphs and icons have symmetries of some kind (reflectional, translational, rotational, ...)
+  * Current vectorizers are insensitive to symmetries
 * Tracers do not understand how humans compose images from multiple shapes (potentially overlapping, potentially half-transparent), e.g. shadows
 * SVGs just have too many parameters and an intractable complexity for current vectorizers to correctly guess them all given a raster image
 

@@ -75,7 +75,7 @@ Missing colour information shall be interpreted as black.
 ## (4) Dealing with color gradients
 
 SVGs containing color linear or radial gradients may or may not need to be treated -- depending on the chosen data representation.
-For the sake of simplicity, we may want to replace a gradient by a single color.
+For the sake of simplicity, we may want to replace a gradient by a single color. This could avoid the issue of reconstructed or generated images looking as if they had been painted using watercolors.
 
 ## (5) Width, height, and viewbox
 

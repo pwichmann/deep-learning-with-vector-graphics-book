@@ -605,7 +605,12 @@
 </li>
 <li><p>Over-use of points vs. a smart use of bezier curves and their handles</p></li>
 <li><p>No or poor detection of colour gradients</p></li>
-<li><p>No consideration of symmetry</p></li>
+<li><p>No consideration of symmetry</p>
+<ul>
+<li><p>Many glyphs and icons have symmetries of some kind (reflectional, translational, rotational, …)</p></li>
+<li><p>Current vectorizers are insensitive to symmetries</p></li>
+</ul>
+</li>
 <li><p>Tracers do not understand how humans compose images from multiple shapes (potentially overlapping, potentially half-transparent), e.g. shadows</p></li>
 <li><p>SVGs just have too many parameters and an intractable complexity for current vectorizers to correctly guess them all given a raster image</p></li>
 </ul>
