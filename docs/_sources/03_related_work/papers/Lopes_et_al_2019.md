@@ -41,7 +41,7 @@ Lopes et al. found that SFD fonts can be modelled with a single path and a subse
 
 ### Filtering out characters with more than 50 commands
 
-In order to aid learning, we filter out characters with over 50 commands.
+In order to aid learning, characters with over 50 commands are filtered out .
 
 ### Relative positioning
 
