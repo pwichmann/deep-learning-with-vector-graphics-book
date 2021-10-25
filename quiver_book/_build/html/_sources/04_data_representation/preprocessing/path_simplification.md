@@ -31,6 +31,7 @@ Implementations of this algorithm are widely available:
 * Pseudo-code is available on the Ramer–Douglas–Peucker algorithm [Wikipedia page](https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm); this page also provides a gentle explanation as well as an animation
 * Both, an explanation and Python code, are also available [here](https://towardsdatascience.com/simplify-polylines-with-the-douglas-peucker-algorithm-ac8ed487a4a1)
 * Explanation in [Medium post](https://medium.com/@indemfeld/the-ramer-douglas-peucker-algorithm-d542807093e7)
+* Python code in [Github repository](https://github.com/elunico/RDP-Algorithm)
 
 
 #### Alternatives
@@ -47,7 +48,7 @@ There are a number of alternative algorithms:
 * [Simplifyjs](https://github.com/mourner/simplify-js)
   * It uses a combination of Douglas-Peucker and Radial Distance algorithms 
   * [Demo](http://mourner.github.io/simplify-js/)
-  * [Python version](https://github.com/omarestrella/simplify.py)
+  * [Python version (GNU license)](https://github.com/omarestrella/simplify.py)
 
 
 ### (3) Simplification for cubic Bézier curves: Philip J. Schneider algorithm

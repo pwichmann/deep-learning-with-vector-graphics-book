@@ -59,4 +59,5 @@ So how do we deal with vector graphics for problems like classification or for c
 
   * *We could feed in both the SVG and the PNG.* Then (using a dual-modality) we could make sure that the model has all the information. But how does the model know how to adjust the SVG to better match the desired visual?
 
-  * *We could include a differentiable rasterizer.* If there was such a thing (there is), then there may be a way to determine how an SVG needs to be adjusted to better match the desired visual.
+  * *We could include a differentiable rasterizer.* If there was such a thing (there is), then there may be a way to determine how an SVG needs to be adjusted to better match the desired visual. But how much does it slow down training when both modalities need to be considered?
+
