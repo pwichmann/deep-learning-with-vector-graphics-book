@@ -36,7 +36,7 @@ Lopes et al. convert the SFD glyphs to SVG.
 
 ## Data representation
 
-Lopes et al. found that SFD fonts can be modelled with a single path and a subset of the possible path data commands. Only the subset of 3 SVG commands (`moveTo`, `lineTo`, `cubicBezierCurve`) and an additional EOS command were used. Each SVG character is, thus, modelled as a single sequence of commands.
+Lopes et al. found that SFD fonts can be modelled with a single path and a subset of the possible path data commands. Only the subset of 3 SVG commands (`moveTo`, `lineTo`, `cubicBezierCurve`) and an additional `EOS` command were used. Each SVG character is, thus, modelled as a single sequence of commands.
 
 
 ### Filtering out characters with more than 50 commands

@@ -1,0 +1,10 @@
+<svg width="16" height="16">
+    <path 
+      d="
+        M 3, 3
+        L 13, 3
+        L 13, 13
+        L 3, 13
+        z
+        " />
+</svg>

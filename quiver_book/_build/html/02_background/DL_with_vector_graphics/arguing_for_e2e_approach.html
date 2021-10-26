@@ -502,22 +502,22 @@
   <a class="reference internal nav-link" href="#more-effective">
    2. More effective
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#rasterising-a-vector-graphics-leads-to-information-loss">
-   3. Rasterising a vector graphics leads to information loss
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#maintaining-symmetries-perfect-angles-clear-color-boundaries-etc">
-   4. Maintaining symmetries, perfect angles, clear color boundaries etc.
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#current-vectorizers-are-doing-a-poor-job">
-   5. Current vectorizers are doing a poor job
-  </a>
   <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rasterising-a-vector-graphics-leads-to-information-loss">
+     2.1 Rasterising a vector graphics leads to information loss
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#maintaining-symmetries-perfect-angles-clear-color-boundaries-etc">
+     2.2 Maintaining symmetries, perfect angles, clear color boundaries etc.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#current-vectorizers-are-doing-a-poor-job">
+     2.3 Current vectorizers are doing a poor job
+    </a>
+   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#examples">
      Examples
@@ -549,40 +549,63 @@
 <div class="section" id="more-efficient-and-faster">
 <h2>1. More efficient and faster<a class="headerlink" href="#more-efficient-and-faster" title="Permalink to this headline">¶</a></h2>
 <p>Training on SVG could be much faster since vector graphics can store information much more efficiently than raster images. This is obviously the case if an image has been designed as a vector graphic from the start. The rastered image file will be much larger and even “empty” pixels need to be described using their RGB(A) values.</p>
+<p>Compare a simple 10x10 rectangle in a 16x16 image as vector graphic against its rasterized version.</p>
+<div class="figure align-default" id="simple-rect-raster">
+<a class="reference internal image-reference" href="../../_images/simple_rect_raster.png"><img alt="simple_rect_raster" src="../../_images/simple_rect_raster.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Simple 10x10 rectangle in a 16x16 image; illustration of how a raster image would store the information using RGB pixel values</span><a class="headerlink" href="#simple-rect-raster" title="Permalink to this image">¶</a></p>
+</div>
+<p>Even at the low resolution of 16x16 pixels, so much more information needs to be processed than in the equivalent vector graphic. 256 pixels in the image times the 3 values for each RGB channel.</p>
+<p>In comparison, the SVG code of the rectangle (decomposed to a path) would look like this:</p>
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;svg</span> <span class="na">width=</span><span class="s">&quot;16&quot;</span> <span class="na">height=</span><span class="s">&quot;16&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;path</span> 
+      <span class="na">d=</span><span class="s">&quot;</span>
+<span class="s">        M 3, 3</span>
+<span class="s">        L 13, 3</span>
+<span class="s">        L 13, 13</span>
+<span class="s">        L 3, 13</span>
+<span class="s">        z</span>
+<span class="s">        &quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/svg&gt;</span>
+</pre></div>
+</div>
+<p>And this is also how a vector graphics editor would show the rectangle – as a closed path of just for connected points.</p>
+<div class="figure align-default" id="simple-rect-inkscape">
+<a class="reference internal image-reference" href="../../_images/simple_rect_inkscape.png"><img alt="simple_rect_inkscape" src="../../_images/simple_rect_inkscape.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Simple 10x10 rectangle in a 16x16 image; screenshot of how the vector graphics editor Inkscape shows the SVG</span><a class="headerlink" href="#simple-rect-inkscape" title="Permalink to this image">¶</a></p>
+</div>
 <p>Training DeepSVG, for example, on a small dataset using an RTX 3090 takes less than an hour. Training models for raster images generally takes much longer: days, if not weeks.</p>
 </div>
 <div class="section" id="more-effective">
 <h2>2. More effective<a class="headerlink" href="#more-effective" title="Permalink to this headline">¶</a></h2>
 <p>If obtaining SVG is our goal, then the approach of using generative models for raster images and to then convert their output to vector graphics is futile. Current generative models are not conditioned to produce output that is easily converted to vector graphics, especially when it comes to colour images (as opposed to black and white images). And such a conditioning would not be trivial.</p>
-</div>
 <div class="section" id="rasterising-a-vector-graphics-leads-to-information-loss">
-<h2>3. Rasterising a vector graphics leads to information loss<a class="headerlink" href="#rasterising-a-vector-graphics-leads-to-information-loss" title="Permalink to this headline">¶</a></h2>
+<h3>2.1 Rasterising a vector graphics leads to information loss<a class="headerlink" href="#rasterising-a-vector-graphics-leads-to-information-loss" title="Permalink to this headline">¶</a></h3>
 <p>Learning about the composition of an SVG (e.g. how shapes are represented, the number of layers, …) is only possible if this information is fed into the model. A rasterised image has lost that information.</p>
 </div>
 <div class="section" id="maintaining-symmetries-perfect-angles-clear-color-boundaries-etc">
-<h2>4. Maintaining symmetries, perfect angles, clear color boundaries etc.<a class="headerlink" href="#maintaining-symmetries-perfect-angles-clear-color-boundaries-etc" title="Permalink to this headline">¶</a></h2>
+<h3>2.2 Maintaining symmetries, perfect angles, clear color boundaries etc.<a class="headerlink" href="#maintaining-symmetries-perfect-angles-clear-color-boundaries-etc" title="Permalink to this headline">¶</a></h3>
 <p>Many logos and icons make use of perfect symmetries and perfect 90° angles. This information could be maintained if both input and output are vector graphics. Colour inputs often lead to watercolor effects where boundaries between shapes get blurry.</p>
 <p><strong>Example:</strong></p>
 <p>Have a look at the following figure which shows 4 different icons which have been reconstructed by a VAE. The icons were originally SVG icons and presented to the VAE as 128x128 rasterised images. Thus, the VAE was trained on raster images only.</p>
 <div class="figure align-default" id="reconstructed-icons-vae">
 <a class="reference internal image-reference" href="../../_images/reconstructed_icons_vae.png"><img alt="Reconstructed icons using a VAE" src="../../_images/reconstructed_icons_vae.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Unclear color boundaries (VAE-reconstructed icons; VAE was trained on 128x128 pixel rasterised vector graphics)</span><a class="headerlink" href="#reconstructed-icons-vae" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">Unclear color boundaries (VAE-reconstructed icons; VAE was trained on 128x128 pixel rasterised vector graphics)</span><a class="headerlink" href="#reconstructed-icons-vae" title="Permalink to this image">¶</a></p>
 </div>
 <p>While the black and white characters would be relatively easy to vectorize, the icon in the upper right corner would not. The outline of the overall shape and the check mark have been reconstructed very well. But the blue shapes that make up the shield bleed into each other and now have irregular color gradients.</p>
 <p>In the following figure, the target icon in the lower right corner looks like a watercolor painting. Especially this watercolor effect makes vectorizing these results very difficult.</p>
 <div class="figure align-default" id="reconstructed-icons-vae-2">
 <a class="reference internal image-reference" href="../../_images/reconstructed_icons_vae_2.png"><img alt="Reconstructed icons using a VAE - watercolor" src="../../_images/reconstructed_icons_vae_2.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Undesirable watercolor effect (VAE-reconstructed icons; VAE was trained on 128x128 pixel rasterised vector graphics)</span><a class="headerlink" href="#reconstructed-icons-vae-2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Undesirable watercolor effect (VAE-reconstructed icons; VAE was trained on 128x128 pixel rasterised vector graphics)</span><a class="headerlink" href="#reconstructed-icons-vae-2" title="Permalink to this image">¶</a></p>
 </div>
 <p>The figure below shows a “location pin” generated by DALL-E trained on a custom dataset of raster images (after 7 epochs). There were approximately 8,000 examples in this “location pin” class. Practically all examples were symmetrical (could be mirrored along the y axis) and used a perfect circle as shape in the centre. The generated example has lost these properties. For icons, this type of fidelity or precision in the reproduction of concepts matters.</p>
 <div class="figure align-default" id="location-pin-generated-by-dall-e">
 <a class="reference internal image-reference" href="../../_images/location_pin_generated_by_dall-e.png"><img alt="location_pin_generated_by_dall-e" src="../../_images/location_pin_generated_by_dall-e.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">Icon of a “location pin” generated by DALL-E trained on a custom dataset of raster images (after 7 epochs)</span><a class="headerlink" href="#location-pin-generated-by-dall-e" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text">Icon of a “location pin” generated by DALL-E trained on a custom dataset of raster images (after 7 epochs)</span><a class="headerlink" href="#location-pin-generated-by-dall-e" title="Permalink to this image">¶</a></p>
 </div>
 <p>DALL-E is only implicitly learning the symmetry in the training examples; there is no explicit conditioning on these properties.</p>
 </div>
 <div class="section" id="current-vectorizers-are-doing-a-poor-job">
-<h2>5. Current vectorizers are doing a poor job<a class="headerlink" href="#current-vectorizers-are-doing-a-poor-job" title="Permalink to this headline">¶</a></h2>
+<h3>2.3 Current vectorizers are doing a poor job<a class="headerlink" href="#current-vectorizers-are-doing-a-poor-job" title="Permalink to this headline">¶</a></h3>
 <p>Current tools for converting a raster image (e.g. a PNG) to a vector graphic (“tracing” or “vectorization”) are still doing a poor job.</p>
 <p><strong>Main issues with current vectorizers:</strong></p>
 <ul class="simple">
@@ -621,50 +644,51 @@
 <li><p>SVGs just have too many parameters and an intractable complexity for current vectorizers to correctly guess them all given a raster image</p></li>
 </ul>
 <p>Even the Deep Learning-based vectorizers Im2Vec cannot fully address the above issues. Im2Vec has been trained on raster images only and lacks awareness of the true underlying composition of the original vector graphics.</p>
+</div>
 <div class="section" id="examples">
 <h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
 <p><strong>Example 1:</strong></p>
 <p>The image below shows the “Octocat”, Github’s mascot.</p>
 <div class="figure align-default" id="github-mark">
 <a class="reference internal image-reference" href="../../_images/GitHub-Mark.png"><img alt="github" src="../../_images/GitHub-Mark.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Github’s mascot Octocat</span><a class="headerlink" href="#github-mark" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">Github’s mascot Octocat</span><a class="headerlink" href="#github-mark" title="Permalink to this image">¶</a></p>
 </div>
 <p>Note the ellipses on the octocat’s tentacle-tail in the figure above.
 Vectorizing a low resolution version of that section of the image leads to a poor result, see the figure below:</p>
 <div class="figure align-default" id="vectorizing-still-poor">
 <a class="reference internal image-reference" href="../../_images/vectorizing_still_poor.png"><img alt="vectorizing_still_poor" src="../../_images/vectorizing_still_poor.png" style="width: 900px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text">Current vectorizers are still performing poorly. In this case, the used tool was <a class="reference external" href="https://vectormagic.com/">vectormagic</a> – still one of the better tools out there and not free.</span><a class="headerlink" href="#vectorizing-still-poor" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">Current vectorizers are still performing poorly. In this case, the used tool was <a class="reference external" href="https://vectormagic.com/">vectormagic</a> – still one of the better tools out there and not free.</span><a class="headerlink" href="#vectorizing-still-poor" title="Permalink to this image">¶</a></p>
 </div>
 <p>The low resolution results in the smaller ellipses to have corners in the vector output. It appears that the vectorizer has no understanding that the resolution of the input is low and pixel edges and corners should not be traced too closely. The vectorizer also has no contextual understanding that there is a symmetry in these shapes: all of these are ellipses of different sizes.</p>
 <p><strong>Example 2:</strong></p>
 <p>In another example, see figure below, an image loses its perfect symmetry through vectorization.</p>
 <div class="figure align-default" id="vectorizing-destroy-symmetry">
 <a class="reference internal image-reference" href="../../_images/vectorizing_destroy_symmetry.png"><img alt="vectorizing_destroy_symmetry" src="../../_images/vectorizing_destroy_symmetry.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">Example from <a class="reference external" href="https://github.com/jankovicsandras/imagetracerjs">imagetracerjs</a></span><a class="headerlink" href="#vectorizing-destroy-symmetry" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">Example from <a class="reference external" href="https://github.com/jankovicsandras/imagetracerjs">imagetracerjs</a></span><a class="headerlink" href="#vectorizing-destroy-symmetry" title="Permalink to this image">¶</a></p>
 </div>
 <p><strong>Example 3:</strong></p>
 <p>Vector graphis, such as SVG, can make use of linear and radial gradients. This can produce visually pleasing results, such as this logo below:</p>
 <div class="figure align-default" id="edge">
 <a class="reference internal image-reference" href="../../_images/edge.svg"><img alt="edge" src="../../_images/edge.svg" width="300px" /></a>
-<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">Microsoft Edge logo designed as a vector graphic in SVG format; <a class="reference external" href="https://www.npmjs.com/package/&#64;browser-logos/edge">source</a></span><a class="headerlink" href="#edge" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">Microsoft Edge logo designed as a vector graphic in SVG format; <a class="reference external" href="https://www.npmjs.com/package/&#64;browser-logos/edge">source</a></span><a class="headerlink" href="#edge" title="Permalink to this image">¶</a></p>
 </div>
 <p>Since this logo was designed as an SVG, we know it is possible to design such a logo as a vector graphic.
 Here is the SVG code for the logo above:</p>
 <div class="figure align-default" id="edge-logo-svg">
 <a class="reference internal image-reference" href="../../_images/edge_logo_svg.png"><img alt="edge_logo_svg" src="../../_images/edge_logo_svg.png" style="width: 900px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">SVG code of the Microsoft Edge logo</span><a class="headerlink" href="#edge-logo-svg" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 13 </span><span class="caption-text">SVG code of the Microsoft Edge logo</span><a class="headerlink" href="#edge-logo-svg" title="Permalink to this image">¶</a></p>
 </div>
 <p>However, current vectorizers have a hard time converting a rasterized version of the logo back to a vector graphic.
 These algorithms have no understanding of what (potentially overlapping) shapes are required and what shapes need to have what type of linear or radial gradients. There are too many parameters at play for pre-Deep Learning algorithms to work well.</p>
 <div class="figure align-default" id="vectorized-edge-logo">
 <a class="reference internal image-reference" href="../../_images/vectorized_edge_logo.png"><img alt="vectorized_edge_logo" src="../../_images/vectorized_edge_logo.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">Screenshot of the vectorized Microsoft Edge logo; vectorized using <a class="reference external" href="https://www.vectorizer.io">vectorizer.io</a>. The vector result is much more complicated than the original SVG and no where near the original in terms of quality.</span><a class="headerlink" href="#vectorized-edge-logo" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 14 </span><span class="caption-text">Screenshot of the vectorized Microsoft Edge logo; vectorized using <a class="reference external" href="https://www.vectorizer.io">vectorizer.io</a>. The vector result is much more complicated than the original SVG and no where near the original in terms of quality.</span><a class="headerlink" href="#vectorized-edge-logo" title="Permalink to this image">¶</a></p>
 </div>
 <p><strong>Example 4:</strong></p>
 <p>Consider the reconstructed icon below:</p>
 <div class="figure align-default" id="vectorizers-have-hard-time">
 <a class="reference internal image-reference" href="../../_images/vectorizers_have_hard_time.png"><img alt="vectorizers_have_hard_time" src="../../_images/vectorizers_have_hard_time.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 13 </span><span class="caption-text">Lacking contextual awareness of current vectorizers</span><a class="headerlink" href="#vectorizers-have-hard-time" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 15 </span><span class="caption-text">Lacking contextual awareness of current vectorizers</span><a class="headerlink" href="#vectorizers-have-hard-time" title="Permalink to this image">¶</a></p>
 </div>
 <p>Current vectorizers will not understand that the icon consists of two identical hearts. The black outline on top, and the orange heart underneath and slightly offset.</p>
 </div>
