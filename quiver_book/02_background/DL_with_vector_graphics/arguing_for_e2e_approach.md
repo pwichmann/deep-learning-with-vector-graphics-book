@@ -1,6 +1,8 @@
 # Arguing for E-2-E approach
 
-A book about Deep Learning with Vector Graphics also needs to make the point why an end-to-end (E-2-E) approach appears to be a desirable objective. End-to-end in this context shall refer to a generative Deep Learning model that is fed vector graphics and directly outputs vector graphics. 
+A book about Deep Learning with Vector Graphics also needs to make the point why an end-to-end (E-2-E) approach appears to be a desirable objective. 
+
+End-to-end in a Machine Learning context refers to a single model that is able to consume the available input and covers all the steps required to produce the desired output. End-to-end in this context shall refer to a generative Deep Learning model that is fed vector graphics and can directly output vector graphics. If vector graphics are the desired output but the model only generates raster images that still need to be vectorized, then this would not be called end-to-end.
 
 End-to-end in this context shall not exclude multi-modal approaches where, _in addition_ to the vector graphic, other types of inputs are used, such as text descriptions or the corresponding raster image. Multi-modal may even be a required setting for some problems.
 
@@ -52,11 +54,14 @@ If obtaining SVG is our goal, then the approach of using generative models for r
 
 ### 2.1 Rasterising a vector graphics leads to information loss
 
-Learning about the composition of an SVG (e.g. how shapes are represented, the number of layers, ...) is only possible if this information is fed into the model. A rasterised image has lost that information.
+Unlike raster images, vector graphics contain additional structural information (e.g. how shapes are represented, how low-level elements are grouped together to form high-level shapes, ...).
+
+Learning about the composition of an SVG is only possible if this information is fed into the model. A rasterised image has lost that information.
+
 
 ### 2.2 Maintaining symmetries, perfect angles, clear color boundaries etc.
 
-Many logos and icons make use of perfect symmetries and perfect 90° angles. This information could be maintained if both input and output are vector graphics. Colour inputs often lead to watercolor effects where boundaries between shapes get blurry.
+Many logos and icons make use of perfect symmetries and perfect 90° angles. This information could be maintained if both input and output are vector graphics. Colour inputs to a generative model for raster images often lead to watercolor effects where boundaries between shapes get blurry.
 
 **Example:**
 

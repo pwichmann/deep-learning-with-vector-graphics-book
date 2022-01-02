@@ -315,3 +315,22 @@ Working hypothesis: Much of the code base in the `/svglib` folder is only requir
 ### Code for fill property was lost
 
 Unfortunately, the code for using the fill property was lost and would need to be re-implemented. Alexandre outlined how to implement this part to the author.
+
+### Various preprocessing limitations
+
+The SVG format is very complex and it is not surprising that various corner cases cannot be handled by DeepSVG.
+Among those are:
+
+* The rx and ry attributes of rectangles are not considered. These attributes define rounded corners.
+* transforms are not applied to the paths but ignored(?)
+* `<g>` (group) tags with transforms get ignored instead of applying transforms to the contained elements
+* missing viewBox attribute cannot be dealt with
+  * This is a common problems for SVGs found on the Web since SVGO used to remove the attribute by default if width and height were provided
+* viewBox attributes with negative starting points can cause issues
+* Lacking check if there are multiple svg tags in the same file
+* defs are ignored
+* css styles are not moved into affected elements
+* ...
+
+
+[TODO: Check if code was adopted from https://github.com/regebro/svg.path/blob/master/src/svg/path/path.py]

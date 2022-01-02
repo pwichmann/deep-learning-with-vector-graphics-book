@@ -2,12 +2,12 @@
 
 The first steps include:
 
-1. Filtering out SVGs
-1. Moving information from various places into the affected SVG elements
-1. Harmonizing color information
-1. Dealing with color gradients
+* Filtering out SVGs
+* Moving information from various places into the affected SVG elements
+* Harmonizing color information
+* Dealing with color gradients
 
-## (1) Filtering out unsuitable SVGs
+## Filtering out unsuitable SVGs
 
 We may want to filter out SVGs that appear unsuitable for training based on some pre-defined thresholds or heuristics. This step may be necessary especially when SVGs have been obtained from the Web and a variation within the data will be high (as opposed to SVGs that have been obtained from fonts, for example).
 
@@ -30,7 +30,12 @@ We may want to filter out SVGs that appear unsuitable for training based on some
     * ...
 
 
-## (2) Moving information from various places into the affected SVG elements
+## Removing elements that are not displayed (display="none")
+
+Some SVGs are used as sprites by defining many icons. All but one icon are set to `display="none"` and do not get rendered.
+Obviously, invisible parts of the SVG do not need to get encoded into a feature vector.
+
+## Moving information from various places into the affected SVG elements
 
 This can be:
 * style information (color, stroke, fill, ...)
@@ -53,7 +58,7 @@ E.g. `class= ...`
 
 Groups with attributes can cause issues when parsing SVG elements. It may be useful to move the group's attributes to all member elements (moveGroupAttrsToElems).
 
-## (3) Harmonizing color information
+## Harmonizing color information
 
 There are various ways to define colors in SVGs (as well as CSS and HTML):
 
@@ -72,14 +77,18 @@ There are various ways to define colors in SVGs (as well as CSS and HTML):
 To facilitate parsing the color information, the color representation should be harmonized, e.g. as `rgba(..., ..., ..., ...)`.
 Missing colour information shall be interpreted as black.
 
-## (4) Dealing with color gradients
+## Dealing with color gradients
 
 SVGs containing color linear or radial gradients may or may not need to be treated -- depending on the chosen data representation.
 For the sake of simplicity, we may want to replace a gradient by a single color. This could avoid the issue of reconstructed or generated images looking as if they had been painted using watercolors.
 
-## (5) Width, height, and viewbox
+## Width, height, and viewbox
 
 SVGs can contain shapes outside the viewbox. These do not get rendered and can be ignored or actively removed.
 Size can be relative (100%) or absolute etc. etc. etc.
 
 `width="500px" height="500px" viewBox="0 0 500 500"`
+
+## Removing Adobe Illustrator <pgf> data
+
+If an SVG is exported from Adobe Illustrator and the "Preserve Illustrator Editing Capabilities" option is checked, then the whole Illustrator document gets saved inside the SVG as a <pgf> tag. This bloats the SVG and can be ignored or removed.

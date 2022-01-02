@@ -286,6 +286,11 @@
      Wang and Lian (2021) | DeepVecFont: Synthesizing High-quality Vector Fonts via Dual-modality Learning
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/further_academic_papers/Jiang_2021.html">
+     Jiang et al. (2021) | Recognizing Vector Graphics without Rasterization
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -543,7 +548,8 @@
                 
   <div class="section" id="arguing-for-e-2-e-approach">
 <h1>Arguing for E-2-E approach<a class="headerlink" href="#arguing-for-e-2-e-approach" title="Permalink to this headline">¶</a></h1>
-<p>A book about Deep Learning with Vector Graphics also needs to make the point why an end-to-end (E-2-E) approach appears to be a desirable objective. End-to-end in this context shall refer to a generative Deep Learning model that is fed vector graphics and directly outputs vector graphics.</p>
+<p>A book about Deep Learning with Vector Graphics also needs to make the point why an end-to-end (E-2-E) approach appears to be a desirable objective.</p>
+<p>End-to-end in a Machine Learning context refers to a single model that is able to consume the available input and covers all the steps required to produce the desired output. End-to-end in this context shall refer to a generative Deep Learning model that is fed vector graphics and can directly output vector graphics. If vector graphics are the desired output but the model only generates raster images that still need to be vectorized, then this would not be called end-to-end.</p>
 <p>End-to-end in this context shall not exclude multi-modal approaches where, <em>in addition</em> to the vector graphic, other types of inputs are used, such as text descriptions or the corresponding raster image. Multi-modal may even be a required setting for some problems.</p>
 <p>Here are a few bold claims (that may still require evidence):</p>
 <div class="section" id="more-efficient-and-faster">
@@ -580,11 +586,12 @@
 <p>If obtaining SVG is our goal, then the approach of using generative models for raster images and to then convert their output to vector graphics is futile. Current generative models are not conditioned to produce output that is easily converted to vector graphics, especially when it comes to colour images (as opposed to black and white images). And such a conditioning would not be trivial.</p>
 <div class="section" id="rasterising-a-vector-graphics-leads-to-information-loss">
 <h3>2.1 Rasterising a vector graphics leads to information loss<a class="headerlink" href="#rasterising-a-vector-graphics-leads-to-information-loss" title="Permalink to this headline">¶</a></h3>
-<p>Learning about the composition of an SVG (e.g. how shapes are represented, the number of layers, …) is only possible if this information is fed into the model. A rasterised image has lost that information.</p>
+<p>Unlike raster images, vector graphics contain additional structural information (e.g. how shapes are represented, how low-level elements are grouped together to form high-level shapes, …).</p>
+<p>Learning about the composition of an SVG is only possible if this information is fed into the model. A rasterised image has lost that information.</p>
 </div>
 <div class="section" id="maintaining-symmetries-perfect-angles-clear-color-boundaries-etc">
 <h3>2.2 Maintaining symmetries, perfect angles, clear color boundaries etc.<a class="headerlink" href="#maintaining-symmetries-perfect-angles-clear-color-boundaries-etc" title="Permalink to this headline">¶</a></h3>
-<p>Many logos and icons make use of perfect symmetries and perfect 90° angles. This information could be maintained if both input and output are vector graphics. Colour inputs often lead to watercolor effects where boundaries between shapes get blurry.</p>
+<p>Many logos and icons make use of perfect symmetries and perfect 90° angles. This information could be maintained if both input and output are vector graphics. Colour inputs to a generative model for raster images often lead to watercolor effects where boundaries between shapes get blurry.</p>
 <p><strong>Example:</strong></p>
 <p>Have a look at the following figure which shows 4 different icons which have been reconstructed by a VAE. The icons were originally SVG icons and presented to the VAE as 128x128 rasterised images. Thus, the VAE was trained on raster images only.</p>
 <div class="figure align-default" id="reconstructed-icons-vae">

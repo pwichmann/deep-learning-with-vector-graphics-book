@@ -288,6 +288,11 @@
      Wang and Lian (2021) | DeepVecFont: Synthesizing High-quality Vector Fonts via Dual-modality Learning
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../further_academic_papers/Jiang_2021.html">
+     Jiang et al. (2021) | Recognizing Vector Graphics without Rasterization
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -603,6 +608,11 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#code-for-fill-property-was-lost">
      Code for fill property was lost
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#various-preprocessing-limitations">
+     Various preprocessing limitations
     </a>
    </li>
   </ul>
@@ -944,6 +954,27 @@ The pre-processed SVGs looked indistinguishable from the original SVG files.</p>
 <div class="section" id="code-for-fill-property-was-lost">
 <h3>Code for fill property was lost<a class="headerlink" href="#code-for-fill-property-was-lost" title="Permalink to this headline">¶</a></h3>
 <p>Unfortunately, the code for using the fill property was lost and would need to be re-implemented. Alexandre outlined how to implement this part to the author.</p>
+</div>
+<div class="section" id="various-preprocessing-limitations">
+<h3>Various preprocessing limitations<a class="headerlink" href="#various-preprocessing-limitations" title="Permalink to this headline">¶</a></h3>
+<p>The SVG format is very complex and it is not surprising that various corner cases cannot be handled by DeepSVG.
+Among those are:</p>
+<ul class="simple">
+<li><p>The rx and ry attributes of rectangles are not considered. These attributes define rounded corners.</p></li>
+<li><p>transforms are not applied to the paths but ignored(?)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;g&gt;</span></code> (group) tags with transforms get ignored instead of applying transforms to the contained elements</p></li>
+<li><p>missing viewBox attribute cannot be dealt with</p>
+<ul>
+<li><p>This is a common problems for SVGs found on the Web since SVGO used to remove the attribute by default if width and height were provided</p></li>
+</ul>
+</li>
+<li><p>viewBox attributes with negative starting points can cause issues</p></li>
+<li><p>Lacking check if there are multiple svg tags in the same file</p></li>
+<li><p>defs are ignored</p></li>
+<li><p>css styles are not moved into affected elements</p></li>
+<li><p>…</p></li>
+</ul>
+<p>[TODO: Check if code was adopted from <a class="reference external" href="https://github.com/regebro/svg.path/blob/master/src/svg/path/path.py">https://github.com/regebro/svg.path/blob/master/src/svg/path/path.py</a>]</p>
 </div>
 </div>
 </div>

@@ -288,6 +288,11 @@
      Wang and Lian (2021) | DeepVecFont: Synthesizing High-quality Vector Fonts via Dual-modality Learning
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/further_academic_papers/Jiang_2021.html">
+     Jiang et al. (2021) | Recognizing Vector Graphics without Rasterization
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -677,7 +682,7 @@ This circle gets translated a MoveTo command and four elliptical arc curves foll
 <p>The first arc starts at the top point of the circle (remember that <span class="math notranslate nohighlight">\(y=0\)</span> is the top in the SVG coordinate system) and draws a quarter circle in a clockwise direction to the absolute point <span class="math notranslate nohighlight">\((2, 1)\)</span>.</p>
 <div class="figure align-default" id="deepsvg-circle-decomposition-4-arcs">
 <a class="reference internal image-reference" href="../../_images/deepsvg_circle_decomposition_4_arcs1.png"><img alt="deepsvg_circle_decomposition_4_arcs" src="../../_images/deepsvg_circle_decomposition_4_arcs1.png" style="width: 200px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 62 </span><span class="caption-text">Circle decomposition in DeepSVG using four elliptical arc curves; center figure from Appendix of the <a class="reference external" href="https://arxiv.org/abs/2007.11301">DeepSVG paper</a></span><a class="headerlink" href="#deepsvg-circle-decomposition-4-arcs" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 63 </span><span class="caption-text">Circle decomposition in DeepSVG using four elliptical arc curves; center figure from Appendix of the <a class="reference external" href="https://arxiv.org/abs/2007.11301">DeepSVG paper</a></span><a class="headerlink" href="#deepsvg-circle-decomposition-4-arcs" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="half-circles-represented-by-elliptical-arcs">
@@ -726,12 +731,12 @@ The parameters of the first arc <code class="docutils literal notranslate"><span
 <p>A closing z command may also be required but was not used in the article – likely since it does not impact the visual representation.</p>
 <div class="figure align-default" id="deepsvg-circle-decomposition-upper-arc">
 <a class="reference internal image-reference" href="../../_images/deepsvg_circle_decomposition_upper_arc.png"><img alt="deepsvg_circle_decomposition_upper_arc" src="../../_images/deepsvg_circle_decomposition_upper_arc.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 63 </span><span class="caption-text">Only the upper half-circle defined in SVG using an elliptical arc command; code shown on top; resulting half-circle at the bottom; visualized using <a class="reference external" href="https://codepen.io/">codepen.io</a></span><a class="headerlink" href="#deepsvg-circle-decomposition-upper-arc" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 64 </span><span class="caption-text">Only the upper half-circle defined in SVG using an elliptical arc command; code shown on top; resulting half-circle at the bottom; visualized using <a class="reference external" href="https://codepen.io/">codepen.io</a></span><a class="headerlink" href="#deepsvg-circle-decomposition-upper-arc" title="Permalink to this image">¶</a></p>
 </div>
 <p>Adding a second elliptical arc to describe the lower half-circle completes the circle. Note that only the end point needs to be adjusted. We want to end up 50 pixels to the left again and at the same vertical position.</p>
 <div class="figure align-default" id="deepsvg-circle-decomposition-full-circle">
 <a class="reference internal image-reference" href="../../_images/deepsvg_circle_decomposition_full_circle.png"><img alt="deepsvg_circle_decomposition_full_circle" src="../../_images/deepsvg_circle_decomposition_full_circle.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 64 </span><span class="caption-text">Full circle described by two half-circles formed by elliptical arc curves; visualized using <a class="reference external" href="https://codepen.io/">codepen.io</a></span><a class="headerlink" href="#deepsvg-circle-decomposition-full-circle" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 65 </span><span class="caption-text">Full circle described by two half-circles formed by elliptical arc curves; visualized using <a class="reference external" href="https://codepen.io/">codepen.io</a></span><a class="headerlink" href="#deepsvg-circle-decomposition-full-circle" title="Permalink to this image">¶</a></p>
 </div>
 <p>SVGO uses the following (Javascript) logic for a circle with center point <span class="math notranslate nohighlight">\((cx, cy)\)</span> and radius <span class="math notranslate nohighlight">\(r\)</span>. SVGO first moves to top point of the circle.</p>
 <div class="highlight-Javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">pathData</span> <span class="o">=</span> 

@@ -286,6 +286,11 @@
      Wang and Lian (2021) | DeepVecFont: Synthesizing High-quality Vector Fonts via Dual-modality Learning
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/further_academic_papers/Jiang_2021.html">
+     Jiang et al. (2021) | Recognizing Vector Graphics without Rasterization
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -495,7 +500,7 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#filtering-out-unsuitable-svgs">
-   (1) Filtering out unsuitable SVGs
+   Filtering out unsuitable SVGs
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -506,8 +511,13 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#removing-elements-that-are-not-displayed-display-none">
+   Removing elements that are not displayed (display=”none”)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#moving-information-from-various-places-into-the-affected-svg-elements">
-   (2) Moving information from various places into the affected SVG elements
+   Moving information from various places into the affected SVG elements
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -534,17 +544,25 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#harmonizing-color-information">
-   (3) Harmonizing color information
+   Harmonizing color information
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#dealing-with-color-gradients">
-   (4) Dealing with color gradients
+   Dealing with color gradients
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#width-height-and-viewbox">
-   (5) Width, height, and viewbox
+   Width, height, and viewbox
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#removing-adobe-illustrator-pgf-data">
+   Removing Adobe Illustrator
+   <pgf>
+    data
+   </pgf>
   </a>
  </li>
 </ul>
@@ -561,14 +579,14 @@
   <div class="section" id="first-steps">
 <h1>First steps<a class="headerlink" href="#first-steps" title="Permalink to this headline">¶</a></h1>
 <p>The first steps include:</p>
-<ol class="simple">
+<ul class="simple">
 <li><p>Filtering out SVGs</p></li>
 <li><p>Moving information from various places into the affected SVG elements</p></li>
 <li><p>Harmonizing color information</p></li>
 <li><p>Dealing with color gradients</p></li>
-</ol>
+</ul>
 <div class="section" id="filtering-out-unsuitable-svgs">
-<h2>(1) Filtering out unsuitable SVGs<a class="headerlink" href="#filtering-out-unsuitable-svgs" title="Permalink to this headline">¶</a></h2>
+<h2>Filtering out unsuitable SVGs<a class="headerlink" href="#filtering-out-unsuitable-svgs" title="Permalink to this headline">¶</a></h2>
 <p>We may want to filter out SVGs that appear unsuitable for training based on some pre-defined thresholds or heuristics. This step may be necessary especially when SVGs have been obtained from the Web and a variation within the data will be high (as opposed to SVGs that have been obtained from fonts, for example).</p>
 <div class="section" id="examples-of-rules-for-filtering-out-unsuitable-svgs">
 <h3>Examples of rules for filtering out unsuitable SVGs<a class="headerlink" href="#examples-of-rules-for-filtering-out-unsuitable-svgs" title="Permalink to this headline">¶</a></h3>
@@ -600,8 +618,13 @@
 </ul>
 </div>
 </div>
+<div class="section" id="removing-elements-that-are-not-displayed-display-none">
+<h2>Removing elements that are not displayed (display=”none”)<a class="headerlink" href="#removing-elements-that-are-not-displayed-display-none" title="Permalink to this headline">¶</a></h2>
+<p>Some SVGs are used as sprites by defining many icons. All but one icon are set to <code class="docutils literal notranslate"><span class="pre">display=&quot;none&quot;</span></code> and do not get rendered.
+Obviously, invisible parts of the SVG do not need to get encoded into a feature vector.</p>
+</div>
 <div class="section" id="moving-information-from-various-places-into-the-affected-svg-elements">
-<h2>(2) Moving information from various places into the affected SVG elements<a class="headerlink" href="#moving-information-from-various-places-into-the-affected-svg-elements" title="Permalink to this headline">¶</a></h2>
+<h2>Moving information from various places into the affected SVG elements<a class="headerlink" href="#moving-information-from-various-places-into-the-affected-svg-elements" title="Permalink to this headline">¶</a></h2>
 <p>This can be:</p>
 <ul class="simple">
 <li><p>style information (color, stroke, fill, …)</p></li>
@@ -624,7 +647,7 @@ E.g. <code class="docutils literal notranslate"><span class="pre">class=</span> 
 </div>
 </div>
 <div class="section" id="harmonizing-color-information">
-<h2>(3) Harmonizing color information<a class="headerlink" href="#harmonizing-color-information" title="Permalink to this headline">¶</a></h2>
+<h2>Harmonizing color information<a class="headerlink" href="#harmonizing-color-information" title="Permalink to this headline">¶</a></h2>
 <p>There are various ways to define colors in SVGs (as well as CSS and HTML):</p>
 <ul class="simple">
 <li><p>Via RGB values:</p>
@@ -652,15 +675,19 @@ E.g. <code class="docutils literal notranslate"><span class="pre">class=</span> 
 Missing colour information shall be interpreted as black.</p>
 </div>
 <div class="section" id="dealing-with-color-gradients">
-<h2>(4) Dealing with color gradients<a class="headerlink" href="#dealing-with-color-gradients" title="Permalink to this headline">¶</a></h2>
+<h2>Dealing with color gradients<a class="headerlink" href="#dealing-with-color-gradients" title="Permalink to this headline">¶</a></h2>
 <p>SVGs containing color linear or radial gradients may or may not need to be treated – depending on the chosen data representation.
 For the sake of simplicity, we may want to replace a gradient by a single color. This could avoid the issue of reconstructed or generated images looking as if they had been painted using watercolors.</p>
 </div>
 <div class="section" id="width-height-and-viewbox">
-<h2>(5) Width, height, and viewbox<a class="headerlink" href="#width-height-and-viewbox" title="Permalink to this headline">¶</a></h2>
+<h2>Width, height, and viewbox<a class="headerlink" href="#width-height-and-viewbox" title="Permalink to this headline">¶</a></h2>
 <p>SVGs can contain shapes outside the viewbox. These do not get rendered and can be ignored or actively removed.
 Size can be relative (100%) or absolute etc. etc. etc.</p>
 <p><code class="docutils literal notranslate"><span class="pre">width=&quot;500px&quot;</span> <span class="pre">height=&quot;500px&quot;</span> <span class="pre">viewBox=&quot;0</span> <span class="pre">0</span> <span class="pre">500</span> <span class="pre">500&quot;</span></code></p>
+</div>
+<div class="section" id="removing-adobe-illustrator-pgf-data">
+<h2>Removing Adobe Illustrator <pgf> data<a class="headerlink" href="#removing-adobe-illustrator-pgf-data" title="Permalink to this headline">¶</a></h2>
+<p>If an SVG is exported from Adobe Illustrator and the “Preserve Illustrator Editing Capabilities” option is checked, then the whole Illustrator document gets saved inside the SVG as a <pgf> tag. This bloats the SVG and can be ignored or removed.</p>
 </div>
 </div>
 

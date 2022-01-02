@@ -49,6 +49,7 @@ parts:
     - file: 03_related_work/further_academic_papers/Das_2021.md
     - file: 03_related_work/further_academic_papers/yang_2021_sketchaa.md
     - file: 03_related_work/further_academic_papers/wang_and_lian_2021.md
+    - file: 03_related_work/further_academic_papers/Jiang_2021.md
   - file: 03_related_work/other_relevant_work.md
     sections:
     - file: 03_related_work/other_relevant_work/greydanus_2016.md
