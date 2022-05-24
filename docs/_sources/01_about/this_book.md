@@ -61,11 +61,13 @@ But then our deep neural network will never learn anything about vector graphics
 
 ### We could just treat the SVG as text
 
-We could just treat the SVG just like any text sequence. If we do this, we can apply Recurrent Neural Networks (RNNs), a class of neural networks that is able to learn sequences of inputs. Given a beginning of an SVG, we could be able to predict the next missing part. And then given that, we could again (auto-regressively) predict the next missing part -- and so on. Such a model would surely learn something about the syntax of SVGs. But will it develop an understanding of the resulting visuals? Is a sequence of text characters really the appropriate data representation?
+We could just treat the SVG just like any text sequence in Deep Learning. Text sequences get split into tokens, such as individual characters or individual words. And then each token gets converted into a vector. A few years ago, this would have been one-hot vectors. Nowadays, these are generally embeddings.
 
-### We could encode an SVG into a numerical vector
+If we do this, we can apply Recurrent Neural Networks (RNNs), a class of neural networks that is able to learn sequences of inputs. Given a beginning of an SVG, we could be able to predict the next missing part. And then given that, we could again (auto-regressively) predict the next missing part -- and so on. Such a model would surely learn something about the syntax of SVGs. But will it develop an understanding of the resulting visuals? Is a sequence of text characters really the appropriate data representation?
 
-We could convert each SVG of the training dataset into a numerical vector. 
+### We could encode the SVG definition
+
+We could our domain knowledge of the SVG standard to encode the definition of each SVG of the training dataset into a numerical vector.
 
 This is not trivial. An SVG is an XML document of (often deeply) nested tags. And each tag can have a multitude of attributes that impact the way the SVG looks when rendered on the screen. 
 

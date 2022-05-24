@@ -534,8 +534,8 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#we-could-encode-an-svg-into-a-numerical-vector">
-     We could encode an SVG into a numerical vector
+    <a class="reference internal nav-link" href="#we-could-encode-the-svg-definition">
+     We could encode the SVG definition
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -614,11 +614,12 @@
 </div>
 <div class="section" id="we-could-just-treat-the-svg-as-text">
 <h3>We could just treat the SVG as text<a class="headerlink" href="#we-could-just-treat-the-svg-as-text" title="Permalink to this headline">¶</a></h3>
-<p>We could just treat the SVG just like any text sequence. If we do this, we can apply Recurrent Neural Networks (RNNs), a class of neural networks that is able to learn sequences of inputs. Given a beginning of an SVG, we could be able to predict the next missing part. And then given that, we could again (auto-regressively) predict the next missing part – and so on. Such a model would surely learn something about the syntax of SVGs. But will it develop an understanding of the resulting visuals? Is a sequence of text characters really the appropriate data representation?</p>
+<p>We could just treat the SVG just like any text sequence in Deep Learning. Text sequences get split into tokens, such as individual characters or individual words. And then each token gets converted into a vector. A few years ago, this would have been one-hot vectors. Nowadays, these are generally embeddings.</p>
+<p>If we do this, we can apply Recurrent Neural Networks (RNNs), a class of neural networks that is able to learn sequences of inputs. Given a beginning of an SVG, we could be able to predict the next missing part. And then given that, we could again (auto-regressively) predict the next missing part – and so on. Such a model would surely learn something about the syntax of SVGs. But will it develop an understanding of the resulting visuals? Is a sequence of text characters really the appropriate data representation?</p>
 </div>
-<div class="section" id="we-could-encode-an-svg-into-a-numerical-vector">
-<h3>We could encode an SVG into a numerical vector<a class="headerlink" href="#we-could-encode-an-svg-into-a-numerical-vector" title="Permalink to this headline">¶</a></h3>
-<p>We could convert each SVG of the training dataset into a numerical vector.</p>
+<div class="section" id="we-could-encode-the-svg-definition">
+<h3>We could encode the SVG definition<a class="headerlink" href="#we-could-encode-the-svg-definition" title="Permalink to this headline">¶</a></h3>
+<p>We could our domain knowledge of the SVG standard to encode the definition of each SVG of the training dataset into a numerical vector.</p>
 <p>This is not trivial. An SVG is an XML document of (often deeply) nested tags. And each tag can have a multitude of attributes that impact the way the SVG looks when rendered on the screen.</p>
 <p>Because only a few attributes are used in any given tag, the resulting vector will be sparse, that is it will contain many zero values.</p>
 <p>Converting an SVG into a vector requires a complex, hard-coded logic. Changes to the SVG standard would require the logic to be updated.</p>
