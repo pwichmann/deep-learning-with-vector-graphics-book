@@ -12,7 +12,7 @@ This paper is especially interesting due to the chosen data representation as a 
 ```
 
 :::{figure-md} Jiang_2021.png
-<img src="Jiang_2021.png" alt="Jiang_2021 paper" width="500px">
+<img src="Jiang_2021.png" alt="Jiang_2021 paper" width="600px">
 
 Screenshot of the [Jiang et al. paper](https://arxiv.org/pdf/2111.03281.pdf) -- the overall pipeline of the proposed method
 :::

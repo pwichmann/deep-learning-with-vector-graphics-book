@@ -20,6 +20,7 @@ parts:
     - file: 02_background/deep_learning/rnn.md
     - file: 02_background/deep_learning/lstm.md
     - file: 02_background/deep_learning/mdn.md
+    - file: 02_background/deep_learning/transformer.md
   - file: 02_background/DL_with_vector_graphics.md
     sections:
     - file: 02_background/DL_with_vector_graphics/arguing_for_e2e_approach.md
@@ -46,6 +47,7 @@ parts:
     sections:
     - file: 03_related_work/further_academic_papers/campbell_and_kautz_2014.md
     - file: 03_related_work/further_academic_papers/Das_2020.md
+    - file: 03_related_work/further_academic_papers/zhao_et_al_2020.md
     - file: 03_related_work/further_academic_papers/Das_2021.md
     - file: 03_related_work/further_academic_papers/yang_2021_sketchaa.md
     - file: 03_related_work/further_academic_papers/wang_and_lian_2021.md

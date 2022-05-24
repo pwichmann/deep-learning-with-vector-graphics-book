@@ -1,5 +1,34 @@
 # Scalable Vector Graphics (SVG) format
 
+SVG is an XML-based vector image format, i.e. images are described in a text document with nested tags.
+SVGs are for two-dimensional graphics and points are defined in an (x, y) Cartesian coordinate system. The SVG format also supports interactivity and animation.
+
+The W3C defines SVG as "a markup language for describing two-dimensional graphics applications and images" [source](https://www.w3.org/Graphics/SVG/).
+
+Most Web browsers can render SVG and SVG have become the most popular vector image format of the Web. The SVG standard was first released in 2001.
+SVG is a Web standard as defined by the W3C.
+
+The current definition of the SVG format is version 1.1 (Second Edition). A version 2 has been in development.
+
+## Key resources
+
+* [The current W3C SVG standard in version 1.1 (Second Edition)](https://www.w3.org/TR/SVG11/expanded-toc.html)
+* [SVGO - a node.js toolkit for optimizing SVG files](https://github.com/svg/svgo)
+
+## SVG document structure
+
+Tags enclosed in < ...> are called elements. Properties of these elements are called attributes.
+
+* svg element with viewport and viewBox
+* grouping elements using 'g' element
+* transform attribute
+* 'path' element
+* Basic shapes: 'rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon'
+* Text elements 'text'
+
+```{note}
+TODO
+```
 
 ## Path data `<path d="..."></path>`
 

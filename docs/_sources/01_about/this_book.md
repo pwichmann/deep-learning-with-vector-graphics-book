@@ -2,6 +2,8 @@
 
 This book aims to introduce the domain of applying Deep Learning to [vector graphics](https://en.wikipedia.org/wiki/Vector_graphics), such as [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG), and to identify and summarise relevant prior work.
 
+The focus is on content related to the aim of end-to-end generative deep learning models for vector graphics. But other content, such as object localization and classification within vector graphics, may also be covered.
+
 This book is an hommage to those amazingly talented and kind scientists, engineers and artists who paved the way and inspired the author, such as **David Ha** ([Twitter](https://twitter.com/hardmaru), [Website](https://otoro.net/ml/)) or **Raphael Gontijo Lopes** ([Twitter](https://twitter.com/iraphas13), [Website](https://raphagl.com/)).
 
 ## Raster images vs. vector graphics
@@ -51,13 +53,39 @@ The properties of vector graphics pose a number of challenges when it comes to D
 
 So how do we deal with vector graphics for problems like classification or for creating new vector graphics using generative models?
 
-  * *We could just render the SVG to a raster image file, such as a PNG file.* But then our deep neural network will never learn anything about vector graphics and their specific definition. Unless trained otherwise, it will never be able to output a vector graphic.
+### We could avoid SVG altogether and only work with raster images
 
-  * *We could just treat the SVG as text.* If we do this, we can apply Recurrent Neural Networks, a class of neural networks that is able to learn sequences of inputs. Given a beginning of an SVG, we could be able to predict the next missing part. And then given that, we could again (auto-regressively) predict the next missing part -- and so on. Such a model would surely learn something about the syntax of SVGs. But will it develop an understanding of the resulting visuals?
+We could just render the SVG to a raster image file, such as a PNG file. Once input files have been converted, we would only work with raster images.
 
-  * *We could design an encoding logic for the SVG definition.* This means, the composition of the SVG and the parameters of all SVG elements get encoded in such a way that they can be represented as a tensor of numeric values. This requires a complex logic. And are we sure that a model trained on this data will learn something about the resulting visuals?
+But then our deep neural network will never learn anything about vector graphics and their specific definition. Unless trained otherwise, it will never be able to output a vector graphic. Existing tools that can convert raster images into vector graphics (so-called tracers or vectorizers) do not perform well, e.g. in the case of color gradients.
 
-  * *We could feed in both the SVG and the PNG.* Then (using a dual-modality) we could make sure that the model has all the information. But how does the model know how to adjust the SVG to better match the desired visual?
+### We could just treat the SVG as text
 
-  * *We could include a differentiable rasterizer.* If there was such a thing (there is), then there may be a way to determine how an SVG needs to be adjusted to better match the desired visual. But how much does it slow down training when both modalities need to be considered?
+We could just treat the SVG just like any text sequence. If we do this, we can apply Recurrent Neural Networks (RNNs), a class of neural networks that is able to learn sequences of inputs. Given a beginning of an SVG, we could be able to predict the next missing part. And then given that, we could again (auto-regressively) predict the next missing part -- and so on. Such a model would surely learn something about the syntax of SVGs. But will it develop an understanding of the resulting visuals? Is a sequence of text characters really the appropriate data representation?
+
+### We could encode an SVG into a numerical vector
+
+We could convert each SVG of the training dataset into a numerical vector. 
+
+This is not trivial. An SVG is an XML document of (often deeply) nested tags. And each tag can have a multitude of attributes that impact the way the SVG looks when rendered on the screen. 
+
+Because only a few attributes are used in any given tag, the resulting vector will be sparse, that is it will contain many zero values.
+
+Converting an SVG into a vector requires a complex, hard-coded logic. Changes to the SVG standard would require the logic to be updated.
+
+Another concern is that a model trained on this data may still not "understand" the impact of changes in the SVG definition on the resulting rendered image.
+
+### We could use a multi-modal model
+
+We could feed in both the SVG and the corresponding PNG as inputs to the model. By using this multi-modality (i.e. two different sensory inputs of the same "object"), we may be able to improve the model's "understanding" how SVG definition and PNG render relate to each other.
+
+But how would the model know how to adjust the SVG to better match the desired visual?
+
+### We could include the rasterizer in the model
+
+A rasterizer renders the SVG definition into a pixel-based graphic that can be displayed on a screen. Only recently a rasterizer was developed that is differentiable. That means any loss in the raster space could be propagated back to required changes in the SVG definition.
+
+### We could also include a text description in the model
+
+Multi-modal models using images and a text description, like DALL-E or imagen, allow users to generate an image by simply providing a text prompt. If we could obtain text descriptions for the SVG images, this could allow users of the trained model to generate SVG images simply by providing a descriptive text prompt.
 

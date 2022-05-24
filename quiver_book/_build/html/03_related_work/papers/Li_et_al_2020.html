@@ -158,6 +158,11 @@
      Mixture Density Networks (MDN)
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/deep_learning/transformer.html">
+     Transformer
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -272,6 +277,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../further_academic_papers/zhao_et_al_2020.html">
+     Zhao et al. (2020) | ICONATE: Automatic Compound Icon Generation and Ideation
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../further_academic_papers/Das_2021.html">
      Das et al. (2021) | Cloud2Curve: Generation and Vectorization of Parametric Sketches
     </a>
@@ -284,6 +294,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../further_academic_papers/wang_and_lian_2021.html">
      Wang and Lian (2021) | DeepVecFont: Synthesizing High-quality Vector Fonts via Dual-modality Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../further_academic_papers/Jiang_2021.html">
+     Jiang et al. (2021) | Recognizing Vector Graphics without Rasterization
     </a>
    </li>
   </ul>
@@ -498,6 +513,23 @@
    Visual results
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#covered-elements-and-attributes">
+   Covered elements and attributes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#elements">
+     Elements
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#attributes">
+     Attributes
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
             </nav>
@@ -511,6 +543,8 @@
                 
   <div class="section" id="li-et-al-2020-differentiable-vector-graphics-rasterization-for-editing-and-learning-diffvg">
 <h1>Li et al. (2020) | Differentiable Vector Graphics Rasterization for Editing and Learning (diffvg)<a class="headerlink" href="#li-et-al-2020-differentiable-vector-graphics-rasterization-for-editing-and-learning-diffvg" title="Permalink to this headline">¶</a></h1>
+<p>Li et al. introduce a differentiable renderer for vector graphics, such as SVG.
+This renderer bridges the raster and vector domains through backpropagation and allows for losses in the “raster space” to be propagated back into the “SVG space”.</p>
 <div class="admonition-available-resources-at-a-glance admonition">
 <p class="admonition-title">Available resources at a glance</p>
 <ul class="simple">
@@ -530,6 +564,30 @@
 <div class="figure align-default" id="diffvg-results-stylized">
 <a class="reference internal image-reference" href="../../_images/diffvg_stylized_results.png"><img alt="diffvg paper - stylized results" src="../../_images/diffvg_stylized_results.png" style="width: 500px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 46 </span><span class="caption-text">Screenshot of the visual results taken from the <a class="reference external" href="https://people.csail.mit.edu/tzumao/diffvg/diffvg.pdf">diffvg paper</a></span><a class="headerlink" href="#diffvg-results-stylized" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="covered-elements-and-attributes">
+<h2>Covered elements and attributes<a class="headerlink" href="#covered-elements-and-attributes" title="Permalink to this headline">¶</a></h2>
+<p>The differentiable renderer is able to deal with the following elements and attributes.</p>
+<div class="section" id="elements">
+<h3>Elements<a class="headerlink" href="#elements" title="Permalink to this headline">¶</a></h3>
+<p>The diffvg primitives are based on the SVG (Scalable Vector Graphics) standard. diffvg supports SVG paths (with linear, quadratic or cubic
+segments), ellipses, circles, and rectangles, but any curve with a parametric form is compatible with our method. The curves can be
+either open or closed.</p>
+<ul class="simple">
+<li><p>polynomial and rational polynomial curves, including polygons, quadratic and cubic Bézier
+curves, circles and ellipses</p></li>
+</ul>
+<p>The current implementation converts arcs to cubic curves.</p>
+</div>
+<div class="section" id="attributes">
+<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>stroke color</p></li>
+<li><p>fill color</p></li>
+</ul>
+<p>Colors can be solid, linear gradient, or radial gradient, and contain RGB and alpha channels.
+The current implementation assumes round caps for the strokes.</p>
 </div>
 </div>
 </div>

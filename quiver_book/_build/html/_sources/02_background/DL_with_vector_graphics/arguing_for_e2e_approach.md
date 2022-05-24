@@ -8,7 +8,15 @@ End-to-end in this context shall not exclude multi-modal approaches where, _in a
 
 Here are a few bold claims (that may still require evidence):
 
-## 1. More efficient and faster
+1. End-to-end is more efficient and faster
+2. End-to-end is more effective
+  * Rasterising a vector graphics leads to information loss
+  * End-to-end helps maintain symmetries, perfect angles, clear color boundaries etc.
+  * Current vectorizers are doing a poor job
+
+These arguments shall be elaborated on in the following. Please contact the author if you feel the arguments are invalid or could be expressed more clearly or powerfully.
+
+## 1. End-to-end is more efficient and faster
 
 Training on SVG could be much faster since vector graphics can store information much more efficiently than raster images. This is obviously the case if an image has been designed as a vector graphic from the start. The rastered image file will be much larger and even "empty" pixels need to be described using their RGB(A) values.
 
@@ -48,7 +56,7 @@ Simple 10x10 rectangle in a 16x16 image; screenshot of how the vector graphics e
 
 Training DeepSVG, for example, on a small dataset using an RTX 3090 takes less than an hour. Training models for raster images generally takes much longer: days, if not weeks.
 
-## 2. More effective
+## 2. End-to-end is more effective
 
 If obtaining SVG is our goal, then the approach of using generative models for raster images and to then convert their output to vector graphics is futile. Current generative models are not conditioned to produce output that is easily converted to vector graphics, especially when it comes to colour images (as opposed to black and white images). And such a conditioning would not be trivial.
 
@@ -59,7 +67,7 @@ Unlike raster images, vector graphics contain additional structural information 
 Learning about the composition of an SVG is only possible if this information is fed into the model. A rasterised image has lost that information.
 
 
-### 2.2 Maintaining symmetries, perfect angles, clear color boundaries etc.
+### 2.2 End-to-end helps maintain symmetries, perfect angles, clear color boundaries etc.
 
 Many logos and icons make use of perfect symmetries and perfect 90° angles. This information could be maintained if both input and output are vector graphics. Colour inputs to a generative model for raster images often lead to watercolor effects where boundaries between shapes get blurry.
 

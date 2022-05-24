@@ -158,6 +158,11 @@
      Mixture Density Networks (MDN)
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="deep_learning/transformer.html">
+     Transformer
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -262,8 +267,18 @@
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../03_related_work/further_academic_papers/campbell_and_kautz_2014.html">
+     Campbell and Kautz (2014) | Learning a Manifold of Fonts
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../03_related_work/further_academic_papers/Das_2020.html">
      Das et al. (2020) | BézierSketch: A generative model for scalable vector sketches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_related_work/further_academic_papers/zhao_et_al_2020.html">
+     Zhao et al. (2020) | ICONATE: Automatic Compound Icon Generation and Ideation
     </a>
    </li>
    <li class="toctree-l2">
@@ -279,6 +294,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../03_related_work/further_academic_papers/wang_and_lian_2021.html">
      Wang and Lian (2021) | DeepVecFont: Synthesizing High-quality Vector Fonts via Dual-modality Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03_related_work/further_academic_papers/Jiang_2021.html">
+     Jiang et al. (2021) | Recognizing Vector Graphics without Rasterization
     </a>
    </li>
   </ul>
@@ -332,10 +352,62 @@
    From strokes to SVG
   </a>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../04_data_representation/common_preprocessing.html">
    Common SVG preprocessing
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_data_representation/preprocessing/first_steps.html">
+     First steps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_data_representation/preprocessing/deminifying_path_data.html">
+     “De-minifying” path data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_data_representation/preprocessing/harmonizing_positioning.html">
+     Harmonizing command positioning logic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_data_representation/preprocessing/decomposition_of_basic_shapes.html">
+     Decomposition of basic SVG shapes to paths
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_data_representation/preprocessing/reducing_path_commands.html">
+     Reducing the set of different path commands
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_data_representation/preprocessing/normalization.html">
+     Normalization
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_data_representation/preprocessing/path_simplification.html">
+     Path simplification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_data_representation/preprocessing/finishing_touches.html">
+     Finishing touches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04_data_representation/preprocessing/embedding.html">
+     Embedding
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p class="caption">
@@ -442,6 +514,16 @@
   <div class="section" id="vector-graphics">
 <h1>Vector Graphics<a class="headerlink" href="#vector-graphics" title="Permalink to this headline">¶</a></h1>
 <p>This section aims to summarise relevant background knowledge on the topic of Vector Graphics.</p>
+<p>The most common file format on the Web is <em>Scalable Vector Graphics (SVG)</em>.</p>
+<p>Other file formats for vector graphics are:</p>
+<ul class="simple">
+<li><p>WMF (Windows Metafile)</p></li>
+<li><p>EPS (Encapsulated PostScript)</p></li>
+<li><p>PDF (the Portable Document Format developed by Adobe)</p></li>
+<li><p>CDR (the file format used by Corel Draw, a vector graphics editor)</p></li>
+<li><p>AI (the file format used by Adobe Illustrator, a vector graphics editor)</p></li>
+</ul>
+<p>Given the popularity of SVG in the internet and, thus, the availability of data in this format, the focus will be on SVG.</p>
 <div class="toctree-wrapper compound">
 </div>
 </div>

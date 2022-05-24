@@ -158,6 +158,11 @@
      Mixture Density Networks (MDN)
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../deep_learning/transformer.html">
+     Transformer
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 current active has-children">
@@ -269,6 +274,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../../03_related_work/further_academic_papers/Das_2020.html">
      Das et al. (2020) | BézierSketch: A generative model for scalable vector sketches
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/further_academic_papers/zhao_et_al_2020.html">
+     Zhao et al. (2020) | ICONATE: Automatic Compound Icon Generation and Ideation
     </a>
    </li>
    <li class="toctree-l2">
@@ -499,13 +509,13 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#more-efficient-and-faster">
-   1. More efficient and faster
+  <a class="reference internal nav-link" href="#end-to-end-is-more-efficient-and-faster">
+   1. End-to-end is more efficient and faster
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#more-effective">
-   2. More effective
+  <a class="reference internal nav-link" href="#end-to-end-is-more-effective">
+   2. End-to-end is more effective
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -514,8 +524,8 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#maintaining-symmetries-perfect-angles-clear-color-boundaries-etc">
-     2.2 Maintaining symmetries, perfect angles, clear color boundaries etc.
+    <a class="reference internal nav-link" href="#end-to-end-helps-maintain-symmetries-perfect-angles-clear-color-boundaries-etc">
+     2.2 End-to-end helps maintain symmetries, perfect angles, clear color boundaries etc.
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -552,8 +562,18 @@
 <p>End-to-end in a Machine Learning context refers to a single model that is able to consume the available input and covers all the steps required to produce the desired output. End-to-end in this context shall refer to a generative Deep Learning model that is fed vector graphics and can directly output vector graphics. If vector graphics are the desired output but the model only generates raster images that still need to be vectorized, then this would not be called end-to-end.</p>
 <p>End-to-end in this context shall not exclude multi-modal approaches where, <em>in addition</em> to the vector graphic, other types of inputs are used, such as text descriptions or the corresponding raster image. Multi-modal may even be a required setting for some problems.</p>
 <p>Here are a few bold claims (that may still require evidence):</p>
-<div class="section" id="more-efficient-and-faster">
-<h2>1. More efficient and faster<a class="headerlink" href="#more-efficient-and-faster" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>End-to-end is more efficient and faster</p></li>
+<li><p>End-to-end is more effective</p></li>
+</ol>
+<ul class="simple">
+<li><p>Rasterising a vector graphics leads to information loss</p></li>
+<li><p>End-to-end helps maintain symmetries, perfect angles, clear color boundaries etc.</p></li>
+<li><p>Current vectorizers are doing a poor job</p></li>
+</ul>
+<p>These arguments shall be elaborated on in the following. Please contact the author if you feel the arguments are invalid or could be expressed more clearly or powerfully.</p>
+<div class="section" id="end-to-end-is-more-efficient-and-faster">
+<h2>1. End-to-end is more efficient and faster<a class="headerlink" href="#end-to-end-is-more-efficient-and-faster" title="Permalink to this headline">¶</a></h2>
 <p>Training on SVG could be much faster since vector graphics can store information much more efficiently than raster images. This is obviously the case if an image has been designed as a vector graphic from the start. The rastered image file will be much larger and even “empty” pixels need to be described using their RGB(A) values.</p>
 <p>Compare a simple 10x10 rectangle in a 16x16 image as vector graphic against its rasterized version.</p>
 <div class="figure align-default" id="simple-rect-raster">
@@ -581,16 +601,16 @@
 </div>
 <p>Training DeepSVG, for example, on a small dataset using an RTX 3090 takes less than an hour. Training models for raster images generally takes much longer: days, if not weeks.</p>
 </div>
-<div class="section" id="more-effective">
-<h2>2. More effective<a class="headerlink" href="#more-effective" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="end-to-end-is-more-effective">
+<h2>2. End-to-end is more effective<a class="headerlink" href="#end-to-end-is-more-effective" title="Permalink to this headline">¶</a></h2>
 <p>If obtaining SVG is our goal, then the approach of using generative models for raster images and to then convert their output to vector graphics is futile. Current generative models are not conditioned to produce output that is easily converted to vector graphics, especially when it comes to colour images (as opposed to black and white images). And such a conditioning would not be trivial.</p>
 <div class="section" id="rasterising-a-vector-graphics-leads-to-information-loss">
 <h3>2.1 Rasterising a vector graphics leads to information loss<a class="headerlink" href="#rasterising-a-vector-graphics-leads-to-information-loss" title="Permalink to this headline">¶</a></h3>
 <p>Unlike raster images, vector graphics contain additional structural information (e.g. how shapes are represented, how low-level elements are grouped together to form high-level shapes, …).</p>
 <p>Learning about the composition of an SVG is only possible if this information is fed into the model. A rasterised image has lost that information.</p>
 </div>
-<div class="section" id="maintaining-symmetries-perfect-angles-clear-color-boundaries-etc">
-<h3>2.2 Maintaining symmetries, perfect angles, clear color boundaries etc.<a class="headerlink" href="#maintaining-symmetries-perfect-angles-clear-color-boundaries-etc" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="end-to-end-helps-maintain-symmetries-perfect-angles-clear-color-boundaries-etc">
+<h3>2.2 End-to-end helps maintain symmetries, perfect angles, clear color boundaries etc.<a class="headerlink" href="#end-to-end-helps-maintain-symmetries-perfect-angles-clear-color-boundaries-etc" title="Permalink to this headline">¶</a></h3>
 <p>Many logos and icons make use of perfect symmetries and perfect 90° angles. This information could be maintained if both input and output are vector graphics. Colour inputs to a generative model for raster images often lead to watercolor effects where boundaries between shapes get blurry.</p>
 <p><strong>Example:</strong></p>
 <p>Have a look at the following figure which shows 4 different icons which have been reconstructed by a VAE. The icons were originally SVG icons and presented to the VAE as 128x128 rasterised images. Thus, the VAE was trained on raster images only.</p>

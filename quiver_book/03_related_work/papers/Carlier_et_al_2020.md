@@ -242,6 +242,10 @@ If `dataset.simplify` is called, the following three steps are executed:
 
 ### Embedding
 
+```{note}
+TODO
+```
+
 
 ## Model architecture
 
@@ -260,6 +264,11 @@ DeepSVG model architecture; figure taken from the [DeepSVG paper](https://arxiv.
 The DeepSVG paper is incredibly inspiring and the work that was done by Alexandre within the scope of just his Master's thesis is truly amazing. Alexandre was kind enough to have a long video call with the author and then also helped with various follow-up questions.
 
 Caveat: It is possible that the results shown below are result of a misunderstanding of how to correctly apply DeepSVG and not necessarily a weakness inherent to DeepSVG.
+
+```{admonition} Open question
+:class: important
+What is the maximum number of groups permitted? Reports of crashes with more than 8 groups.
+```
 
 
 ### Squiggly, sketchy outputs for unknown reason

@@ -32,7 +32,17 @@ When auto-regressively generating handwriting, for example, we predict the next 
 ## MDN in PyTorch
 
 
+```{note}
+TODO
+```
+
+
 ## Combining MDNs with LSTMs
+
+
+```{note}
+TODO
+```
 
 
 ## TODO
