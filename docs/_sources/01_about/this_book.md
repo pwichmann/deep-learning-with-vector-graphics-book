@@ -8,15 +8,23 @@ This book is an hommage to those amazingly talented and kind scientists, enginee
 
 ## Raster images vs. vector graphics
 
+### Raster images are based on a grid of pixels
+
 Raster images consist of a grid of pixels. In a simple greyscale image, a single pixel already holds a single numeric value, e.g. from 0 (black) to 255 (white), with all the shades of grey in between. Color images, such as RGB images, work the same way but with one numeric value per channel (R = red, G = green, B = blue) and per pixel.
 
-Vector graphics, on the other hand, are not based on a grid of pixels but based on mathematical descriptions of points, lines etc. in an x,y (Cartesian) coordinate system. A common vector graphics format is the Scalable Vector Graphics format (SVG). One major advantage of vector graphics is that they are infinitely scalable. Another advantage is that their file size is small and independent of the image's size and resolution. This is why, for instance, fonts, icons and logos are often designed as vector graphics.
+:::{figure-md} raster_image_png
+<img src="raster_image.png" alt="Example raster image" width="200px">
 
-## Why is Deep Learning with Vector Graphics special?
+Illustration of a 3x3 pixel RGB raster image; each pixel contains 3 values, one for each red (R), green (G), and blue (B) channel.
+:::
 
-The application of Deep Learning to raster images has been well-researched and is relatively straightforward. One reason for this is that raster images play an important role in many domains. Another reason is that a grid of pixels is already very close to the data representation required by machine learning algorithms. Machine learning algorithms, such as Deep Neural Networks, require the input data to be represented as a collection of numeric values (a data structure called a *tensor*). Representing a raster image as such a tensor is straight-forward.
+### Vector graphics are based on the mathematical description of paths
 
-Vector graphics are different. One standard format for vector graphics is the Scalable Vector Graphics format - or short: SVG. This format is XML-based and, thus, a text-based description of the image using a hierarchical structure of nested tags and their associated attributes. 
+Vector graphics, on the other hand, are not based on a grid of pixels but based on mathematical descriptions of points, lines etc. in an x,y (Cartesian) coordinate system. 
+
+One major advantage of vector graphics is that they are infinitely scalable. Another advantage is that their file size is small and independent of the image's size and resolution. This is why, for instance, fonts, icons and logos are often designed as vector graphics.
+
+A common vector graphics format is the Scalable Vector Graphics format (SVG). This format is XML-based and, thus, a text-based description of the image using a hierarchical structure of nested tags and their associated attributes. 
 
 Below is an example of simple SVG:
 
@@ -39,11 +47,15 @@ Below is an example of simple SVG:
 Once rendered by the browser, this looks like this:
 
 :::{figure-md} about_example_svg
-<img src="example.svg" alt="Example SVG paper" width="200px">
+<img src="example.svg" alt="Example SVG image" width="200px">
 
 Example SVG as rendered by the browser
 :::
 
+
+## Why is Deep Learning with Vector Graphics special?
+
+The application of Deep Learning to raster images has been well-researched and is relatively straightforward. One reason for this is that raster images play an important role in many domains. Another reason is that a grid of pixels is already very close to the data representation required by machine learning algorithms. Machine learning algorithms, such as Deep Neural Networks, require the input data to be represented as a collection of numeric values (a data structure called a *tensor*). Representing a raster image as such a tensor is straight-forward.
 
 The following aspects are some of the reasons why deep learning with SVG images is special:
 
@@ -55,3 +67,4 @@ The following aspects are some of the reasons why deep learning with SVG images 
 1. SVG elements can overlap and occlude each other, so that parts may not be visible when rasterised.
 1. There is no one-to-one correspondence between SVGs and their respective raster image. Different SVGs may result in the same raster image and, thus, the process of converting a raster image back to its corresponding vector format is ambiguous.
 1. Deep learning requires a differentiable loss function for backpropagation to work. Until recently, no differentiable rasteriser existed. And the existing differentiable rasteriser (diffvg) is computationally expensive and not accurate.
+1. The different components of an SVG may have different x,y positions relative to another. Maintaining these positions is another challenge.

@@ -8,13 +8,21 @@ End-to-end in this context shall not exclude multi-modal approaches where, _in a
 
 Here are a few bold claims (that may still require evidence):
 
-1. End-to-end is more efficient and faster
-2. End-to-end is more effective
+* (1) End-to-end is more efficient and faster
+* (2) End-to-end is more effective
   * Rasterising a vector graphics leads to information loss
   * End-to-end helps maintain symmetries, perfect angles, clear color boundaries etc.
   * Current vectorizers are doing a poor job
 
 These arguments shall be elaborated on in the following. Please contact the author if you feel the arguments are invalid or could be expressed more clearly or powerfully.
+
+```{note}
+It is not obvious at all which process is better:
+* A generative end-to-end model
+* A pipeline of two models: A generative model trained on rasterised vector graphics, and one model that has been trained to convert raster images into vector graphics (e.g. Im2Vec)
+It could be the case that a pre-trained DALL-E 2 type model is much better at producing the creative results. The potential downside of hard-to-vectorise images could be eliminated if the model has been restricted to simple outputs, such as black-and-white images or flat-color images.
+```
+
 
 ## 1. End-to-end is more efficient and faster
 

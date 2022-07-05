@@ -145,7 +145,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../02_background/deep_learning/architectures.html">
-     NN architectures
+     Neural architectures
     </a>
    </li>
    <li class="toctree-l2">
@@ -512,6 +512,18 @@
   <a class="reference internal nav-link" href="#raster-images-vs-vector-graphics">
    Raster images vs. vector graphics
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#raster-images-are-based-on-a-grid-of-pixels">
+     Raster images are based on a grid of pixels
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#vector-graphics-are-based-on-the-mathematical-description-of-paths">
+     Vector graphics are based on the mathematical description of paths
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#why-is-deep-learning-with-vector-graphics-special">
@@ -536,13 +548,19 @@
 <p>This book is an hommage to those amazingly talented and kind scientists, engineers and artists who paved the way and inspired the author, such as <strong>David Ha</strong> (<a class="reference external" href="https://twitter.com/hardmaru">Twitter</a>, <a class="reference external" href="https://otoro.net/ml/">Website</a>) or <strong>Raphael Gontijo Lopes</strong> (<a class="reference external" href="https://twitter.com/iraphas13">Twitter</a>, <a class="reference external" href="https://raphagl.com/">Website</a>).</p>
 <div class="section" id="raster-images-vs-vector-graphics">
 <h2>Raster images vs. vector graphics<a class="headerlink" href="#raster-images-vs-vector-graphics" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="raster-images-are-based-on-a-grid-of-pixels">
+<h3>Raster images are based on a grid of pixels<a class="headerlink" href="#raster-images-are-based-on-a-grid-of-pixels" title="Permalink to this headline">¶</a></h3>
 <p>Raster images consist of a grid of pixels. In a simple greyscale image, a single pixel already holds a single numeric value, e.g. from 0 (black) to 255 (white), with all the shades of grey in between. Color images, such as RGB images, work the same way but with one numeric value per channel (R = red, G = green, B = blue) and per pixel.</p>
-<p>Vector graphics, on the other hand, are not based on a grid of pixels but based on mathematical descriptions of points, lines etc. in an x,y (Cartesian) coordinate system. A common vector graphics format is the Scalable Vector Graphics format (SVG). One major advantage of vector graphics is that they are infinitely scalable. Another advantage is that their file size is small and independent of the image’s size and resolution. This is why, for instance, fonts, icons and logos are often designed as vector graphics.</p>
+<div class="figure align-default" id="raster-image-png">
+<a class="reference internal image-reference" href="../_images/raster_image.png"><img alt="Example raster image" src="../_images/raster_image.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Illustration of a 3x3 pixel RGB raster image; each pixel contains 3 values, one for each red (R), green (G), and blue (B) channel.</span><a class="headerlink" href="#raster-image-png" title="Permalink to this image">¶</a></p>
 </div>
-<div class="section" id="why-is-deep-learning-with-vector-graphics-special">
-<h2>Why is Deep Learning with Vector Graphics special?<a class="headerlink" href="#why-is-deep-learning-with-vector-graphics-special" title="Permalink to this headline">¶</a></h2>
-<p>The application of Deep Learning to raster images has been well-researched and is relatively straightforward. One reason for this is that raster images play an important role in many domains. Another reason is that a grid of pixels is already very close to the data representation required by machine learning algorithms. Machine learning algorithms, such as Deep Neural Networks, require the input data to be represented as a collection of numeric values (a data structure called a <em>tensor</em>). Representing a raster image as such a tensor is straight-forward.</p>
-<p>Vector graphics are different. One standard format for vector graphics is the Scalable Vector Graphics format - or short: SVG. This format is XML-based and, thus, a text-based description of the image using a hierarchical structure of nested tags and their associated attributes.</p>
+</div>
+<div class="section" id="vector-graphics-are-based-on-the-mathematical-description-of-paths">
+<h3>Vector graphics are based on the mathematical description of paths<a class="headerlink" href="#vector-graphics-are-based-on-the-mathematical-description-of-paths" title="Permalink to this headline">¶</a></h3>
+<p>Vector graphics, on the other hand, are not based on a grid of pixels but based on mathematical descriptions of points, lines etc. in an x,y (Cartesian) coordinate system.</p>
+<p>One major advantage of vector graphics is that they are infinitely scalable. Another advantage is that their file size is small and independent of the image’s size and resolution. This is why, for instance, fonts, icons and logos are often designed as vector graphics.</p>
+<p>A common vector graphics format is the Scalable Vector Graphics format (SVG). This format is XML-based and, thus, a text-based description of the image using a hierarchical structure of nested tags and their associated attributes.</p>
 <p>Below is an example of simple SVG:</p>
 <div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;svg</span> <span class="na">version=</span><span class="s">&quot;1.1&quot;</span>
      <span class="na">width=</span><span class="s">&quot;200&quot;</span> <span class="na">height=</span><span class="s">&quot;200&quot;</span>
@@ -561,9 +579,14 @@
 </div>
 <p>Once rendered by the browser, this looks like this:</p>
 <div class="figure align-default" id="about-example-svg">
-<a class="reference internal image-reference" href="../_images/example.svg"><img alt="Example SVG paper" src="../_images/example.svg" width="200px" /></a>
-<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Example SVG as rendered by the browser</span><a class="headerlink" href="#about-example-svg" title="Permalink to this image">¶</a></p>
+<a class="reference internal image-reference" href="../_images/example.svg"><img alt="Example SVG image" src="../_images/example.svg" width="200px" /></a>
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Example SVG as rendered by the browser</span><a class="headerlink" href="#about-example-svg" title="Permalink to this image">¶</a></p>
 </div>
+</div>
+</div>
+<div class="section" id="why-is-deep-learning-with-vector-graphics-special">
+<h2>Why is Deep Learning with Vector Graphics special?<a class="headerlink" href="#why-is-deep-learning-with-vector-graphics-special" title="Permalink to this headline">¶</a></h2>
+<p>The application of Deep Learning to raster images has been well-researched and is relatively straightforward. One reason for this is that raster images play an important role in many domains. Another reason is that a grid of pixels is already very close to the data representation required by machine learning algorithms. Machine learning algorithms, such as Deep Neural Networks, require the input data to be represented as a collection of numeric values (a data structure called a <em>tensor</em>). Representing a raster image as such a tensor is straight-forward.</p>
 <p>The following aspects are some of the reasons why deep learning with SVG images is special:</p>
 <ol class="simple">
 <li><p>The SVG format is text-based and not a grid of pixels. In this regard, deep generative models for SVG images are closer to sequence generation in natural language processing (NLP).</p></li>
@@ -574,6 +597,7 @@
 <li><p>SVG elements can overlap and occlude each other, so that parts may not be visible when rasterised.</p></li>
 <li><p>There is no one-to-one correspondence between SVGs and their respective raster image. Different SVGs may result in the same raster image and, thus, the process of converting a raster image back to its corresponding vector format is ambiguous.</p></li>
 <li><p>Deep learning requires a differentiable loss function for backpropagation to work. Until recently, no differentiable rasteriser existed. And the existing differentiable rasteriser (diffvg) is computationally expensive and not accurate.</p></li>
+<li><p>The different components of an SVG may have different x,y positions relative to another. Maintaining these positions is another challenge.</p></li>
 </ol>
 </div>
 </div>

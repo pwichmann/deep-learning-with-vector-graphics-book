@@ -53,7 +53,7 @@
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Further academic publications" href="../further_academic_papers.html" />
+    <link rel="next" title="Wang and Lian (2021) | DeepVecFont: Synthesizing High-quality Vector Fonts via Dual-modality Learning" href="wang_and_lian_2021.html" />
     <link rel="prev" title="Li et al. (2020) | Differentiable Vector Graphics Rasterization for Editing and Learning (diffvg)" href="Li_et_al_2020.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -146,18 +146,13 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../02_background/deep_learning/rnn.html">
-     RNN
+    <a class="reference internal" href="../../02_background/deep_learning/architectures.html">
+     Neural architectures
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../02_background/deep_learning/lstm.html">
-     LSTM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../02_background/deep_learning/mdn.html">
-     Mixture Density Networks (MDN)
+    <a class="reference internal" href="../../02_background/deep_learning/generative_models.html">
+     Deep generative models
     </a>
    </li>
   </ul>
@@ -180,6 +175,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../../02_background/DL_with_vector_graphics/challenges_of_vector_graphics.html">
      Challenges of Vector Graphics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/DL_with_vector_graphics/strategies.html">
+     Strategies for dealing with SVG
     </a>
    </li>
   </ul>
@@ -251,6 +251,16 @@
      Reddy et al. (2021) | Im2Vec: Synthesizing Vector Graphics without Vector Supervision
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="wang_and_lian_2021.html">
+     Wang and Lian (2021) | DeepVecFont: Synthesizing High-quality Vector Fonts via Dual-modality Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Aoki_and_Aizawa_2022.html">
+     Aoki and Aizawa (2022) | SVG vector font generation for Chinese Characters with Transformer
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -274,6 +284,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../further_academic_papers/zhao_et_al_2020.html">
+     Zhao et al. (2020) | ICONATE: Automatic Compound Icon Generation and Ideation
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../further_academic_papers/Das_2021.html">
      Das et al. (2021) | Cloud2Curve: Generation and Vectorization of Parametric Sketches
     </a>
@@ -284,8 +299,8 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../further_academic_papers/wang_and_lian_2021.html">
-     Wang and Lian (2021) | DeepVecFont: Synthesizing High-quality Vector Fonts via Dual-modality Learning
+    <a class="reference internal" href="../further_academic_papers/Jiang_2021.html">
+     Jiang et al. (2021) | Recognizing Vector Graphics without Rasterization
     </a>
    </li>
   </ul>
@@ -523,20 +538,20 @@
 </div>
 <div class="figure align-default" id="reddy-2021-cover">
 <a class="reference internal image-reference" href="../../_images/reddy_2021_cover.png"><img alt="Reddy 2021 paper" src="../../_images/reddy_2021_cover.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 47 </span><span class="caption-text">Screenshot of the Im2Vec <a class="reference external" href="https://arxiv.org/abs/2102.02798">paper</a> by Reddy et al. (2021)</span><a class="headerlink" href="#reddy-2021-cover" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 48 </span><span class="caption-text">Screenshot of the Im2Vec <a class="reference external" href="https://arxiv.org/abs/2102.02798">paper</a> by Reddy et al. (2021)</span><a class="headerlink" href="#reddy-2021-cover" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="architecture">
 <h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-default" id="reddy-2021-architecture">
 <a class="reference internal image-reference" href="../../_images/reddy_2021_architecture.png"><img alt="Reddy 2021 architecture" src="../../_images/reddy_2021_architecture.png" style="width: 700px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 48 </span><span class="caption-text">Screenshot of the Im2Vec architecture; taken from the <a class="reference external" href="https://arxiv.org/abs/2102.02798">paper</a> by Reddy et al. (2021)</span><a class="headerlink" href="#reddy-2021-architecture" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 49 </span><span class="caption-text">Screenshot of the Im2Vec architecture; taken from the <a class="reference external" href="https://arxiv.org/abs/2102.02798">paper</a> by Reddy et al. (2021)</span><a class="headerlink" href="#reddy-2021-architecture" title="Permalink to this image">¶</a></p>
 </div>
 <p>Im2Vec overall architecture is an end-to-end variational autoencoder (VAE). The architecture does not rely on vector graphics as inputs. Instead, a raster image is encoded to a latent code <span class="math notranslate nohighlight">\(z\)</span> (left part of the figure above).
 This latent code <span class="math notranslate nohighlight">\(z\)</span> is then decoded to a set of ordered closed vector paths using a Path Decoder. The vector paths are then rasterized using DiffVG and composited together using DiffComp to obtain a rasterized overall output. This rasterized overall output can then be compared to the ground truth raster target for supervision at training time.
 The model can handle graphics with multiple component paths. It uses an RNN to produce a latent code <span class="math notranslate nohighlight">\(z_t\)</span> for each path, from the global latent code <span class="math notranslate nohighlight">\(z\)</span> representing the graphic as a whole.</p>
 <div class="figure align-default" id="reddy-2021-architecture-decoder">
 <a class="reference internal image-reference" href="../../_images/reddy_2021_architecture_decoder.png"><img alt="Reddy 2021 architecture - the path decoder" src="../../_images/reddy_2021_architecture_decoder.png" style="width: 700px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 49 </span><span class="caption-text">Screenshot of the Im2Vec path decoder; taken from the <a class="reference external" href="https://arxiv.org/abs/2102.02798">paper</a> by Reddy et al. (2021)</span><a class="headerlink" href="#reddy-2021-architecture-decoder" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 50 </span><span class="caption-text">Screenshot of the Im2Vec path decoder; taken from the <a class="reference external" href="https://arxiv.org/abs/2102.02798">paper</a> by Reddy et al. (2021)</span><a class="headerlink" href="#reddy-2021-architecture-decoder" title="Permalink to this image">¶</a></p>
 </div>
 <p>The figure above shows the architecture of the path decoder which takes the latent codes for each path and outputs the corresponding vector graphic. The vector graphic output is limited to closed Bézier paths.</p>
 </div>
@@ -581,10 +596,10 @@ The model can handle graphics with multiple component paths. It uses an RNN to p
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="../further_academic_papers.html" title="next page">
+        <a class="right-next" href="wang_and_lian_2021.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Further academic publications</p>
+                <p class="prevnext-title">Wang and Lian (2021) | DeepVecFont: Synthesizing High-quality Vector Fonts via Dual-modality Learning</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>

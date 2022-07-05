@@ -17,14 +17,14 @@ The current definition of the SVG format is version 1.1 (Second Edition). A vers
 
 ## SVG document structure
 
-Tags enclosed in < ...> are called elements. Properties of these elements are called attributes.
+Tags enclosed in `<...>` are called **elements**. Properties of these elements are called **attributes**.
 
 * svg element with viewport and viewBox
 * grouping elements using 'g' element
 * transform attribute
-* 'path' element
-* Basic shapes: 'rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon'
-* Text elements 'text'
+* `<path>` element
+* Basic shapes: `<rect>`, `<circle>`, `<ellipse>`, `<line>`, `<polyline>`, `<polygon>`
+* Text elements `<text>`
 
 ```{note}
 TODO

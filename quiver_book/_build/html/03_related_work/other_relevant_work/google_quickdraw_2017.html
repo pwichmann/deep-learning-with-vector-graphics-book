@@ -144,23 +144,13 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../02_background/deep_learning/rnn.html">
-     RNN
+    <a class="reference internal" href="../../02_background/deep_learning/architectures.html">
+     Neural architectures
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../02_background/deep_learning/lstm.html">
-     LSTM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../02_background/deep_learning/mdn.html">
-     Mixture Density Networks (MDN)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../02_background/deep_learning/transformer.html">
-     Transformer
+    <a class="reference internal" href="../../02_background/deep_learning/generative_models.html">
+     Deep generative models
     </a>
    </li>
   </ul>
@@ -183,6 +173,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../../02_background/DL_with_vector_graphics/challenges_of_vector_graphics.html">
      Challenges of Vector Graphics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/DL_with_vector_graphics/strategies.html">
+     Strategies for dealing with SVG
     </a>
    </li>
   </ul>
@@ -254,6 +249,16 @@
      Reddy et al. (2021) | Im2Vec: Synthesizing Vector Graphics without Vector Supervision
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../papers/wang_and_lian_2021.html">
+     Wang and Lian (2021) | DeepVecFont: Synthesizing High-quality Vector Fonts via Dual-modality Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../papers/Aoki_and_Aizawa_2022.html">
+     Aoki and Aizawa (2022) | SVG vector font generation for Chinese Characters with Transformer
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -289,11 +294,6 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../further_academic_papers/yang_2021_sketchaa.html">
      Yang et al. (2021) | SketchAA: Abstract Representation for Abstract Sketches
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../further_academic_papers/wang_and_lian_2021.html">
-     Wang and Lian (2021) | DeepVecFont: Synthesizing High-quality Vector Fonts via Dual-modality Learning
     </a>
    </li>
    <li class="toctree-l2">
@@ -561,13 +561,13 @@
 </div>
 <div class="figure align-default" id="quickdraw-home-fig">
 <a class="reference internal image-reference" href="../../_images/google_quickdraw_home.png"><img alt="Homepage of Google Quickdraw" src="../../_images/google_quickdraw_home.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 57 </span><span class="caption-text">Screenshot of the homepage of Google’s <a class="reference external" href="https://quickdraw.withgoogle.com/">“Quick, Draw!”</a></span><a class="headerlink" href="#quickdraw-home-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 59 </span><span class="caption-text">Screenshot of the homepage of Google’s <a class="reference external" href="https://quickdraw.withgoogle.com/">“Quick, Draw!”</a></span><a class="headerlink" href="#quickdraw-home-fig" title="Permalink to this image">¶</a></p>
 </div>
 <p><a class="reference external" href="https://quickdraw.withgoogle.com/">Google’s Quick, Draw!</a> (also written as ‘quickdraw’) is an AI experiment published by Google in early 2017.</p>
 <p>At the surface, “Quick, Draw!” can be considered a game where a participant has to quickly draw a concept in under 20 seconds. While the user is drawing, a machine learning model is attempting to guess which concept the user is attempting to draw. By adding drawings, participants help Google obtain a massive training dataset of sketches (features) and the target concept (label).</p>
 <div class="figure align-default" id="quickdraw-task-fig">
 <a class="reference internal image-reference" href="../../_images/google_quickdraw_task.png"><img alt="A task of Google Quickdraw" src="../../_images/google_quickdraw_task.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 58 </span><span class="caption-text">Screenshot of a typical drawing task from Google’s <a class="reference external" href="https://quickdraw.withgoogle.com/">“Quick, Draw!”</a></span><a class="headerlink" href="#quickdraw-task-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 60 </span><span class="caption-text">Screenshot of a typical drawing task from Google’s <a class="reference external" href="https://quickdraw.withgoogle.com/">“Quick, Draw!”</a></span><a class="headerlink" href="#quickdraw-task-fig" title="Permalink to this image">¶</a></p>
 </div>
 <p>The sketch data also contains the order in which the user created the individual strokes of a drawing. This allows Quick, Draw! to animate the collected sketches and visualise in which order sketches were created.</p>
 <p>Over 15 million players contributed around 50 million drawings across 345 categories.</p>
@@ -575,14 +575,14 @@
 <h2>Dataset<a class="headerlink" href="#dataset" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-default" id="quickdraw-dataset-fig">
 <a class="reference internal image-reference" href="../../_images/google_quickdraw_dataset.jpg"><img alt="Preview of the Google Quickdraw dataset" src="../../_images/google_quickdraw_dataset.jpg" style="width: 900px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 59 </span><span class="caption-text">Screenshot of a sample of Google’s <a class="reference external" href="https://quickdraw.withgoogle.com/">“Quick, Draw!”</a> drawings obtained from <a class="reference external" href="https://github.com/googlecreativelab/quickdraw-dataset/blob/master/preview.jpg">here</a>.</span><a class="headerlink" href="#quickdraw-dataset-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 61 </span><span class="caption-text">Screenshot of a sample of Google’s <a class="reference external" href="https://quickdraw.withgoogle.com/">“Quick, Draw!”</a> drawings obtained from <a class="reference external" href="https://github.com/googlecreativelab/quickdraw-dataset/blob/master/preview.jpg">here</a>.</span><a class="headerlink" href="#quickdraw-dataset-fig" title="Permalink to this image">¶</a></p>
 </div>
 <p>The Quick Draw Dataset is a collection of 50 million drawings across 345 categories, contributed by players of the game Quick, Draw!.
 The drawings were captured as timestamped vectors, tagged with metadata including what the player was asked to draw and in which country the player was located.</p>
 <p>The format is not SVG but a custom, simple to understand format.</p>
 <div class="figure align-default" id="quickdraw-cat-fig">
 <a class="reference internal image-reference" href="../../_images/google_quickdraw_cats.png"><img alt="Sample of cat drawings from the Google Quickdraw dataset" src="../../_images/google_quickdraw_cats.png" style="width: 900px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 60 </span><span class="caption-text">Screenshot of a sample of catdrawings from Google’s <a class="reference external" href="https://quickdraw.withgoogle.com/">“Quick, Draw!”</a> drawings obtained from <a class="reference external" href="https://quickdraw.withgoogle.com/data/cat">here</a>.</span><a class="headerlink" href="#quickdraw-cat-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 62 </span><span class="caption-text">Screenshot of a sample of catdrawings from Google’s <a class="reference external" href="https://quickdraw.withgoogle.com/">“Quick, Draw!”</a> drawings obtained from <a class="reference external" href="https://quickdraw.withgoogle.com/data/cat">here</a>.</span><a class="headerlink" href="#quickdraw-cat-fig" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="view-dataset">
 <h3>View dataset<a class="headerlink" href="#view-dataset" title="Permalink to this headline">¶</a></h3>

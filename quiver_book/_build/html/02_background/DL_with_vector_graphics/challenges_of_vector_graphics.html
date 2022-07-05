@@ -51,7 +51,7 @@
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Key academic publications" href="../../03_related_work/academic_papers.html" />
+    <link rel="next" title="Strategies for dealing with SVG" href="strategies.html" />
     <link rel="prev" title="Arguing for E-2-E approach" href="arguing_for_e2e_approach.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -144,18 +144,13 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../deep_learning/rnn.html">
-     RNN
+    <a class="reference internal" href="../deep_learning/architectures.html">
+     Neural architectures
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../deep_learning/lstm.html">
-     LSTM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../deep_learning/mdn.html">
-     Mixture Density Networks (MDN)
+    <a class="reference internal" href="../deep_learning/generative_models.html">
+     Deep generative models
     </a>
    </li>
   </ul>
@@ -178,6 +173,11 @@
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Challenges of Vector Graphics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="strategies.html">
+     Strategies for dealing with SVG
     </a>
    </li>
   </ul>
@@ -249,6 +249,16 @@
      Reddy et al. (2021) | Im2Vec: Synthesizing Vector Graphics without Vector Supervision
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/papers/wang_and_lian_2021.html">
+     Wang and Lian (2021) | DeepVecFont: Synthesizing High-quality Vector Fonts via Dual-modality Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/papers/Aoki_and_Aizawa_2022.html">
+     Aoki and Aizawa (2022) | SVG vector font generation for Chinese Characters with Transformer
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -272,6 +282,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/further_academic_papers/zhao_et_al_2020.html">
+     Zhao et al. (2020) | ICONATE: Automatic Compound Icon Generation and Ideation
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../03_related_work/further_academic_papers/Das_2021.html">
      Das et al. (2021) | Cloud2Curve: Generation and Vectorization of Parametric Sketches
     </a>
@@ -282,8 +297,8 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../03_related_work/further_academic_papers/wang_and_lian_2021.html">
-     Wang and Lian (2021) | DeepVecFont: Synthesizing High-quality Vector Fonts via Dual-modality Learning
+    <a class="reference internal" href="../../03_related_work/further_academic_papers/Jiang_2021.html">
+     Jiang et al. (2021) | Recognizing Vector Graphics without Rasterization
     </a>
    </li>
   </ul>
@@ -615,11 +630,11 @@ It may be required to use both vector graphics and corresponding raster images a
 <p>But in the vector image space, one image consists of <strong>two separate paths</strong>, and the other consists of <strong>just one</strong>.</p>
 <div class="figure align-default" id="eye-1">
 <a class="reference internal image-reference" href="../../_images/eye_1.png"><img alt="eye" src="../../_images/eye_1.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 16 </span><span class="caption-text">Icon of an eye opened in Inkscape; the eye consists of two separate paths</span><a class="headerlink" href="#eye-1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 17 </span><span class="caption-text">Icon of an eye opened in Inkscape; the eye consists of two separate paths</span><a class="headerlink" href="#eye-1" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-default" id="eye-2">
 <a class="reference internal image-reference" href="../../_images/eye_2.png"><img alt="eye" src="../../_images/eye_2.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 17 </span><span class="caption-text">Icon of an eye opened in Inkscape; the eye consists of just one path</span><a class="headerlink" href="#eye-2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 18 </span><span class="caption-text">Icon of an eye opened in Inkscape; the eye consists of just one path</span><a class="headerlink" href="#eye-2" title="Permalink to this image">¶</a></p>
 </div>
 <p>Now, how would linear interpolations between these SVG representations work?
 How would a linear interpolation look if one the icons even had the white part of the eye explicity modelled as a shape?
@@ -627,7 +642,7 @@ Is this still possible in an end-to-end model or is that the point where we need
 <p>We know from the DeepSVG paper by Carlier (2020) that it is technically possible to generate linear interpolations between two vector graphics with a different number of shapes. But are these interpolations as useful as interpolations in raster space?</p>
 <div class="figure align-default" id="deepsvg-linear-interpolation">
 <a class="reference internal image-reference" href="../../_images/deepsvg_linear_interpolation.png"><img alt="DeepSVG linear interpolation" src="../../_images/deepsvg_linear_interpolation.png" style="width: 700px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 18 </span><span class="caption-text">Linear interpolation between two vector graphics as made possible by DeepSVG; image taken from the <a class="reference external" href="https://arxiv.org/abs/2007.11301">DeepSVG paper</a></span><a class="headerlink" href="#deepsvg-linear-interpolation" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 19 </span><span class="caption-text">Linear interpolation between two vector graphics as made possible by DeepSVG; image taken from the <a class="reference external" href="https://arxiv.org/abs/2007.11301">DeepSVG paper</a></span><a class="headerlink" href="#deepsvg-linear-interpolation" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
@@ -678,10 +693,10 @@ Is this still possible in an end-to-end model or is that the point where we need
         </a>
     </div>
      <div id="next">
-        <a class="right-next" href="../../03_related_work/academic_papers.html" title="next page">
+        <a class="right-next" href="strategies.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Key academic publications</p>
+                <p class="prevnext-title">Strategies for dealing with SVG</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>

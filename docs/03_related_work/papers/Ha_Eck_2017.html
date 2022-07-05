@@ -146,18 +146,13 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../02_background/deep_learning/rnn.html">
-     RNN
+    <a class="reference internal" href="../../02_background/deep_learning/architectures.html">
+     Neural architectures
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../02_background/deep_learning/lstm.html">
-     LSTM
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../02_background/deep_learning/mdn.html">
-     Mixture Density Networks (MDN)
+    <a class="reference internal" href="../../02_background/deep_learning/generative_models.html">
+     Deep generative models
     </a>
    </li>
   </ul>
@@ -180,6 +175,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../../02_background/DL_with_vector_graphics/challenges_of_vector_graphics.html">
      Challenges of Vector Graphics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../02_background/DL_with_vector_graphics/strategies.html">
+     Strategies for dealing with SVG
     </a>
    </li>
   </ul>
@@ -251,6 +251,16 @@
      Reddy et al. (2021) | Im2Vec: Synthesizing Vector Graphics without Vector Supervision
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="wang_and_lian_2021.html">
+     Wang and Lian (2021) | DeepVecFont: Synthesizing High-quality Vector Fonts via Dual-modality Learning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Aoki_and_Aizawa_2022.html">
+     Aoki and Aizawa (2022) | SVG vector font generation for Chinese Characters with Transformer
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -274,6 +284,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../further_academic_papers/zhao_et_al_2020.html">
+     Zhao et al. (2020) | ICONATE: Automatic Compound Icon Generation and Ideation
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../further_academic_papers/Das_2021.html">
      Das et al. (2021) | Cloud2Curve: Generation and Vectorization of Parametric Sketches
     </a>
@@ -284,8 +299,8 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../further_academic_papers/wang_and_lian_2021.html">
-     Wang and Lian (2021) | DeepVecFont: Synthesizing High-quality Vector Fonts via Dual-modality Learning
+    <a class="reference internal" href="../further_academic_papers/Jiang_2021.html">
+     Jiang et al. (2021) | Recognizing Vector Graphics without Rasterization
     </a>
    </li>
   </ul>
@@ -573,7 +588,7 @@
 </div>
 <div class="figure align-default" id="sketchrnn-cover">
 <a class="reference internal image-reference" href="../../_images/sketchrnn_cover.png"><img alt="sketchrnn paper" src="../../_images/sketchrnn_cover.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 25 </span><span class="caption-text">Screenshot of the <a class="reference external" href="https://arxiv.org/abs/1704.03477">sketchrnn paper</a></span><a class="headerlink" href="#sketchrnn-cover" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 26 </span><span class="caption-text">Screenshot of the <a class="reference external" href="https://arxiv.org/abs/1704.03477">sketchrnn paper</a></span><a class="headerlink" href="#sketchrnn-cover" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="use-cases">
 <h2>Use cases<a class="headerlink" href="#use-cases" title="Permalink to this headline">¶</a></h2>
@@ -588,26 +603,26 @@
 <h3>Latent Space Interpolation<a class="headerlink" href="#latent-space-interpolation" title="Permalink to this headline">¶</a></h3>
 <div class="figure align-default" id="sketchrnn-latent-space-interpolation-1">
 <a class="reference internal image-reference" href="../../_images/sketchrnn_latent_space_interpolation_1.png"><img alt="sketchrnn Latent Space Interpolation" src="../../_images/sketchrnn_latent_space_interpolation_1.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 26 </span><span class="caption-text">Screenshot of Latent Space Interpolation from the <a class="reference external" href="https://arxiv.org/abs/1704.03477">sketchrnn paper</a></span><a class="headerlink" href="#sketchrnn-latent-space-interpolation-1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 27 </span><span class="caption-text">Screenshot of Latent Space Interpolation from the <a class="reference external" href="https://arxiv.org/abs/1704.03477">sketchrnn paper</a></span><a class="headerlink" href="#sketchrnn-latent-space-interpolation-1" title="Permalink to this image">¶</a></p>
 </div>
 <p>The trained model allows for a latent space interpolation, as shown in the figure above. However, the interpolation may not result in a visual that is semantically meaningful if the latent space positions correspond to different concepts.</p>
 <p>However, if the latent space positions correspond to the same concept, the linear interpolation allows for the generation of interesting and useful results, as shown below in case of the interpolation between four reproduced sketches of a human head / face.</p>
 <p>The bottom row shows the four (reproduced) sketches that were used as starting points for the linear interpolation.</p>
 <div class="figure align-default" id="ha-and-eck-interpolation-starting-points">
 <a class="reference internal image-reference" href="../../_images/ha_and_eck_interpolation_starting_points.png"><img alt="sketchrnn Latent Space Interpolation - starting points- Heads" src="../../_images/ha_and_eck_interpolation_starting_points.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 27 </span><span class="caption-text">Screenshot of Latent Space Interpolation from the <a class="reference external" href="https://arxiv.org/abs/1704.03477">sketchrnn paper</a>;</span><a class="headerlink" href="#ha-and-eck-interpolation-starting-points" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 28 </span><span class="caption-text">Screenshot of Latent Space Interpolation from the <a class="reference external" href="https://arxiv.org/abs/1704.03477">sketchrnn paper</a>;</span><a class="headerlink" href="#ha-and-eck-interpolation-starting-points" title="Permalink to this image">¶</a></p>
 </div>
 <p>You can find them again in the four corners of the image below.</p>
 <div class="figure align-default" id="ha-and-eck-interpolation-heads">
 <a class="reference internal image-reference" href="../../_images/ha_and_eck_interpolation_heads.png"><img alt="sketchrnn Latent Space Interpolation - Heads" src="../../_images/ha_and_eck_interpolation_heads.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 28 </span><span class="caption-text">Screenshot of Latent Space Interpolation from the <a class="reference external" href="https://arxiv.org/abs/1704.03477">sketchrnn paper</a>;</span><a class="headerlink" href="#ha-and-eck-interpolation-heads" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 29 </span><span class="caption-text">Screenshot of Latent Space Interpolation from the <a class="reference external" href="https://arxiv.org/abs/1704.03477">sketchrnn paper</a>;</span><a class="headerlink" href="#ha-and-eck-interpolation-heads" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="latent-vector-arithmetics-analogies">
 <h3>Latent vector arithmetics (analogies)<a class="headerlink" href="#latent-vector-arithmetics-analogies" title="Permalink to this headline">¶</a></h3>
 <div class="figure align-default" id="sketchrrn-latent-space-interpolation-2-png">
 <a class="reference internal image-reference" href="../../_images/sketchrrn_latent_space_interpolation_2.png"><img alt="sketchrnn Latent Space Interpolation" src="../../_images/sketchrrn_latent_space_interpolation_2.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 29 </span><span class="caption-text">Screenshot of Latent Space Interpolation from the <a class="reference external" href="https://arxiv.org/abs/1704.03477">sketchrnn paper</a></span><a class="headerlink" href="#sketchrrn-latent-space-interpolation-2-png" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 30 </span><span class="caption-text">Screenshot of Latent Space Interpolation from the <a class="reference external" href="https://arxiv.org/abs/1704.03477">sketchrnn paper</a></span><a class="headerlink" href="#sketchrrn-latent-space-interpolation-2-png" title="Permalink to this image">¶</a></p>
 </div>
 <p>Similar to the famous NLP example of king/queen and male/female vectors, it was possible to perform basic arithmetics in embedding space, as shown in the figure above.</p>
 </div>

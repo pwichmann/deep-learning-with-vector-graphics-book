@@ -34,3 +34,4 @@ Please also do not forget to cite the original authors where applicable, such as
 Please refer to the [repository itself](https://github.com/pwichmann/deep-learning-with-vector-graphics-book/commits/main) for an detailed overview of changes. Only major changes will be listed below.
 
   * 2021-10-05: First commit and publication of the early draft of the book
+  * 2022-07-05: Major changes

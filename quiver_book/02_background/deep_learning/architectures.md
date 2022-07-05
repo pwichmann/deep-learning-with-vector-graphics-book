@@ -1,7 +1,24 @@
-# Mixture Density Networks (MDN)
+# Neural architectures
 
-In the [original paper](https://publications.aston.ac.uk/id/eprint/373/1/NCRG_94_004.pdf) by Christopher M. Bishop from 1994, Bishop defines Mixture Density Networks as a
-"class of network models obtained by combining a conventional neural network with a mixture density model. The complete system is called a Mixture Density Network, and can in principle represent arbitrary conditional probability distributions in the same way that a conventional neural network can represent arbitrary functions".
+```{note}
+TODO
+```
+
+* ... (todo)
+* Recurrent Neural Networks (RNN)
+  * LSTM
+  * GRU
+* GANs
+* Transformer (& attention)
+* VAE
+* ... (todo)
+
+
+
+
+## Mixture Density Networks (MDN)
+
+In the [original paper](https://publications.aston.ac.uk/id/eprint/373/1/NCRG_94_004.pdf) by Christopher M. Bishop from 1994, Bishop defines Mixture Density Networks as a "class of network models obtained by combining a conventional neural network with a mixture density model. The complete system is called a Mixture Density Network, and can in principle represent arbitrary conditional probability distributions in the same way that a conventional neural network can represent arbitrary functions".
 
 
 ```{admonition} Key idea
@@ -19,7 +36,7 @@ When auto-regressively generating handwriting, for example, we predict the next 
 ```
 
 
-## MDN concept
+### MDN concept
 
 
 :::{figure-md} mdn_bishop
@@ -29,7 +46,7 @@ When auto-regressively generating handwriting, for example, we predict the next 
 [MDN figure and description taken from Bishop (1994)](https://publications.aston.ac.uk/id/eprint/373/1/NCRG_94_004.pdf).
 :::
 
-## MDN in PyTorch
+### MDN in PyTorch
 
 
 ```{note}
@@ -37,7 +54,7 @@ TODO
 ```
 
 
-## Combining MDNs with LSTMs
+### Combining MDNs with LSTMs
 
 
 ```{note}
@@ -45,7 +62,7 @@ TODO
 ```
 
 
-## TODO
+### TODO
 
 Read these:
 

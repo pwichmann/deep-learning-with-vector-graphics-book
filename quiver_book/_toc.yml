@@ -17,14 +17,13 @@ parts:
     - file: 02_background/vector_graphics/svg.md
   - file: 02_background/deep_learning.md
     sections:
-    - file: 02_background/deep_learning/rnn.md
-    - file: 02_background/deep_learning/lstm.md
-    - file: 02_background/deep_learning/mdn.md
-    - file: 02_background/deep_learning/transformer.md
+    - file: 02_background/deep_learning/architectures.md
+    - file: 02_background/deep_learning/generative_models.md
   - file: 02_background/DL_with_vector_graphics.md
     sections:
     - file: 02_background/DL_with_vector_graphics/arguing_for_e2e_approach.md
     - file: 02_background/DL_with_vector_graphics/challenges_of_vector_graphics.md
+    - file: 02_background/DL_with_vector_graphics/strategies.md
 
 
 # Relevant work
@@ -43,6 +42,8 @@ parts:
     - file: 03_related_work/papers/Carlier_et_al_2020.md
     - file: 03_related_work/papers/Li_et_al_2020.md
     - file: 03_related_work/papers/Reddy_et_al_2021.md
+    - file: 03_related_work/papers/wang_and_lian_2021.md
+    - file: 03_related_work/papers/Aoki_and_Aizawa_2022
   - file: 03_related_work/further_academic_papers.md
     sections:
     - file: 03_related_work/further_academic_papers/campbell_and_kautz_2014.md
@@ -50,7 +51,6 @@ parts:
     - file: 03_related_work/further_academic_papers/zhao_et_al_2020.md
     - file: 03_related_work/further_academic_papers/Das_2021.md
     - file: 03_related_work/further_academic_papers/yang_2021_sketchaa.md
-    - file: 03_related_work/further_academic_papers/wang_and_lian_2021.md
     - file: 03_related_work/further_academic_papers/Jiang_2021.md
   - file: 03_related_work/other_relevant_work.md
     sections:
