@@ -257,6 +257,16 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/papers/Vinker_2022.html">
+     Vinker et al. (2022) | CLIPasso: Semantically-Aware Object Sketching
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../03_related_work/papers/Ma_2022.html">
+     Ma et al. (2022) | LIVE: Towards Layer-wise Image Vectorization
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../03_related_work/papers/Aoki_and_Aizawa_2022.html">
      Aoki and Aizawa (2022) | SVG vector font generation for Chinese Characters with Transformer
     </a>
@@ -410,6 +420,18 @@
     </a>
    </li>
   </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Open questions
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../05_open_questions/open_questions.html">
+   Open questions
+  </a>
  </li>
 </ul>
 <p class="caption">
@@ -668,56 +690,55 @@ A circle will always be a circle – no matter how parameters are chosen. Howeve
 </ol>
 </div></blockquote>
 <p>DeepSVG implements a decomposition using 4 elliptical arcs. The example from the paper is a circle defined as follows:</p>
-<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;circle 
-  cx=&quot;1&quot; 
-  cy=&quot;1&quot;
-  r=&quot;1&quot; 
-/&gt;
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;circle</span> 
+  <span class="na">cx=</span><span class="s">&quot;1&quot;</span> 
+  <span class="na">cy=</span><span class="s">&quot;1&quot;</span>
+  <span class="na">r=</span><span class="s">&quot;1&quot;</span> 
+<span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>So, this is a circle around the center point <span class="math notranslate nohighlight">\((1, 1)\)</span> with a radius of 1 (and, thus, a width of 2).
 This circle gets translated a MoveTo command and four elliptical arc curves followed by a closing command.</p>
-<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;path 
-  d=&quot;
-    M1,0 
-    A1,1 0 0 1 2,1
-    A1,1 0 0 1 1,2
-    A1,1 0 0 1 0,1
-    A1,1 0 0 1 1,0 
-    z
-  &quot; 
-/&gt;
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;path</span> 
+  <span class="na">d=</span><span class="s">&quot;</span>
+<span class="s">    M1,0 </span>
+<span class="s">    A1,1 0 0 1 2,1</span>
+<span class="s">    A1,1 0 0 1 1,2</span>
+<span class="s">    A1,1 0 0 1 0,1</span>
+<span class="s">    A1,1 0 0 1 1,0 </span>
+<span class="s">    z</span>
+<span class="s">  &quot;</span> 
+<span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>The first arc starts at the top point of the circle (remember that <span class="math notranslate nohighlight">\(y=0\)</span> is the top in the SVG coordinate system) and draws a quarter circle in a clockwise direction to the absolute point <span class="math notranslate nohighlight">\((2, 1)\)</span>.</p>
 <div class="figure align-default" id="deepsvg-circle-decomposition-4-arcs">
 <a class="reference internal image-reference" href="../../_images/deepsvg_circle_decomposition_4_arcs1.png"><img alt="deepsvg_circle_decomposition_4_arcs" src="../../_images/deepsvg_circle_decomposition_4_arcs1.png" style="width: 200px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 66 </span><span class="caption-text">Circle decomposition in DeepSVG using four elliptical arc curves; center figure from Appendix of the <a class="reference external" href="https://arxiv.org/abs/2007.11301">DeepSVG paper</a></span><a class="headerlink" href="#deepsvg-circle-decomposition-4-arcs" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 70 </span><span class="caption-text">Circle decomposition in DeepSVG using four elliptical arc curves; center figure from Appendix of the <a class="reference external" href="https://arxiv.org/abs/2007.11301">DeepSVG paper</a></span><a class="headerlink" href="#deepsvg-circle-decomposition-4-arcs" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="half-circles-represented-by-elliptical-arcs">
 <h3>2 half-circles represented by elliptical arcs<a class="headerlink" href="#half-circles-represented-by-elliptical-arcs" title="Permalink to this headline">¶</a></h3>
 <p>The SVG decomposition of circles to paths (and vice versa) has also been covered by this <a class="reference external" href="https://www.smashingmagazine.com/2019/03/svg-circle-decomposition-paths/">article by the smashingmagazine.com</a>.</p>
-<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;svg
-   xmlns=&quot;http://www.w3.org/2000/svg&quot; 
-   width=&quot;100&quot;
-   height=&quot;100&quot;
-   version=&quot;1.1&quot;&gt;
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;svg</span>
+   <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2000/svg&quot;</span> 
+   <span class="na">width=</span><span class="s">&quot;100&quot;</span>
+   <span class="na">height=</span><span class="s">&quot;100&quot;</span>
+   <span class="na">version=</span><span class="s">&quot;1.1&quot;</span><span class="nt">&gt;</span>
     
-    &lt;circle cx=&quot;50&quot; cy=&quot;50&quot; r=&quot;25&quot;/&gt;
+    <span class="nt">&lt;circle</span> <span class="na">cx=</span><span class="s">&quot;50&quot;</span> <span class="na">cy=</span><span class="s">&quot;50&quot;</span> <span class="na">r=</span><span class="s">&quot;25&quot;</span><span class="nt">/&gt;</span>
     
-&lt;/svg&gt;
-
+<span class="nt">&lt;/svg&gt;</span>
 </pre></div>
 </div>
 <p>The option for circle decomposition proposed in the article is to use a MoveTo command followed by two half-circle elliptical arc segments, each describing a half-circle. <a class="reference external" href="https://github.com/svg/svgo/">SVGO</a> also <a class="reference external" href="https://github.com/svg/svgo/blob/master/plugins/convertShapeToPath.js">uses</a> two arcs describing half-circles.</p>
-<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;path
-  d=&quot;
-    M 25, 50
-    a 25,25 0 1,1 50,0
-    a 25,25 0 1,1 -50,0
-  &quot;
-/&gt;
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;path</span>
+  <span class="na">d=</span><span class="s">&quot;</span>
+<span class="s">    M 25, 50</span>
+<span class="s">    a 25,25 0 1,1 50,0</span>
+<span class="s">    a 25,25 0 1,1 -50,0</span>
+<span class="s">  &quot;</span>
+<span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>Let’s assume, we want to replace had a center point <span class="math notranslate nohighlight">\(C\)</span> at (50, 50) and a radius <span class="math notranslate nohighlight">\(r\)</span> of 25.
@@ -741,12 +762,12 @@ The parameters of the first arc <code class="docutils literal notranslate"><span
 <p>A closing z command may also be required but was not used in the article – likely since it does not impact the visual representation.</p>
 <div class="figure align-default" id="deepsvg-circle-decomposition-upper-arc">
 <a class="reference internal image-reference" href="../../_images/deepsvg_circle_decomposition_upper_arc.png"><img alt="deepsvg_circle_decomposition_upper_arc" src="../../_images/deepsvg_circle_decomposition_upper_arc.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 67 </span><span class="caption-text">Only the upper half-circle defined in SVG using an elliptical arc command; code shown on top; resulting half-circle at the bottom; visualized using <a class="reference external" href="https://codepen.io/">codepen.io</a></span><a class="headerlink" href="#deepsvg-circle-decomposition-upper-arc" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 71 </span><span class="caption-text">Only the upper half-circle defined in SVG using an elliptical arc command; code shown on top; resulting half-circle at the bottom; visualized using <a class="reference external" href="https://codepen.io/">codepen.io</a></span><a class="headerlink" href="#deepsvg-circle-decomposition-upper-arc" title="Permalink to this image">¶</a></p>
 </div>
 <p>Adding a second elliptical arc to describe the lower half-circle completes the circle. Note that only the end point needs to be adjusted. We want to end up 50 pixels to the left again and at the same vertical position.</p>
 <div class="figure align-default" id="deepsvg-circle-decomposition-full-circle">
 <a class="reference internal image-reference" href="../../_images/deepsvg_circle_decomposition_full_circle.png"><img alt="deepsvg_circle_decomposition_full_circle" src="../../_images/deepsvg_circle_decomposition_full_circle.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 68 </span><span class="caption-text">Full circle described by two half-circles formed by elliptical arc curves; visualized using <a class="reference external" href="https://codepen.io/">codepen.io</a></span><a class="headerlink" href="#deepsvg-circle-decomposition-full-circle" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 72 </span><span class="caption-text">Full circle described by two half-circles formed by elliptical arc curves; visualized using <a class="reference external" href="https://codepen.io/">codepen.io</a></span><a class="headerlink" href="#deepsvg-circle-decomposition-full-circle" title="Permalink to this image">¶</a></p>
 </div>
 <p>SVGO uses the following (Javascript) logic for a circle with center point <span class="math notranslate nohighlight">\((cx, cy)\)</span> and radius <span class="math notranslate nohighlight">\(r\)</span>. SVGO first moves to top point of the circle.</p>
 <div class="highlight-Javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">pathData</span> <span class="o">=</span> 
@@ -777,22 +798,22 @@ The parameters of the first arc <code class="docutils literal notranslate"><span
 <h2>(3.3) Decomposition of lines<a class="headerlink" href="#decomposition-of-lines" title="Permalink to this headline">¶</a></h2>
 <p>Lines, defined by a start point and an end point, can be trivially decomposed to a MoveTo command followed by a single LineTo command.</p>
 <p>The following line defines a straight line from <span class="math notranslate nohighlight">\((x_1, y_1)=(0, 0)\)</span> to <span class="math notranslate nohighlight">\((x_2, y_2)=(1, 1)\)</span>.</p>
-<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;line 
-  x1=&quot;0&quot;
-  x2=&quot;1&quot;
-  y1=&quot;0&quot;
-  y2=&quot;1&quot;
-/&gt;
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;line</span> 
+  <span class="na">x1=</span><span class="s">&quot;0&quot;</span>
+  <span class="na">x2=</span><span class="s">&quot;1&quot;</span>
+  <span class="na">y1=</span><span class="s">&quot;0&quot;</span>
+  <span class="na">y2=</span><span class="s">&quot;1&quot;</span>
+<span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>To decompose the basic shape, we can move to the starting position and then use the end point as parameter for the LineTo command:</p>
-<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;path 
-  d=
-    &quot;
-      M 0,0 
-      L 1,1
-    &quot; 
-/&gt;
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;path</span> 
+  <span class="na">d=</span>
+    <span class="s">&quot;</span>
+<span class="s">      M 0,0 </span>
+<span class="s">      L 1,1</span>
+<span class="s">    &quot;</span> 
+<span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>SVGO uses the following (Javascript) logic for a line with start point <span class="math notranslate nohighlight">\((x1, y1)\)</span> and end point <span class="math notranslate nohighlight">\((x2, y2)\)</span>:</p>
@@ -808,26 +829,26 @@ The parameters of the first arc <code class="docutils literal notranslate"><span
 <h2>(3.4) Decomposition of polygons<a class="headerlink" href="#decomposition-of-polygons" title="Permalink to this headline">¶</a></h2>
 <p>Polygons are just closed polylines and can also trivially be decomposed using a MoveTo command followed by a sequence of LineTo commands.</p>
 <p>The following polygon is defined by three points <span class="math notranslate nohighlight">\((0, 0)\)</span> (top left), <span class="math notranslate nohighlight">\((1, 0)\)</span> (top right), and <span class="math notranslate nohighlight">\((1, 1)\)</span> (bottom right). The shape gets closed by definition.</p>
-<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;polygon 
-  points=
-    &quot;
-      0, 0 
-      1, 0 
-      1, 1
-    &quot;
-/&gt;
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;polygon</span> 
+  <span class="na">points=</span>
+    <span class="s">&quot;</span>
+<span class="s">      0, 0 </span>
+<span class="s">      1, 0 </span>
+<span class="s">      1, 1</span>
+<span class="s">    &quot;</span>
+<span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>The polygon can get replaced by the following path:</p>
-<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;path 
-  d=
-    &quot;
-      M 0,0 
-      L 1,0 
-      L 1,1 
-      z
-    &quot; 
-/&gt;
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;path</span> 
+  <span class="na">d=</span>
+    <span class="s">&quot;</span>
+<span class="s">      M 0,0 </span>
+<span class="s">      L 1,0 </span>
+<span class="s">      L 1,1 </span>
+<span class="s">      z</span>
+<span class="s">    &quot;</span> 
+<span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>We first move to the starting position <span class="math notranslate nohighlight">\((0, 0)\)</span>, then we create lines to the second point and the third point and close the path using the <code class="docutils literal notranslate"><span class="pre">z</span></code> command.</p>
@@ -851,25 +872,25 @@ The parameters of the first arc <code class="docutils literal notranslate"><span
 <h2>(3.5) Decomposition of polyline<a class="headerlink" href="#decomposition-of-polyline" title="Permalink to this headline">¶</a></h2>
 <p>Polylines are just sequences of straight lines and are not automatically closed.
 Thus, they can be replaced the same way as polygons – just without the closing command <code class="docutils literal notranslate"><span class="pre">z</span></code>.</p>
-<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;polyline 
-  points=
-    &quot;
-      0, 0 
-      1, 0 
-      1, 1
-    &quot;
-/&gt;
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;polyline</span> 
+  <span class="na">points=</span>
+    <span class="s">&quot;</span>
+<span class="s">      0, 0 </span>
+<span class="s">      1, 0 </span>
+<span class="s">      1, 1</span>
+<span class="s">    &quot;</span>
+<span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>This is the replacement path data:</p>
-<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;path 
-  d=
-    &quot;
-      M 0,0 
-      L 1,0 
-      L 1,1
-    &quot; 
-/&gt;
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;path</span> 
+  <span class="na">d=</span>
+    <span class="s">&quot;</span>
+<span class="s">      M 0,0 </span>
+<span class="s">      L 1,0 </span>
+<span class="s">      L 1,1</span>
+<span class="s">    &quot;</span> 
+<span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>SVGO uses the following (Javascript) logic for a polyline:</p>
@@ -888,40 +909,40 @@ Thus, they can be replaced the same way as polygons – just without the closing
 <div class="section" id="decomposition-of-rectangles">
 <h2>(3.6) Decomposition of rectangles<a class="headerlink" href="#decomposition-of-rectangles" title="Permalink to this headline">¶</a></h2>
 <p>Rectangles can also trivially be converted into a sequence of straight lines by using a MoveTo command, three or four LineTo commands and a closing command <code class="docutils literal notranslate"><span class="pre">z</span></code>.</p>
-<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;rect 
-  x=&quot;0&quot;
-  y=&quot;0&quot;
-  width=&quot;1&quot;
-  height=&quot;1&quot;
-/&gt;
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;rect</span> 
+  <span class="na">x=</span><span class="s">&quot;0&quot;</span>
+  <span class="na">y=</span><span class="s">&quot;0&quot;</span>
+  <span class="na">width=</span><span class="s">&quot;1&quot;</span>
+  <span class="na">height=</span><span class="s">&quot;1&quot;</span>
+<span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>The <span class="math notranslate nohighlight">\((x, y)\)</span> parameters of a rectangle defines the position of the upper left corner.
 Thus, this is the replacement path data:</p>
-<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;path 
-  d=
-    &quot;
-      M 0,0 
-      L 1,0
-      L 1,1
-      L 0,1
-      L 0,0
-      z
-    &quot;
-/&gt;
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;path</span> 
+  <span class="na">d=</span>
+    <span class="s">&quot;</span>
+<span class="s">      M 0,0 </span>
+<span class="s">      L 1,0</span>
+<span class="s">      L 1,1</span>
+<span class="s">      L 0,1</span>
+<span class="s">      L 0,0</span>
+<span class="s">      z</span>
+<span class="s">    &quot;</span>
+<span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>Is is also possible to just use three LineTo commands since the closing command <code class="docutils literal notranslate"><span class="pre">z</span></code> would form a straight line anyways and needs to connect the last and the first point:</p>
-<div class="highlight-SVG notranslate"><div class="highlight"><pre><span></span>&lt;path 
-  d=
-    &quot;
-      M 0,0 
-      L 1,0
-      L 1,1
-      L 0,1
-      z
-    &quot;
-/&gt;
+<div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;path</span> 
+  <span class="na">d=</span>
+    <span class="s">&quot;</span>
+<span class="s">      M 0,0 </span>
+<span class="s">      L 1,0</span>
+<span class="s">      L 1,1</span>
+<span class="s">      L 0,1</span>
+<span class="s">      z</span>
+<span class="s">    &quot;</span>
+<span class="nt">/&gt;</span>
 </pre></div>
 </div>
 <p>SVGO uses the following (Javascript) logic for a rectangle with position (of the upper left corner) <span class="math notranslate nohighlight">\((x, y)\)</span>, width and height:</p>

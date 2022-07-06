@@ -74,7 +74,7 @@ As stated in the [SVG standards for a circle](https://www.w3.org/TR/SVG/shapes.h
 
 DeepSVG implements a decomposition using 4 elliptical arcs. The example from the paper is a circle defined as follows:
 
-```SVG
+```XML
 <circle 
   cx="1" 
   cy="1"
@@ -85,7 +85,7 @@ DeepSVG implements a decomposition using 4 elliptical arcs. The example from the
 So, this is a circle around the center point $(1, 1)$ with a radius of 1 (and, thus, a width of 2).
 This circle gets translated a MoveTo command and four elliptical arc curves followed by a closing command.
 
-```SVG
+```XML
 <path 
   d="
     M1,0 
@@ -113,7 +113,7 @@ Circle decomposition in DeepSVG using four elliptical arc curves; center figure 
 The SVG decomposition of circles to paths (and vice versa) has also been covered by this [article by the smashingmagazine.com](https://www.smashingmagazine.com/2019/03/svg-circle-decomposition-paths/). 
 
 
-```SVG
+```XML
 <svg
    xmlns="http://www.w3.org/2000/svg" 
    width="100"
@@ -128,7 +128,7 @@ The SVG decomposition of circles to paths (and vice versa) has also been covered
 
 The option for circle decomposition proposed in the article is to use a MoveTo command followed by two half-circle elliptical arc segments, each describing a half-circle. [SVGO](https://github.com/svg/svgo/) also [uses](https://github.com/svg/svgo/blob/master/plugins/convertShapeToPath.js) two arcs describing half-circles.
 
-```SVG
+```XML
 <path
   d="
     M 25, 50
@@ -215,7 +215,7 @@ Lines, defined by a start point and an end point, can be trivially decomposed to
 
 The following line defines a straight line from $(x_1, y_1)=(0, 0)$ to $(x_2, y_2)=(1, 1)$.
 
-```SVG
+```XML
 <line 
   x1="0"
   x2="1"
@@ -226,7 +226,7 @@ The following line defines a straight line from $(x_1, y_1)=(0, 0)$ to $(x_2, y_
 
 To decompose the basic shape, we can move to the starting position and then use the end point as parameter for the LineTo command:
 
-```SVG
+```XML
 <path 
   d=
     "
@@ -253,7 +253,7 @@ Polygons are just closed polylines and can also trivially be decomposed using a 
 
 The following polygon is defined by three points $(0, 0)$ (top left), $(1, 0)$ (top right), and $(1, 1)$ (bottom right). The shape gets closed by definition.
 
-```SVG
+```XML
 <polygon 
   points=
     "
@@ -266,7 +266,7 @@ The following polygon is defined by three points $(0, 0)$ (top left), $(1, 0)$ (
 
 The polygon can get replaced by the following path:
 
-```SVG
+```XML
 <path 
   d=
     "
@@ -305,7 +305,7 @@ Polylines are just sequences of straight lines and are not automatically closed.
 Thus, they can be replaced the same way as polygons -- just without the closing command `z`.
 
 
-```SVG
+```XML
 <polyline 
   points=
     "
@@ -318,7 +318,7 @@ Thus, they can be replaced the same way as polygons -- just without the closing 
 
 This is the replacement path data:
 
-```SVG
+```XML
 <path 
   d=
     "
@@ -349,7 +349,7 @@ The first command is always `M`, followed by a sequence of `L` commands.
 
 Rectangles can also trivially be converted into a sequence of straight lines by using a MoveTo command, three or four LineTo commands and a closing command `z`.
 
-```SVG
+```XML
 <rect 
   x="0"
   y="0"
@@ -361,7 +361,7 @@ Rectangles can also trivially be converted into a sequence of straight lines by 
 The $(x, y)$ parameters of a rectangle defines the position of the upper left corner.
 Thus, this is the replacement path data:
 
-```SVG
+```XML
 <path 
   d=
     "
@@ -377,7 +377,7 @@ Thus, this is the replacement path data:
 
 Is is also possible to just use three LineTo commands since the closing command `z` would form a straight line anyways and needs to connect the last and the first point:
 
-```SVG
+```XML
 <path 
   d=
     "

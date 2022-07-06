@@ -43,6 +43,8 @@ parts:
     - file: 03_related_work/papers/Li_et_al_2020.md
     - file: 03_related_work/papers/Reddy_et_al_2021.md
     - file: 03_related_work/papers/wang_and_lian_2021.md
+    - file: 03_related_work/papers/Vinker_2022.md
+    - file: 03_related_work/papers/Ma_2022.md
     - file: 03_related_work/papers/Aoki_and_Aizawa_2022
   - file: 03_related_work/further_academic_papers.md
     sections:
@@ -75,6 +77,11 @@ parts:
     - file: 04_data_representation/preprocessing/path_simplification.md
     - file: 04_data_representation/preprocessing/finishing_touches.md
     - file: 04_data_representation/preprocessing/embedding.md
+
+# Open question
+- caption: Open questions
+  chapters:
+  - file: 05_open_questions/open_questions.md
 
 # Acknowledgements
 - caption: Acknowledgements

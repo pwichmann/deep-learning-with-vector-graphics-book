@@ -20,7 +20,7 @@ Illustration of a 3x3 pixel RGB raster image; each pixel contains 3 values, one 
 
 ### Vector graphics are based on the mathematical description of paths
 
-Vector graphics, on the other hand, are not based on a grid of pixels but based on mathematical descriptions of points, lines etc. in an x,y (Cartesian) coordinate system. 
+Vector graphics, on the other hand, are not based on a grid of pixels but based on mathematical descriptions of points, lines etc. in an two-dimensional (Cartesian) coordinate system. A point, for example, will be defined by its (x,y) coordinates.
 
 One major advantage of vector graphics is that they are infinitely scalable. Another advantage is that their file size is small and independent of the image's size and resolution. This is why, for instance, fonts, icons and logos are often designed as vector graphics.
 
@@ -30,21 +30,32 @@ Below is an example of simple SVG:
 
 ```XML
 <svg version="1.1"
-     width="200" height="200"
+     width="200" 
+     height="200"
      xmlns="http://www.w3.org/2000/svg">
 
   <rect width="100%" height="100%" fill="blue" />
 
   <circle cx="100" cy="100" r="80" fill="yellow" />
 
-  <text x="100" y="125" font-size="60" text-anchor="middle" fill="black">SVG</text>
+  <text x="100" y="125" font-size="60" text-anchor="middle" fill="black">
+    SVG
+  </text>
 
   <path d="M 30 160 q 50 -50 140 0" stroke="red" stroke-width="8" fill="none" />
 
 </svg>
 ```
 
-Once rendered by the browser, this looks like this:
+The code above defines four elements in the SVG image:
+* A rectangle using the SVG element `<rect>`
+* A circle using the SVG element `<circle>`
+* A text using the SVG element `<text>`. The content of the text is enclosed by the opening `<text>` and closing `</text>` tags. 
+* A path using the SVG element `<path>`. The actual path definition is in the `d` attribute which contains a sequence of commands and parameters. E.g. `M 30 160` means that the cursor position is moved to position (30, 160). From that point, a quadratic bézier curve (`q`) is drawn.
+
+Details of how SVG works can be found in the corresponding section.
+
+Once rendered by the browser, the SVVG image looks like this:
 
 :::{figure-md} about_example_svg
 <img src="example.svg" alt="Example SVG image" width="200px">

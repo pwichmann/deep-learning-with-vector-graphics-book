@@ -3,7 +3,7 @@
 SVG is an XML-based vector image format, i.e. images are described in a text document with nested tags.
 SVGs are for two-dimensional graphics and points are defined in an (x, y) Cartesian coordinate system. The SVG format also supports interactivity and animation.
 
-The W3C defines SVG as "a markup language for describing two-dimensional graphics applications and images" [source](https://www.w3.org/Graphics/SVG/).
+The W3C defines SVG as "a markup language for describing two-dimensional graphics applications and images" ([W3C SVG standard](https://www.w3.org/Graphics/SVG/)).
 
 Most Web browsers can render SVG and SVG have become the most popular vector image format of the Web. The SVG standard was first released in 2001.
 SVG is a Web standard as defined by the W3C.
@@ -29,6 +29,10 @@ Tags enclosed in `<...>` are called **elements**. Properties of these elements a
 ```{note}
 TODO
 ```
+
+## Coordinate system
+
+Please note that the origin of any SVG, the `(0, 0)` point, is defined as the *top-left* corner with the positive x-axis pointing towards the right, the positive y-axis pointing *down*.
 
 ## Path data `<path d="..."></path>`
 
@@ -72,7 +76,7 @@ Let us have a closer look at an example SVG (taken from the excellent [Mozilla S
 
 We can see the command sequence `M, A, A, Q, Q, z`. The first 5 commands are upper case and, thus, use absolute positioning. The last command, to close the path, is lower case and uses relative positioning. (Both uppercase or lowercase z here have identical outcomes.)
 
-The first command `M` is a MoveTo command and we would expect two parameters. In this case, these parameters are `10, 30` and, thus, the first action is to move the drawing instrument to the absolute position `(x, y)=(10, 30)`. Note that this SVG has a quadratic size of `(100, 100)`. The origin of any SVG, the `(0, 0)` point, is defined as the top-left corner with the positive x-axis pointing towards the right, the positive y-axis pointing down.
+The first command `M` is a MoveTo command and we would expect two parameters. In this case, these parameters are `10, 30` and, thus, the first action is to move the drawing instrument to the absolute position `(x, y)=(10, 30)`. Note that this SVG has a quadratic size of `(100, 100)`.
 
 The next command defines an elliptical arc curve starting at the current point `(10, 30)`. 
 

@@ -414,6 +414,18 @@
 </ul>
 <p class="caption">
  <span class="caption-text">
+  Open questions
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../05_open_questions/open_questions.html">
+   Open questions
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
   Acknowledgements
  </span>
 </p>
@@ -521,6 +533,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#coordinate-system">
+   Coordinate system
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#path-data-path-d-path">
    Path data
    <code class="docutils literal notranslate">
@@ -565,7 +582,7 @@
 <h1>Scalable Vector Graphics (SVG) format<a class="headerlink" href="#scalable-vector-graphics-svg-format" title="Permalink to this headline">¶</a></h1>
 <p>SVG is an XML-based vector image format, i.e. images are described in a text document with nested tags.
 SVGs are for two-dimensional graphics and points are defined in an (x, y) Cartesian coordinate system. The SVG format also supports interactivity and animation.</p>
-<p>The W3C defines SVG as “a markup language for describing two-dimensional graphics applications and images” <a class="reference external" href="https://www.w3.org/Graphics/SVG/">source</a>.</p>
+<p>The W3C defines SVG as “a markup language for describing two-dimensional graphics applications and images” (<a class="reference external" href="https://www.w3.org/Graphics/SVG/">W3C SVG standard</a>).</p>
 <p>Most Web browsers can render SVG and SVG have become the most popular vector image format of the Web. The SVG standard was first released in 2001.
 SVG is a Web standard as defined by the W3C.</p>
 <p>The current definition of the SVG format is version 1.1 (Second Edition). A version 2 has been in development.</p>
@@ -591,6 +608,10 @@ SVG is a Web standard as defined by the W3C.</p>
 <p class="admonition-title">Note</p>
 <p>TODO</p>
 </div>
+</div>
+<div class="section" id="coordinate-system">
+<h2>Coordinate system<a class="headerlink" href="#coordinate-system" title="Permalink to this headline">¶</a></h2>
+<p>Please note that the origin of any SVG, the <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code> point, is defined as the <em>top-left</em> corner with the positive x-axis pointing towards the right, the positive y-axis pointing <em>down</em>.</p>
 </div>
 <div class="section" id="path-data-path-d-path">
 <h2>Path data <code class="docutils literal notranslate"><span class="pre">&lt;path</span> <span class="pre">d=&quot;...&quot;&gt;&lt;/path&gt;</span></code><a class="headerlink" href="#path-data-path-d-path" title="Permalink to this headline">¶</a></h2>
@@ -662,7 +683,7 @@ SVG is a Web standard as defined by the W3C.</p>
 </pre></div>
 </div>
 <p>We can see the command sequence <code class="docutils literal notranslate"><span class="pre">M,</span> <span class="pre">A,</span> <span class="pre">A,</span> <span class="pre">Q,</span> <span class="pre">Q,</span> <span class="pre">z</span></code>. The first 5 commands are upper case and, thus, use absolute positioning. The last command, to close the path, is lower case and uses relative positioning. (Both uppercase or lowercase z here have identical outcomes.)</p>
-<p>The first command <code class="docutils literal notranslate"><span class="pre">M</span></code> is a MoveTo command and we would expect two parameters. In this case, these parameters are <code class="docutils literal notranslate"><span class="pre">10,</span> <span class="pre">30</span></code> and, thus, the first action is to move the drawing instrument to the absolute position <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y)=(10,</span> <span class="pre">30)</span></code>. Note that this SVG has a quadratic size of <code class="docutils literal notranslate"><span class="pre">(100,</span> <span class="pre">100)</span></code>. The origin of any SVG, the <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code> point, is defined as the top-left corner with the positive x-axis pointing towards the right, the positive y-axis pointing down.</p>
+<p>The first command <code class="docutils literal notranslate"><span class="pre">M</span></code> is a MoveTo command and we would expect two parameters. In this case, these parameters are <code class="docutils literal notranslate"><span class="pre">10,</span> <span class="pre">30</span></code> and, thus, the first action is to move the drawing instrument to the absolute position <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y)=(10,</span> <span class="pre">30)</span></code>. Note that this SVG has a quadratic size of <code class="docutils literal notranslate"><span class="pre">(100,</span> <span class="pre">100)</span></code>.</p>
 <p>The next command defines an elliptical arc curve starting at the current point <code class="docutils literal notranslate"><span class="pre">(10,</span> <span class="pre">30)</span></code>.</p>
 </div>
 <div class="section" id="intuitive-understanding-of-svg-path-data">

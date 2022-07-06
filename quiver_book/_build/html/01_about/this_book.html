@@ -255,6 +255,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../03_related_work/papers/Vinker_2022.html">
+     Vinker et al. (2022) | CLIPasso: Semantically-Aware Object Sketching
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../03_related_work/papers/Aoki_and_Aizawa_2022.html">
      Aoki and Aizawa (2022) | SVG vector font generation for Chinese Characters with Transformer
     </a>
@@ -412,6 +417,18 @@
 </ul>
 <p class="caption">
  <span class="caption-text">
+  Open questions
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05_open_questions/open_questions.html">
+   Open questions
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
   Acknowledgements
  </span>
 </p>
@@ -558,26 +575,37 @@
 </div>
 <div class="section" id="vector-graphics-are-based-on-the-mathematical-description-of-paths">
 <h3>Vector graphics are based on the mathematical description of paths<a class="headerlink" href="#vector-graphics-are-based-on-the-mathematical-description-of-paths" title="Permalink to this headline">¶</a></h3>
-<p>Vector graphics, on the other hand, are not based on a grid of pixels but based on mathematical descriptions of points, lines etc. in an x,y (Cartesian) coordinate system.</p>
+<p>Vector graphics, on the other hand, are not based on a grid of pixels but based on mathematical descriptions of points, lines etc. in an two-dimensional (Cartesian) coordinate system. A point, for example, will be defined by its (x,y) coordinates.</p>
 <p>One major advantage of vector graphics is that they are infinitely scalable. Another advantage is that their file size is small and independent of the image’s size and resolution. This is why, for instance, fonts, icons and logos are often designed as vector graphics.</p>
 <p>A common vector graphics format is the Scalable Vector Graphics format (SVG). This format is XML-based and, thus, a text-based description of the image using a hierarchical structure of nested tags and their associated attributes.</p>
 <p>Below is an example of simple SVG:</p>
 <div class="highlight-XML notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;svg</span> <span class="na">version=</span><span class="s">&quot;1.1&quot;</span>
-     <span class="na">width=</span><span class="s">&quot;200&quot;</span> <span class="na">height=</span><span class="s">&quot;200&quot;</span>
+     <span class="na">width=</span><span class="s">&quot;200&quot;</span> 
+     <span class="na">height=</span><span class="s">&quot;200&quot;</span>
      <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/2000/svg&quot;</span><span class="nt">&gt;</span>
 
   <span class="nt">&lt;rect</span> <span class="na">width=</span><span class="s">&quot;100%&quot;</span> <span class="na">height=</span><span class="s">&quot;100%&quot;</span> <span class="na">fill=</span><span class="s">&quot;blue&quot;</span> <span class="nt">/&gt;</span>
 
   <span class="nt">&lt;circle</span> <span class="na">cx=</span><span class="s">&quot;100&quot;</span> <span class="na">cy=</span><span class="s">&quot;100&quot;</span> <span class="na">r=</span><span class="s">&quot;80&quot;</span> <span class="na">fill=</span><span class="s">&quot;yellow&quot;</span> <span class="nt">/&gt;</span>
 
-  <span class="nt">&lt;text</span> <span class="na">x=</span><span class="s">&quot;100&quot;</span> <span class="na">y=</span><span class="s">&quot;125&quot;</span> <span class="na">font-size=</span><span class="s">&quot;60&quot;</span> <span class="na">text-anchor=</span><span class="s">&quot;middle&quot;</span> <span class="na">fill=</span><span class="s">&quot;black&quot;</span><span class="nt">&gt;</span>SVG<span class="nt">&lt;/text&gt;</span>
+  <span class="nt">&lt;text</span> <span class="na">x=</span><span class="s">&quot;100&quot;</span> <span class="na">y=</span><span class="s">&quot;125&quot;</span> <span class="na">font-size=</span><span class="s">&quot;60&quot;</span> <span class="na">text-anchor=</span><span class="s">&quot;middle&quot;</span> <span class="na">fill=</span><span class="s">&quot;black&quot;</span><span class="nt">&gt;</span>
+    SVG
+  <span class="nt">&lt;/text&gt;</span>
 
   <span class="nt">&lt;path</span> <span class="na">d=</span><span class="s">&quot;M 30 160 q 50 -50 140 0&quot;</span> <span class="na">stroke=</span><span class="s">&quot;red&quot;</span> <span class="na">stroke-width=</span><span class="s">&quot;8&quot;</span> <span class="na">fill=</span><span class="s">&quot;none&quot;</span> <span class="nt">/&gt;</span>
 
 <span class="nt">&lt;/svg&gt;</span>
 </pre></div>
 </div>
-<p>Once rendered by the browser, this looks like this:</p>
+<p>The code above defines four elements in the SVG image:</p>
+<ul class="simple">
+<li><p>A rectangle using the SVG element <code class="docutils literal notranslate"><span class="pre">&lt;rect&gt;</span></code></p></li>
+<li><p>A circle using the SVG element <code class="docutils literal notranslate"><span class="pre">&lt;circle&gt;</span></code></p></li>
+<li><p>A text using the SVG element <code class="docutils literal notranslate"><span class="pre">&lt;text&gt;</span></code>. The content of the text is enclosed by the opening <code class="docutils literal notranslate"><span class="pre">&lt;text&gt;</span></code> and closing <code class="docutils literal notranslate"><span class="pre">&lt;/text&gt;</span></code> tags.</p></li>
+<li><p>A path using the SVG element <code class="docutils literal notranslate"><span class="pre">&lt;path&gt;</span></code>. The actual path definition is in the <code class="docutils literal notranslate"><span class="pre">d</span></code> attribute which contains a sequence of commands and parameters. E.g. <code class="docutils literal notranslate"><span class="pre">M</span> <span class="pre">30</span> <span class="pre">160</span></code> means that the cursor position is moved to position (30, 160). From that point, a quadratic bézier curve (<code class="docutils literal notranslate"><span class="pre">q</span></code>) is drawn.</p></li>
+</ul>
+<p>Details of how SVG works can be found in the corresponding section.</p>
+<p>Once rendered by the browser, the SVVG image looks like this:</p>
 <div class="figure align-default" id="about-example-svg">
 <a class="reference internal image-reference" href="../_images/example.svg"><img alt="Example SVG image" src="../_images/example.svg" width="200px" /></a>
 <p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Example SVG as rendered by the browser</span><a class="headerlink" href="#about-example-svg" title="Permalink to this image">¶</a></p>
