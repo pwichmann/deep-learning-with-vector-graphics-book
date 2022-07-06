@@ -7,4 +7,6 @@ This section aims to:
 
 In order to be relevant, papers need to discuss the use of Deep Learning in combination with vector graphics, such as SVG or other stroke-based graphics. The distinction between key and further academic publications is subjective but shall help papers with a larger contribution not to get overlooked in the ocean of papers out there.
 
-The explanations for each paper freely mix content from the papers with own attempted explanations and illustrations.
+The explanations for each paper freely mix content from the papers with own attempted explanations, remarks and illustrations.
+
+The papers are listed in the menu on the left in chronological order.
