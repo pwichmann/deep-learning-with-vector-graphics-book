@@ -5,7 +5,7 @@ If you would have any ideas to contribute, please use the [issues function of Gi
 
 The focus is on deep generative models for SVG images.
 
-## Open question: Is information in 'raster space' required or not?
+## Open question #1: Is information in 'raster space' required or not?
 
 ### Background
 
@@ -17,12 +17,13 @@ Other models include information from the 'raster space', e.g. Wang and Lian (20
 
 The current impression is that models that only work in the 'SVG space' perform less well. An exception appears to be the recent work by Aoki and Aizawa (2022) which appears to outperform DeepSVG and DeepVecFont.
 
-### Question
+### Related sub-questions
 
 1. Is information from the 'raster space' required for a generative model to work well and produce high-quality SVGs that are indistinguishable from human-designed ones?
 1. If so, what are the reasons?
 1. How can a model deal with the multitude of options how to represent the identical raster image as an SVG?
 1. Without the complex knowledge how an SVG is actually rendered to a pixel graphic, how can a generative model possibly have sufficient information how a concept should be designed in SVG space? To us humans, it matters how the resulting image looks like. It matters less, how identically looking magnifying glass icons are specifically designed, e.g. where anchor points are placed.
+1. Is it better to split the problem into two parts? A generative model trained on and working in raster space -- and a vectorization model? Or is it better, as it commonly is in Deep Learning, to use an end-to-end model?
 
-Regarding the last question
+
 

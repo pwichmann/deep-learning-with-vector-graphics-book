@@ -260,6 +260,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../03_related_work/papers/Ma_2022.html">
+     Ma et al. (2022) | LIVE: Towards Layer-wise Image Vectorization
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../03_related_work/papers/Aoki_and_Aizawa_2022.html">
      Aoki and Aizawa (2022) | SVG vector font generation for Chinese Characters with Transformer
     </a>
@@ -526,8 +531,8 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#open-question-is-information-in-raster-space-required-or-not">
-   Open question: Is information in ‘raster space’ required or not?
+  <a class="reference internal nav-link" href="#open-question-1-is-information-in-raster-space-required-or-not">
+   Open question #1: Is information in ‘raster space’ required or not?
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -541,8 +546,8 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#question">
-     Question
+    <a class="reference internal nav-link" href="#related-sub-questions">
+     Related sub-questions
     </a>
    </li>
   </ul>
@@ -563,8 +568,8 @@
 <p>The following are the big questions the author is currently unable to answer.
 If you would have any ideas to contribute, please use the <a class="reference external" href="https://github.com/pwichmann/deep-learning-with-vector-graphics-book/issues">issues function of Github for this project</a>.</p>
 <p>The focus is on deep generative models for SVG images.</p>
-<div class="section" id="open-question-is-information-in-raster-space-required-or-not">
-<h2>Open question: Is information in ‘raster space’ required or not?<a class="headerlink" href="#open-question-is-information-in-raster-space-required-or-not" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="open-question-1-is-information-in-raster-space-required-or-not">
+<h2>Open question #1: Is information in ‘raster space’ required or not?<a class="headerlink" href="#open-question-1-is-information-in-raster-space-required-or-not" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="background">
 <h3>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h3>
 <p>Some existing generative models for SVG are end-to-end and exclusively work in the ‘SVG space’. These models encode SVGs into a vector and solely train on and work with the vector image data representation. Examples are DeepSVG by Carlier et al. (2020) and Aoki and Aizawa (2022).</p>
@@ -574,15 +579,15 @@ If you would have any ideas to contribute, please use the <a class="reference ex
 <h3>Observations<a class="headerlink" href="#observations" title="Permalink to this headline">¶</a></h3>
 <p>The current impression is that models that only work in the ‘SVG space’ perform less well. An exception appears to be the recent work by Aoki and Aizawa (2022) which appears to outperform DeepSVG and DeepVecFont.</p>
 </div>
-<div class="section" id="question">
-<h3>Question<a class="headerlink" href="#question" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="related-sub-questions">
+<h3>Related sub-questions<a class="headerlink" href="#related-sub-questions" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
 <li><p>Is information from the ‘raster space’ required for a generative model to work well and produce high-quality SVGs that are indistinguishable from human-designed ones?</p></li>
 <li><p>If so, what are the reasons?</p></li>
 <li><p>How can a model deal with the multitude of options how to represent the identical raster image as an SVG?</p></li>
 <li><p>Without the complex knowledge how an SVG is actually rendered to a pixel graphic, how can a generative model possibly have sufficient information how a concept should be designed in SVG space? To us humans, it matters how the resulting image looks like. It matters less, how identically looking magnifying glass icons are specifically designed, e.g. where anchor points are placed.</p></li>
+<li><p>Is it better to split the problem into two parts? A generative model trained on and working in raster space – and a vectorization model? Or is it better, as it commonly is in Deep Learning, to use an end-to-end model?</p></li>
 </ol>
-<p>Regarding the last question</p>
 </div>
 </div>
 </div>
