@@ -570,6 +570,7 @@ If you would have any ideas to contribute, please use the <a class="reference ex
 <p>The focus is on deep generative models for SVG images.</p>
 <div class="section" id="open-question-1-is-information-in-raster-space-required-or-not">
 <h2>Open question #1: Is information in ‘raster space’ required or not?<a class="headerlink" href="#open-question-1-is-information-in-raster-space-required-or-not" title="Permalink to this headline">¶</a></h2>
+<p>One major open question for the author is if a generative model can work well just using SVG information – or if the model requires information from the ‘raster space’, such as via a differentiable renderer (diffvg). For us humans, it really matters how the image looks like rendered onto a display in the end.</p>
 <div class="section" id="background">
 <h3>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h3>
 <p>Some existing generative models for SVG are end-to-end and exclusively work in the ‘SVG space’. These models encode SVGs into a vector and solely train on and work with the vector image data representation. Examples are DeepSVG by Carlier et al. (2020) and Aoki and Aizawa (2022).</p>
@@ -587,6 +588,7 @@ If you would have any ideas to contribute, please use the <a class="reference ex
 <li><p>How can a model deal with the multitude of options how to represent the identical raster image as an SVG?</p></li>
 <li><p>Without the complex knowledge how an SVG is actually rendered to a pixel graphic, how can a generative model possibly have sufficient information how a concept should be designed in SVG space? To us humans, it matters how the resulting image looks like. It matters less, how identically looking magnifying glass icons are specifically designed, e.g. where anchor points are placed.</p></li>
 <li><p>Is it better to split the problem into two parts? A generative model trained on and working in raster space – and a vectorization model? Or is it better, as it commonly is in Deep Learning, to use an end-to-end model?</p></li>
+<li><p>Is a model like DALL-E that works with grids of pixels not much better positioned to create interpolations – compared to a model that works with SVG and thus nested, separate elements?</p></li>
 </ol>
 </div>
 </div>
