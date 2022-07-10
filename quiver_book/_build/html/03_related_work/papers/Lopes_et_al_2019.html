@@ -255,6 +255,16 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="Vinker_2022.html">
+     Vinker et al. (2022) | CLIPasso: Semantically-Aware Object Sketching
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Ma_2022.html">
+     Ma et al. (2022) | LIVE: Towards Layer-wise Image Vectorization
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="Aoki_and_Aizawa_2022.html">
      Aoki and Aizawa (2022) | SVG vector font generation for Chinese Characters with Transformer
     </a>
@@ -408,6 +418,18 @@
     </a>
    </li>
   </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Open questions
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../05_open_questions/open_questions.html">
+   Open questions
+  </a>
  </li>
 </ul>
 <p class="caption">
@@ -623,7 +645,7 @@
 </div>
 <div class="figure align-default" id="svg-vae-home-fig">
 <a class="reference internal image-reference" href="../../_images/svg_vae_cover.png"><img alt="SVG-VAE paper by Lopes" src="../../_images/svg_vae_cover.png" style="width: 900px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 33 </span><span class="caption-text">Screenshot of the SVG-VAE <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-home-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 34 </span><span class="caption-text">Screenshot of the SVG-VAE <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-home-fig" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="dataset">
 <h2>Dataset<a class="headerlink" href="#dataset" title="Permalink to this headline">¶</a></h2>
@@ -683,7 +705,7 @@
 <h2>Model architecture<a class="headerlink" href="#model-architecture" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-default" id="svg-vae-model-fig">
 <a class="reference internal image-reference" href="../../_images/svg_vae_model_architecture.png"><img alt="SVG-VAE model architecture" src="../../_images/svg_vae_model_architecture.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 34 </span><span class="caption-text">Screenshot of the SVG-VAE model architecture; taken from <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-model-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 35 </span><span class="caption-text">Screenshot of the SVG-VAE model architecture; taken from <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-model-fig" title="Permalink to this image">¶</a></p>
 </div>
 <p>“Visual similarity between SVGs is learned by a class-conditioned, convolutional variational autoencoder (VAE) on a rendered representation (blue). The class label and learned representation z are provided as input to a model that decodes SVG commands (purple). The SVG decoder consists of stacked LSTMs followed by a Mixture Density Network (MDN).”</p>
 </div>
@@ -691,7 +713,7 @@
 <h2>Latent space interpolation<a class="headerlink" href="#latent-space-interpolation" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-default" id="svg-vae-interpolations-fig">
 <a class="reference internal image-reference" href="../../_images/svg_vae_linear_interpolations.png"><img alt="SVG-VAE linear interpolations" src="../../_images/svg_vae_linear_interpolations.png" style="width: 700px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 35 </span><span class="caption-text">Screenshot of linear interpolations; taken from <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-interpolations-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 36 </span><span class="caption-text">Screenshot of linear interpolations; taken from <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-interpolations-fig" title="Permalink to this image">¶</a></p>
 </div>
 <p>The trained model allows for the generation of new characters and fonts by leveraging linear interpolations between two characters or two positions in the latent space.</p>
 </div>
@@ -699,7 +721,7 @@
 <h2>Semantically meaningful directions in latent space<a class="headerlink" href="#semantically-meaningful-directions-in-latent-space" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-default" id="svg-vae-directions-fig">
 <a class="reference internal image-reference" href="../../_images/svg_vae_meaningful_directions.png"><img alt="SVG-VAE meaningful directions" src="../../_images/svg_vae_meaningful_directions.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 36 </span><span class="caption-text">Screenshot of meaningful directions in latent space; taken from <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-directions-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 37 </span><span class="caption-text">Screenshot of meaningful directions in latent space; taken from <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-directions-fig" title="Permalink to this image">¶</a></p>
 </div>
 <p>Interestingly, semantically meaningful directions could be identified. Examples, as shown above, are:</p>
 <ul class="simple">
@@ -712,7 +734,7 @@
 <h2>Example results<a class="headerlink" href="#example-results" title="Permalink to this headline">¶</a></h2>
 <div class="figure align-default" id="svg-vae-results-fig">
 <a class="reference internal image-reference" href="../../_images/svg_vae_sample_randomly_generated_fonts.png"><img alt="SVG-VAE sample of randomly generated fonts" src="../../_images/svg_vae_sample_randomly_generated_fonts.png" style="width: 700px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 37 </span><span class="caption-text">Screenshot of a sample of randomly generated fonts; taken from <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-results-fig" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 38 </span><span class="caption-text">Screenshot of a sample of randomly generated fonts; taken from <a class="reference external" href="https://arxiv.org/abs/1904.02632">paper</a></span><a class="headerlink" href="#svg-vae-results-fig" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="remarkable-aspects-of-this-work">

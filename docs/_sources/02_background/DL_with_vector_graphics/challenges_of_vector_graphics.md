@@ -57,6 +57,14 @@ It may be required to use both vector graphics and corresponding raster images a
 
 Converting an SVG to a PNG ("rasterizing" or "tracing") is not a bijective function. There are *many* ways to design an SVG that results in the same rastered PNG. Given a PNG, one can only derive possible SVG compositions. But one can not know how the original SVG was designed.
 
+Consider the following figure showing two icons of a magnifying glass. In "raster space", the two magnifying glasses look near-identical. In "SVG space" however, they have been constructed very differently. The icon on the left has been designed using 7 points and corresponding bézier handles. The icon on the left uses 18 points and corresponding bézier handles.
+
+:::{figure-md} different_internal_designs
+<img src="different_internal_designs.png" alt="Near identical SVG images are built very differently" width="500px">
+
+Near-identical SVG images can be built very differently.
+:::
+
 That makes learning just from raster images difficult if one wanted to output SVG in the end.
 
 
