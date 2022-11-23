@@ -62,7 +62,7 @@ Consider the following figure showing two icons of a magnifying glass. In "raste
 :::{figure-md} different_internal_designs
 <img src="different_internal_designs.png" alt="Near identical SVG images are built very differently" width="500px">
 
-Near-identical SVG images can be built very differently.
+Near-identical SVG images can be built very differently. Click to enlarge the image and view the differences.
 :::
 
 That makes learning just from raster images difficult if one wanted to output SVG in the end.

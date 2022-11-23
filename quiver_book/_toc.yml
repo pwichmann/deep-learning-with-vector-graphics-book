@@ -46,6 +46,7 @@ parts:
     - file: 03_related_work/papers/Vinker_2022.md
     - file: 03_related_work/papers/Ma_2022.md
     - file: 03_related_work/papers/Aoki_and_Aizawa_2022
+    - file: 03_related_work/papers/Jain_et_al_2022
   - file: 03_related_work/further_academic_papers.md
     sections:
     - file: 03_related_work/further_academic_papers/campbell_and_kautz_2014.md

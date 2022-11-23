@@ -9,7 +9,7 @@ Aoki and Aizawa propose a novel architecture to generate SVG images, in particul
 * Project page: none (yet)
 ```
 
-:::{figure-md} deepsvg_cover
+:::{figure-md} cover_aoki_2022
 <img src="cover_aoki_2022.png" alt="Aoki and Aizawa paper" width="500px">
 
 Screenshot of the [Aoki and Aizawa (2022) paper](https://arxiv.org/pdf/2206.10329.pdf)
